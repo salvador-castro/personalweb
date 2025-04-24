@@ -129,7 +129,9 @@ export default function SobreMi() {
                 vertical="center"
               >
                 <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Flex paddingX="8">Schedule a call</Flex>
+                <Flex paddingX="8">
+                  <Text>Agendar una llamada</Text>
+                </Flex>
                 <IconButton
                   href={sobremi.calendar.link}
                   data-border="rounded"

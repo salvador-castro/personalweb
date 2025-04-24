@@ -15,11 +15,11 @@ const person = {
 
 const newsletter = {
   display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
+  title: <>Unite al newsletter de {person.firstName}</>,
   description: (
     <>
-      I occasionally write sobremi design, technology, and share thoughts on the intersection of
-      creativity and engineering.
+      Recibí ideas frescas sobre desarrollo, diseño y tecnología directamente en tu inbox.  
+      Nada de spam: solo contenido útil, inspiración real y aprendizajes que podés aplicar.
     </>
   ),
 };
@@ -63,10 +63,10 @@ const home = {
   },
   subline: (
     <>
-      Soy Salvador, un ingeniero del diseño digital en donde creo experiencias de usuario intuitivas. Después del trabajo,
-      <br /> desarrollo mis propios proyectos con la misma pasión.
+      Soy Salvador, un apasionado del desarrollo web con foco en la experiencia de usuario. 
+      En mi tiempo libre, creo proyectos que combinan diseño y funcionalidad.
     </>
-  ),
+  ),  
 };
 
 const sobremi = {
@@ -83,16 +83,16 @@ const sobremi = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: "https://cal.com/salvador-castro/60min?overlayCalendar=true",
   },
-  intro: {
+  intro: { 
     display: true,
-    title: "Introduction",
+    title: "Introducción",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Soy Salvador, estudiante de Ingeniería en Sistemas y apasionado por el desarrollo web. 
+        Me dedico a crear soluciones digitales simples y funcionales que conecten diseño y tecnología. 
+        Desde mi experiencia en mesa de ayuda hasta mis proyectos personales, busco aprender y construir cada día con propósito.
       </>
     ),
   },
