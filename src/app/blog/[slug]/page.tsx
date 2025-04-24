@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Heading, HeadingNav, Icon, Row, Text } from "@/once-ui/components";
-import { about, blog, person, baseURL } from "@/app/resources";
+import { sobremi, blog, person, baseURL } from "@/app/resources";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
 import { Metadata } from 'next';
@@ -70,7 +70,7 @@ export default async function Blog({
             image={`${baseURL}/og?title=${encodeURIComponent(post.metadata.title)}`}
             author={{
               name: person.name,
-              url: `${baseURL}${about.path}`,
+              url: `${baseURL}${sobremi.path}`,
               image: `${baseURL}${person.avatar}`,
             }}
           />

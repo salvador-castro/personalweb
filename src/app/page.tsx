@@ -4,7 +4,7 @@ import { Heading, Flex, Text, Button, Avatar, RevealFx, Column, Badge, Row } fro
 import { Projects } from "@/components/work/Projects";
 
 import { baseURL, routes } from "@/app/resources";
-import { home, about, person, newsletter } from "@/app/resources/content";
+import { home, sobremi, person, newsletter } from "@/app/resources/content";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import { Meta, Schema } from "@/once-ui/modules";
@@ -30,7 +30,7 @@ export default function Home() {
         image={`${baseURL}/og?title=${encodeURIComponent(home.title)}`}
         author={{
           name: person.name,
-          url: `${baseURL}${about.path}`,
+          url: `${baseURL}${sobremi.path}`,
           image: `${baseURL}${person.avatar}`,
         }}
       />
@@ -56,22 +56,22 @@ export default function Home() {
           </RevealFx>
           <RevealFx paddingTop="12" delay={0.4} horizontal="start" paddingLeft="12">
             <Button
-              id="about"
+              id="sobremi"
               data-border="rounded"
-              href={about.path}
+              href={sobremi.path}
               variant="secondary"
               size="m"
               arrowIcon
             >
               <Flex gap="8" vertical="center">
-                {about.avatar.display && (
+                {sobremi.avatar.display && (
                   <Avatar
                     style={{ marginLeft: "-0.75rem", marginRight: "0.25rem" }}
                     src={person.avatar}
                     size="m"
                   />
                 )}
-                {about.title}
+                {sobremi.title}
               </Flex>
             </Button>
           </RevealFx>

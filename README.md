@@ -59,7 +59,7 @@ Docs available at: [docs.once-ui.com](https://docs.once-ui.com/docs/magic-portfo
 
 ## **Content**
 - Render sections conditionally based on the content file
-- Enable or disable pages for blog, work, gallery and about / CV
+- Enable or disable pages for blog, work, gallery and sobremi / CV
 - Generate and display social links automatically
 - Set up password protection for URLs
 

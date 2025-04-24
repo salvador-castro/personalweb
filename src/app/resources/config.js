@@ -3,7 +3,7 @@ const baseURL = "https://" + process.env.NEXT_PUBLIC_BASE_URL || "https://demo.m
 
 const routes = {
   "/": true,
-  "/about": true,
+  "/sobre-mi": true,
   "/work": true,
   "/blog": true,
   "/gallery": true,

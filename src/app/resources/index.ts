@@ -14,7 +14,7 @@ export {
   social,
   newsletter,
   home,
-  about,
+  sobremi,
   blog,
   work,
   gallery,

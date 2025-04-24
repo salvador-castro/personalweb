@@ -1,6 +1,8 @@
 {
-  "name": "@once-ui-system/magic-portfolio",
+  "name": "salvacastro-portfolio",
   "version": "2.0.0",
+  "description": "Portfolio personal de Salvador Castro, desarrollador web y entusiasta de la tecnología.",
+  "author": "Salvador Castro <salvador@salvacastro.dev>",
   "scripts": {
     "dev": "next dev",
     "export": "next export",

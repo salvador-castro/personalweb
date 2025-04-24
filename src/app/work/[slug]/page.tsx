@@ -3,7 +3,7 @@ import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
-import { about, person, work } from "@/app/resources/content";
+import { sobremi, person, work } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
 import { Metadata } from "next";
@@ -68,7 +68,7 @@ export default async function Project({
         image={`${baseURL}/og?title=${encodeURIComponent(post.metadata.title)}`}
         author={{
           name: person.name,
-          url: `${baseURL}${about.path}`,
+          url: `${baseURL}${sobremi.path}`,
           image: `${baseURL}${person.avatar}`,
         }}
       />
