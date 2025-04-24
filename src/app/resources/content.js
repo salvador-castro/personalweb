@@ -97,45 +97,30 @@ const sobremi = {
     ),
   },
   work: {
-    display: true, // set to false to hide this section
-    title: "Work Experience",
+    display: true,
+    title: "Experiencia Laboral",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Legislatura de la Ciudad de Buenos Aires",
+        timeframe: "Dic. 2022 - Actualidad",
+        role: "Help Desk Support Specialist",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Instalación y activación de programas, mantenimiento preventivo de redes informáticas y resolución de incidencias para asegurar el funcionamiento óptimo de los sistemas.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Reparación de PCs, instalación de equipos e impresoras en red, y supervisión del correcto estado operativo de los dispositivos tecnológicos de la institución.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Netuy Uruguay",
+        timeframe: "Jun. 2021 - Sept. 2021",
+        role: "Help Desk Support Specialist",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Asistencia técnica remota, pruebas unitarias de sistemas y soporte en el uso de WordPress, garantizando el correcto funcionamiento de las plataformas digitales.
           </>,
         ],
         images: [],
@@ -143,58 +128,105 @@ const sobremi = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
-    title: "Studies",
+    display: true,
+    title: "Formación académica",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "Universidad Tecnológica Nacional (FRBA)",
+        description: (
+          <>
+            Estudiante de Ingeniería en Sistemas de Información (2016 - actualidad).
+          </>
+        ),
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Centro de e-Learning UTN FRBA",
+        description: (
+          <>
+            <strong>Programación Web Full Stack</strong> (sep. 2019 - dic. 2019) — Nota: 8.50
+            <br />
+            <strong>Diplomatura en Python</strong> (may. 2020 - nov. 2020) — Nota: Aprobado
+            <br />
+            <strong>Experto Universitario en Hacking Ético</strong> (feb. 2020 - sept. 2020) — Nota: Excelente
+            <br />
+            <strong>Diplomatura en Business Intelligence</strong> (jun. 2020 - sept. 2020) — Nota: Aprobado
+            <br />
+            <strong>PHP y MySQL Inicial</strong> (nov. 2020 - ene. 2021) — Nota: Excelente
+            <br />
+            <strong>Liderazgo Estratégico</strong> (jun. 2020 - ago. 2020) — Nota: Muy Buena
+            <br />
+            <strong>Fundamentos del Liderazgo y el Coaching</strong> (may. 2020 - jul. 2020) — Nota: Aprobado
+            <br />
+            <strong>Oratoria, persuasión y comunicación efectiva</strong> (abr. 2020 - may. 2020) — Nota: Muy Buena
+            <br />
+            <strong>Operador Excel 2016 – Inicial</strong> (sep. 2019 - nov. 2019) — Nota: 6
+            <br />
+            <strong>Armado y Reparación de PC</strong> (sep. 2019 - dic. 2019) — Nota: 7
+            <br />
+            <strong>Curso básico de Perito Judicial Informático</strong> (jun. 2020 - oct. 2020) — Nota: Bueno
+            <br />
+            <strong>Professional Webmaster</strong> (oct. 2022 - mar. 2023) — Nota: Aprobado
+          </>
+        ),
       },
     ],
-  },
+  },  
   technical: {
-    display: true, // set to false to hide this section
-    title: "Technical skills",
+    display: true,
+    title: "Tecnologías que uso",
     skills: [
       {
-        title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
-        // optional: leave the array empty if you don't want to display images
+        title: "🎨 Frontend",
+        description: (
+          <>
+            Trabajo con tecnologías modernas del frontend como JavaScript, Vue, React, Bootstrap y Tailwind para construir interfaces dinámicas, responsivas y modernas.
+          </>
+        ),
         images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", alt: "JavaScript", width: 64, height: 64 },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg", alt: "Vue.js", width: 64, height: 64 },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", alt: "React", width: 64, height: 64 },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg", alt: "Bootstrap", width: 64, height: 64 },
+          { src: "/images/tech/06B6D4.svg", alt: "Tailwind", width: 64, height: 64 },
+          { src: "https://vitejs.dev/logo.svg", alt: "Vite", width: 64, height: 64 },
         ],
       },
       {
-        title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-        // optional: leave the array empty if you don't want to display images
+        title: "🧠 Backend",
+        description: (
+          <>
+            Utilizo PHP con Laravel, Python con Django o Flask, y bases de datos como MySQL para desarrollar APIs robustas y sistemas escalables.
+          </>
+        ),
         images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg", alt: "PHP", width: 64, height: 64 },
+          { src: "https://cdn.simpleicons.org/laravel/FF2D20.svg", alt: "Laravel", width: 64, height: 64 },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", alt: "Python", width: 64, height: 64 },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg", alt: "Django", width: 64, height: 64 },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg", alt: "Flask", width: 64, height: 64 },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", alt: "MySQL", width: 64, height: 64 },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg", alt: "Symfony", width: 64, height: 64 },
+        ],
+      },
+      {
+        title: "🧰 Herramientas y librerías",
+        description: (
+          <>
+            Me apoyo en herramientas clave como Git, Node.js, Selenium y librerías como PHPMailer y Twig para automatización, envío de correos y plantillas.
+          </>
+        ),
+        images: [
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", alt: "Git", width: 64, height: 64 },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", alt: "Node.js", width: 64, height: 64 },
+          { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg", alt: "Selenium", width: 64, height: 64 },
+          { src: "https://user-images.githubusercontent.com/973783/46407973-3c5dbf80-c72e-11e8-947c-d1fdaaa28f73.png", alt: "Twig", width: 64, height: 64 },
+          { src: "https://cdn.worldvectorlogo.com/logos/phpmailer-1.svg", alt: "PHPMailer", width: 64, height: 64 },
+          { src: "https://img.icons8.com/ios-filled/100/database.png", alt: "CRUD", width: 64, height: 64 },
         ],
       },
     ],
   },
-};
+};  
 
 const blog = {
   path: "/blog",

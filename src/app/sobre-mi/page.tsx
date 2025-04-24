@@ -16,6 +16,7 @@ import styles from "@/components/sobremi/sobremi.module.scss";
 import { person, sobremi, social } from "@/app/resources/content";
 import React from "react";
 import { Meta, Schema } from "@/once-ui/modules";
+import Image from "next/image";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -216,27 +217,31 @@ export default function SobreMi() {
                         </Text>
                       ))}
                     </Column>
-                    {experience.images.length > 0 && (
-                      <Flex fillWidth paddingTop="m" paddingLeft="40" wrap>
-                        {experience.images.map((image, index) => (
-                          <Flex
-                            key={index}
-                            border="neutral-medium"
-                            radius="m"
-                            minWidth={image.width}
-                            height={image.height}
-                          >
-                            <SmartImage
-                              enlarge
-                              radius="m"
-                              sizes={image.width.toString()}
-                              alt={image.alt}
-                              src={image.src}
-                            />
-                          </Flex>
-                        ))}
-                      </Flex>
-                    )}
+                    {experience.images.map((image: { src: string; alt?: string }, imgIndex: number) => (
+                    <Flex
+                      key={imgIndex}
+                      horizontal="center"
+                      align="center"
+                      padding="4"
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        transition: "transform 0.2s ease-in-out",
+                      }}
+                      className="hover:scale-110"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt || "Imagen de experiencia"}
+                        width={32}
+                        height={32}
+                        style={{
+                          objectFit: "contain",
+                          borderRadius: "999px",
+                        }}
+                      />
+                    </Flex>
+                  ))}
                   </Column>
                 ))}
               </Column>
@@ -281,26 +286,34 @@ export default function SobreMi() {
                       {skill.description}
                     </Text>
                     {skill.images && skill.images.length > 0 && (
-                      <Flex fillWidth paddingTop="m" gap="12" wrap>
-                        {skill.images.map((image, index) => (
-                          <Flex
-                            key={index}
-                            border="neutral-medium"
-                            radius="m"
-                            minWidth={image.width}
-                            height={image.height}
-                          >
-                            <SmartImage
-                              enlarge
-                              radius="m"
-                              sizes={image.width.toString()}
-                              alt={image.alt}
-                              src={image.src}
-                            />
-                          </Flex>
-                        ))}
-                      </Flex>
-                    )}
+                    <Flex fillWidth paddingTop="m" gap="12" wrap>
+                      {skill.images.map((image, imgIndex) => (
+                        <Flex
+                          key={imgIndex}
+                          horizontal="center"
+                          align="center"
+                          padding="4"
+                          style={{
+                            width: "48px",
+                            height: "48px",
+                            transition: "transform 0.2s ease-in-out",
+                          }}
+                          className="hover:scale-110"
+                        >
+                          <Image
+                            src={image?.src}
+                            alt={image?.alt || "Tecnología"}
+                            width={32}
+                            height={32}
+                            style={{
+                              objectFit: "contain",
+                              borderRadius: "999px",
+                            }}
+                          />
+                        </Flex>
+                      ))}
+                    </Flex>
+                  )}
                   </Column>
                 ))}
               </Column>
