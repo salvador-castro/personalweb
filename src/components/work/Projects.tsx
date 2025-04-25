@@ -1,15 +1,14 @@
-import { getPosts } from "@/app/utils/utils";
 import { Column } from "@/once-ui/components";
 import { ProjectCard } from "@/components";
+import { Project } from "@/types/project"; // 👈 Importamos el tipo nuevo
 
 interface ProjectsProps {
   range?: [number, number?];
+  projects: Project[];
 }
 
-export function Projects({ range }: ProjectsProps) {
-  let allProjects = getPosts(["src", "app", "work", "projects"]);
-
-  const sortedProjects = allProjects.sort((a, b) => {
+export function Projects({ range, projects = [] }: ProjectsProps) {
+  const sortedProjects = projects.sort((a, b) => {
     return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
   });
 

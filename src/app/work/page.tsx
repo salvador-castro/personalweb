@@ -3,6 +3,10 @@ import { baseURL } from "@/app/resources";
 import { sobremi, person, work } from "@/app/resources/content";
 import { Meta, Schema } from "@/once-ui/modules";
 import { Projects } from "@/components/work/Projects";
+import { getPosts } from "@/app/utils/utils"; // 👈 Importamos getPosts acá
+
+// ⏩ Hacemos la lectura una sola vez al cargar la página
+const allProjects = getPosts(["src", "app", "work", "projects"]);
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -30,7 +34,7 @@ export default function Work() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Projects />
+      <Projects projects={allProjects} /> {/* 👈 Pasamos los proyectos por props */}
     </Column>
   );
 }
