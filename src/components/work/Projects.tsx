@@ -1,10 +1,12 @@
+// src/components/work/Projects.tsx
 import { Column } from "@/once-ui/components";
 import { ProjectCard } from "@/components";
 import { Project } from "@/types/project"; // 👈 Importamos el tipo nuevo
+//import { Projects } from "@/components/work/Projects";
 
 interface ProjectsProps {
   range?: [number, number?];
-  projects: Project[];
+  projects?: Project[];
 }
 
 export function Projects({ range, projects = [] }: ProjectsProps) {
