@@ -40,7 +40,9 @@ echo "🔀 Cambiando a rama 'main'..."
 git checkout main
 
 echo "🧹 Limpiando contenido anterior de 'main'..."
+rm -rf .next
 rm -rf ./*
+
 
 echo "📥 Copiando archivos exportados a 'main'..."
 cp -R "$TEMP_DIR"/* .
