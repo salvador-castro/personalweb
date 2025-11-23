@@ -1,0 +1,51 @@
+---
+title: "WhatsApp Group Creator Bot: automatización para crear grupos a escala"
+publishedAt: "2025-04-23"
+summary: "Bot desarrollado en Python y Selenium para automatizar la creación masiva de grupos en WhatsApp Web a partir de un archivo CSV, simulando interacción humana en Google Chrome."
+images:
+  - "/images/projects/whatsappbot/demo1.png"
+  - "/images/projects/whatsappbot/demo2.png"
+  - "/images/projects/whatsappbot/demo3.png"
+team:
+  - name: "Salvador Castro"
+    role: "Desarrollador"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/salvador-castro"
+---
+
+## Visión general
+
+WhatsApp Group Creator Bot es una herramienta automatizada creada para generar múltiples grupos en WhatsApp Web de manera eficiente y controlada. A partir de un archivo CSV con nombres de grupos, el bot abre WhatsApp Web, simula clics reales mediante Selenium y crea cada grupo agregando automáticamente un contacto específico (por ejemplo, "Mio Uruguay").
+
+El objetivo es acelerar procesos repetitivos en organizaciones, soporte técnico o equipos que necesitan administrar decenas o cientos de grupos sin intervención manual.
+
+## Funcionalidades principales
+
+- **Creación masiva de grupos:** Generación automática de grupos según la lista provista en un CSV.
+- **Integración con contactos:** Cada grupo añade automáticamente un contacto predefinido.
+- **Automatización realista:** Simula la interacción de un usuario humano en WhatsApp Web.
+- **Compatibilidad garantizada:** Probado en macOS (M1/M2) utilizando Chrome para Testing.
+- **Flexibilidad total:** Permite ajustar rutas, perfiles del navegador y XPaths según tus necesidades.
+
+## Tecnologías utilizadas
+
+- 🐍 **Lenguaje:** Python 3.8+  
+- 🌐 **Automatización Web:** Selenium WebDriver  
+- 🧭 **Navegador:** Google Chrome for Testing  
+- 🔧 **Driver:** ChromeDriver  
+- 📁 **Entrada de datos:** Archivo CSV  
+
+## Desafíos y aprendizajes
+
+Uno de los principales desafíos fue lidiar con los cambios constantes en la interfaz de WhatsApp Web, lo que requiere ajustar los selectores XPATH para asegurar la estabilidad del bot. También fue crucial manejar correctamente la sincronización de Selenium para evitar bloqueos o errores al interactuar con elementos dinámicos.
+
+El proyecto permitió profundizar en automatización de navegadores, manipulación de perfiles de usuario y buenas prácticas para simular tráfico humano sin generar bloqueos o alertas.
+
+## Resultado
+
+El bot crea grupos de manera rápida, consistente y prácticamente sin intervención del usuario.  
+Es ideal para tareas internas, organización de equipos o administración repetitiva a gran escala, permitiendo ahorrar tiempo y reducir errores manuales.
+
+## Repositorio
+
+🔗 [Ver en GitHub](https://github.com/salvador-castro/whatsapp-group-creator-bot)
