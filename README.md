@@ -1,4 +1,4 @@
-# **Magic Portfolio by Once UI**
+# **SALVADOR CASTRO**
 
 View the [demo here](https://demo.magic-portfolio.com).
 
