@@ -13,15 +13,15 @@ interface CommonProps {
   variant?: "ghost" | "outline";
   size?: "s" | "m" | "l";
   radius?:
-    | "none"
-    | "top"
-    | "right"
-    | "bottom"
-    | "left"
-    | "top-left"
-    | "top-right"
-    | "bottom-right"
-    | "bottom-left";
+  | "none"
+  | "top"
+  | "right"
+  | "bottom"
+  | "left"
+  | "top-left"
+  | "top-right"
+  | "bottom-right"
+  | "bottom-left";
   justifyContent?: "start" | "center" | "end" | "space-between";
   fillWidth?: boolean;
   weight?: "default" | "strong";
@@ -71,8 +71,8 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
           radius === "none"
             ? "radius-none"
             : radius
-            ? `radius-${size}-${radius}`
-            : `radius-${size}`,
+              ? `radius-${size}-${radius}`
+              : `radius-${size}`,
           "text-decoration-none",
           "button",
           "cursor-interactive",

@@ -4,11 +4,17 @@
     scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     scroll-margin-top: var(--static-space-80);
 }
 
-ul, ol {
+ul,
+ol {
     margin: 0;
     width: 100%;
 }
@@ -109,4 +115,35 @@ a:not(.button) {
 
 ::-webkit-scrollbar-corner {
     background-color: var(--static-transparent);
+}
+
+/* Botón personalizado que reemplaza ToggleButton */
+.theme-custom-toggle {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--surface);
+    box-shadow: var(--shadow-l);
+    transition: transform .15s ease, background .15s ease;
+}
+
+/* Hover */
+.theme-custom-toggle:hover {
+    transform: translateY(-1px);
+    background: var(--neutral-alpha-weak);
+}
+
+/* Activo */
+.theme-custom-toggle:active {
+    transform: translateY(0);
+}
+
+/* Icono */
+.theme-custom-toggle svg {
+    pointer-events: none;
 }

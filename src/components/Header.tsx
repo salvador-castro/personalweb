@@ -1,3 +1,4 @@
+// C:\Users\salvaCastro\Documents\proyectos\personalweb\src\components\Header.tsx
 "use client";
 
 import { usePathname } from "next/navigation";
@@ -12,7 +13,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 type TimeDisplayProps = {
   timeZone: string;
-  locale?: string; // Optionally allow locale, defaulting to 'en-GB'
+  locale?: string;
 };
 
 const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" }) => {
@@ -50,6 +51,7 @@ export const Header = () => {
     <>
       <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} />
       <Fade show="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={9} />
+
       <Flex
         fitHeight
         position="unset"
@@ -61,10 +63,18 @@ export const Header = () => {
         horizontal="center"
         data-border="rounded"
       >
-        <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
+        {/* Columna izquierda: ubicación */}
+        <Flex
+          paddingLeft="12"
+          vertical="center"
+          textVariant="body-default-s"
+          style={{ minWidth: 0 }}
+        >
           {display.location && <Flex hide="s">{person.location}</Flex>}
         </Flex>
-        <Flex fillWidth horizontal="center">
+
+        {/* Columna central: navegación */}
+        <Flex fillWidth horizontal="center" style={{ pointerEvents: "auto" }}>
           <Flex
             background="surface"
             border="neutral-alpha-medium"
@@ -77,7 +87,9 @@ export const Header = () => {
               {routes["/"] && (
                 <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
               )}
+
               <Line background="neutral-alpha-medium" vert maxHeight="24" />
+
               {routes["/sobre-mi"] && (
                 <>
                   <ToggleButton
@@ -95,6 +107,7 @@ export const Header = () => {
                   />
                 </>
               )}
+
               {routes["/work"] && (
                 <>
                   <ToggleButton
@@ -112,6 +125,7 @@ export const Header = () => {
                   />
                 </>
               )}
+
               {routes["/blog"] && (
                 <>
                   <ToggleButton
@@ -129,6 +143,7 @@ export const Header = () => {
                   />
                 </>
               )}
+
               {routes["/gallery"] && (
                 <>
                   <ToggleButton
@@ -146,6 +161,7 @@ export const Header = () => {
                   />
                 </>
               )}
+
               {display.themeSwitcher && (
                 <>
                   <Line background="neutral-alpha-medium" vert maxHeight="24" />
@@ -155,7 +171,13 @@ export const Header = () => {
             </Flex>
           </Flex>
         </Flex>
-        <Flex fillWidth horizontal="end" vertical="center">
+
+        {/* Columna derecha: hora (sin fillWidth para no tapar el centro) */}
+        <Flex
+          horizontal="end"
+          vertical="center"
+          style={{ minWidth: "auto", pointerEvents: "auto" }}
+        >
           <Flex
             paddingRight="12"
             horizontal="end"
@@ -163,7 +185,9 @@ export const Header = () => {
             textVariant="body-default-s"
             gap="20"
           >
-            <Flex hide="s">{display.time && <TimeDisplay timeZone={person.location} />}</Flex>
+            <Flex hide="s">
+              {display.time && <TimeDisplay timeZone={person.location} />}
+            </Flex>
           </Flex>
         </Flex>
       </Flex>
