@@ -1,94 +1,59 @@
-# **Magic Portfolio by Once UI**
+# 🚀 Welcome to Salvador's Epic Code Adventure! 🎭💻
 
-View the [demo here](https://demo.magic-portfolio.com).
+## About Me
 
-![Magic Portfolio](https://demo.magic-portfolio.com/images/og/home.jpg)
+Hey there! I'm **Salvador**, an Information Systems Engineering student at UTN Regional Buenos Aires. I'm passionate about writing efficient and scalable code, blending creativity with logic to build innovative solutions. My main programming languages are **PHP** and **Python**, along with their most powerful frameworks and libraries.
 
+If code could tell jokes, mine would be a stand-up comedy act. 😆 But since it can't, I make sure it's clean, optimized, and well-documented.
 
-# **Getting started**
+---
 
-Magic Portfolio was built with [Once UI](https://once-ui.com) for [Next.js](https://nextjs.org). It requires Node.js v18.17+.
+## 🏗️ Projects
 
-**1. Clone the repository**
-```
-git clone https://github.com/once-ui-system/magic-portfolio.git
-```
+Here are some of my most epic projects:
 
-**2. Install dependencies**
-```
-npm install
-```
+- **💡 Project 1**: A performance where **PHP, Python, and JavaScript** join forces with **Bootstrap, Selenium, and Symfony** to create an innovative and functional solution. 🎩✨
+- **🎭 Project 2**: Web development with a touch of humor. Join me on this coding journey where every bug is a joke waiting to be told. 🌟🤣
+- **🎶 Project 3**: Applications that blend the power of **Laravel, Flask, and Django** to create pure magic in every line of code. 🎵✨
 
-**3. Run dev server**
-```
-npm run dev
-```
+(More details coming soon in my portfolio...)
 
-**4. Edit config**
-```
-src/app/resources/config
-```
+---
 
-**5. Edit content**
-```
-src/app/resources/content
-```
+## 🛠️ Skills
 
-**6. Create blog posts / projects**
-```
-Add a new .mdx file to src/app/blog/posts or src/app/work/projects
-```
+### 💻 Programming Languages:
+- **PHP** (Laravel, Symfony)
+- **Python** (Flask, Django, Selenium)
+- **JavaScript** (Vanilla, jQuery, some Vue and React)
 
-# **Documentation**
+### 🔧 Frameworks & Tools:
+- **Frontend**: Bootstrap, TailwindCSS, HTML5, CSS3
+- **Backend**: Laravel, Flask, Django, REST APIs
+- **Databases**: MySQL, PostgreSQL, SQLite
+- **Automation**: Selenium, Scrapy
+- **Version Control**: Git & GitHub
 
-Docs available at: [docs.once-ui.com](https://docs.once-ui.com/docs/magic-portfolio/quick-start)
+---
 
-# **Features**
+## 📊 GitHub Stats & Most Used Languages
 
-## **Once UI**
-- All tokens, components & features of [Once UI](https://once-ui.com)
+![Salvador Castro's GitHub stats](https://github-readme-stats.vercel.app/api?username=salvador-castro&show_icons=true&theme=transparent)
 
-## **SEO**
-- Automatic open-graph and X image generation with next/og
-- Automatic schema and metadata generation based on the content file
+📌 **Most used languages in my repositories:**
 
-## **Design**
-- Responsive layout optimized for all screen sizes
-- Timeless design without heavy animations and motion
-- Endless customization options through [data attributes](https://once-ui.com/docs/theming)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=salvador-castro&layout=compact&bg_color=00000000)
 
-## **Content**
-- Render sections conditionally based on the content file
-- Enable or disable pages for blog, work, gallery and sobremi / CV
-- Generate and display social links automatically
-- Set up password protection for URLs
+---
 
-## **Localization**
-- A localized version of Magic Portfolio is available with the next-intl library
-- To use localization, switch to the 'i18n' branch
+## 🤝 Connect with Me
 
-# **Authors**
+Ready to collaborate on a project or just share a programming joke? Reach out to me!
 
-Connect with us on Threads or LinkedIn.
+- **📧 Email:** [salvacastro06@gmail.com](mailto:salvacastro06@gmail.com) 📩
+- **💼 LinkedIn:** [Salvador Castro](https://www.linkedin.com/in/salvador-castro95/) 🚀
+- **📺 YouTube:** [Canal Salva Castro](https://www.youtube.com/@salva.castro) 📺
 
-Lorant Toth: [Threads](https://www.threads.net/@lorant.one), [LinkedIn](https://www.linkedin.com/in/tothlorant/)  
-Zsofia Komaromi: [Threads](https://www.threads.net/@zsofia_kom), [LinkedIn](https://www.linkedin.com/in/zsofiakomaromi/)
+---
 
-Localization added by [François Hernandez](https://github.com/francoishernandez)
-
-# **Get involved**
-
-- Join the [Design Engineers Club on Discord](https://discord.com/invite/5EyAQ4eNdS) and share your portfolio with us!
-- Report a [bug](https://github.com/once-ui-system/magic-portfolio/issues/new?labels=bug&template=bug_report.md).
-
-# **License**
-
-Distributed under the CC BY-NC 4.0 License.
-- Commercial usage is not allowed.
-- Attribution is required.
-- You can extend the license to commercial use by purchasing a [Once UI Pro](https://once-ui.com/pricing) license.
-
-See `LICENSE.txt` for more information.
-
-# **Deploy with Vercel**
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&project-name=portfolio&repository-name=portfolio&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&demo-title=Magic%20Portfolio&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.magic-portfolio.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fmagic-portfolio%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)
+### 💡 "Well-written code not only works but also makes you smile." 😄
