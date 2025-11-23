@@ -7,6 +7,8 @@ const withMDX = mdx({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export", // 👈 esto activa el static export en next build
+
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   transpilePackages: ["next-mdx-remote"],
   sassOptions: {
@@ -14,6 +16,7 @@ const nextConfig = {
     silenceDeprecations: ["legacy-js-api"],
   },
   images: {
+    // mantenés tus remotePatterns
     remotePatterns: [
       {
         protocol: "https",
@@ -51,6 +54,8 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+    // y esto evita problemas con next/image en export estático
+    unoptimized: true,
   },
 };
 

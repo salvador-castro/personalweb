@@ -5,10 +5,10 @@
   "author": "Salvador Castro <salvador@salvacastro.dev>",
   "scripts": {
     "dev": "next dev",
-    "export": "next export",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "bash ./deploy.sh"
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.1.2",
