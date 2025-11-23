@@ -6,9 +6,11 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Design Engineer",
+  role: "Frontend Developer",
   avatar: "/images/avatar.jpeg",
   email: "salvacastro06@gmail.com",
+  github: "https://github.com/salvador-castro/",
+  linkedin: "https://www.linkedin.com/in/salvador-castro95",
   location: "America/Buenos_Aires", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: ["English", "Spanish"], // optional: Leave the array empty if you don't want to display languages
 };
@@ -18,24 +20,22 @@ const newsletter = {
   title: <>Unite al newsletter de {person.firstName}</>,
   description: (
     <>
-      Recibí ideas frescas sobre desarrollo, diseño y tecnología directamente en tu inbox.  
+      Recibí ideas frescas sobre desarrollo, diseño y tecnología directamente en tu inbox.
       Nada de spam: solo contenido útil, inspiración real y aprendizajes que podés aplicar.
     </>
   ),
 };
 
 const social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/salvador-castro/",
+    link: person.github,
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/in/salvador-castro95",
+    link: person.linkedin,
   },
   {
     name: "X",
@@ -63,10 +63,10 @@ const home = {
   },
   subline: (
     <>
-      Soy Salvador, un apasionado del desarrollo web con foco en la experiencia de usuario. 
+      Soy Salvador, un apasionado del desarrollo web con foco en la experiencia de usuario.
       En mi tiempo libre, creo proyectos que combinan diseño y funcionalidad.
     </>
-  ),  
+  ),
 };
 
 const sobremi = {
@@ -83,16 +83,19 @@ const sobremi = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com/salvador-castro/60min?overlayCalendar=true",
+    link: "https://cal.com/salvador-castro/30min",
   },
-  intro: { 
+  intro: {
     display: true,
     title: "Introducción",
     description: (
       <>
-        Soy Salvador, estudiante de Ingeniería en Sistemas y apasionado por el desarrollo web. 
-        Me dedico a crear soluciones digitales simples y funcionales que conecten diseño y tecnología. 
-        Desde mi experiencia en mesa de ayuda hasta mis proyectos personales, busco aprender y construir cada día con propósito.
+        Soy Salvador, estudiante de Ingeniería en Sistemas y apasionado por el desarrollo web.
+        Actualmente formo parte de la Legislatura de la Ciudad de Buenos Aires, donde desempeño dos roles complementarios:
+        como Frontend Developer, desarrollando interfaces modernas con React, Next.js y Tailwind para sistemas internos, y
+        como Help Desk, garantizando el funcionamiento óptimo de la infraestructura tecnológica. Mi camino combina diseño,
+        tecnología y soporte, impulsándome a aprender, mejorar y construir soluciones digitales simples, funcionales y
+        orientadas a las personas.
       </>
     ),
   },
@@ -103,24 +106,45 @@ const sobremi = {
       {
         company: "Legislatura de la Ciudad de Buenos Aires",
         timeframe: "Dic. 2022 - Actualidad",
-        role: "Help Desk Support Specialist",
-        achievements: [
-          <>
-            Instalación y activación de programas, mantenimiento preventivo de redes informáticas y resolución de incidencias para asegurar el funcionamiento óptimo de los sistemas.
-          </>,
-          <>
-            Reparación de PCs, instalación de equipos e impresoras en red, y supervisión del correcto estado operativo de los dispositivos tecnológicos de la institución.
-          </>,
+        roles: [
+          {
+            role: "Frontend Developer / Sep. 2025 – Actualidad",
+            achievements: [
+              <>
+                Desarrollo de interfaces modernas con React, Next.js y Tailwind para los sistemas
+                internos de la institución.
+              </>,
+              <>
+                Implementación de componentes reutilizables, optimización del rendimiento y
+                construcción de dashboards administrativos.
+              </>,
+            ],
+          },
+          {
+            role: "Help Desk / Dic. 2022 – Actualidad",
+            achievements: [
+              <>
+                Instalación y activación de programas, mantenimiento preventivo de redes informáticas
+                y resolución de incidencias para asegurar el funcionamiento óptimo de los sistemas.
+              </>,
+              <>
+                Reparación de PCs, instalación de equipos e impresoras en red, y supervisión del
+                correcto estado operativo de los dispositivos tecnológicos de la institución.
+              </>,
+            ],
+          }
         ],
+
         images: [],
       },
       {
         company: "Netuy Uruguay",
         timeframe: "Jun. 2021 - Sept. 2021",
-        role: "Help Desk Support Specialist",
+        role: "Help Desk",
         achievements: [
           <>
-            Asistencia técnica remota, pruebas unitarias de sistemas y soporte en el uso de WordPress, garantizando el correcto funcionamiento de las plataformas digitales.
+            Asistencia técnica remota, pruebas unitarias de sistemas y soporte en el uso de WordPress,
+            garantizando el correcto funcionamiento de las plataformas digitales.
           </>,
         ],
         images: [],
@@ -170,7 +194,7 @@ const sobremi = {
         ),
       },
     ],
-  },  
+  },
   technical: {
     display: true,
     title: "Tecnologías que uso",
@@ -179,7 +203,8 @@ const sobremi = {
         title: "🎨 Frontend",
         description: (
           <>
-            Trabajo con tecnologías modernas del frontend como JavaScript, Vue, React, Bootstrap y Tailwind para construir interfaces dinámicas, responsivas y modernas.
+            Trabajo con tecnologías modernas del frontend como JavaScript, Vue, React, Bootstrap y Tailwind
+            para construir interfaces dinámicas, responsivas y modernas.
           </>
         ),
         images: [
@@ -212,7 +237,8 @@ const sobremi = {
         title: "🧰 Herramientas y librerías",
         description: (
           <>
-            Me apoyo en herramientas clave como Git, Node.js, Selenium y librerías como PHPMailer y Twig para automatización, envío de correos y plantillas.
+            Me apoyo en herramientas clave como Git, Node.js, Selenium y librerías como PHPMailer y Twig
+            para automatización, envío de correos y plantillas.
           </>
         ),
         images: [
@@ -226,15 +252,13 @@ const sobremi = {
       },
     ],
   },
-};  
+};
 
 const blog = {
   path: "/blog",
   label: "Blog",
   title: "Writing sobremi design and tech...",
   description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
 };
 
 const work = {
@@ -242,8 +266,6 @@ const work = {
   label: "Work",
   title: `Projects – ${person.name}`,
   description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
 };
 
 const gallery = {
@@ -251,49 +273,15 @@ const gallery = {
   label: "Gallery",
   title: `Photo gallery – ${person.name}`,
   description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
   images: [
-    {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
+    { src: "/images/gallery/horizontal-1.jpg", alt: "image", orientation: "horizontal" },
+    { src: "/images/gallery/horizontal-2.jpg", alt: "image", orientation: "horizontal" },
+    { src: "/images/gallery/horizontal-3.jpg", alt: "image", orientation: "horizontal" },
+    { src: "/images/gallery/horizontal-4.jpg", alt: "image", orientation: "horizontal" },
+    { src: "/images/gallery/vertical-1.jpg", alt: "image", orientation: "vertical" },
+    { src: "/images/gallery/vertical-2.jpg", alt: "image", orientation: "vertical" },
+    { src: "/images/gallery/vertical-3.jpg", alt: "image", orientation: "vertical" },
+    { src: "/images/gallery/vertical-4.jpg", alt: "image", orientation: "vertical" },
   ],
 };
 
