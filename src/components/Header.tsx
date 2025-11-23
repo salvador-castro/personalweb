@@ -144,7 +144,7 @@ export const Header = () => {
                 </>
               )}
 
-              {routes["/gallery"] && (
+              {/* {routes["/gallery"] && (
                 <>
                   <ToggleButton
                     className="s-flex-hide"
@@ -161,7 +161,7 @@ export const Header = () => {
                   />
                 </>
               )}
-
+ */}
               {display.themeSwitcher && (
                 <>
                   <Line background="neutral-alpha-medium" vert maxHeight="24" />

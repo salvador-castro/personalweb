@@ -257,7 +257,7 @@ const sobremi = {
 const blog = {
   path: "/blog",
   label: "Blog",
-  title: "Writing sobremi design and tech...",
+  title: `Escribiendo sobre las ultimas novedades en diseño y tecnología`,
   description: `Read what ${person.name} has been up to recently`,
 };
 

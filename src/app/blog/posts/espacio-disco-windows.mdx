@@ -1,0 +1,63 @@
+---
+title: "Así puedes cambiar el almacenamiento reservado en Windows para liberar más de 5 GB del disco duro"
+publishedAt: "2025-11-22"
+summary: "Este truco permite a los usuarios recuperar espacio de almacenamiento de forma reversible y sin riesgos inmediatos."
+image: "/images/blog/espacioWindows/espacioWindows1.png"
+tag: "Tecnología"
+---
+
+# Así puedes cambiar el almacenamiento reservado en Windows para liberar más de 5 GB del disco duro
+
+La falta de espacio en el disco duro es un problema habitual para quienes usan Windows, sobre todo en equipos con almacenamiento limitado. Además de las soluciones tradicionales, el sistema incluye una función poco conocida que puede ayudar a recuperar varios gigabytes de manera rápida y reversible: el almacenamiento reservado.
+
+Esta característica, disponible desde Windows 10, puede desactivarse mediante comandos sencillos, lo que la convierte en una opción útil para quienes necesitan espacio adicional con urgencia.
+
+El almacenamiento reservado es una porción de disco que el sistema aparta para garantizar la descarga e instalación correcta de actualizaciones. Esta reserva, conocida como Reserved Storage, se diseñó para evitar errores durante el proceso, reforzando la estabilidad y seguridad del equipo.
+
+![](/images/blog/espacioWindows/espacioWindows2.png)
+
+Sin embargo, su impacto en la capacidad disponible es considerable. Puede ocupar entre 4 y 10 GB, que se suman a los más de 20 GB que Windows utiliza para sus propios archivos. En dispositivos con discos pequeños, esta reserva puede convertirse en una limitación importante.
+
+Desactivar el almacenamiento reservado permite recuperar alrededor de 5 GB, que pueden usarse para instalar aplicaciones, guardar archivos o completar tareas concretas. No obstante, ese espacio puede llenarse rápidamente y, si en el futuro aparecen problemas con las actualizaciones, siempre es posible reactivar la función.
+
+Antes de hacerlo, conviene recordar que la desactivación no afecta el funcionamiento general del sistema siempre que se mantenga suficiente espacio libre. El proceso es reversible y no implica riesgos inmediatos, aunque se recomienda aplicarlo solo cuando resulte realmente necesario.
+
+---
+
+## Cómo desactivar el almacenamiento reservado para ganar espacio
+
+![](/images/blog/espacioWindows/espacioWindows3.png)
+
+Para desactivar el almacenamiento reservado es necesario usar el Símbolo del sistema (CMD o Command Prompt) con permisos de administrador.
+
+1. Buscar “CMD” en el menú de inicio.  
+2. Hacer clic derecho en “Símbolo del sistema” y elegir “Ejecutar como administrador”.  
+   - Alternativa: presionar Windows + R, escribir `cmd` y pulsar CTRL + SHIFT + ENTER.
+
+Una vez abierta la consola, se pueden utilizar estos comandos:
+
+**Para comprobar el estado del almacenamiento reservado:**
+
+```bash
+DISM /Online /Get-ReservedStorageState
+```
+
+**Para activar el almacenamiento reservado:**
+
+```bash
+DISM /Online /Set-ReservedStorageState /State:Enabled
+```
+
+**Para desactivar el almacenamiento reservado:**
+
+```bash
+DISM /Online /Set-ReservedStorageState /State:Disabled
+```
+
+El primer comando indica si la función está activa. Los otros dos permiten habilitarla o deshabilitarla según la necesidad. Los cambios son inmediatos y no requieren reiniciar el equipo.
+
+![](/images/blog/espacioWindows/espacioWindows4.png)
+
+Además de este método, Windows ofrece otras herramientas para liberar espacio: eliminar archivos temporales, desinstalar aplicaciones que no se usan, activar el sensor de almacenamiento automático o recurrir a discos externos.
+
+La posibilidad de activar o desactivar el almacenamiento reservado según el momento brinda flexibilidad, permitiendo recuperar espacio en cuestión de minutos sin comprometer el funcionamiento del sistema.
