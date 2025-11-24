@@ -1,94 +1,107 @@
-# **SALVADOR CASTRO**
+# 🚀 Hi, I'm Salvador!
+### 💻 Information Systems Engineering Student · PHP & Python Developer · UTN BA
 
-View the [demo here](https://demo.magic-portfolio.com).
+Soy **Salvador**, estudiante de Ingeniería en Sistemas en la **UTN Buenos Aires** y desarrollador especializado en **PHP** y **Python**, con un fuerte foco en construir sistemas eficientes, escalables y bien diseñados. Me encanta automatizar tareas, crear herramientas útiles y desarrollar interfaces modernas que equilibren diseño y funcionalidad.
 
-![Magic Portfolio](https://demo.magic-portfolio.com/images/og/home.jpg)
+> Si el código pudiera contar chistes, el mío sería un show de stand-up…  
+> pero como no puede, al menos me aseguro de que sea limpio, rápido y mantenible. 😆
 
+---
 
-# **Getting started**
+# 🧰 Tech Stack
 
-Magic Portfolio was built with [Once UI](https://once-ui.com) for [Next.js](https://nextjs.org). It requires Node.js v18.17+.
+### Lenguajes
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
-**1. Clone the repository**
-```
-git clone https://github.com/once-ui-system/magic-portfolio.git
-```
+### Frameworks & Libraries
+![Laravel](https://img.shields.io/badge/Laravel-E74430?logo=laravel&logoColor=white)
+![Symfony](https://img.shields.io/badge/Symfony-000000?logo=symfony&logoColor=white)
+![Django](https://img.shields.io/badge/Django-0C4B33?logo=django&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?logo=flask&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-43B02A?logo=selenium&logoColor=white)
 
-**2. Install dependencies**
-```
-npm install
-```
+### Frontend
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=white)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwindcss&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 
-**3. Run dev server**
-```
-npm run dev
-```
+### Bases de datos
+![MySQL](https://img.shields.io/badge/MySQL-005C84?logo=mysql&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=white)
 
-**4. Edit config**
-```
-src/app/resources/config
-```
+### Tools
+![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 
-**5. Edit content**
-```
-src/app/resources/content
-```
+---
 
-**6. Create blog posts / projects**
-```
-Add a new .mdx file to src/app/blog/posts or src/app/work/projects
-```
+# 🏆 Featured Projects
 
-# **Documentation**
+### 🔹 WhatsApp Group Creator Bot — Automatización con Python + Selenium
+Bot para crear grupos de WhatsApp automáticamente usando Selenium, leyendo nombres desde un CSV y añadiendo contactos de forma masiva.
 
-Docs available at: [docs.once-ui.com](https://docs.once-ui.com/docs/magic-portfolio/quick-start)
+👉 Repositorio: *(pronto disponible)*
 
-# **Features**
+---
 
-## **Once UI**
-- All tokens, components & features of [Once UI](https://once-ui.com)
+### 🔹 CRUDMoviesPHP — Gestor de películas y series (PHP)
+Aplicación web para administrar catálogos de películas y series. Incluye filtros avanzados, exportación a PDF y diseño responsive.
 
-## **SEO**
-- Automatic open-graph and X image generation with next/og
-- Automatic schema and metadata generation based on the content file
+👉 https://github.com/salvador-castro/CRUDMoviesPHP
 
-## **Design**
-- Responsive layout optimized for all screen sizes
-- Timeless design without heavy animations and motion
-- Endless customization options through [data attributes](https://once-ui.com/docs/theming)
+---
 
-## **Content**
-- Render sections conditionally based on the content file
-- Enable or disable pages for blog, work, gallery and sobremi / CV
-- Generate and display social links automatically
-- Set up password protection for URLs
+### 🔹 Tecnia – Sistema de Gestión Técnica
+Proyecto en desarrollo para mi emprendimiento de servicio técnico:  
+Gestión de clientes, equipos, presupuestos, pagos online, dashboard administrativo y verificación por email.
 
-## **Localization**
-- A localized version of Magic Portfolio is available with the next-intl library
-- To use localization, switch to the 'i18n' branch
+Tecnologías: **Python, Django, MySQL, Bootstrap**
 
-# **Authors**
+---
 
-Connect with us on Threads or LinkedIn.
+# 🔥 What I'm Working On
+- Desarrollo de sistemas internos para la Legislatura con **React + Next.js + TypeScript**
+- Bots de automatización y scraping en Python
+- Mi portfolio personal en **Next.js 15 + TailwindCSS**
+- Sistema completo de gestión técnica para mi marca **Tecnia**
 
-Lorant Toth: [Threads](https://www.threads.net/@lorant.one), [LinkedIn](https://www.linkedin.com/in/tothlorant/)  
-Zsofia Komaromi: [Threads](https://www.threads.net/@zsofia_kom), [LinkedIn](https://www.linkedin.com/in/zsofiakomaromi/)
+---
 
-Localization added by [François Hernandez](https://github.com/francoishernandez)
+# 🎓 Education
 
-# **Get involved**
+### Ingeniería en Sistemas  
+**Universidad Tecnológica Nacional – Facultad Regional Buenos Aires (UTN BA)**  
+(En curso)
 
-- Join the [Design Engineers Club on Discord](https://discord.com/invite/5EyAQ4eNdS) and share your portfolio with us!
-- Report a [bug](https://github.com/once-ui-system/magic-portfolio/issues/new?labels=bug&template=bug_report.md).
+---
 
-# **License**
+# 📊 GitHub Stats
 
-Distributed under the CC BY-NC 4.0 License.
-- Commercial usage is not allowed.
-- Attribution is required.
-- You can extend the license to commercial use by purchasing a [Once UI Pro](https://once-ui.com/pricing) license.
+![Salvador Castro's GitHub stats](https://github-readme-stats.vercel.app/api?username=salvador-castro&show_icons=true&theme=transparent)
 
-See `LICENSE.txt` for more information.
+### Lenguajes más usados:
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=salvador-castro&layout=compact&bg_color=00000000)
 
-# **Deploy with Vercel**
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&project-name=portfolio&repository-name=portfolio&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&demo-title=Magic%20Portfolio&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.magic-portfolio.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fmagic-portfolio%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)
+---
+
+# 😄 Fun Facts
+- Me encanta automatizar todo lo que se pueda automatizar
+- Soy fan de las interfaces limpias y minimalistas
+- Codeo mejor de madrugada
+- Siempre tengo un proyecto nuevo dando vueltas
+
+---
+
+# 🤝 Connect with Me
+
+📧 Email: salvacastro06@gmail.com  
+💼 LinkedIn: https://www.linkedin.com/in/salvador-castro95/  
+📺 YouTube: https://www.youtube.com/@salva.castro  
+
+---
+
+### 🚀 Open to collaborations, freelance work, and new tech challenges.
