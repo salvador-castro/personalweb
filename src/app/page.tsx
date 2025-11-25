@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Heading, Flex, Text, Button, Avatar, RevealFx, Column, Badge, Row } from "@/once-ui/components";
-import { Projects } from "@/components/work/Projects";
+import { Projects } from "@/components/trabajos/Projects";
 
 import { baseURL, routes } from "@/app/resources";
 import { home, sobremi, person, newsletter } from "@/app/resources/content";

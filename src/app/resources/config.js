@@ -6,15 +6,16 @@ const baseURL =
 const routes = {
   '/': true,
   '/sobre-mi': true,
-  '/work': true,
+  /* '/work': true, */
   '/blog': true,
-  '/gallery': true
+  '/gallery': true,
+  '/trabajos': true
 }
 
 // Enable password protection on selected routes
 // Set password in the .env file, refer to .env.example
 const protectedRoutes = {
-  '/work/automate-design-handovers-with-a-figma-to-code-pipeline': true
+  '/trabajos/automate-design-handovers-with-a-figma-to-code-pipeline': true
 }
 
 import { Geist } from 'next/font/google'

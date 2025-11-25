@@ -9,8 +9,8 @@ export default async function sitemap() {
     lastModified: post.metadata.publishedAt,
   }));
 
-  const works = getPosts(["src", "app", "work", "projects"]).map((post) => ({
-    url: `https://${baseURL}/work/${post.slug}`,
+  const trabajos = getPosts(["src", "app", "trabajos", "projects"]).map((post) => ({
+    url: `https://${baseURL}/trabajos/${post.slug}`,
     lastModified: post.metadata.publishedAt,
   }));
 
@@ -21,5 +21,5 @@ export default async function sitemap() {
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  return [...routes, ...blogs, ...works];
+  return [...routes, ...blogs, ...trabajos];
 }

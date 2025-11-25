@@ -64,7 +64,7 @@ const home = {
         Proyecto destacado: <strong className='ml-4'>CRUDMoviesPHP</strong>
       </>
     ),
-    href: '/work/CRUDMoviesPHP'
+    href: '/trabajos/CRUDMoviesPHP'
   },
   subline: (
     <>
@@ -108,7 +108,7 @@ const sobremi = {
       </>
     )
   },
-  work: {
+  trabajos: {
     display: true,
     title: 'Experiencia Laboral',
     experiences: [
@@ -385,10 +385,10 @@ const blog = {
   herramientas verificadas para mantenerse al día en el mundo digital.`
 }
 
-const work = {
-  path: '/work',
-  label: 'Work',
-  title: `Projects – ${person.name}`,
+const trabajos = {
+  path: '/trabajos',
+  label: 'Trabajos',
+  title: `Proyectos – ${person.name}`,
   description: `Design and dev projects by ${person.name}`
 }
 
@@ -441,4 +441,4 @@ const gallery = {
   ]
 }
 
-export { person, social, newsletter, home, sobremi, blog, work, gallery }
+export { person, social, newsletter, home, sobremi, blog, trabajos, gallery }

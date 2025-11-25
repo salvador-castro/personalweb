@@ -35,9 +35,9 @@ export default function SobreMi() {
       items: [],
     },
     {
-      title: sobremi.work.title,
-      display: sobremi.work.display,
-      items: sobremi.work.experiences.map((experience) => experience.company),
+      title: sobremi.trabajos.title,
+      display: sobremi.trabajos.display,
+      items: sobremi.trabajos.experiences.map((experience) => experience.company),
     },
     {
       title: sobremi.studies.title,
@@ -194,13 +194,13 @@ export default function SobreMi() {
             </Column>
           )}
 
-          {sobremi.work.display && (
+          {sobremi.trabajos.display && (
             <>
-              <Heading as="h2" id={sobremi.work.title} variant="display-strong-s" marginBottom="m">
-                {sobremi.work.title}
+              <Heading as="h2" id={sobremi.trabajos.title} variant="display-strong-s" marginBottom="m">
+                {sobremi.trabajos.title}
               </Heading>
               <Column fillWidth gap="l" marginBottom="40">
-                {sobremi.work.experiences.map((experience: any, index: number) => (
+                {sobremi.trabajos.experiences.map((experience: any, index: number) => (
                   <Column key={`${experience.company}-${index}`} fillWidth>
                     <Flex fillWidth horizontal="space-between" vertical="end" marginBottom="4">
                       <Text id={experience.company} variant="heading-strong-l">
