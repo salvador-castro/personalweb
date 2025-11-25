@@ -38,7 +38,6 @@ export default function Blog () {
       <Heading marginBottom='l' variant='body-default-l'>
         {blog.description}
       </Heading>
-
       <Column fillWidth flex={1}>
         <Posts range={[1, 1]} thumbnail direction='column' />
         <Posts range={[2, 3]} thumbnail />
