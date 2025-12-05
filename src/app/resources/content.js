@@ -11,8 +11,9 @@ const person = {
   email: 'salvacastro06@gmail.com',
   github: 'https://github.com/salvador-castro/',
   linkedin: 'https://www.linkedin.com/in/salvador-castro95',
-  location: 'America/Buenos_Aires', // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ['English', 'Spanish'] // optional: Leave the array empty if you don't want to display languages
+  youtube: 'https://youtube.com/@salva.castro?si=iBf9iVOzOppCvVPP',
+  location: 'America/Argentina/Buenos_Aires',
+  languages: ['English', 'Spanish']
 }
 
 const newsletter = {
@@ -39,9 +40,9 @@ const social = [
     link: person.linkedin
   },
   {
-    name: 'X',
-    icon: 'x',
-    link: ''
+    name: 'Youtube',
+    icon: 'youtube',
+    link: person.youtube
   },
   {
     name: 'Email',
