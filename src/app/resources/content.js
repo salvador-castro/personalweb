@@ -1,7 +1,7 @@
 const person = {
   firstName: 'Salvador',
   lastName: 'Castro',
-  get name () {
+  get name() {
     return `${this.firstName} ${this.lastName}`
   },
   role: 'Frontend Developer',
@@ -38,8 +38,8 @@ const social = [
     link: person.linkedin
   },
   {
-    name: 'Youtube',
-    icon: 'youtube',
+    name: 'YouTube',
+    icon: 'youTube',
     link: person.youtube
   },
   {
