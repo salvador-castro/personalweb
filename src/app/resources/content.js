@@ -39,7 +39,7 @@ const social = [
   },
   {
     name: 'YouTube',
-    icon: 'youTube',
+    icon: 'youtube',
     link: person.youtube
   },
   {
