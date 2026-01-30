@@ -9,7 +9,8 @@ const routes = {
   /* '/work': true, */
   '/blog': true,
   '/gallery': true,
-  '/trabajos': true
+  '/trabajos': true,
+  '/landings': false // Accessible via URL but not shown in menu
 }
 
 // Enable password protection on selected routes
