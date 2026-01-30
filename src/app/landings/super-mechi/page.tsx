@@ -194,13 +194,13 @@ export default function SuperMechiLanding() {
           </Heading>
 
           <Flex direction="column" gap="m" padding="l" radius="l" style={{ backgroundColor: "#f9fafb" }}>
-            <Flex justifyContent="space-between">
+            <Flex style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
               <Text variant="body-default-l">
                 <strong>Lunes a Sábado:</strong>
               </Text>
               <Text variant="body-default-l">8:00 - 21:00</Text>
             </Flex>
-            <Flex justifyContent="space-between">
+            <Flex style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
               <Text variant="body-default-l">
                 <strong>Domingos:</strong>
               </Text>
