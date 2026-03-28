@@ -1,6 +1,9 @@
+// /Users/salvacastro/Desktop/proyectsREACT/personalweb/src/components/mdx.tsx
+
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import React, { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
+import remarkGfm from 'remark-gfm'
 
 import {
   Heading,
@@ -222,6 +225,11 @@ export function CustomMDX (props: CustomMDXProps) {
   return (
     <MDXRemote
       {...props}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+        },
+      }}
       components={{ ...components, ...(props.components || {}) }}
     />
   )
