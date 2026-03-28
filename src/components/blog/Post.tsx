@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from 'next/navigation';
 import { Column, Flex, Heading, SmartImage, SmartLink, Tag, Text } from '@/once-ui/components';
 import styles from './Posts.module.scss';
 import { formatDate } from '@/app/utils/formatDate';
@@ -11,6 +12,8 @@ interface PostProps {
 }
 
 export default function Post({ post, thumbnail, direction }: PostProps) {
+    const router = useRouter();
+
     return (
         <SmartLink
             fillWidth
@@ -55,12 +58,21 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
                         onBackground="neutral-weak">
                         {formatDate(post.metadata.publishedAt, false)}
                     </Text>
-                    { post.metadata.tag &&
-                        <Tag
-                            className="mt-12"
-                            label={post.metadata.tag}
-                            variant="neutral" />
-                    }
+                    {post.metadata.tag && (
+                        <span
+                            style={{ width: 'fit-content' }}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                router.push(`/blog/tag/${encodeURIComponent(post.metadata.tag)}`);
+                            }}
+                        >
+                            <Tag
+                                className="mt-12"
+                                label={post.metadata.tag}
+                                variant="neutral" />
+                        </span>
+                    )}
                 </Column>
             </Flex>
         </SmartLink>

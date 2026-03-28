@@ -60,10 +60,10 @@ const home = {
     display: true,
     title: (
       <>
-        Proyecto destacado: <strong className='ml-4'>CRUDMoviesPHP</strong>
+        Proyecto destacado: <strong className='ml-4'>Plugin Agency</strong>
       </>
     ),
-    href: '/trabajos/CRUDMoviesPHP'
+    href: '/trabajos/PluginAgency'
   },
   subline: (
     <>

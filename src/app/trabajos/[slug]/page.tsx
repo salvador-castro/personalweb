@@ -71,6 +71,11 @@ export default async function Project({
           url: `${baseURL}${sobremi.path}`,
           image: `${baseURL}${person.avatar}`,
         }}
+        breadcrumb={[
+          { name: "Inicio", url: baseURL },
+          { name: trabajos.label, url: `${baseURL}${trabajos.path}` },
+          { name: post.metadata.title, url: `${baseURL}${trabajos.path}/${post.slug}` },
+        ]}
       />
       <Column maxWidth="xs" gap="16">
         <Button data-border="rounded" href="/trabajos" variant="tertiary" weight="default" size="s" prefixIcon="chevronLeft">

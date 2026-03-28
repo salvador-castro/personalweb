@@ -2,8 +2,13 @@ import React from "react";
 import Script from "next/script";
 import { social } from "@/app/resources/content";
 
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 export interface SchemaProps {
-  as: "website" | "article" | "blog" | "blogPosting" | "techArticle" | "webPage" | "organization";
+  as: "website" | "article" | "blog" | "blogPosting" | "techArticle" | "webPage" | "organization" | "profilePage";
   title: string;
   description: string;
   baseURL: string;
@@ -16,6 +21,7 @@ export interface SchemaProps {
     url?: string;
     image?: string;
   };
+  breadcrumb?: BreadcrumbItem[];
 }
 
 const schemaTypeMap = {
@@ -26,6 +32,7 @@ const schemaTypeMap = {
   techArticle: "TechArticle",
   webPage: "WebPage",
   organization: "Organization",
+  profilePage: "ProfilePage",
 };
 
 export function Schema({
@@ -38,6 +45,7 @@ export function Schema({
   dateModified,
   image,
   author,
+  breadcrumb,
 }: SchemaProps) {
   const normalizedBaseURL = baseURL.endsWith("/") ? baseURL.slice(0, -1) : baseURL;
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
@@ -66,6 +74,10 @@ export function Schema({
     schema.name = title;
     schema.description = description;
     schema.image = imageUrl;
+  } else if (as === "profilePage") {
+    schema.name = title;
+    schema.description = description;
+    schema.image = imageUrl;
   } else {
     schema.headline = title;
     schema.description = description;
@@ -75,6 +87,18 @@ export function Schema({
       schema.datePublished = datePublished;
       schema.dateModified = dateModified || datePublished;
     }
+  }
+
+  if (breadcrumb && breadcrumb.length > 0) {
+    schema.breadcrumb = {
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumb.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        item: item.url,
+      })),
+    };
   }
 
   if (author) {

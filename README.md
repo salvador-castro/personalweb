@@ -1,32 +1,31 @@
 # 🚀 Hi, I'm Salvador!
-### 💻 Information Systems Engineering Student · PHP & Python Developer · UTN BA
+### 💻 Frontend Developer · Information Systems Engineering Student · UTN BA
 
-Soy **Salvador**, estudiante de Ingeniería en Sistemas en la **UTN Buenos Aires** y desarrollador especializado en **PHP** y **Python**, con un fuerte foco en construir sistemas eficientes, escalables y bien diseñados. Me encanta automatizar tareas, crear herramientas útiles y desarrollar interfaces modernas que equilibren diseño y funcionalidad.
+Soy **Salvador**, estudiante de Ingeniería en Sistemas en la **UTN Buenos Aires** y Frontend Developer en la **Legislatura de la Ciudad de Buenos Aires**. Me especializo en construir interfaces modernas con React y Next.js, y me apasiona crear experiencias digitales simples, funcionales y bien diseñadas.
 
-> Si el código pudiera contar chistes, el mío sería un show de stand-up…  
+> Si el código pudiera contar chistes, el mío sería un show de stand-up…
 > pero como no puede, al menos me aseguro de que sea limpio, rápido y mantenible. 😆
 
 ---
 
 # 🧰 Tech Stack
 
-### Lenguajes
-![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white)
+### Frontend (principal)
+![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?logo=vuedotjs&logoColor=white)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwindcss&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-CC6699?logo=sass&logoColor=white)
 
-### Frameworks & Libraries
+### Backend
+![PHP](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white)
 ![Laravel](https://img.shields.io/badge/Laravel-E74430?logo=laravel&logoColor=white)
-![Symfony](https://img.shields.io/badge/Symfony-000000?logo=symfony&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-0C4B33?logo=django&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-000000?logo=flask&logoColor=white)
-![Selenium](https://img.shields.io/badge/Selenium-43B02A?logo=selenium&logoColor=white)
-
-### Frontend
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=white)
-![Tailwind](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwindcss&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 
 ### Bases de datos
 ![MySQL](https://img.shields.io/badge/MySQL-005C84?logo=mysql&logoColor=white)
@@ -35,46 +34,43 @@ Soy **Salvador**, estudiante de Ingeniería en Sistemas en la **UTN Buenos Aires
 ### Tools
 ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)
 
 ---
 
 # 🏆 Featured Projects
 
-### 🔹 WhatsApp Group Creator Bot — Automatización con Python + Selenium
-Bot para crear grupos de WhatsApp automáticamente usando Selenium, leyendo nombres desde un CSV y añadiendo contactos de forma masiva.
+### 🔹 salvacastro.dev — Portfolio personal
+Portfolio personal construido con Next.js 15, React 19, TypeScript y SCSS. Incluye blog con MDX, página de proyectos, galería de fotos, SEO dinámico con sitemap y Open Graph.
 
-👉 Repositorio: *(pronto disponible)*
+👉 https://salvacastro.dev
 
 ---
 
-### 🔹 CRUDMoviesPHP — Gestor de películas y series (PHP)
+### 🔹 CRUDMoviesPHP — Gestor de películas y series
 Aplicación web para administrar catálogos de películas y series. Incluye filtros avanzados, exportación a PDF y diseño responsive.
 
 👉 https://github.com/salvador-castro/CRUDMoviesPHP
 
 ---
 
-### 🔹 Tecnia – Sistema de Gestión Técnica
-Proyecto en desarrollo para mi emprendimiento de servicio técnico:  
-Gestión de clientes, equipos, presupuestos, pagos online, dashboard administrativo y verificación por email.
-
-Tecnologías: **Python, Django, MySQL, Bootstrap**
+### 🔹 WhatsApp Group Creator Bot — Automatización con Python + Selenium
+Bot para crear grupos de WhatsApp automáticamente usando Selenium, leyendo nombres desde un CSV y añadiendo contactos de forma masiva.
 
 ---
 
 # 🔥 What I'm Working On
-- Desarrollo de sistemas internos para la Legislatura con **React + Next.js + TypeScript**
-- Bots de automatización y scraping en Python
-- Mi portfolio personal en **Next.js 15 + TailwindCSS**
-- Sistema completo de gestión técnica para mi marca **Tecnia**
+- Desarrollo de sistemas internos para la **Legislatura de la Ciudad de Buenos Aires** con React, Next.js y TypeScript
+- Mi portfolio personal en **Next.js 15 + React 19 + TypeScript**
+- Proyectos de automatización con Python
 
 ---
 
 # 🎓 Education
 
-### Ingeniería en Sistemas  
-**Universidad Tecnológica Nacional – Facultad Regional Buenos Aires (UTN BA)**  
+### Ingeniería en Sistemas de Información
+**Universidad Tecnológica Nacional – Facultad Regional Buenos Aires (UTN BA)**
 (En curso)
 
 ---
@@ -98,9 +94,9 @@ Tecnologías: **Python, Django, MySQL, Bootstrap**
 
 # 🤝 Connect with Me
 
-📧 Email: salvacastro06@gmail.com  
-💼 LinkedIn: https://www.linkedin.com/in/salvador-castro95/  
-📺 YouTube: https://www.youtube.com/@salva.castro  
+📧 Email: salvacastro06@gmail.com
+💼 LinkedIn: https://www.linkedin.com/in/salvador-castro95/
+📺 YouTube: https://www.youtube.com/@salva.castro
 
 ---
 

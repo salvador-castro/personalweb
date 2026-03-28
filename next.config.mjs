@@ -5,6 +5,14 @@ const withMDX = mdx({
   options: {}
 })
 
+const securityHeaders = [
+  { key: 'X-Frame-Options', value: 'DENY' },
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+  { key: 'X-DNS-Prefetch-Control', value: 'on' },
+  { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+]
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /*   output: 'export', // 👈 esto activa el static export en next build*/
@@ -17,8 +25,15 @@ const nextConfig = {
     compiler: 'modern',
     silenceDeprecations: ['legacy-js-api']
   },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
+    ]
+  },
   images: {
-    // mantenés tus remotePatterns
     remotePatterns: [
       {
         protocol: 'https',
@@ -56,8 +71,6 @@ const nextConfig = {
         pathname: '/**'
       }
     ],
-    // y esto evita problemas con next/image en export estático
-    unoptimized: true
   }
 }
 

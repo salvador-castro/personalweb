@@ -30,7 +30,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <Flex
       suppressHydrationWarning
       as="html"
-      lang="en"
+      lang="es"
       background="page"
       data-neutral={style.neutral}
       data-brand={style.brand}

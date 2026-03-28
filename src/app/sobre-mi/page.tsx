@@ -54,7 +54,7 @@ export default function SobreMi() {
   return (
     <Column maxWidth="m">
       <Schema
-        as="webPage"
+        as="profilePage"
         baseURL={baseURL}
         title={sobremi.title}
         description={sobremi.description}
@@ -65,6 +65,10 @@ export default function SobreMi() {
           url: `${baseURL}${sobremi.path}`,
           image: `${baseURL}${person.avatar}`,
         }}
+        breadcrumb={[
+          { name: "Inicio", url: baseURL },
+          { name: sobremi.label, url: `${baseURL}${sobremi.path}` },
+        ]}
       />
       {sobremi.tableOfContent.display && (
         <Column

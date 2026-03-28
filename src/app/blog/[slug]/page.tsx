@@ -73,6 +73,11 @@ export default async function Blog({
               url: `${baseURL}${sobremi.path}`,
               image: `${baseURL}${person.avatar}`,
             }}
+            breadcrumb={[
+              { name: "Inicio", url: baseURL },
+              { name: blog.label, url: `${baseURL}${blog.path}` },
+              { name: post.metadata.title, url: `${baseURL}${blog.path}/${post.slug}` },
+            ]}
           />
           <Button data-border="rounded" href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
             Posteos
