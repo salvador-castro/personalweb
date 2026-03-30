@@ -28,13 +28,35 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  return Meta.generate({
-    title: post.metadata.title,
-    description: post.metadata.summary,
-    baseURL: baseURL,
-    image: post.metadata.image ? `${baseURL}${post.metadata.image}` : `${baseURL}/og?title=${post.metadata.title}`,
-    path: `${blog.path}/${post.slug}`,
-  });
+  const meta = Meta.generate({
+  title: post.metadata.title,
+  description: post.metadata.summary,
+  baseURL: baseURL,
+  image: post.metadata.image
+    ? `${baseURL}${post.metadata.image}`
+    : `${baseURL}/og?title=${post.metadata.title}`,
+  path: `${blog.path}/${post.slug}`,
+});
+
+return {
+  ...meta,
+  openGraph: {
+    ...(meta.openGraph || {}),
+    images: [
+      post.metadata.image
+        ? `${baseURL}${post.metadata.image}`
+        : `${baseURL}/og?title=${post.metadata.title}`,
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      post.metadata.image
+        ? `${baseURL}${post.metadata.image}`
+        : `${baseURL}/og?title=${post.metadata.title}`,
+    ],
+  },
+};
 }
 
 export default async function Blog({
