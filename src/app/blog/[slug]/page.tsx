@@ -89,8 +89,11 @@ export default async function Blog({
             description={post.metadata.summary}
             datePublished={post.metadata.publishedAt}
             dateModified={post.metadata.publishedAt}
-            image={`${baseURL}/og?title=${encodeURIComponent(post.metadata.title)}`}
-            author={{
+image={
+  post.metadata.image
+    ? `${baseURL}${post.metadata.image}`
+    : `${baseURL}/og?title=${encodeURIComponent(post.metadata.title)}`
+}            author={{
               name: person.name,
               url: `${baseURL}${sobremi.path}`,
               image: `${baseURL}${person.avatar}`,
