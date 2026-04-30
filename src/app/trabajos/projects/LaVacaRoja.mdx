@@ -1,0 +1,79 @@
+---
+title: "La Vaca Roja: E-commerce y panel de administración para carnicería online"
+publishedAt: "2026-04-30"
+summary: "Plataforma fullstack para una carnicería de Palermo, Buenos Aires. Tienda online con catálogo, carrito, pagos con Mercado Pago y panel de administración completo para gestión de productos, pedidos y usuarios."
+images:
+  - "/images/projects/la-vaca-roja/demo1-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo2-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo3-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo4-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo5-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo6-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo7-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo8-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo9-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo10-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo11-LaVacaRoja.png"
+  - "/images/projects/la-vaca-roja/demo12-LaVacaRoja.png"
+team:
+  - name: "Salvador Castro"
+    role: "Desarrollador Full Stack"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/salvador-castro"
+---
+
+## Visión general
+
+La Vaca Roja es una plataforma fullstack para una carnicería con más de 20 años de trayectoria en Palermo, Buenos Aires. La solución integra una tienda online para clientes con catálogo de cortes premium, carrito de compras y pagos online, junto con un panel de administración completo para la gestión interna del negocio.
+
+## Funcionalidades principales
+
+### Tienda (Frontend — React + Vite)
+
+- **Hero con estadísticas** del negocio: 20+ años, 15k clientes, 60+ cortes y rating de 4.9★.
+- **Catálogo de productos** con filtros por categoría y búsqueda en tiempo real, cargado desde Supabase.
+- **Promociones destacadas** (combos) con badges dinámicos (OFERTA / NUEVO / PREMIUM).
+- **Descuentos bancarios** con cards visuales por banco (Cuenta DNI, BBVA, Ualá).
+- **Carrito lateral** (CartDrawer) con gestión de cantidades y persistencia de sesión.
+- **Checkout con Mercado Pago** — páginas de resultado para pago exitoso, pendiente y fallido.
+- **Autenticación** con registro, login y reset de contraseña vía Supabase Auth.
+- **Dashboard privado** para clientes autenticados.
+- **Exportación de reportes** en PDF (jsPDF) y Excel (xlsx).
+- **Diseño responsive** con scroll reveal animations y microanimaciones.
+
+### Panel de Administración (Backend — Next.js + Tailwind CSS v4)
+
+- **Dashboard con métricas** y gráficos (ApexCharts) con datos en tiempo real desde Supabase.
+- **Gestión de productos** — alta, edición, baja, upload de imágenes.
+- **Gestión de pedidos** con estados y seguimiento.
+- **Calendario de eventos** con FullCalendar (vistas por día, semana, mes y lista).
+- **Mapa de distribución** de clientes con react-jvectormap.
+- **Drag & Drop** para reordenamiento de elementos (react-dnd).
+- **Autenticación SSR** con `@supabase/ssr` y middleware de protección de rutas.
+- **Dark mode** nativo.
+
+## Tecnologías utilizadas
+
+### Frontend
+
+- ⚛️ **React** (v19) + **Vite**
+- 🗃️ **Supabase** (Base de datos, Storage y Auth)
+- 🛣️ **React Router DOM** (v7)
+- 💳 **Mercado Pago** (pagos online)
+- 📄 **jsPDF + jspdf-autotable** (exportación PDF)
+- 📊 **xlsx** (exportación Excel)
+- 🎨 **CSS personalizado** (sistema de diseño propio)
+
+### Backend / Admin
+
+- ▲ **Next.js** (v16) con App Router
+- 🗃️ **Supabase** (`@supabase/ssr`)
+- 🎨 **Tailwind CSS** (v4)
+- 📅 **FullCalendar** (v6)
+- 📊 **ApexCharts** para React
+- 🗺️ **react-jvectormap**
+- 🖱️ **react-dnd** (Drag & Drop)
+
+## Resultado
+
+Una solución fullstack completa que digitaliza el negocio de La Vaca Roja: desde la experiencia de compra del cliente hasta la operación interna del local. La arquitectura desacoplada (frontend en Vite + backend en Next.js) permite escalar y mantener cada capa de forma independiente.
