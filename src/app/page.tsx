@@ -36,7 +36,7 @@ export default function Home() {
   const allProjects = getPosts(["src", "app", "trabajos", "projects"]);
 
   return (
-    <Column maxWidth="m" gap="xl" horizontal="center">
+    <Column fillWidth maxWidth="m" gap="xl" horizontal="center">
       <Schema
         as="webPage"
         baseURL={baseURL}
