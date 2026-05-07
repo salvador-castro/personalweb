@@ -1,9 +1,3 @@
-:global(html),
-:global(body) {
-  overflow-x: clip;
-  max-width: 100vw;
-}
-
 .main {
   padding-left: var(--responsive-space-l);
   padding-right: var(--responsive-space-l);
