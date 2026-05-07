@@ -73,7 +73,7 @@ export default function Home() {
             )}
 
             <RevealFx translateY="4" fillWidth horizontal="start">
-              <Heading wrap="balance" variant="display-strong-l">
+              <Heading wrap="balance" variant="display-strong-m">
                 {home.headline}
               </Heading>
             </RevealFx>
@@ -103,7 +103,7 @@ export default function Home() {
             </RevealFx>
 
             <RevealFx delay={0.4} horizontal="start">
-              <Row gap="12" paddingTop="8">
+              <Row gap="12" paddingTop="8" wrap>
                 <Button
                   id="sobremi"
                   data-border="rounded"
