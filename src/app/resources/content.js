@@ -1,7 +1,7 @@
 const person = {
   firstName: 'Salvador',
   lastName: 'Castro',
-  get name() {
+  get name () {
     return `${this.firstName} ${this.lastName}`
   },
   role: 'Frontend Developer',
@@ -129,7 +129,7 @@ const sobremi = {
             ]
           },
           {
-            role: 'Help Desk / Dic. 2022 – Actualidad',
+            role: 'Help Desk / Dic. 2022 – Dic. 2025',
             achievements: [
               <>
                 Instalación y activación de programas, mantenimiento preventivo
