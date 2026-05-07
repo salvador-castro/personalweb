@@ -5,6 +5,7 @@ import classNames from "classnames";
 
 import { Footer, Header, RouteGuard } from "@/components";
 import { baseURL, effects, style, font, home } from "@/app/resources";
+import styles from "./layout.module.scss";
 
 import { Background, Column, Flex, ThemeProvider, ToastProvider } from "@/once-ui/components";
 import { opacity, SpacingToken } from "@/once-ui/types";
@@ -116,10 +117,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <Flex fillWidth minHeight="16" hide="s"></Flex>
             <Header />
             <Flex
+              className={styles.main}
               zIndex={0}
               fillWidth
               paddingY="l"
-              paddingX="l"
               horizontal="center"
               flex={1}
             >

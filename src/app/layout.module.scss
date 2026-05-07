@@ -1,0 +1,11 @@
+.main {
+  padding-left: var(--responsive-space-l);
+  padding-right: var(--responsive-space-l);
+}
+
+@media (--s) {
+  .main {
+    padding-left: var(--static-space-24);
+    padding-right: var(--static-space-24);
+  }
+}
