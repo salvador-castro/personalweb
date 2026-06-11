@@ -1,0 +1,69 @@
+---
+title: "Clapton Barbershop: Landing page premium y sistema de reservas para barbería profesional"
+publishedAt: "2026-06-11"
+summary: "Sitio web moderno con estética dark mode, acentos dorados y efectos glassmorphism para una barbería líder de Villa María,
+Córdoba. Incluye carrusel con scroll-driven animations, visor lightbox, tarifas integradas, perfiles de barberos y agendamiento
+directo de turnos por WhatsApp."
+images:
+  - "/images/projects/clapton-barberia/clapton-1.webp"
+  - "/images/projects/clapton-barberia/clapton-2.webp"
+  - "/images/projects/clapton-barberia/clapton-3.webp"
+  - "/images/projects/clapton-barberia/clapton-4.webp"
+team:
+  - name: "Salvador Castro"
+    role: "Desarrollador Frontend"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/salvador-castro"
+---
+
+## Visión general
+
+![](/images/projects/clapton-barberia/logoHorizontal.webp)
+
+Clapton Barbershop es una barbería premium con más de una década de trayectoria ubicada en Villa María, Córdoba. El objetivo del
+proyecto fue desarrollar una landing page moderna de alto impacto visual que reflejara la identidad rockera e industrial de la
+marca, digitalizara su listado de servicios e integrara un canal de reservas directo que optimizara la comunicación con los
+clientes a través de WhatsApp.
+
+## Funcionalidades principales
+
+### Experiencia de Usuario (Frontend — React + Tailwind CSS v4)
+
+- **Diseño Premium & Estética Dark Mode**: Interfaz minimalista de alto contraste con tonos oscuros (`#0A0A0A`, `#111111`) y 
+tipografía `Bebas Neue` para los encabezados principales.
+- **Efectos Glassmorphism**: Fondos translúcidos con desenfoque (`backdrop-filter: blur(12px)`) y bordes dorados sutiles en barras
+de navegación, tarjetas de servicios y la lista de precios.
+- **Efectos Shimmer**: Animación interactiva de destello de luz (*shimmer*) al pasar el cursor sobre las tarjetas de servicios.
+- **Carrusel Controlado por Scroll**: Galería de trabajos interactiva que aprovecha la API nativa de CSS (`@supports
+(animation-timeline: view())`) para escalar fluidamente las imágenes a medida que entran y salen del foco visual de la pantalla.
+- **Visor Lightbox Integrado**: Ampliación de fotos en pantalla completa con soporte completo para navegación con el teclado
+(flechas direccionales y tecla `Escape`), clics e interacciones móviles.
+- **Perfil del Staff & Horarios**: Presentación del equipo de barberos profesionales con sus descripciones, horarios individuales
+y botones de contacto dedicados.
+- **Agendamiento Directo de Turnos (CTA)**: Integración con la API de WhatsApp mediante enlaces con mensajes personalizados por
+barbero (ej. *"Hola Clapton! Quisiera sacar un turno con Leo Merindol"*), facilitando el proceso de reserva al cliente final.
+- **Ubicación & Google Maps Nocturno**: Integración responsiva de mapa interactivo con un filtro CSS personalizado para integrarse
+orgánicamente en el diseño oscuro.
+- **Optimización SEO Avanzada**: Implementación de canonical URLs, Open Graph, Twitter Cards y estructuración de datos en
+formato JSON-LD (`Schema.org LocalBusiness`) que describe la dirección, horarios y redes sociales.
+- **Botón Flotante (FAB)**: Botón de WhatsApp con animación de pulso infinito (`wa-pulse`) que aparece en pantalla después de
+realizar 300px de scroll vertical.
+
+## Tecnologías utilizadas
+
+### Frontend
+
+- ⚛️ **React** (v19) para la modularización de componentes.
+- 🎨 **Tailwind CSS** (v4) para un sistema de diseño flexible a través del nuevo compilador nativo de Vite `@tailwindcss/vite` y configuración del tema en la directiva `@theme`.
+- ⚡ **Vite** (v8) para un entorno de desarrollo de alto rendimiento y empaquetado optimizado para producción.
+- 🏷️ **TypeScript** para la robustez y seguridad del código tipado.
+- 📦 **Lucide React** para iconos vectoriales limpios y escalables.
+- 🧪 **Playwright** configurado para la realización de pruebas automatizadas E2E.
+- 🛠️ **ESLint** (v10) para el cumplimiento de estándares y calidad del código.
+
+## Resultado
+
+El resultado es un sitio web premium a la altura de la reputación y trayectoria de Clapton Barbershop. La landing page no solo 
+posiciona digitalmente a la marca con una estética impecable y moderna, sino que además agiliza el agendamiento directo de
+turnos al conectar a los clientes directamente con su barbero de preferencia mediante WhatsApp. Todo esto optimizado con las 
+mejores prácticas de rendimiento y estructuración SEO para búsquedas locales.
