@@ -1,0 +1,51 @@
+---
+title: "SacoTurno: Sistema de gestión y reserva de turnos médicos"
+publishedAt: "2026-05-15"
+summary: "Plataforma de reservas y administración de turnos para Salud Femenina Integral. Con control de accesos (RBAC), notificaciones automáticas por WhatsApp Cloud API y Email (Resend), y cron jobs periódicos."
+images:
+  - "/images/projects/turno-sfi/demo1-SacoTurno.png"
+team:
+  - name: "Salvador Castro"
+    role: "Desarrollador"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/salvador-castro"
+---
+
+## Visión general
+
+**SacoTurno** es un sistema completo para la reserva, programación y administración de turnos y agendas médicas desarrollado para **Salud Femenina Integral - Daniel Cesaris**. La aplicación permite administrar de manera centralizada sucursales, servicios, profesionales, agendas de atención y flujos de notificación automática del establecimiento, todo bajo una arquitectura moderna y ágil.
+
+El sistema está actualmente en producción y es accesible a través de [turnos.saludfemeninaintegral.com.ar](https://turnos.saludfemeninaintegral.com.ar/).
+
+## Funcionalidades principales
+
+- **Control de Acceso Basado en Roles (RBAC):**
+  - **Superadmin:** Configuración general del establecimiento (límite de reservas por usuario, duración estándar de consultas, horarios generales) y administración de administradores.
+  - **Admin:** Gestión de sucursales, servicios, asignación de profesionales a agendas y administración centralizada de turnos.
+  - **Paciente / Usuario:** Interfaz intuitiva para buscar servicios y profesionales, reservar turnos, reprogramar citas existentes y consultar su historial médico de reservas.
+- **Gestión Flexible de Agendas (Configuraciones de Calendario):** Definición de horarios estándar y la capacidad avanzada de deshabilitar días específicos o modificar la duración y ventanas horarias de consulta para fechas particulares (`schedule_config`).
+- **Motor de Notificaciones Automatizado (Email + WhatsApp):**
+  - Envío automático de confirmaciones inmediatas al reservar.
+  - Recordatorios automáticos despachados mediante tareas periódicas (24 horas y 2 horas antes de cada cita).
+  - Notificaciones automáticas de cancelación (con motivos adaptados según si cancela el paciente o la clínica).
+- **Control de Inactividad Seguro:** Cierre automático de sesión tras un periodo prolongado de inactividad para proteger la privacidad de los datos médicos de los pacientes.
+- **Políticas de Seguridad a Nivel de Fila (RLS):** Implementación de reglas estrictas en PostgreSQL (vía Supabase) que garantizan que cada usuario y médico solo pueda acceder a los datos que le corresponden.
+
+## Tecnologías utilizadas
+
+- ⚛️ **Framework principal:** Next.js 16 (App Router) con React 19 y TypeScript.
+- 🗄️ **Base de datos y Auth:** Supabase (PostgreSQL, Row Level Security) y manejo de sesiones del lado del servidor via `@supabase/ssr`.
+- ⚡ **Manejo de estado:** TanStack React Query v5 para optimización de caché y sincronización de datos en tiempo real.
+- 📋 **Formularios y Validación:** React Hook Form junto con esquemas de validación estrictos en Zod.
+- 🎨 **Estilos:** Tailwind CSS v4, componentes accesibles basados en `@base-ui/react` y Lucide React.
+- ✉️ **Correos electrónicos:** Resend para envíos transaccionales.
+- 💬 **Mensajería:** API Cloud de Meta WhatsApp Business para el envío automatizado de plantillas de WhatsApp.
+- ⏰ **Tareas Programadas:** Vercel Crons para la activación periódica de recordatorios.
+
+## Resultado
+
+Un sistema robusto, seguro y eficiente que digitaliza por completo el flujo de atención al paciente en Salud Femenina Integral. La automatización de recordatorios vía WhatsApp e Email ha reducido drásticamente el ausentismo en los turnos médicos, mejorando la productividad de los profesionales y la satisfacción del paciente.
+
+## Enlaces
+
+🔗 **Sitio Web:** [https://turnos.saludfemeninaintegral.com.ar/](https://turnos.saludfemeninaintegral.com.ar/)
