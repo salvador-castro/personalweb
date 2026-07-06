@@ -3,7 +3,10 @@ title: "SacoTurno: Sistema de gestión y reserva de turnos médicos"
 publishedAt: "2026-05-15"
 summary: "Plataforma de reservas y administración de turnos para Salud Femenina Integral. Con control de accesos (RBAC), notificaciones automáticas por WhatsApp Cloud API y Email (Resend), y cron jobs periódicos."
 images:
-  - "/images/projects/turno-sfi/demo1-SacoTurno.png"
+  - "/images/projects/turnos-sfi/demo1-SacoTurno.webp"
+  - "/images/projects/turnos-sfi/demo2-SacoTurno.webp"
+  - "/images/projects/turnos-sfi/demo3-SacoTurno.webp"
+  - "/images/projects/turnos-sfi/demo4-SacoTurno.webp"
 team:
   - name: "Salvador Castro"
     role: "Desarrollador"
@@ -19,17 +22,27 @@ El sistema está actualmente en producción y es accesible a través de [turnos.
 
 ## Funcionalidades principales
 
-- **Control de Acceso Basado en Roles (RBAC):**
-  - **Superadmin:** Configuración general del establecimiento (límite de reservas por usuario, duración estándar de consultas, horarios generales) y administración de administradores.
-  - **Admin:** Gestión de sucursales, servicios, asignación de profesionales a agendas y administración centralizada de turnos.
-  - **Paciente / Usuario:** Interfaz intuitiva para buscar servicios y profesionales, reservar turnos, reprogramar citas existentes y consultar su historial médico de reservas.
-- **Gestión Flexible de Agendas (Configuraciones de Calendario):** Definición de horarios estándar y la capacidad avanzada de deshabilitar días específicos o modificar la duración y ventanas horarias de consulta para fechas particulares (`schedule_config`).
-- **Motor de Notificaciones Automatizado (Email + WhatsApp):**
-  - Envío automático de confirmaciones inmediatas al reservar.
-  - Recordatorios automáticos despachados mediante tareas periódicas (24 horas y 2 horas antes de cada cita).
-  - Notificaciones automáticas de cancelación (con motivos adaptados según si cancela el paciente o la clínica).
-- **Control de Inactividad Seguro:** Cierre automático de sesión tras un periodo prolongado de inactividad para proteger la privacidad de los datos médicos de los pacientes.
-- **Políticas de Seguridad a Nivel de Fila (RLS):** Implementación de reglas estrictas en PostgreSQL (vía Supabase) que garantizan que cada usuario y médico solo pueda acceder a los datos que le corresponden.
+### Control de Acceso Basado en Roles (RBAC)
+
+- **Superadmin:** Configuración general del establecimiento (límite de reservas por usuario, duración estándar de consultas, horarios generales) y administración de administradores.
+- **Admin:** Gestión de sucursales, servicios, asignación de profesionales a agendas y administración centralizada de turnos.
+- **Paciente / Usuario:** Interfaz intuitiva para buscar servicios y profesionales, reservar turnos, reprogramar citas existentes y consultar su historial médico de reservas.
+
+### Gestión de Agendas
+
+- Definición de horarios estándar por profesional y sucursal.
+- Capacidad de deshabilitar días específicos o modificar la duración y ventanas horarias de consulta para fechas particulares (`schedule_config`).
+
+### Motor de Notificaciones (Email + WhatsApp)
+
+- Envío automático de confirmaciones inmediatas al reservar.
+- Recordatorios automáticos despachados mediante tareas periódicas (24 horas y 2 horas antes de cada cita).
+- Notificaciones automáticas de cancelación con motivos adaptados según si cancela el paciente o la clínica.
+
+### Seguridad
+
+- Cierre automático de sesión tras un periodo prolongado de inactividad para proteger la privacidad de los datos médicos.
+- Políticas de Seguridad a Nivel de Fila (RLS) en PostgreSQL que garantizan que cada usuario y médico solo pueda acceder a los datos que le corresponden.
 
 ## Tecnologías utilizadas
 

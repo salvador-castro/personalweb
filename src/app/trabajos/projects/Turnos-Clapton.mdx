@@ -1,0 +1,90 @@
+---
+title: "Turnos Clapton: Sistema de gestión de turnos para barbería premium"
+publishedAt: "2026-07-06"
+summary: "Sistema interno de gestión de turnos para Clapton Barbería. Con control de accesos por roles (RBAC), comisiones automáticas, estadísticas, notificaciones por email y credencial digital del cliente. Incluye etapas opcionales como reserva online, reseñas y programa de fidelización por puntos."
+images:
+  - "/images/projects/turnos-clapton/demo1-Clapton.webp"
+  - "/images/projects/turnos-clapton/demo2-Clapton.webp"
+  - "/images/projects/turnos-clapton/demo3-Clapton.webp"
+  - "/images/projects/turnos-clapton/demo4-Clapton.webp"
+  - "/images/projects/turnos-clapton/demo5-Clapton.webp"
+team:
+  - name: "Salvador Castro"
+    role: "Desarrollador"
+    avatar: "/images/avatar.jpeg"
+    linkedIn: "https://www.linkedin.com/in/salvador-castro"
+---
+
+## Visión general
+
+**Turnos Clapton** es un sistema interno de gestión de turnos diseñado a medida para [Clapton Barbershop](https://clapton.com.ar/), una barbería premium con más de una década de trayectoria en Villa María, Córdoba. El sistema no es de acceso público: opera como panel de administración privado para el equipo de la barbería, centralizando turnos, barberos, servicios, comisiones y clientes. En determinadas etapas opcionales, se integra con el sitio web público de la barbería — por ejemplo, las reseñas aprobadas se sincronizan y publican en tiempo real en la web.
+
+## Funcionalidades principales
+
+### Control de Acceso Basado en Roles (RBAC)
+
+- **Superadmin:** Control total del sistema. Puede crear y eliminar cuentas de Admin, resetear contraseñas, realizar eliminaciones permanentes, exportar datos a CSV, auditar la actividad de todos los usuarios y activar o desactivar las etapas opcionales del sistema.
+- **Admin:** Gestión completa de turnos, servicios, clientes, barberos, comisiones y configuración del negocio.
+- **Barbero:** Acceso exclusivo a la vista de sus propios turnos asignados.
+- **Cliente:** Consulta de sus turnos e historial personal. Cuando la reserva online está activa, puede sacar turno eligiendo barbero, servicio, fecha y horario.
+
+### Gestión de Turnos
+
+- Crear, visualizar, confirmar, reprogramar, cancelar y eliminar turnos (soft-delete para Admin; eliminación permanente solo para Superadmin).
+- Historial completo de turnos con filtros por fecha, estado y barbero.
+
+### Configuración del Negocio
+
+- Datos del local (nombre, dirección, teléfono, redes sociales, logo).
+- Catálogo de servicios con nombre, precio y duración estimada.
+- Horarios de atención por día y franja horaria.
+- Días no laborables: feriados y excepciones puntuales.
+
+### Comisiones y Pagos
+
+- Configuración flexible con dos modalidades: **por servicio** (porcentaje o monto fijo según el tipo de servicio) o **por barbero** (porcentaje o monto fijo individual). Ambas pueden coexistir; en caso de conflicto, la regla por barbero tiene prioridad.
+- Cálculo automático de comisiones por cada turno confirmado.
+- Panel de pagos para Admin y Superadmin con el importe a liquidar por barbero.
+
+### Credencial Digital del Cliente
+
+Cada cliente tiene una credencial digital accesible desde su panel, pensada para presentar en caja. Incluye número de cliente, nombre, DNI, avatar y (cuando el programa de puntos está activo) el saldo de puntos acumulados.
+
+### Notificaciones por Email
+
+- Confirmación automática de turno al cliente.
+- Notificación de reprogramación o cancelación.
+- Recordatorio automático antes del turno.
+
+## Etapas opcionales
+
+El sistema incluye funcionalidades opcionales que el Superadmin puede activar o desactivar en cualquier momento desde la configuración.
+
+### Etapa 1 — Reserva online por el cliente
+
+Los clientes pueden reservar su turno desde su panel, eligiendo barbero, servicio, fecha y horario disponible según la configuración del negocio.
+
+### Etapa 2 — Reseñas
+
+Solo los clientes con turnos confirmados pueden dejar reseñas (puntaje de 1 a 5 estrellas y descripción breve). Quedan pendientes de moderación hasta que el Admin las apruebe. Las reseñas aprobadas se sincronizan y se publican en tiempo real en el [sitio web de Clapton Barbershop](https://clapton.com.ar/), consumiendo los datos directamente desde Supabase.
+
+### Etapa 3 — Programa de puntos (fidelización)
+
+Los clientes acumulan puntos automáticamente por cada servicio. El equivalente en pesos de los puntos es configurable (ej. 100 puntos = $100). El canje opera en caja: el Admin busca al cliente por DNI, selecciona los puntos a descontar y confirma; el saldo se actualiza en tiempo real en el panel del cliente y en su credencial digital.
+
+## Tecnologías utilizadas
+
+- ⚛️ **Framework principal:** Next.js 16 (App Router) con React 19 y TypeScript.
+- 🗄️ **Base de datos y Auth:** Supabase (PostgreSQL, Row Level Security) con manejo de sesiones server-side via `@supabase/ssr`. OAuth con Google y Microsoft (Azure AD).
+- ⚡ **Manejo de estado:** TanStack React Query v5 para caché y sincronización de datos.
+- 📋 **Formularios y Validación:** React Hook Form + Zod.
+- 🎨 **Estilos:** Tailwind CSS v4 con paleta dark (`#0A0A0A`, `#C9A84C`, `#F5F0E8`) y tipografía Bebas Neue + Inter.
+- ✉️ **Notificaciones:** Envío de emails transaccionales para confirmaciones y recordatorios de turnos.
+
+## Resultado
+
+Un sistema de gestión interno completo que digitaliza y centraliza toda la operativa de Clapton Barbershop: desde la agenda diaria de turnos hasta la liquidación de comisiones por barbero. La arquitectura modular con etapas opcionales permite ir habilitando funcionalidades a medida que el negocio lo requiera — arrancando con la administración interna y sumando reservas online, reseñas y fidelización cuando corresponda.
+
+## Enlaces
+
+🔗 **Sitio web:** [https://clapton.com.ar/](https://clapton.com.ar/)
