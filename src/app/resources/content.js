@@ -10,6 +10,7 @@ const person = {
   github: 'https://github.com/salvador-castro/',
   linkedin: 'https://www.linkedin.com/in/salvador-castro95',
   youtube: 'https://youtube.com/@salva.castro?si=iBf9iVOzOppCvVPP',
+  whatsapp: '5491132804729',
   location: 'America/Argentina/Buenos_Aires',
   languages: ['English', 'Spanish']
 }
@@ -41,6 +42,11 @@ const social = [
     name: 'YouTube',
     icon: 'youtube',
     link: person.youtube
+  },
+  {
+    name: 'WhatsApp',
+    icon: 'whatsapp',
+    link: `https://wa.me/${person.whatsapp}`
   },
   {
     name: 'Email',
