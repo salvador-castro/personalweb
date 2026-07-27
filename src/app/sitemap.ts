@@ -5,6 +5,7 @@ export const dynamic = "force-static";
 
 const routePriority: Record<string, number> = {
   "/": 1.0,
+  "/servicios": 0.9,
   "/sobre-mi": 0.8,
   "/trabajos": 0.8,
   "/blog": 0.8,
@@ -13,6 +14,7 @@ const routePriority: Record<string, number> = {
 
 const routeChangeFrequency: Record<string, "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never"> = {
   "/": "weekly",
+  "/servicios": "monthly",
   "/sobre-mi": "monthly",
   "/trabajos": "monthly",
   "/blog": "weekly",

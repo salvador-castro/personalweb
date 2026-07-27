@@ -5,6 +5,7 @@ const baseURL =
 
 const routes = {
   '/': true,
+  '/servicios': true,
   '/sobre-mi': true,
   /* '/work': true, */
   '/blog': true,

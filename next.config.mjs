@@ -1,4 +1,8 @@
 import mdx from '@next/mdx'
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const withMDX = mdx({
   extension: /\.mdx?$/,
@@ -16,6 +20,7 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /*   output: 'export', // 👈 esto activa el static export en next build*/
+  outputFileTracingRoot: __dirname,
   eslint: {
     ignoreDuringBuilds: true
   },
