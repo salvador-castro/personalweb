@@ -4,7 +4,7 @@ import "./globals.scss";
 
 import classNames from "classnames";
 
-import { Footer, Header, RouteGuard } from "@/components";
+import { Footer, Header, RouteGuard, WhatsAppFAB } from "@/components";
 import { baseURL, effects, style, font, home } from "@/app/resources";
 import styles from "./layout.module.scss";
 
@@ -137,6 +137,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
               </Flex>
             </Flex>
             <Footer />
+            <WhatsAppFAB />
             <Analytics />
           </Column>
         </ToastProvider>

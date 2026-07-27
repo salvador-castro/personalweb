@@ -13,11 +13,14 @@ import {
   IconButton,
   Line,
   SmartLink,
+  Grid,
+  Card,
+  Icon,
 } from "@/once-ui/components";
 import { Projects } from "@/components/trabajos/Projects";
 
 import { baseURL, routes } from "@/app/resources";
-import { home, sobremi, person, newsletter, social, trabajos } from "@/app/resources/content";
+import { home, sobremi, person, newsletter, social, trabajos, servicios } from "@/app/resources/content";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import { Meta, Schema } from "@/once-ui/modules";
@@ -105,32 +108,45 @@ export default function Home() {
             <RevealFx delay={0.4} horizontal="start">
               <Row gap="12" paddingTop="8" wrap>
                 <Button
-                  id="sobremi"
-                  data-border="rounded"
-                  href={sobremi.path}
+                  href={servicios.cta.whatsappHref}
+                  variant="primary"
+                  size="m"
+                  prefixIcon="whatsapp"
+                >
+                  Pedí tu presupuesto
+                </Button>
+                <Button
+                  href={servicios.path}
                   variant="secondary"
                   size="m"
                   arrowIcon
                 >
+                  Ver servicios
+                </Button>
+              </Row>
+            </RevealFx>
+
+            <RevealFx delay={0.45} horizontal="start">
+              <Row gap="16" paddingTop="4" wrap>
+                <SmartLink href={trabajos.path}>
+                  <Text variant="label-default-s" onBackground="neutral-weak">
+                    Ver casos de éxito →
+                  </Text>
+                </SmartLink>
+                <SmartLink href={sobremi.path}>
                   <Flex gap="8" vertical="center">
                     {sobremi.avatar.display && (
                       <Avatar
-                        style={{ marginLeft: "-0.75rem", marginRight: "0.25rem" }}
+                        style={{ marginRight: "-0.25rem" }}
                         src={person.avatar}
-                        size="m"
+                        size="xs"
                       />
                     )}
-                    {sobremi.title}
+                    <Text variant="label-default-s" onBackground="neutral-weak">
+                      Sobre mí →
+                    </Text>
                   </Flex>
-                </Button>
-                <Button
-                  href={trabajos.path}
-                  variant="primary"
-                  size="m"
-                  arrowIcon
-                >
-                  Ver proyectos
-                </Button>
+                </SmartLink>
               </Row>
             </RevealFx>
           </Column>
@@ -140,6 +156,44 @@ export default function Home() {
             <Avatar src={person.avatar} size="xl" />
           </RevealFx>
         </Row>
+      </Column>
+
+      <Line />
+
+      {/* ── SERVICIOS ── */}
+      <Column fillWidth gap="m">
+        <RevealFx translateY="4" fillWidth horizontal="start">
+          <Row fillWidth vertical="center" horizontal="space-between">
+            <Heading as="h2" variant="display-strong-xs" wrap="balance">
+              Servicios para tu negocio
+            </Heading>
+            <SmartLink href={servicios.path}>
+              <Text variant="label-default-s" onBackground="neutral-weak">
+                Ver todos →
+              </Text>
+            </SmartLink>
+          </Row>
+        </RevealFx>
+        <RevealFx translateY="16" delay={0.2} fillWidth>
+          <Grid fillWidth columns="4" mobileColumns="1" tabletColumns="2" gap="16">
+            {servicios.offerings.map((offering) => (
+              <Card
+                key={offering.slug}
+                href={servicios.path}
+                direction="column"
+                padding="20"
+                gap="8"
+                radius="l"
+              >
+                <Icon name={offering.icon} onBackground="brand-weak" />
+                <Text variant="heading-strong-s">{offering.title}</Text>
+                <Text variant="body-default-s" onBackground="neutral-weak">
+                  {offering.tagline}
+                </Text>
+              </Card>
+            ))}
+          </Grid>
+        </RevealFx>
       </Column>
 
       <Line />

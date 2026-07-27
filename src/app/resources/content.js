@@ -27,6 +27,9 @@ const newsletter = {
   )
 }
 
+const waLink = (message) =>
+  `https://wa.me/${person.whatsapp}?text=${encodeURIComponent(message)}`
+
 const social = [
   {
     name: 'GitHub',
@@ -59,23 +62,23 @@ const home = {
   path: '/',
   image: '/images/og/home.jpg',
   label: 'Home',
-  title: `salvaCastro.dev`,
-  description: `Website showcasing my work as a ${person.role}`,
-  headline: <>Conectando diseño y desarrollo con pasión y propósito</>,
+  title: `Desarrollo web para negocios y PyMEs | ${person.name}`,
+  description: `Sitios web, sistemas de turnos y tiendas online a medida para negocios y profesionales en Argentina. Desarrollado por ${person.name}, ${person.role}.`,
+  headline: <>Webs y sistemas a medida que hacen crecer tu negocio</>,
   featured: {
     display: true,
     title: (
       <>
-        Proyecto destacado: <strong className='ml-4'>Plugin Agency</strong>
+        Caso de éxito: <strong className='ml-4'>Clapton Barbershop</strong>
       </>
     ),
-    href: '/trabajos/PluginAgency'
+    href: '/trabajos/ClaptonBarberia'
   },
   subline: (
     <>
-      Soy Salvador, un apasionado del desarrollo web con foco en la experiencia
-      de usuario. En mi tiempo libre, creo proyectos que combinan diseño y
-      funcionalidad.
+      Diseño y desarrollo landing pages, sistemas de turnos y tiendas online
+      para PyMEs, comercios y profesionales que quieren vender y agendar más
+      a través de internet.
     </>
   )
 }
@@ -393,8 +396,112 @@ const blog = {
 const trabajos = {
   path: '/trabajos',
   label: 'Trabajos',
-  title: `Proyectos – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`
+  title: `Casos de éxito: sitios web y sistemas para negocios – ${person.name}`,
+  description: `Landing pages, sistemas de turnos y tiendas online desarrollados para comercios, profesionales y PyMEs reales en Argentina.`
+}
+
+const servicios = {
+  path: '/servicios',
+  label: 'Servicios',
+  title: `Servicios de desarrollo web para negocios y PyMEs – ${person.name}`,
+  description: `Landing pages, sistemas de turnos y tiendas online a medida para comercios, profesionales y PyMEs en Argentina.`,
+  hero: {
+    title: 'Servicios de desarrollo web para tu negocio',
+    subline: (
+      <>
+        Trabajo con comercios, profesionales y PyMEs que necesitan una
+        presencia digital que realmente sume clientes: más turnos, más
+        ventas, más consultas.
+      </>
+    )
+  },
+  offerings: [
+    {
+      slug: 'landing-pages',
+      icon: 'globe',
+      title: 'Landing Pages y Sitios Web',
+      tagline: 'Tu negocio, online y bien presentado',
+      description:
+        'Un sitio a medida para mostrar tus servicios, generar confianza y convertir visitas en consultas por WhatsApp o formulario.',
+      features: [
+        'Diseño a medida para tu marca',
+        'Optimizado para celular',
+        'Botón de contacto directo por WhatsApp',
+        'SEO básico para aparecer en Google'
+      ],
+      caseStudy: { label: 'Ver caso: Clapton Barbershop', href: '/trabajos/ClaptonBarberia' }
+    },
+    {
+      slug: 'sistemas-de-turnos',
+      icon: 'calendar',
+      title: 'Sistemas de Turnos y Reservas',
+      tagline: 'Menos mensajes, más agenda ordenada',
+      description:
+        'Plataformas de reserva online para salones, consultorios y profesionales con agenda, recordatorios automáticos y panel de administración.',
+      features: [
+        'Agenda online 24/7',
+        'Notificaciones automáticas por WhatsApp y Email',
+        'Panel de administración de turnos y profesionales',
+        'Control de accesos por rol'
+      ],
+      caseStudy: { label: 'Ver caso: Salud Femenina Integral', href: '/trabajos/Sistema-Turnos-SFI' }
+    },
+    {
+      slug: 'ecommerce',
+      icon: 'grid',
+      title: 'E-commerce y Tiendas Online',
+      tagline: 'Vendé todos los días, no solo cuando abrís',
+      description:
+        'Tiendas online con catálogo, carrito y pagos integrados, más un panel para gestionar productos, pedidos y clientes vos mismo.',
+      features: [
+        'Catálogo y carrito de compras',
+        'Pagos con Mercado Pago',
+        'Panel de administración de productos y pedidos',
+        'Gestión de usuarios y stock'
+      ],
+      caseStudy: { label: 'Ver caso: La Vaca Roja', href: '/trabajos/LaVacaRoja' }
+    },
+    {
+      slug: 'mantenimiento',
+      icon: 'refresh',
+      title: 'Mantenimiento y Mejoras',
+      tagline: '¿Ya tenés una web? La hacemos crecer',
+      description:
+        'Mejoras de performance, SEO, nuevas funcionalidades o rediseño de sitios existentes, con soporte continuo.',
+      features: [
+        'Auditoría de performance y SEO',
+        'Nuevas funcionalidades a medida',
+        'Corrección de errores y actualizaciones',
+        'Soporte continuo'
+      ],
+      caseStudy: null
+    }
+  ],
+  process: [
+    {
+      title: 'Charla inicial sin cargo',
+      description: 'Me contás qué necesita tu negocio y evaluamos si encajamos.'
+    },
+    {
+      title: 'Propuesta clara',
+      description: 'Recibís alcance, tiempos y presupuesto por escrito, sin letra chica.'
+    },
+    {
+      title: 'Desarrollo con seguimiento',
+      description: 'Vas viendo avances reales durante todo el proceso, no recién al final.'
+    },
+    {
+      title: 'Entrega y soporte',
+      description: 'Te capacito para usar tu sistema y quedo disponible para futuras mejoras.'
+    }
+  ],
+  cta: {
+    title: '¿Tenés un negocio y querés vender o agendar más por internet?',
+    subline: 'Contame qué necesitás y te paso un presupuesto sin compromiso.',
+    whatsappLabel: 'Escribime por WhatsApp',
+    whatsappHref: waLink('Hola Salvador! Vi tu web y me interesa hacer una consulta sobre un proyecto para mi negocio.'),
+    calendarLabel: 'Agendar una llamada'
+  }
 }
 
 const gallery = {
@@ -446,4 +553,4 @@ const gallery = {
   ]
 }
 
-export { person, social, newsletter, home, sobremi, blog, trabajos, gallery }
+export { person, social, newsletter, home, sobremi, blog, trabajos, servicios, gallery, waLink }
