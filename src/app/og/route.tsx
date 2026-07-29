@@ -1,3 +1,5 @@
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 import { ImageResponse } from 'next/og'
 import { baseURL } from '@/app/resources'
 import { person } from '@/app/resources/content'
@@ -7,10 +9,9 @@ export const runtime = 'nodejs'
 export async function GET (request: Request) {
   let url = new URL(request.url)
   let title = url.searchParams.get('title') || 'Portfolio'
-  const font = fetch(
-    new URL('../../../public/fonts/Inter.ttf', import.meta.url)
-  ).then(res => res.arrayBuffer())
-  const fontData = await font
+  const fontData = await readFile(
+    path.join(process.cwd(), 'public/fonts/Inter.ttf')
+  )
 
   return new ImageResponse(
     (
@@ -53,7 +54,7 @@ export async function GET (request: Request) {
             }}
           >
             <img
-              src={'https://' + baseURL + person.avatar}
+              src={baseURL + person.avatar}
               style={{
                 width: '12rem',
                 height: '12rem',
