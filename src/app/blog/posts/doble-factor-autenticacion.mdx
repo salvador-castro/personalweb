@@ -8,45 +8,36 @@ tag: "Seguridad"
 
 ![](/images/blog/doble-factor-autenticacion/doble-factor-autenticacion-1.webp)
 
-Todos los años se filtran miles de millones de combinaciones de usuario y contraseña en distintas bases de datos. Muchas de esas contraseñas terminan reutilizadas en varias cuentas, así que cuando una se filtra, el riesgo no es solo para ese servicio: es para todos los que comparten la misma clave.
+Cada año se filtran miles de millones de combinaciones de usuario y contraseña, repartidas en bases de datos de todo tipo de servicios. El problema no termina ahí: mucha gente reutiliza la misma clave en varias cuentas, así que una sola filtración puede terminar abriendo puertas que ni siquiera tienen que ver con el servicio hackeado originalmente.
 
-El doble factor de autenticación (2FA, por sus siglas en inglés) existe justamente para ese escenario. Aunque alguien consiga tu contraseña, no puede entrar a la cuenta sin ese segundo paso.
+Para ese escenario existe el doble factor de autenticación, o 2FA. La idea es simple: aunque alguien consiga tu contraseña, no puede entrar sin ese segundo paso.
 
-## Cómo funciona en la práctica
+## Cómo funciona, sin vueltas
 
-La lógica es simple: además de "algo que sabés" (la contraseña), el sistema te pide "algo que tenés" (el celular, una app, una llave física) o "algo que sos" (una huella, el reconocimiento facial).
+Además de algo que sabés (la contraseña), el sistema te pide algo que tenés —el celular, una app, una llave física— o algo que sos, como una huella o el reconocimiento facial. Cuando iniciás sesión desde un dispositivo nuevo, ese segundo factor aparece antes de dejarte pasar. Sin él, no hay acceso, ni siquiera con la contraseña correcta.
 
-Cuando iniciás sesión desde un dispositivo nuevo, el servicio te pide ese segundo factor antes de dejarte entrar. Si no lo tenés, no pasás, aunque la contraseña sea correcta.
+## No todos los métodos protegen igual
 
-## No todos los métodos son igual de seguros
+El SMS es el más conocido y también el más débil. Existen ataques de "SIM swapping" en los que alguien logra portar tu número a otro chip y empieza a recibir tus códigos en tu lugar: sirve, pero es apenas el piso mínimo.
 
-No todas las formas de 2FA ofrecen el mismo nivel de protección:
+Las apps autenticadoras —Google Authenticator, Authy, Microsoft Authenticator— son un salto de seguridad real, porque generan códigos temporales sin depender de la red móvil y no cuestan nada. Las notificaciones push son todavía más cómodas, aunque piden algo de atención: aprobar un ingreso sin fijarse bien puede terminar dejando pasar un acceso que no fue tuyo. Y en el otro extremo están las llaves físicas de seguridad, como YubiKey, que exigen tener el objeto en la mano y por eso son prácticamente inviolables a distancia.
 
-- **SMS**: es mejor que nada, pero es el método más débil. Existen ataques de "SIM swapping" donde el atacante logra portar tu número a otro chip y recibe los códigos en tu lugar.
-- **Apps autenticadoras** (Google Authenticator, Authy, Microsoft Authenticator): generan códigos temporales sin depender de la red móvil. Son bastante más seguras que el SMS y no cuestan nada.
-- **Notificaciones push**: la app te muestra un aviso para aprobar o rechazar el ingreso desde el dispositivo. Rápido y cómodo, aunque exige prestar atención para no aprobar por error un acceso que no pediste vos.
-- **Llaves físicas de seguridad** (tipo YubiKey): son el estándar más alto. Requieren tener el objeto físico en la mano, así que son prácticamente imposibles de vulnerar de forma remota.
+Para la mayoría, una app autenticadora es el mejor equilibrio entre seguridad y comodidad.
 
-Para el usuario promedio, una app autenticadora es el punto justo entre seguridad y comodidad.
+## Por dónde arrancar
 
-## Dónde activarlo primero
+No hace falta activarlo en todos lados el mismo día. Conviene empezar por el correo principal, que funciona como llave maestra para recuperar el resto de las cuentas: quien accede a tu mail puede resetear casi cualquier otra contraseña. Le siguen las redes sociales y WhatsApp, por la cantidad de datos personales y contactos que manejan, y el home banking, donde el 2FA suele venir activado de fábrica pero vale la pena chequear qué método estás usando en concreto.
 
-No hace falta activarlo en todo a la vez. El orden de prioridad debería ser:
+Los gestores de contraseñas merecen un cuidado extra: si perdés el acceso ahí, perdés el acceso a todo lo que guardan adentro. Y por último están las cuentas de trabajo, sobre todo el correo corporativo y cualquier herramienta con datos de la empresa.
 
-1. **El correo electrónico principal**: es la puerta de entrada para recuperar el resto de tus cuentas. Si alguien accede a tu mail, puede resetear contraseñas de casi todo lo demás.
-2. **Redes sociales y WhatsApp**: por la cantidad de información personal y de contactos que manejan.
-3. **Home banking y billeteras virtuales**: acá el 2FA suele venir activado por defecto, pero vale la pena revisar qué método estás usando.
-4. **Gestores de contraseñas**: si perdés el acceso al gestor, perdés el acceso a todo lo que guarda adentro, así que este es un punto especialmente sensible.
-5. **Cuentas de trabajo**: correo corporativo, herramientas de gestión y cualquier servicio con acceso a información de la empresa.
+## El detalle que casi nadie guarda: los códigos de respaldo
 
-## Un detalle que casi nadie revisa: los códigos de respaldo
+Al activar el 2FA, casi todos los servicios entregan una serie de códigos de respaldo para usar si el segundo factor deja de estar disponible, ya sea porque el celular se rompió, se perdió o lo que fuera. Guardarlos en un lugar seguro —y no en una nota sin protección dentro del mismo celular— es lo que evita quedarte afuera de tu propia cuenta justo el día que más lo necesitás.
 
-Cuando activás el 2FA, la mayoría de los servicios te ofrecen una serie de códigos de respaldo para usar si perdés el acceso al segundo factor (por ejemplo, si se te rompe o se te pierde el celular). Guardarlos en un lugar seguro —no en una nota del celular sin protección— evita quedarte afuera de tu propia cuenta.
+## ¿Vale tanto esfuerzo?
 
-## ¿Vale la pena el esfuerzo de activarlo en todo?
+Activar 2FA en cada servicio lleva tiempo, y es cierto que no todos merecen la misma prioridad. Lo razonable es empezar por el correo, las redes y las cuentas financieras, y sumar el resto de a poco.
 
-Es una objeción válida: activar 2FA en cada servicio lleva tiempo, y no todos los servicios son igual de críticos. La recomendación realista es priorizar el correo, las redes y las cuentas financieras, y avanzar con el resto de a poco.
-
-Lo importante es entender que una contraseña sola ya no es una barrera suficiente. Las filtraciones masivas de datos son moneda corriente, y el 2FA es, hoy por hoy, la forma más simple y efectiva de reducir drásticamente el riesgo de que una cuenta tuya termine comprometida.
+Pero conviene tener clara una cosa: una contraseña sola ya no alcanza como barrera. Las filtraciones masivas son parte del paisaje habitual de internet, y el 2FA sigue siendo la forma más simple de bajar drásticamente el riesgo de que una cuenta tuya termine en manos de otra persona.
 
 <ShareIcons />
