@@ -12,13 +12,19 @@ Cada año se filtran miles de millones de combinaciones de usuario y contraseña
 
 Para ese escenario existe el doble factor de autenticación, o 2FA. La idea es simple: aunque alguien consiga tu contraseña, no puede entrar sin ese segundo paso.
 
+## El problema: una contraseña sola ya no alcanza
+
+Durante años, la contraseña fue la única barrera entre una cuenta y cualquiera que quisiera entrar a ella. El problema es que las contraseñas se filtran, se reutilizan y se adivinan con una facilidad que la mayoría de los usuarios subestima. Bases de datos completas de credenciales circulan en foros y mercados de la dark web, y los ataques automatizados prueban esas combinaciones contra miles de servicios distintos en cuestión de minutos, una técnica conocida como *credential stuffing*.
+
+Microsoft investigó qué tan efectivo es agregar un segundo factor frente a este escenario, analizando patrones de actividad sospechosa en cuentas de Azure Active Directory. La conclusión fue contundente: [el doble factor de autenticación bloquea más del 99,2% de los intentos de compromiso de cuentas](https://www.microsoft.com/en-us/security/blog/2019/08/20/one-simple-action-you-can-take-to-prevent-99-9-percent-of-account-attacks/), incluso en los casos donde la contraseña ya estaba filtrada. Microsoft tomó esa evidencia tan en serio que terminó haciendo obligatorio el 2FA para todos los inicios de sesión en Azure.
+
 ## Cómo funciona, sin vueltas
 
 Además de algo que sabés (la contraseña), el sistema te pide algo que tenés —el celular, una app, una llave física— o algo que sos, como una huella o el reconocimiento facial. Cuando iniciás sesión desde un dispositivo nuevo, ese segundo factor aparece antes de dejarte pasar. Sin él, no hay acceso, ni siquiera con la contraseña correcta.
 
 ## No todos los métodos protegen igual
 
-El SMS es el más conocido y también el más débil. Existen ataques de "SIM swapping" en los que alguien logra portar tu número a otro chip y empieza a recibir tus códigos en tu lugar: sirve, pero es apenas el piso mínimo.
+El SMS es el más conocido y también el más débil. Existen ataques de "SIM swapping" en los que alguien logra portar tu número a otro chip y empieza a recibir tus códigos en tu lugar: sirve, pero es apenas el piso mínimo. El propio estudio de Microsoft encontró que las apps autenticadoras dedicadas, como Microsoft Authenticator, superan en efectividad al SMS, aunque ambos métodos ya representan una mejora enorme frente a no usar ningún segundo factor.
 
 Las apps autenticadoras —Google Authenticator, Authy, Microsoft Authenticator— son un salto de seguridad real, porque generan códigos temporales sin depender de la red móvil y no cuestan nada. Las notificaciones push son todavía más cómodas, aunque piden algo de atención: aprobar un ingreso sin fijarse bien puede terminar dejando pasar un acceso que no fue tuyo. Y en el otro extremo están las llaves físicas de seguridad, como YubiKey, que exigen tener el objeto en la mano y por eso son prácticamente inviolables a distancia.
 
@@ -38,6 +44,6 @@ Al activar el 2FA, casi todos los servicios entregan una serie de códigos de re
 
 Activar 2FA en cada servicio lleva tiempo, y es cierto que no todos merecen la misma prioridad. Lo razonable es empezar por el correo, las redes y las cuentas financieras, y sumar el resto de a poco.
 
-Pero conviene tener clara una cosa: una contraseña sola ya no alcanza como barrera. Las filtraciones masivas son parte del paisaje habitual de internet, y el 2FA sigue siendo la forma más simple de bajar drásticamente el riesgo de que una cuenta tuya termine en manos de otra persona.
+En resumen: la evidencia es clara y viene de una de las empresas con más visibilidad sobre ataques reales a cuentas de usuario. Una contraseña sola ya no alcanza como barrera, las filtraciones masivas son parte del paisaje habitual de internet, y el 2FA sigue siendo, con datos que lo respaldan, la forma más simple de bajar drásticamente el riesgo de que una cuenta tuya termine en manos de otra persona.
 
 <ShareIcons />
