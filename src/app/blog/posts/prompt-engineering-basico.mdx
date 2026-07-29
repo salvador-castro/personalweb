@@ -10,15 +10,13 @@ tag: "Inteligencia Artificial"
 
 "Le pregunté y me dio cualquier cosa" es una queja habitual con los modelos de IA generativa. Pero casi siempre el problema no está en el modelo, sino en cómo se formuló el pedido.
 
-Escribir buenos prompts no tiene nada de mágico ni requiere saber programar. En el fondo es la misma habilidad de siempre: explicar lo que necesitás con la claridad con la que se lo contarías a alguien que no tiene ningún contexto previo sobre el tema.
+## El problema: el modelo no adivina lo que tenés en la cabeza
 
-## El problema del prompt vago
+Cuando le pedís a una IA algo como "escribime un texto sobre marketing", el modelo tiene que adivinar demasiadas cosas: para qué es, para quién, en qué tono, de qué extensión. Frente a esa falta de información, responde con lo más genérico posible, porque es lo que tiene más chances de servir "en promedio" para cualquiera de esos usos posibles.
 
-Cuando le pedís a una IA algo como "escribime un texto sobre marketing", el modelo tiene que adivinar demasiadas cosas: para qué es, para quién, en qué tono, de qué extensión. Frente a esa falta de información, responde con lo más genérico posible, porque es lo que tiene más chances de servir "en promedio".
+No es casualidad que las dos empresas que más invierten en el desarrollo de estos modelos publiquen guías completas dedicadas exclusivamente a esto. [Anthropic tiene una documentación oficial de prompt engineering](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) para Claude, y OpenAI hace lo mismo para ChatGPT, ambas centradas en el mismo principio: la claridad y la especificidad del pedido son, según sus propios equipos técnicos, el factor que más impacta en la calidad de la respuesta, incluso más que cambiar de modelo.
 
-La regla es simple: cuanto más específico el pedido, menos tiene que adivinar el modelo, y mejor sale el resultado.
-
-## Cuatro elementos que cambian cualquier prompt
+## La solución: cuatro elementos que cambian cualquier prompt
 
 El primero es el rol o contexto: decirle al modelo desde qué perspectiva responder cambia todo. No es lo mismo pedir "explicame qué es la inflación" que pedirle que se lo explique a un chico de 10 años, o que escriba para otros economistas.
 
@@ -26,7 +24,7 @@ El segundo es la tarea concreta. En vez de "ayudame con este texto", conviene no
 
 El tercero es el formato de salida. Si necesitás una lista, una tabla, cierta extensión o un tono particular, hay que decirlo de forma explícita: el modelo no adivina el formato que tenés en la cabeza.
 
-Y el cuarto son los ejemplos. Cuando lo que buscás es difícil de poner en palabras, mostrar un caso de lo que sí querés —o de lo que no— suele funcionar mejor que cualquier explicación abstracta.
+Y el cuarto son los ejemplos. Tanto la guía de Anthropic como la de OpenAI coinciden en que mostrar un caso concreto de lo que se espera —una técnica que en la documentación técnica se conoce como *few-shot prompting*— suele mejorar la respuesta más que cualquier descripción abstracta, sobre todo cuando lo que se busca es difícil de poner en palabras.
 
 ## Un antes y un después
 
@@ -44,8 +42,8 @@ Esperar que el primer intento salga perfecto es, quizás, el error más común. 
 
 Así como los prompts vagos generan respuestas genéricas, los prompts sobrecargados de instrucciones mezcladas o contradictorias también confunden al modelo. Cuando el pedido tiene varias partes independientes, casi siempre conviene dividirlo en pasos: pedir una cosa, revisarla, y recién ahí seguir con la próxima.
 
-## La habilidad que más importa hoy
+## En resumen
 
-Saber pedirle bien las cosas a una IA se está volviendo una habilidad tan básica como saber buscar en Google hace quince años. No hace falta ningún curso avanzado para dominarla: alcanza con ser específico, dar contexto, aclarar el formato que necesitás y animarse a iterar hasta llegar a algo que realmente sirva.
+Saber pedirle bien las cosas a una IA se está volviendo una habilidad tan básica como saber buscar en Google hace quince años, y no hace falta ningún curso avanzado para dominarla. Rol o contexto, tarea concreta, formato de salida y ejemplos: esos cuatro elementos, respaldados por la documentación oficial de las propias empresas que construyen estos modelos, alcanzan para pasar de una respuesta genérica a una que realmente sirva.
 
 <ShareIcons />
