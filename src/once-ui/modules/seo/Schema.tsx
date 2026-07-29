@@ -82,6 +82,10 @@ export function Schema({
     schema.headline = title;
     schema.description = description;
     schema.image = imageUrl;
+    schema.mainEntityOfPage = {
+      "@type": "WebPage",
+      "@id": url,
+    };
 
     if (datePublished) {
       schema.datePublished = datePublished;

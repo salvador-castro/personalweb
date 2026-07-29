@@ -21,13 +21,27 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata() {
-  return Meta.generate({
+  const meta = Meta.generate({
     title: home.title,
     description: home.description,
     baseURL: baseURL,
     path: home.path,
     image: home.image,
   });
+
+  return {
+    ...meta,
+    metadataBase: new URL(baseURL),
+    alternates: {
+      ...meta.alternates,
+      types: {
+        "application/rss+xml": `${baseURL}/rss.xml`,
+      },
+    },
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+      : {}),
+  };
 }
 
 interface RootLayoutProps {

@@ -36,6 +36,12 @@ export async function generateMetadata({
     ? `${baseURL}${post.metadata.image}`
     : `${baseURL}/og?title=${post.metadata.title}`,
   path: `${blog.path}/${post.slug}`,
+  type: "article",
+  publishedTime: post.metadata.publishedAt,
+  author: {
+    name: person.name,
+    url: `${baseURL}${sobremi.path}`,
+  },
 });
 
 return {
