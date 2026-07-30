@@ -12,6 +12,6 @@ export default function robots() {
         disallow: ["/api/"],
       },
     ],
-    sitemap: `https://${baseURL}/sitemap.xml`,
+    sitemap: `${baseURL}/sitemap.xml`,
   };
 }
