@@ -9,6 +9,7 @@ const person = {
   email: 'salvacastro06@gmail.com',
   github: 'https://github.com/salvador-castro/',
   linkedin: 'https://www.linkedin.com/in/salvador-castro95',
+  x: 'https://x.com/salva_castro95',
   youtube: 'https://youtube.com/@salva.castro?si=iBf9iVOzOppCvVPP',
   whatsapp: '5491132804729',
   location: 'America/Argentina/Buenos_Aires',
@@ -40,6 +41,11 @@ const social = [
     name: 'LinkedIn',
     icon: 'linkedin',
     link: person.linkedin
+  },
+  {
+    name: 'X',
+    icon: 'x',
+    link: person.x
   },
   {
     name: 'YouTube',
