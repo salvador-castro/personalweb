@@ -23,14 +23,14 @@ const routeChangeFrequency: Record<string, "always" | "hourly" | "daily" | "week
 
 export default async function sitemap() {
   const blogs = getPosts(["src", "app", "blog", "posts"]).map((post) => ({
-    url: `https://${baseURL}/blog/${post.slug}`,
+    url: `${baseURL}/blog/${post.slug}`,
     lastModified: post.metadata.publishedAt,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
   const trabajos = getPosts(["src", "app", "trabajos", "projects"]).map((post) => ({
-    url: `https://${baseURL}/trabajos/${post.slug}`,
+    url: `${baseURL}/trabajos/${post.slug}`,
     lastModified: post.metadata.publishedAt,
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -39,7 +39,7 @@ export default async function sitemap() {
   const activeRoutes = Object.keys(routesConfig).filter((route) => routesConfig[route as keyof typeof routesConfig]);
 
   const routes = activeRoutes.map((route) => ({
-    url: `https://${baseURL}${route !== "/" ? route : ""}`,
+    url: `${baseURL}${route !== "/" ? route : ""}`,
     lastModified: new Date().toISOString().split("T")[0],
     changeFrequency: routeChangeFrequency[route] ?? "monthly",
     priority: routePriority[route] ?? 0.5,
@@ -48,7 +48,7 @@ export default async function sitemap() {
   const allBlogPosts = getPosts(["src", "app", "blog", "posts"]);
   const uniqueTags = [...new Set(allBlogPosts.map((p) => p.metadata.tag).filter(Boolean))] as string[];
   const tagPages = uniqueTags.map((tag) => ({
-    url: `https://${baseURL}/blog/tag/${encodeURIComponent(tag)}`,
+    url: `${baseURL}/blog/tag/${encodeURIComponent(tag)}`,
     lastModified: new Date().toISOString().split("T")[0],
     changeFrequency: "weekly" as const,
     priority: 0.6,
