@@ -1,0 +1,41 @@
+---
+title: "Cómo usar la IA para programar sin perder el criterio propio"
+publishedAt: "2026-08-18"
+summary: "Los asistentes de IA cambiaron la forma de escribir código, pero también trajeron un riesgo nuevo: aceptar soluciones sin entenderlas del todo. Cómo evitarlo."
+image: "/images/blog/ia-para-programar/ia-para-programar-1.webp"
+tag: "Inteligencia Artificial"
+---
+
+![](/images/blog/ia-para-programar/ia-para-programar-1.webp)
+
+Escribir código hoy es, para gran parte de los desarrolladores, una tarea que se hace en conjunto con una IA: autocompletado inteligente, funciones completas generadas a partir de una descripción, sugerencias de refactorización, ayuda para depurar errores.
+
+## La productividad es real, y está medida
+
+Un experimento controlado de [GitHub, publicado en su propio blog de investigación](https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/), encontró que los desarrolladores con acceso a Copilot completaron una tarea de programación un 55,8% más rápido que un grupo de control sin la herramienta. Otro estudio de seis semanas realizado en ANZ Bank, uno de los grandes bancos de Australia, midió una mejora del 42% en la velocidad de tareas, con el mayor beneficio entre los desarrolladores junior (52%) y una ganancia algo menor, aunque igual de significativa, entre los más experimentados (40%). En una encuesta a más de 2.000 desarrolladores citada por GitHub, el 88% dijo sentirse más productivo y el 77% reportó pasar menos tiempo buscando información.
+
+Pero no todo el mundo coincide en la magnitud del beneficio: otros trabajos de investigación más recientes matizan esas cifras y advierten que el impacto real puede ser más chico de lo que sugieren los estudios patrocinados por las propias empresas que venden la herramienta. Más allá de qué porcentaje exacto sea el correcto, la tendencia es clara: la productividad que gana quien usa bien estos asistentes es real y considerable.
+
+## El problema que trajo esa velocidad
+
+Junto con esa ganancia apareció un riesgo nuevo, más sutil que los de antes: aceptar código generado sin entender del todo por qué funciona, o si de verdad resuelve el problema de la forma correcta. El código que genera una IA suele estar bien formateado, con nombres de variables prolijos y una estructura que a simple vista parece profesional. Esa fluidez visual genera una falsa sensación de confianza: si se ve bien escrito, parece correcto. Pero la calidad de la presentación no garantiza que la lógica sea la adecuada para el caso puntual, ni que contemple los límites que importan en ese contexto en particular.
+
+## La solución: tres preguntas antes de aceptar una sugerencia
+
+¿Entiendo por qué esta solución funciona? Si la respuesta es no, vale la pena pedirle a la misma IA que explique la lógica antes de sumarla al proyecto, no para desconfiar de todo sistemáticamente sino para no terminar con código que nadie del equipo entiende del todo. ¿Contempla los casos límite de mi contexto específico? Una IA suele resolver el caso general que describe el prompt, pero no conoce las convenciones internas, las restricciones de la base de datos ni las reglas de negocio propias del proyecto, así que eso siempre hay que revisarlo con criterio propio. ¿Es la solución más simple para este problema? A veces el código funciona, pero de una forma más complicada de lo necesario, y simplificar sigue siendo una tarea que exige criterio humano, más allá de lo que sugiera la herramienta.
+
+## Dónde rinde mejor, y dónde conviene ser más cauteloso
+
+En tareas repetitivas y bien definidas —boilerplate, tests unitarios básicos, conversión entre formatos— es donde más tiempo ahorra, algo consistente con el 61% de código generado que reportan los desarrolladores que trabajan en Java, según cifras de adopción de Copilot. También sirve muy bien para explicar código ajeno o heredado que nadie del equipo actual escribió, para proponer enfoques alternativos cuando uno está trabado, y para detectar errores obvios en una primera pasada, antes de un code review humano más a fondo.
+
+La lógica de negocio crítica —cálculos financieros, validaciones de seguridad, manejo de datos sensibles— tolera mucho menos margen de error. Las decisiones de arquitectura requieren contexto técnico y de negocio que la IA no tiene, más allá de lo que se le explique en un prompt puntual. Y todo lo relacionado con seguridad —autenticación, permisos, manejo de datos de usuarios— necesita una revisión humana rigurosa, porque ahí un error tiene consecuencias bastante más serias que un bug funcional común.
+
+## El riesgo de perder la base
+
+Hay un debate cada vez más presente en la industria sobre si depender demasiado de la IA para programar termina debilitando la capacidad de resolver problemas desde cero, sin asistencia. La forma más sana de usar estas herramientas parece ser tratarlas como un acelerador de tareas conocidas, no como un reemplazo del pensamiento propio frente a problemas nuevos o complejos.
+
+## En resumen
+
+Los números —ya sea 55%, 42% o alguna cifra intermedia según el estudio que se mire— confirman que la IA para programar acelera de forma medible el trabajo cuando se usa bien. Pero usarla bien implica seguir revisando, entendiendo y cuestionando cada sugerencia con el mismo criterio que se aplicaría al código de otro desarrollador humano. La responsabilidad de lo que termina en producción sigue siendo de quien lo acepta, no de la herramienta que lo sugirió.
+
+<ShareIcons />
