@@ -1,6 +1,6 @@
 "use client";
 
-import { track } from "@vercel/analytics";
+import { gaEvent } from "@/app/utils/gtag";
 import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
 import { person, social } from "@/app/resources/content";
 import styles from "./Footer.module.scss";
@@ -40,7 +40,7 @@ export const Footer = () => {
                   tooltip={item.name}
                   size="s"
                   variant="ghost"
-                  onClick={() => track("social_click", { network: item.name })}
+                  onClick={() => gaEvent("social_click", { network: item.name })}
                 />
               ),
           )}

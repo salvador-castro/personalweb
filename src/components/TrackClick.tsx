@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import { track } from "@vercel/analytics";
+import { gaEvent } from "@/app/utils/gtag";
 
 interface TrackClickProps {
   event: string;
@@ -10,7 +10,7 @@ interface TrackClickProps {
 }
 
 export const TrackClick = ({ event, properties, children }: TrackClickProps) => (
-  <span onClick={() => track(event, properties)} style={{ display: "contents" }}>
+  <span onClick={() => gaEvent(event, properties)} style={{ display: "contents" }}>
     {children}
   </span>
 );

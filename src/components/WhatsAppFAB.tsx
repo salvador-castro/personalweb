@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { track } from "@vercel/analytics";
+import { gaEvent } from "@/app/utils/gtag";
 import { IconButton } from "@/once-ui/components";
 import { person, waLink } from "@/app/resources/content";
 
@@ -41,7 +41,7 @@ export const WhatsAppFAB = () => {
         variant="primary"
         tooltip="Escribime por WhatsApp"
         tooltipPosition="left"
-        onClick={() => track("whatsapp_click", { source: "fab" })}
+        onClick={() => gaEvent("whatsapp_click", { source: "fab" })}
       />
     </div>
   );
