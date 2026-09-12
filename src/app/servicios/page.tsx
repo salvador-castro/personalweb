@@ -12,6 +12,7 @@ import {
   RevealFx,
   Tag,
 } from "@/once-ui/components";
+import { TrackClick } from "@/components";
 import { baseURL } from "@/app/resources";
 import { person, sobremi, servicios } from "@/app/resources/content";
 import { Meta, Schema } from "@/once-ui/modules";
@@ -67,22 +68,26 @@ export default function Servicios() {
         </RevealFx>
         <RevealFx delay={0.3} horizontal="center">
           <Row gap="12" paddingTop="16" wrap horizontal="center">
-            <Button
-              href={servicios.cta.whatsappHref}
-              variant="primary"
-              size="m"
-              prefixIcon="whatsapp"
-            >
-              {servicios.cta.whatsappLabel}
-            </Button>
-            <Button
-              href={sobremi.calendar.link}
-              variant="secondary"
-              size="m"
-              prefixIcon="calendar"
-            >
-              {servicios.cta.calendarLabel}
-            </Button>
+            <TrackClick event="whatsapp_click" properties={{ source: "servicios_hero" }}>
+              <Button
+                href={servicios.cta.whatsappHref}
+                variant="primary"
+                size="m"
+                prefixIcon="whatsapp"
+              >
+                {servicios.cta.whatsappLabel}
+              </Button>
+            </TrackClick>
+            <TrackClick event="calendar_click" properties={{ source: "servicios_hero" }}>
+              <Button
+                href={sobremi.calendar.link}
+                variant="secondary"
+                size="m"
+                prefixIcon="calendar"
+              >
+                {servicios.cta.calendarLabel}
+              </Button>
+            </TrackClick>
           </Row>
         </RevealFx>
       </Column>
@@ -192,17 +197,21 @@ export default function Servicios() {
           {servicios.cta.subline}
         </Text>
         <Row gap="12" paddingTop="16" wrap horizontal="center">
-          <Button
-            href={servicios.cta.whatsappHref}
-            variant="primary"
-            size="m"
-            prefixIcon="whatsapp"
-          >
-            {servicios.cta.whatsappLabel}
-          </Button>
-          <Button href={sobremi.calendar.link} variant="secondary" size="m" prefixIcon="calendar">
-            {servicios.cta.calendarLabel}
-          </Button>
+          <TrackClick event="whatsapp_click" properties={{ source: "servicios_cta_final" }}>
+            <Button
+              href={servicios.cta.whatsappHref}
+              variant="primary"
+              size="m"
+              prefixIcon="whatsapp"
+            >
+              {servicios.cta.whatsappLabel}
+            </Button>
+          </TrackClick>
+          <TrackClick event="calendar_click" properties={{ source: "servicios_cta_final" }}>
+            <Button href={sobremi.calendar.link} variant="secondary" size="m" prefixIcon="calendar">
+              {servicios.cta.calendarLabel}
+            </Button>
+          </TrackClick>
         </Row>
       </Column>
     </Column>

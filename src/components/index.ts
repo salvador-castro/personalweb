@@ -5,3 +5,4 @@ export { ProjectCard } from "@/components/ProjectCard";
 export { HeadingLink } from "@/components/HeadingLink";
 export { RouteGuard } from "@/components/RouteGuard";
 export { WhatsAppFAB } from "@/components/WhatsAppFAB";
+export { TrackClick } from "@/components/TrackClick";

@@ -9,6 +9,7 @@ import {
   Tag,
   Text,
 } from "@/once-ui/components";
+import { TrackClick } from "@/components";
 import { baseURL } from "@/app/resources";
 import TableOfContents from "@/components/sobremi/TableOfContents";
 import styles from "@/components/sobremi/sobremi.module.scss";
@@ -137,12 +138,14 @@ export default function SobreMi() {
                 <Flex paddingX="8">
                   <Text>Agendar una llamada</Text>
                 </Flex>
-                <IconButton
-                  href={sobremi.calendar.link}
-                  data-border="rounded"
-                  variant="secondary"
-                  icon="chevronRight"
-                />
+                <TrackClick event="calendar_click" properties={{ source: "sobre-mi" }}>
+                  <IconButton
+                    href={sobremi.calendar.link}
+                    data-border="rounded"
+                    variant="secondary"
+                    icon="chevronRight"
+                  />
+                </TrackClick>
               </Flex>
             )}
             <Heading className={styles.textAlign} variant="display-strong-xl">
