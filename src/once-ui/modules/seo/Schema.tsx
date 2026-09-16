@@ -106,7 +106,7 @@ export function Schema({
   }
 
   if (author) {
-    schema.author = {
+    const person = {
       "@type": "Person",
       name: author.name,
       ...(author.url && { url: author.url }),
@@ -117,6 +117,12 @@ export function Schema({
         },
       }),
     };
+
+    if (as === "profilePage") {
+      schema.mainEntity = person;
+    } else {
+      schema.author = person;
+    }
   }
 
   return (
