@@ -5,7 +5,7 @@ const person = {
     return `${this.firstName} ${this.lastName}`
   },
   role: 'Frontend Developer',
-  avatar: '/images/avatar.jpeg',
+  avatar: '/images/avatar.webp',
   email: 'salvacastro06@gmail.com',
   github: 'https://github.com/salvador-castro/',
   linkedin: 'https://www.linkedin.com/in/salvador-castro95',
