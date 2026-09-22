@@ -1,0 +1,63 @@
+---
+title: "Passkeys: por qué van a reemplazar tu contraseña (y cómo activarlas ya)"
+publishedAt: "2026-09-22"
+summary: "Ya hay 5.000 millones de passkeys en uso en el mundo y 3 de cada 4 personas activaron al menos una. Cómo funciona esta forma de acceder a tus cuentas sin escribir ni recordar una contraseña, y por qué resiste ataques que el doble factor por SMS no."
+image: "/images/blog/passkeys-reemplazo-contrasena/passkeys-reemplazo-contrasena-1.webp"
+tag: "Seguridad"
+---
+
+![](/images/blog/passkeys-reemplazo-contrasena/passkeys-reemplazo-contrasena-1.webp)
+
+En mayo de 2026, con motivo del Día Mundial de la Passkey, la [FIDO Alliance](https://fidoalliance.org/fido-alliance-reports-accelerating-global-passkey-adoption-on-world-passkey-day-2026/) —el consorcio que reúne a Google, Apple, Microsoft y a la mayoría de los grandes bancos y plataformas del mundo— reportó que ya hay 5.000 millones de passkeys activas a nivel global. Sobre una muestra de 11.000 consumidores y 1.400 responsables de decisión de empresas en diez países, el mismo informe encontró que el 90% de la gente ya conoce el concepto, el 75% activó al menos una passkey en alguna cuenta, y un 49% la usa de forma habitual cuando la opción está disponible. La contraseña, tal como la conocemos, ya empezó su retirada, aunque todavía convive con nosotros.
+
+## Qué es exactamente una passkey
+
+Una passkey no es una contraseña más larga ni más rara: es un mecanismo completamente distinto. En lugar de un texto que vos elegís, memorizás y volvés a escribir cada vez, la passkey es un par de claves criptográficas que se genera automáticamente al crear la cuenta: una privada, que nunca sale de tu dispositivo, y una pública, que queda guardada en el servidor del sitio o la app. Para iniciar sesión, el servidor le manda un desafío a tu dispositivo, y este lo responde usando la clave privada, algo que solo se puede hacer si tenés el dispositivo desbloqueado con tu huella, tu cara o tu PIN. Ese "desbloqueo" biométrico no viaja a ningún lado: solo confirma, localmente, que sos vos quien tiene el dispositivo en la mano.
+
+La consecuencia práctica es que no hay ningún secreto compartido que un atacante pueda robar de un servidor hackeado, interceptar en tránsito, o sacarte con un mensaje de phishing bien armado. La clave privada nunca se transmite, ni siquiera al iniciar sesión.
+
+## Por qué es más resistente que una contraseña con doble factor
+
+Acá está el punto que más cuesta entender, porque durante años el doble factor por SMS fue la recomendación estándar: un código adicional, más allá de la contraseña. El problema es que ese código sí se puede interceptar o arrancar de la víctima con ingeniería social, y las passkeys se diseñaron específicamente para cerrar esa puerta.
+
+Un estudio de Google realizado junto con investigadores de la New York University y la University of California San Diego, sobre intentos reales de secuestro de cuentas a gran escala, encontró que agregar una capa de seguridad adicional bloqueaba el 100% de los ataques de bots automatizados y el 99% del phishing masivo, pero solo el 66% de los ataques dirigidos específicamente contra una persona, según reporta [TechTarget](https://www.techtarget.com/searchsecurity/news/252445474/Physical-security-keys-eliminate-phishing-at-Google). La brecha se cerró por completo con las claves de seguridad físicas —el antecesor directo de las passkeys—, que en ese mismo estudio bloquearon el 100% de los tres tipos de ataque, incluidos los dirigidos.
+
+La razón técnica es que una passkey queda criptográficamente atada al dominio exacto que la creó: un sitio falso, por más idéntico que se vea, no puede pedir una firma válida porque no es el dominio real. Un código de SMS, en cambio, no sabe distinguir si se lo estás tipeando al banco real o a una réplica armada por un atacante con un proxy en tiempo real.
+
+## El SIM swap explica por qué el SMS quedó atrás
+
+El propio doble factor por SMS tiene un punto ciego que creció con fuerza en los últimos años: el "SIM swap", que consiste en que alguien engaña o soborna a un empleado de la compañía telefónica para que transfiera tu número a un chip que controla el atacante, y con eso intercepta directamente tus códigos por SMS. En el Reino Unido, la agencia antifraude Cifas registró un salto de 1.055% en los SIM swaps no autorizados entre 2023 y 2024 —de 289 a casi 3.000 casos—, con otro incremento del 38% durante 2025, según cifras recopiladas por [Efani](https://www.efani.com/blog/sim-swap-fraud-statistics-2026). En Australia, la organización IDCARE reportó un aumento del 240% en consultas por portabilidad fraudulenta de número en 2024 respecto al año anterior, y señaló que en el 90% de los casos la víctima no tuvo ninguna participación ni pudo notar nada raro antes de perder el control de su línea. Ese es, justamente, el escenario frente al cual una passkey no ofrece ninguna superficie de ataque: no depende de tu número de teléfono ni de un código que viaje por la red celular.
+
+## Adopción real: todavía convive con la contraseña, no la reemplazó del todo
+
+El propio informe de FIDO Alliance muestra que el 48% de los 100 sitios web más visitados del mundo ya ofrece passkeys como opción de acceso, más del doble que en 2022. Entre empresas, el 68% ya implementó o está implementando passkeys para el inicio de sesión de sus empleados. Son números de una tecnología en plena adopción, no de una ya generalizada: todavía es común entrar a un sitio y encontrar que solo ofrece contraseña, o contraseña más un código por app o SMS.
+
+En cuanto a rendimiento práctico, un análisis recopilado por [Tech Insider](https://tech-insider.org/passkeys-vs-passwords-vs-2fa-2026/) sobre implementaciones reales encontró una tasa de éxito de inicio de sesión del 93% con passkeys, frente al 63% de métodos más antiguos, con un tiempo promedio de acceso de 8,5 segundos contra 31,2 segundos, y una reducción del 81% en los reclamos a mesas de ayuda por problemas de acceso. Son señales de que, además de más segura, la experiencia de uso mejora de forma medible.
+
+## Cómo empezar a usarlas, en el orden que más conviene
+
+No hace falta migrar todas las cuentas el mismo día. El orden recomendado por especialistas en seguridad prioriza las cuentas donde un acceso indebido genera más daño en cadena:
+
+1. **Cuenta de email principal.** Es la puerta de recuperación de casi todas tus otras cuentas: si alguien la controla, puede resetear el resto.
+2. **Gestor de contraseñas.** Si todavía guardás ahí las claves de sitios que no ofrecen passkey, esa cuenta merece la protección más fuerte disponible.
+3. **Banca y billeteras digitales.** Google, Apple, Microsoft y la mayoría de los bancos importantes ya permiten activar una passkey desde la configuración de seguridad de la cuenta, generalmente en la sección "inicio de sesión" o "seguridad avanzada".
+4. **Redes sociales y servicios de uso diario**, una vez resuelto lo anterior.
+
+En la práctica, activarla suele tomar menos de un minuto: la cuenta pide confirmar tu identidad una vez (con la contraseña actual, todavía), y a partir de ahí ofrece guardar una passkey usando el desbloqueo biométrico del celular o la computadora.
+
+## Lo que todavía no resuelve del todo
+
+Las passkeys no están exentas de fricciones reales. Si perdés el único dispositivo donde vive la clave privada y no configuraste una forma de sincronización (como el llavero de iCloud o el Gestor de Contraseñas de Google, que replican la passkey entre tus propios dispositivos), la recuperación de cuenta puede volverse más incómoda que con una contraseña tradicional. Tampoco todos los sitios la soportan todavía, lo que obliga a convivir con contraseñas para una parte del uso diario. Y pasar de un ecosistema a otro (por ejemplo, de Android a iPhone) no siempre transfiere las passkeys de forma automática, aunque los estándares avanzan en esa dirección.
+
+## En resumen
+
+Con 5.000 millones de passkeys activas, un 75% de adopción al menos parcial entre usuarios encuestados y estudios que muestran una resistencia al phishing que ni la contraseña ni el doble factor por SMS logran igualar, las passkeys dejaron de ser una promesa técnica y ya son una opción real y disponible en la mayoría de las cuentas importantes. El SIM swap, en pleno crecimiento en varios países, es la prueba concreta de por qué depender solo del teléfono como segundo factor tiene un límite. Activarlas primero en el mail y la banca, dejando que el resto se sume con el tiempo, es la forma más simple de sumarse a ese cambio sin tener que hacerlo todo de una vez.
+
+## Fuentes
+
+- **FIDO Alliance** — [FIDO Alliance Reports Accelerating Global Passkey Adoption on World Passkey Day 2026](https://fidoalliance.org/fido-alliance-reports-accelerating-global-passkey-adoption-on-world-passkey-day-2026/). Datos globales de adopción de passkeys, encuesta a 11.000 consumidores y 1.400 empresas en diez países.
+- **TechTarget** — [Physical security keys eliminate phishing at Google](https://www.techtarget.com/searchsecurity/news/252445474/Physical-security-keys-eliminate-phishing-at-Google). Estudio de Google con NYU y UC San Diego sobre efectividad real de distintos métodos de autenticación frente a ataques automatizados, phishing masivo y ataques dirigidos.
+- **Efani** — [SIM Swap Fraud Statistics 2026](https://www.efani.com/blog/sim-swap-fraud-statistics-2026). Estadísticas de crecimiento de fraude por SIM swap en Reino Unido, Australia y Estados Unidos.
+- **Tech Insider** — [Passkeys vs Passwords vs 2FA: 93% Success Rate](https://tech-insider.org/passkeys-vs-passwords-vs-2fa-2026/). Comparación de tasas de éxito, tiempos de acceso y reclamos a soporte técnico entre passkeys y métodos tradicionales.
+
+<ShareIcons />
