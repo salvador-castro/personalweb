@@ -1,0 +1,59 @@
+---
+title: "Agentes de IA en el navegador: cuánto pueden hacer solos y dónde todavía fallan"
+publishedAt: "2026-09-23"
+summary: "Comet, Gemini en Chrome y Claude for Chrome ya navegan, completan formularios y compran por vos. Pero OpenAI acaba de discontinuar su propio navegador con IA a menos de un año de lanzarlo, y hay vulnerabilidades reales que muestran el límite de darles el control."
+image: "/images/blog/agentes-ia-navegador/agentes-ia-navegador-1.webp"
+tag: "Inteligencia Artificial"
+---
+
+![](/images/blog/agentes-ia-navegador/agentes-ia-navegador-1.webp)
+
+En octubre de 2025, OpenAI lanzó Atlas, su propio navegador con un agente de IA integrado que prometía navegar, completar formularios y resolver tareas por vos. Once meses después, según confirma el propio [Centro de Ayuda de OpenAI](https://help.openai.com/en/articles/20001371-evolving-atlas-into-chatgpt-for-browser-based-agentic-work), la compañía anunció que Atlas dejaría de funcionar como navegador el 9 de agosto de 2026, y recomendó a sus usuarios exportar los favoritos antes de esa fecha porque no se transfieren de forma automática. La capacidad no desaparece: se mudó a la app de escritorio de ChatGPT. Pero el giro, ocurrido en menos de un año, es un buen resumen de en qué estado está hoy la carrera por meter agentes de IA dentro del navegador: avanza muy rápido, y todavía nadie —ni las empresas que lo construyen— tiene del todo claro cuál es la forma final que va a tomar.
+
+## Qué es un "agente de IA en el navegador"
+
+Un agente de este tipo no es un chatbot que responde preguntas sobre lo que ves en pantalla. Es una capa de control que se apoya sobre un navegador convencional: puede leer la estructura de una página, planificar una secuencia de varios pasos (click, completar un campo, avanzar a la siguiente pantalla) y ejecutarla sola, sin que una persona haga cada click. En la práctica, eso significa pedirle algo como "reservá el vuelo más barato para estas fechas" o "encontrá y comprá este producto al mejor precio" y dejar que el agente navegue, compare y complete el proceso de compra por su cuenta.
+
+## El panorama a septiembre de 2026
+
+El campo se define hoy por unos pocos jugadores, cada uno con una estrategia distinta:
+
+- **Perplexity Comet** es gratuito y está disponible en Windows, Mac, Android e iOS desde octubre de 2025, y viene con motor de búsqueda propio integrado.
+- **Google** discontinuó su proyecto experimental Project Mariner en mayo de 2026 y volcó esa tecnología a Gemini Agent y a una función llamada "Chrome Auto Browse", integrada por defecto en el navegador (no como extensión) para suscriptores de Google One AI Pro/Ultra, inicialmente solo en escritorio en Estados Unidos y en expansión a Android desde fines de junio de 2026.
+- **Claude for Chrome**, de Anthropic, es una extensión paga que pasó de 40.000 a más de 10 millones de instalaciones entre diciembre de 2025 y junio de 2026, cruzando el millón de instalaciones solo en febrero.
+- **ChatGPT Atlas**, como se mencionó, dejó de existir como navegador independiente; OpenAI absorbió esa capacidad dentro de la app de ChatGPT.
+
+## Cuánto pueden hacer realmente, más allá del demo
+
+Los benchmarks académicos que evalúan estos agentes en tareas reales muestran algo consistente: rinden razonablemente bien en tareas cortas y acotadas, y bastante peor en tareas largas que requieren mantener contexto durante muchos pasos, algo mucho más parecido al trabajo real. [AgentDojo](https://arxiv.org/abs/2406.13352), un entorno de evaluación académico presentado en NeurIPS 2024 que combina 97 tareas y 629 casos de prueba de seguridad en dominios como email, banca, viajes y espacios de trabajo, encontró que incluso el agente con mejor desempeño en su momento de evaluación resolvía correctamente alrededor del 78% de las tareas benignas planteadas, un número que baja todavía más apenas se introduce contenido adversarial en el medio.
+
+Esa brecha entre "tarea corta" y "flujo de trabajo largo" es, hoy, la principal limitación práctica: un agente que reserva un turno o completa un formulario funciona razonablemente bien; uno al que se le pide gestionar un proceso de varios días con múltiples decisiones intermedias todavía comete errores acumulativos que un humano corrige sin pensarlo.
+
+## El riesgo real: cuando la propia página le da órdenes al agente
+
+El problema de seguridad específico de estos sistemas se llama inyección de prompts (prompt injection), y ya está catalogado como el riesgo número uno para aplicaciones de IA según el [OWASP Top 10 para LLMs](https://www.sysdig.com/learn-cloud-native/prompt-injection). El mecanismo es así: si un agente lee el contenido de una página web para decidir su próximo paso, un atacante puede esconder instrucciones dentro de esa misma página —en un comentario, en texto invisible, en un campo de formulario— y el agente puede llegar a interpretarlas como una orden legítima, en lugar de tratarlas como el contenido pasivo que un navegador tradicional simplemente muestra.
+
+No es un riesgo teórico. En junio de 2025, investigadores de Aim Security revelaron "EchoLeak" ([CVE-2025-32711](https://sentra.io/blog/copilot-echoleak-prompt-injection), con puntaje de severidad 9,3 sobre 10), una falla de "cero clics" en Microsoft 365 Copilot: un solo mail especialmente diseñado, sin que la víctima hiciera nada, lograba que el asistente filtrara información confidencial hacia afuera. En agosto de 2025 se reveló otra falla crítica en GitHub Copilot ([CVE-2025-53773](https://cybersecuritynews.com/github-copilot-rce-vulnerability/), severidad 9,6), donde instrucciones escondidas en comentarios de código de un repositorio público lograban que el asistente modificara configuraciones y ejecutara código sin aprobación del usuario. Un benchmark académico específico para este escenario, [WASP](https://arxiv.org/pdf/2504.18575), evaluó agentes web en entornos realistas de extremo a extremo y encontró que el ataque lograba éxito parcial en hasta el 86% de los casos probados.
+
+## Qué implica esto para el uso cotidiano
+
+Ninguno de estos datos significa que haya que evitar estos agentes por completo: para tareas acotadas y de bajo riesgo (buscar y comparar precios, resumir varias pestañas abiertas, completar un formulario simple) ya funcionan razonablemente bien y ahorran tiempo real. El punto es calibrar la confianza según lo que está en juego:
+
+- **Evitar darles acceso autónomo completo a cuentas bancarias o de pago** sin una confirmación manual antes de ejecutar la transacción final.
+- **Revisar los permisos que se le otorgan a la extensión o al navegador**, de la misma forma que se revisan los de cualquier extensión (algo que ya vale para el navegador tradicional).
+- **Tratarlo como a alguien nuevo en un trabajo**, no como a un empleado con años de criterio propio: puede resolver bien una tarea puntual bien definida, pero conviene supervisar procesos largos o con varias decisiones encadenadas.
+- **No asumir que el contenido de una página es "solo para leer"** si hay un agente de por medio: para él, ese contenido puede convertirse en instrucciones.
+
+## En resumen
+
+El paso del asistente conversacional al agente que navega y actúa solo ya está en marcha, y avanza a un ritmo que la propia industria muestra que todavía no terminó de encontrar su forma: un navegador entero, lanzado con mucho ruido, discontinuado en menos de un año. Lo que sí está firme es la evidencia de seguridad: la inyección de prompts es hoy el riesgo número uno reconocido por OWASP para estos sistemas, con vulnerabilidades críticas reales ya documentadas en herramientas de uso masivo. Usarlos para tareas chicas y acotadas ya tiene sentido hoy. Delegarles decisiones grandes sin supervisión, aún no.
+
+## Fuentes
+
+- **OpenAI Help Center** — [Evolving Atlas into ChatGPT for browser-based agentic work](https://help.openai.com/en/articles/20001371-evolving-atlas-into-chatgpt-for-browser-based-agentic-work). Anuncio oficial de la discontinuación de Atlas como navegador independiente y su fecha de corte.
+- **Sysdig** — [The Comprehensive Guide to Prompt Injection Attacks in 2026](https://www.sysdig.com/learn-cloud-native/prompt-injection). Clasificación de la inyección de prompts como riesgo principal según el OWASP Top 10 para LLMs.
+- **Sentra** — [EchoLeak: What the Microsoft Copilot Prompt Injection Vulnerability Means for Your Data](https://sentra.io/blog/copilot-echoleak-prompt-injection). Detalle de la vulnerabilidad CVE-2025-32711 en Microsoft 365 Copilot.
+- **Cybersecurity News** — [GitHub Copilot RCE Vulnerability via Prompt Injection Leads to Full System Compromise](https://cybersecuritynews.com/github-copilot-rce-vulnerability/). Detalle de la vulnerabilidad CVE-2025-53773 en GitHub Copilot.
+- **arXiv** — [WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks](https://arxiv.org/pdf/2504.18575). Estudio académico que mide la tasa de éxito de ataques de inyección contra agentes web en entornos realistas.
+
+<ShareIcons />
