@@ -11,7 +11,7 @@ const person = {
   linkedin: 'https://www.linkedin.com/in/salvador-castro95',
   x: 'https://x.com/salva_castro95',
   youtube: 'https://youtube.com/@salva.castro?si=iBf9iVOzOppCvVPP',
-  whatsapp: '5491132804729',
+  whatsapp: '5491135655755',
   location: 'America/Argentina/Buenos_Aires',
   languages: ['English', 'Spanish']
 }
@@ -28,7 +28,7 @@ const newsletter = {
   )
 }
 
-const waLink = (message) =>
+const waLink = message =>
   `https://wa.me/${person.whatsapp}?text=${encodeURIComponent(message)}`
 
 const social = [
@@ -83,8 +83,8 @@ const home = {
   subline: (
     <>
       Diseño y desarrollo landing pages, sistemas de turnos y tiendas online
-      para PyMEs, comercios y profesionales que quieren vender y agendar más
-      a través de internet.
+      para PyMEs, comercios y profesionales que quieren vender y agendar más a
+      través de internet.
     </>
   )
 }
@@ -415,9 +415,9 @@ const servicios = {
     title: 'Servicios de desarrollo web para tu negocio',
     subline: (
       <>
-        Trabajo con comercios, profesionales y PyMEs que necesitan una
-        presencia digital que realmente sume clientes: más turnos, más
-        ventas, más consultas.
+        Trabajo con comercios, profesionales y PyMEs que necesitan una presencia
+        digital que realmente sume clientes: más turnos, más ventas, más
+        consultas.
       </>
     )
   },
@@ -435,7 +435,10 @@ const servicios = {
         'Botón de contacto directo por WhatsApp',
         'SEO básico para aparecer en Google'
       ],
-      caseStudy: { label: 'Ver caso: Clapton Barbershop', href: '/trabajos/ClaptonBarberia' }
+      caseStudy: {
+        label: 'Ver caso: Clapton Barbershop',
+        href: '/trabajos/ClaptonBarberia'
+      }
     },
     {
       slug: 'sistemas-de-turnos',
@@ -450,7 +453,10 @@ const servicios = {
         'Panel de administración de turnos y profesionales',
         'Control de accesos por rol'
       ],
-      caseStudy: { label: 'Ver caso: Salud Femenina Integral', href: '/trabajos/Sistema-Turnos-SFI' }
+      caseStudy: {
+        label: 'Ver caso: Salud Femenina Integral',
+        href: '/trabajos/Sistema-Turnos-SFI'
+      }
     },
     {
       slug: 'ecommerce',
@@ -465,7 +471,10 @@ const servicios = {
         'Panel de administración de productos y pedidos',
         'Gestión de usuarios y stock'
       ],
-      caseStudy: { label: 'Ver caso: La Vaca Roja', href: '/trabajos/LaVacaRoja' }
+      caseStudy: {
+        label: 'Ver caso: La Vaca Roja',
+        href: '/trabajos/LaVacaRoja'
+      }
     },
     {
       slug: 'mantenimiento',
@@ -490,22 +499,27 @@ const servicios = {
     },
     {
       title: 'Propuesta clara',
-      description: 'Recibís alcance, tiempos y presupuesto por escrito, sin letra chica.'
+      description:
+        'Recibís alcance, tiempos y presupuesto por escrito, sin letra chica.'
     },
     {
       title: 'Desarrollo con seguimiento',
-      description: 'Vas viendo avances reales durante todo el proceso, no recién al final.'
+      description:
+        'Vas viendo avances reales durante todo el proceso, no recién al final.'
     },
     {
       title: 'Entrega y soporte',
-      description: 'Te capacito para usar tu sistema y quedo disponible para futuras mejoras.'
+      description:
+        'Te capacito para usar tu sistema y quedo disponible para futuras mejoras.'
     }
   ],
   cta: {
     title: '¿Tenés un negocio y querés vender o agendar más por internet?',
     subline: 'Contame qué necesitás y te paso un presupuesto sin compromiso.',
     whatsappLabel: 'Escribime por WhatsApp',
-    whatsappHref: waLink('Hola Salvador! Vi tu web y me interesa hacer una consulta sobre un proyecto para mi negocio.'),
+    whatsappHref: waLink(
+      'Hola Salvador! Vi tu web y me interesa hacer una consulta sobre un proyecto para mi negocio.'
+    ),
     calendarLabel: 'Agendar una llamada'
   }
 }
@@ -559,4 +573,15 @@ const gallery = {
   ]
 }
 
-export { person, social, newsletter, home, sobremi, blog, trabajos, servicios, gallery, waLink }
+export {
+  person,
+  social,
+  newsletter,
+  home,
+  sobremi,
+  blog,
+  trabajos,
+  servicios,
+  gallery,
+  waLink
+}
