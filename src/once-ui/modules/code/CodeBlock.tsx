@@ -6,7 +6,7 @@ import "./CodeHighlight.css";
 import "./LineNumber.css";
 import styles from "./CodeBlock.module.scss";
 
-import { Flex, Button, IconButton, Scroller, Row, StyleOverlay } from "../../components";
+import { Flex, Button, IconButton, Scroller, Row } from "../../components";
 
 import Prism from "prismjs";
 import "prismjs/plugins/line-highlight/prism-line-highlight";
@@ -32,7 +32,6 @@ interface CodeBlockProps extends React.ComponentProps<typeof Flex> {
   codeInstances?: CodeInstance[];
   codePreview?: ReactNode;
   copyButton?: boolean;
-  styleButton?: boolean;
   reloadButton?: boolean;
   fullscreenButton?: boolean;
   compact?: boolean;
@@ -50,7 +49,6 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   codeInstances = [],
   codePreview,
   copyButton = true,
-  styleButton = false,
   reloadButton = false,
   fullscreenButton = false,
   lineNumbers = false,
@@ -198,14 +196,6 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                   variant="tertiary"
                   icon={isFullscreen ? "minimize" : "maximize"}
                   onClick={toggleFullscreen}
-                />
-              )}
-              {styleButton && (
-                <StyleOverlay
-                  iconButtonProps={{
-                    size: "m",
-                    variant: "tertiary",
-                  }}
                 />
               )}
               {copyButton && (
