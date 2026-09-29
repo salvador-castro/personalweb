@@ -1,5 +1,6 @@
 import { getPosts } from "@/app/utils/utils";
 import { baseURL, routes as routesConfig } from "@/app/resources";
+import { getTotalPages } from "@/components/blog/BlogPagination";
 
 export const dynamic = "force-static";
 
@@ -54,5 +55,13 @@ export default async function sitemap() {
     priority: 0.6,
   }));
 
-  return [...routes, ...blogs, ...trabajos, ...tagPages];
+  const totalBlogPages = getTotalPages();
+  const blogPages = Array.from({ length: totalBlogPages - 1 }, (_, i) => ({
+    url: `${baseURL}/blog/page/${i + 2}`,
+    lastModified: new Date().toISOString().split("T")[0],
+    changeFrequency: "weekly" as const,
+    priority: 0.5,
+  }));
+
+  return [...routes, ...blogs, ...blogPages, ...trabajos, ...tagPages];
 }
