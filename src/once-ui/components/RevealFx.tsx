@@ -32,14 +32,17 @@ const RevealFx = forwardRef<HTMLDivElement, RevealFxProps>(
     ref,
   ) => {
     const [isRevealed, setIsRevealed] = useState(revealedByDefault);
+    // Without an external trigger, reveal purely with CSS so content paints before hydration
+    const cssOnly = trigger === undefined && !revealedByDefault;
 
     useEffect(() => {
+      if (cssOnly) return;
       const timer = setTimeout(() => {
         setIsRevealed(true);
       }, delay * 1000);
 
       return () => clearTimeout(timer);
-    }, [delay]);
+    }, [delay, cssOnly]);
 
     useEffect(() => {
       if (trigger !== undefined) {
@@ -71,11 +74,20 @@ const RevealFx = forwardRef<HTMLDivElement, RevealFxProps>(
 
     const translateValue = getTranslateYValue();
 
-    const revealStyle: React.CSSProperties = {
-      transitionDuration: getSpeedDuration(),
-      transform: isRevealed ? "translateY(0)" : `translateY(${translateValue})`,
-      ...style,
-    };
+    const revealStyle: React.CSSProperties = cssOnly
+      ? ({
+          animationDuration: getSpeedDuration(),
+          animationDelay: `${delay}s`,
+          ...(translateValue ? { "--reveal-translate-y": translateValue } : {}),
+          ...style,
+        } as React.CSSProperties)
+      : {
+          transitionDuration: getSpeedDuration(),
+          transform: isRevealed ? "translateY(0)" : `translateY(${translateValue})`,
+          ...style,
+        };
+
+    const stateClass = cssOnly ? styles.animate : isRevealed ? styles.revealed : styles.hidden;
 
     return (
       <Flex
@@ -83,7 +95,7 @@ const RevealFx = forwardRef<HTMLDivElement, RevealFxProps>(
         horizontal="center"
         ref={ref}
         style={revealStyle}
-        className={`${styles.revealFx} ${isRevealed ? styles.revealed : styles.hidden} ${className || ""}`}
+        className={`${styles.revealFx} ${stateClass} ${className || ""}`}
         {...rest}
       >
         {children}

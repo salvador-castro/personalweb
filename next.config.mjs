@@ -26,6 +26,10 @@ const nextConfig = {
   },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   transpilePackages: ['next-mdx-remote'],
+  experimental: {
+    // Inline CSS in the HTML to avoid render-blocking stylesheet requests (~27 KiB total)
+    inlineCss: true,
+  },
   sassOptions: {
     compiler: 'modern',
     silenceDeprecations: ['legacy-js-api']
