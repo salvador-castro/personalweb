@@ -10,3 +10,30 @@
     transition: var(--transition-micro-medium);
     transform: scale(1);
 }
+.select {
+    flex: 1;
+    width: 100%;
+    min-height: var(--static-space-48);
+    padding: 0 var(--static-space-16);
+    border: 1px solid var(--neutral-border-medium);
+    border-radius: var(--radius-l);
+    background: var(--neutral-alpha-weak);
+    color: var(--neutral-on-background-strong);
+    font: inherit;
+    cursor: pointer;
+    transition: var(--transition-micro-medium);
+
+    &:hover {
+        border-color: var(--neutral-border-strong);
+    }
+
+    &:focus-visible {
+        outline: none;
+        border-color: var(--brand-border-strong);
+    }
+
+    option {
+        background: var(--page-background);
+        color: var(--neutral-on-background-strong);
+    }
+}
