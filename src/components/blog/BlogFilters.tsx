@@ -39,6 +39,7 @@ export function BlogFilters({ posts, children }: BlogFiltersProps) {
   const [tag, setTag] = useState("");
   const [month, setMonth] = useState("");
   const [initialized, setInitialized] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const tags = useMemo(
     () =>
@@ -60,6 +61,8 @@ export function BlogFilters({ posts, children }: BlogFiltersProps) {
     setQuery(params.get("q") ?? "");
     setTag(params.get("tag") ?? "");
     setMonth(params.get("fecha") ?? "");
+    // Show the panel when arriving with a shared filtered URL
+    setOpen(params.has("q") || params.has("tag") || params.has("fecha"));
     setInitialized(true);
   }, []);
 
@@ -95,64 +98,85 @@ export function BlogFilters({ posts, children }: BlogFiltersProps) {
     setMonth("");
   };
 
+  const toggleFilters = () => {
+    if (open) clearFilters();
+    setOpen(!open);
+  };
+
   return (
     <>
-      <Column as="form" role="search" fillWidth gap="12" marginBottom="40" onSubmit={(e) => e.preventDefault()}>
-        <Input
-          id="blog-search"
-          label="Buscar por título"
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <Flex fillWidth gap="12" mobileDirection="column">
-          <select
-            aria-label="Filtrar por tag"
-            className={styles.select}
-            value={tag}
-            onChange={(e) => setTag(e.target.value)}
-          >
-            <option value="">Todos los tags</option>
-            {tags.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-          <select
-            aria-label="Filtrar por fecha"
-            className={styles.select}
-            value={month}
-            onChange={(e) => setMonth(e.target.value)}
-          >
-            <option value="">Todas las fechas</option>
-            {months.map((m) => (
-              <option key={m} value={m}>
-                {monthLabel(m)}
-              </option>
-            ))}
-          </select>
-        </Flex>
-        {isFiltering && (
-          <Flex fillWidth horizontal="space-between" vertical="center" gap="12">
-            <Text variant="body-default-s" onBackground="neutral-weak" aria-live="polite">
-              {filteredPosts.length === 1
-                ? "1 post encontrado"
-                : `${filteredPosts.length} posts encontrados`}
-            </Text>
-            <Button
-              type="button"
-              data-border="rounded"
-              variant="tertiary"
-              size="s"
-              prefixIcon="close"
-              onClick={clearFilters}
+      <Flex fillWidth horizontal="end" marginBottom={open ? "12" : "24"}>
+        <Button
+          type="button"
+          data-border="rounded"
+          variant="secondary"
+          size="s"
+          suffixIcon={open ? "chevronUp" : "chevronDown"}
+          aria-expanded={open}
+          aria-controls="blog-filters"
+          onClick={toggleFilters}
+        >
+          {open ? "Ocultar filtros" : "Filtrar posts"}
+        </Button>
+      </Flex>
+      {open && (
+        <Column as="form" id="blog-filters" role="search" fillWidth gap="12" marginBottom="40" onSubmit={(e) => e.preventDefault()}>
+          <Input
+            id="blog-search"
+            label="Buscar por título"
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <Flex fillWidth gap="12" mobileDirection="column">
+            <select
+              aria-label="Filtrar por tag"
+              className={styles.select}
+              value={tag}
+              onChange={(e) => setTag(e.target.value)}
             >
-              Limpiar filtros
-            </Button>
+              <option value="">Todos los tags</option>
+              {tags.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+            <select
+              aria-label="Filtrar por fecha"
+              className={styles.select}
+              value={month}
+              onChange={(e) => setMonth(e.target.value)}
+            >
+              <option value="">Todas las fechas</option>
+              {months.map((m) => (
+                <option key={m} value={m}>
+                  {monthLabel(m)}
+                </option>
+              ))}
+            </select>
           </Flex>
-        )}
-      </Column>
+          {isFiltering && (
+            <Flex fillWidth horizontal="space-between" vertical="center" gap="12">
+              <Text variant="body-default-s" onBackground="neutral-weak" aria-live="polite">
+                {filteredPosts.length === 1
+                  ? "1 post encontrado"
+                  : `${filteredPosts.length} posts encontrados`}
+              </Text>
+              <Button
+                type="button"
+                data-border="rounded"
+                variant="tertiary"
+                size="s"
+                prefixIcon="close"
+                onClick={clearFilters}
+              >
+                Limpiar filtros
+              </Button>
+            </Flex>
+          )}
+        </Column>
+      )}
 
       {!isFiltering ? (
         children
