@@ -75,20 +75,21 @@ export default function Home() {
               </RevealFx>
             )}
 
-            <RevealFx translateY="4" fillWidth horizontal="start">
+            {/* Headline and subline are LCP candidates: render visible from first paint */}
+            <RevealFx revealedByDefault fillWidth horizontal="start">
               <Heading wrap="balance" variant="display-strong-m">
                 {home.headline}
               </Heading>
             </RevealFx>
 
-            <RevealFx translateY="8" delay={0.2} fillWidth horizontal="start">
+            <RevealFx revealedByDefault fillWidth horizontal="start">
               <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
                 {home.subline}
               </Text>
             </RevealFx>
 
             {/* Social links */}
-            <RevealFx delay={0.3} horizontal="start">
+            <RevealFx speed="fast" delay={0.1} horizontal="start">
               <Row gap="8" paddingTop="4">
                 {social.map((item) => (
                   item.link && (
@@ -105,7 +106,7 @@ export default function Home() {
               </Row>
             </RevealFx>
 
-            <RevealFx delay={0.4} horizontal="start">
+            <RevealFx speed="fast" delay={0.15} horizontal="start">
               <Row gap="12" paddingTop="8" wrap>
                 <Button
                   href={servicios.cta.whatsappHref}
@@ -126,7 +127,7 @@ export default function Home() {
               </Row>
             </RevealFx>
 
-            <RevealFx delay={0.45} horizontal="start">
+            <RevealFx speed="fast" delay={0.2} horizontal="start">
               <Row gap="16" paddingTop="4" wrap>
                 <SmartLink href={trabajos.path}>
                   <Text variant="label-default-s" onBackground="neutral-weak">
@@ -152,7 +153,7 @@ export default function Home() {
           </Column>
 
           {/* Right: avatar */}
-          <RevealFx flex={1} horizontal="center" delay={0.3}>
+          <RevealFx flex={1} horizontal="center" speed="fast" delay={0.1}>
             <Avatar src={person.avatar} size="xl" />
           </RevealFx>
         </Row>
