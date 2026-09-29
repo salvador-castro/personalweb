@@ -167,7 +167,7 @@ export default function Home() {
             <Heading as="h2" variant="display-strong-xs" wrap="balance">
               Servicios para tu negocio
             </Heading>
-            <SmartLink href={servicios.path}>
+            <SmartLink href={servicios.path} aria-label="Ver todos los servicios">
               <Text variant="label-default-s" onBackground="neutral-weak">
                 Ver todos →
               </Text>
@@ -244,7 +244,7 @@ export default function Home() {
                 <Heading as="h2" variant="display-strong-xs" wrap="balance">
                   Más proyectos
                 </Heading>
-                <SmartLink href={trabajos.path}>
+                <SmartLink href={trabajos.path} aria-label="Ver todos los proyectos">
                   <Text variant="label-default-s" onBackground="neutral-weak">
                     Ver todos →
                   </Text>

@@ -39,7 +39,19 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" })
     return () => clearInterval(intervalId);
   }, [timeZone, locale]);
 
-  return <>{currentTime}</>;
+  // Reserve the width up front so the nav doesn't shift when the time appears (CLS)
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        minWidth: "8ch",
+        textAlign: "right",
+        fontVariantNumeric: "tabular-nums",
+      }}
+    >
+      {currentTime}
+    </span>
+  );
 };
 
 export default TimeDisplay;
@@ -85,7 +97,7 @@ export const Header = () => {
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s">
               {routes["/"] && (
-                <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
+                <ToggleButton prefixIcon="home" href="/" aria-label="Inicio" selected={pathname === "/"} />
               )}
 
               <Line background="neutral-alpha-medium" vert maxHeight="24" />
@@ -103,6 +115,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="clipboard"
                     href="/servicios"
+                    aria-label="Servicios"
                     selected={pathname.startsWith("/servicios")}
                   />
                 </>
@@ -121,6 +134,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="person"
                     href="/sobre-mi"
+                    aria-label="Sobre mí"
                     selected={pathname === "/sobre-mi"}
                   />
                 </>
@@ -139,6 +153,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="grid"
                     href="/trabajos"
+                    aria-label="Trabajos"
                     selected={pathname.startsWith("/trabajos")}
                   />
                 </>
@@ -157,6 +172,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="book"
                     href="/blog"
+                    aria-label="Blog"
                     selected={pathname.startsWith("/blog")}
                   />
                 </>
