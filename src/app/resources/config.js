@@ -26,7 +26,8 @@ import { Geist_Mono } from 'next/font/google'
 const primaryFont = Geist({
   variable: '--font-primary',
   subsets: ['latin'],
-  display: 'swap'
+  // 'optional' keeps the font off the LCP critical path (falls back to the metric-adjusted system font on slow first loads)
+  display: 'optional'
 })
 
 const monoFont = Geist_Mono({
