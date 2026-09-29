@@ -37,7 +37,8 @@ export function Posts({
                     {displayedBlogs.map((post) => (
                         <Post
                             key={post.slug}
-                            post={post}
+                            // Post is a client component and doesn't render the body: skip it in the RSC payload
+                            post={{ ...post, content: '' }}
                             thumbnail={thumbnail}
                             direction={direction}
                         />

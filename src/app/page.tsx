@@ -207,7 +207,7 @@ export default function Home() {
           </Heading>
         </RevealFx>
         <RevealFx translateY="16" delay={0.2} fillWidth>
-          <Projects range={[1, 1]} projects={allProjects} />
+          <Projects range={[1, 1]} projects={allProjects} priority={false} />
         </RevealFx>
       </Column>
 
@@ -253,7 +253,7 @@ export default function Home() {
               </Row>
             </RevealFx>
             <RevealFx translateY="8" delay={0.2} fillWidth>
-              <Projects range={[2, 2]} projects={allProjects} />
+              <Projects range={[2, 2]} projects={allProjects} priority={false} />
             </RevealFx>
           </Column>
         </>
