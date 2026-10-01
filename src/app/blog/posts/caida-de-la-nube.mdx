@@ -1,0 +1,45 @@
+---
+title: "Cuando se cae la nube: por qué un solo proveedor puede tumbar medio internet"
+publishedAt: "2026-10-01"
+summary: "Un cambio de permisos en una base de datos de Cloudflare tumbó a ChatGPT y X durante dos horas. Un mes antes, un problema de DNS en AWS afectó a cientos de servicios durante más de 15 horas. Por qué tan pocas empresas sostienen tanto de internet."
+image: "/images/blog/caida-de-la-nube/caida-de-la-nube-1.webp"
+tag: "Tecnología"
+---
+
+![](/images/blog/caida-de-la-nube/caida-de-la-nube-1.webp)
+
+El 20 de octubre de 2025, un problema en la región US-EAST-1 (Norte de Virginia) de Amazon Web Services empezó a provocar fallas en cascada por buena parte de internet. Según el [propio informe técnico posterior de AWS, resumido por InfoQ](https://www.infoq.com/news/2025/11/aws-dynamodb-outage-postmortem/), la causa fue "una condición de carrera latente en el sistema de gestión de DNS de DynamoDB que resultó en un registro DNS vacío e incorrecto para el endpoint regional del servicio". Ese error, aparentemente pequeño, encadenó fallas en el lanzamiento de instancias de EC2, invocaciones de Lambda y tareas de Fargate, y el impacto para los clientes se extendió hasta 15 horas en algunos casos, con Snapchat, Roblox, Venmo y decenas de otros servicios afectados. Menos de un mes después, el 18 de noviembre de 2025 a las 11:20 UTC, le tocó el turno a Cloudflare: un cambio de permisos en uno de sus sistemas de base de datos hizo que un archivo interno usado por su sistema de gestión de bots duplicara su tamaño de forma inesperada, y al propagarse a toda la red, tumbó el acceso a X (Twitter), ChatGPT y una larga lista de sitios más, durante poco más de dos horas, según el [propio informe técnico de Cloudflare](https://blog.cloudflare.com/18-november-2025-outage/).
+
+## Dos caídas, ningún ataque
+
+Un detalle que vale la pena remarcar de ambos casos: ninguno fue producto de un ciberataque. El de Cloudflare, la empresa lo aclaró explícitamente en su post mortem público: la causa fue un cambio de configuración interno que generó un efecto en cadena no anticipado, no una intrusión maliciosa. El de AWS tuvo un origen similarmente interno, ligado a un problema de resolución de nombres de dominio dentro de su propia infraestructura. Son, en ambos casos, fallas de un sistema muy grande y muy interconectado, no ataques externos: la complejidad misma de operar la infraestructura que sostiene gran parte de internet ya alcanza para generar interrupciones masivas por sí sola.
+
+## Por qué un problema en una sola empresa arrastra a tantas otras
+
+La razón de fondo tiene que ver con cuánta infraestructura de internet descansa hoy sobre un puñado de proveedores. Según datos de [Synergy Research Group](https://commandlinux.com/statistics/aws-vs-azure-vs-gcp-market-share/) para el segundo trimestre de 2026, AWS concentra el 28% del gasto mundial en infraestructura de nube, Microsoft Azure el 20% y Google Cloud el 15%: juntos, los tres suman el 63% de todo el mercado global de nube. A eso se suma una capa adicional de concentración que no siempre se nota: buena parte del tráfico de internet, incluso el que corre sobre distintos proveedores de nube, pasa en algún punto por la red de Cloudflare, que ofrece protección contra ataques, resolución de DNS y entrega de contenido a millones de sitios de todos los tamaños.
+
+El resultado es que un sitio o una app no necesitan usar el mismo proveedor de nube que otro servicio para verse afectados por el mismo incidente: alcanza con que ambos dependan, en algún eslabón de su cadena técnica, del mismo proveedor de infraestructura de base. Eso explica por qué una falla puntual en una sola compañía puede sentirse, para el usuario común, como si "se hubiera caído internet entero", cuando en rigor lo que falló fue un componente compartido por una porción enorme de los servicios que ese usuario utiliza a diario.
+
+## El costo real de una caída
+
+Estos incidentes no son solo una molestia pasajera para quien no puede revisar sus redes sociales por un rato. Según estimaciones de Gartner ampliamente citadas en la industria, el costo promedio de downtime para una empresa ronda los 5.600 dólares por minuto, unos 336.000 dólares por hora. Para negocios que dependen de forma directa de su presencia online para vender o cobrar, una interrupción de varias horas en un proveedor de nube compartido no es un inconveniente técnico menor: es una pérdida de ingresos medible, además del costo de reputación frente a los propios clientes.
+
+## Qué implica esto para el usuario común
+
+No hace falta ser una empresa para que esto importe. Algunas conclusiones prácticas de estos episodios:
+
+- **Una app o sitio "caído" no siempre significa un problema con esa empresa en particular.** Antes de asumir que algo se rompió del lado de un servicio específico, vale la pena revisar si hay una caída más amplia en curso, algo que sitios como Downdetector reflejan en tiempo real.
+- **Depender de un solo canal para algo crítico tiene un costo oculto.** Si una tarea importante (un pago, un trámite con fecha límite) depende de un solo servicio online, conviene no dejarla para el último momento, precisamente porque ese servicio puede estar afectado por una falla que no tiene nada que ver con su propia calidad.
+- **La concentración de infraestructura es, en sí misma, un tema a seguir.** A medida que más servicios de uso diario dependen de la misma base de un puñado de proveedores, la probabilidad de que una falla puntual tenga un efecto amplio no baja: si acaso, sube.
+
+## En resumen
+
+Dos de las interrupciones más grandes de internet en el último año y medio no fueron ataques: fueron fallas internas en la infraestructura de dos de las empresas que sostienen buena parte de la web actual. Con AWS, Azure y Google Cloud concentrando el 63% del mercado mundial de infraestructura en la nube, y con Cloudflare operando como una capa compartida por millones de sitios adicionales, la pregunta relevante ya no es si va a volver a pasar, sino qué tan preparados están los servicios que usamos —y nosotros mismos— para el rato en que alguno de esos pocos proveedores vuelva a fallar.
+
+## Fuentes
+
+- **InfoQ** — [AWS DynamoDB Outage Postmortem](https://www.infoq.com/news/2025/11/aws-dynamodb-outage-postmortem/). Resumen del informe técnico oficial de AWS sobre la causa raíz y el alcance de la caída de octubre de 2025.
+- **Cloudflare** — [Cloudflare outage on November 18, 2025](https://blog.cloudflare.com/18-november-2025-outage/). Informe técnico oficial de la propia empresa sobre la causa, duración e impacto de la caída.
+- **Synergy Research Group (vía CommandLinux)** — [AWS vs Azure vs GCP Market Share Statistics 2026](https://commandlinux.com/statistics/aws-vs-azure-vs-gcp-market-share/). Datos de participación de mercado de los tres principales proveedores de nube al segundo trimestre de 2026.
+
+<ShareIcons />
