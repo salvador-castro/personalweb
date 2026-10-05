@@ -66,7 +66,6 @@ const social = [
 
 const home = {
   path: '/',
-  image: '/images/og/home.jpg',
   label: 'Home',
   title: `Desarrollo web para negocios y PyMEs | ${person.name}`,
   description: `Sitios web, sistemas de turnos y tiendas online a medida para negocios y profesionales en Argentina. Desarrollado por ${person.name}, ${person.role}.`,
@@ -273,7 +272,7 @@ const sobremi = {
             height: 64
           },
           {
-            src: '/images/tech/06B6D4.svg',
+            src: 'https://cdn.simpleicons.org/tailwindcss/06B6D4.svg',
             alt: 'Tailwind',
             width: 64,
             height: 64
@@ -524,55 +523,6 @@ const servicios = {
   }
 }
 
-const gallery = {
-  path: '/gallery',
-  label: 'Gallery',
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  images: [
-    {
-      src: '/images/gallery/horizontal-1.jpg',
-      alt: 'image',
-      orientation: 'horizontal'
-    },
-    {
-      src: '/images/gallery/horizontal-2.jpg',
-      alt: 'image',
-      orientation: 'horizontal'
-    },
-    {
-      src: '/images/gallery/horizontal-3.jpg',
-      alt: 'image',
-      orientation: 'horizontal'
-    },
-    {
-      src: '/images/gallery/horizontal-4.jpg',
-      alt: 'image',
-      orientation: 'horizontal'
-    },
-    {
-      src: '/images/gallery/vertical-1.jpg',
-      alt: 'image',
-      orientation: 'vertical'
-    },
-    {
-      src: '/images/gallery/vertical-2.jpg',
-      alt: 'image',
-      orientation: 'vertical'
-    },
-    {
-      src: '/images/gallery/vertical-3.jpg',
-      alt: 'image',
-      orientation: 'vertical'
-    },
-    {
-      src: '/images/gallery/vertical-4.jpg',
-      alt: 'image',
-      orientation: 'vertical'
-    }
-  ]
-}
-
 export {
   person,
   social,
@@ -582,6 +532,5 @@ export {
   blog,
   trabajos,
   servicios,
-  gallery,
   waLink
 }

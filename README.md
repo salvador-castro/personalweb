@@ -47,7 +47,6 @@ Está construido sobre la plantilla **Magic Portfolio** de [Once UI](https://onc
 | Resaltado de código | `prismjs` (módulo `CodeBlock`) |
 | Íconos | `react-icons`, `lucide-react` (registrados en `src/once-ui/icons.ts`) |
 | Imágenes | `next/image` + `sharp` |
-| Galería | `react-masonry-css` |
 | Tipografía | Geist / Geist Mono vía `next/font/google`; Inter local para las imágenes OG |
 | Analítica | Vercel Analytics + Google Analytics 4 (opcional) |
 | Newsletter | Mailchimp (form embebido) |
@@ -84,13 +83,10 @@ npm run dev                  # http://localhost:3000
 | Comando | Descripción |
 | --- | --- |
 | `npm run dev` | Servidor de desarrollo |
-| `npm run build` | Build de producción (ESLint se **ignora** en build: `eslint.ignoreDuringBuilds`) |
+| `npm run build` | Build de producción |
 | `npm run start` | Sirve el build |
-| `npm run lint` | `next lint` |
 
-El deploy lo hace Vercel automáticamente en cada push (no hay script de deploy).
-
-Además hay un `biome.json` (formatter 2 espacios, 100 columnas, comillas dobles) para formatear con Biome desde el editor; no está integrado en los scripts.
+El deploy lo hace Vercel automáticamente en cada push (no hay script de deploy). No hay linter configurado.
 
 ---
 
@@ -120,15 +116,13 @@ personalweb/
 │   │   │   ├── tag/[tag]/           # Listado por categoría
 │   │   │   ├── [slug]/page.tsx      # Detalle de post
 │   │   │   └── posts/*.mdx          # ← contenido del blog
-│   │   ├── gallery/                 # Galería masonry
 │   │   ├── og/route.tsx             # Generador de imágenes Open Graph
 │   │   ├── rss.xml/route.ts         # Feed RSS 2.0
 │   │   ├── llms.txt/route.ts        # Índice para LLMs
 │   │   ├── sitemap.ts / robots.ts
-│   │   ├── api/route.ts             # Health check: GET /api → { ok: true }
 │   │   ├── resources/               # ← CONFIGURACIÓN Y TEXTOS DEL SITIO
 │   │   │   ├── config.js            # rutas, tema, efectos, fuentes, Mailchimp, baseURL
-│   │   │   ├── content.js           # persona, home, sobre mí, servicios, blog, galería…
+│   │   │   ├── content.js           # persona, home, sobre mí, servicios, blog…
 │   │   │   └── index.ts
 │   │   └── utils/                   # getPosts (MDX), formatDate (es-AR), gtag
 │   ├── components/                  # Componentes propios del sitio
@@ -137,14 +131,12 @@ personalweb/
 │   │   ├── mdx.tsx                  # Mapeo de componentes para MDX
 │   │   ├── blog/                    # Posts, Post, BlogFilters, BlogPagination
 │   │   ├── trabajos/Projects.tsx
-│   │   ├── gallery/MasonryGrid.tsx
 │   │   └── sobremi/TableOfContents.tsx
 │   ├── once-ui/                     # Sistema de diseño (components, modules, styles, tokens)
 │   └── types/project.ts
 ├── social-media/                    # (ignorado por git) calendario de redes y prompts de imágenes
 ├── next.config.mjs
 ├── postcss.config.js
-├── biome.json
 ├── skills-lock.json                 # Skills de agentes IA instalados (Claude/Vercel/etc.)
 └── .env.example
 ```
@@ -166,12 +158,10 @@ Alias de import: `@/*` → `src/*`.
 | `/blog/page/[n]` | Páginas 2…N (`/blog/page/1` redirige a `/blog`) | SSG, `dynamicParams = false` |
 | `/blog/tag/[tag]` | Posts de una categoría | SSG |
 | `/blog/[slug]` | Detalle de post con botones para compartir | SSG |
-| `/gallery` | Galería masonry | Estática (oculta del menú) |
 | `/og?title=…` | Imagen OG 1920×1080 dinámica | Runtime Node |
 | `/rss.xml`, `/sitemap.xml`, `/robots.txt`, `/llms.txt` | Feeds / SEO | `force-static` |
-| `/landings/*` | Accesible por URL, fuera del menú | — |
 
-La visibilidad se controla en `routes` de [config.js](src/app/resources/config.js): si una ruta está en `false`, `RouteGuard` renderiza el 404. Las rutas dinámicas (`/blog/*`, `/trabajos/*`, `/landings/*`) heredan el flag de su ruta base.
+La visibilidad se controla en `routes` de [config.js](src/app/resources/config.js): si una ruta está en `false`, `RouteGuard` renderiza el 404. Las rutas dinámicas (`/blog/*`, `/trabajos/*`) heredan el flag de su ruta base.
 
 ---
 
@@ -194,7 +184,7 @@ Casi todo lo editable sin tocar componentes vive acá.
 - **`person`** — nombre, rol, avatar, email, redes, número de WhatsApp, zona horaria, idiomas.
 - **`social`** — íconos del footer/sobre mí (GitHub, LinkedIn, X, YouTube, WhatsApp, Email).
 - **`waLink(message)`** — helper que arma links `wa.me` con mensaje precargado.
-- **`home`**, **`sobremi`**, **`blog`**, **`trabajos`**, **`servicios`**, **`gallery`**, **`newsletter`** — títulos, descripciones SEO y textos de cada página (en JSX).
+- **`home`**, **`sobremi`**, **`blog`**, **`trabajos`**, **`servicios`**, **`newsletter`** — títulos, descripciones SEO y textos de cada página (en JSX).
 
 Para cambiar el número de WhatsApp, la agenda de Cal.com (`sobremi.calendar.link`) o el caso destacado del home (`home.featured`), se edita solo este archivo.
 
@@ -274,7 +264,7 @@ Casos actuales: Arte Urbano, Be Orange, Bitcoin Week, Clapton Barbería, Turnos 
 - **JSON-LD** con `<Schema as="webPage" | "blog" | "blogPosting" | "profilePage" | …>`.
 - **Imágenes OG dinámicas**: `/og?title=…` genera una imagen 1920×1080 con el título, avatar, nombre y rol.
 - **`sitemap.xml`**: rutas activas con prioridad y frecuencia propias, posts, casos, páginas de paginación y páginas de tags.
-- **`robots.txt`**: permite todo menos `/api/`.
+- **`robots.txt`**: permite todo y apunta al sitemap.
 - **`rss.xml`**: RSS 2.0 del blog, ordenado por fecha, con categoría y autor. Linkeado desde el `<head>` vía `alternates.types`.
 - **`llms.txt`**: índice en Markdown del sitio y de todos los posts, pensado para crawlers de LLMs.
 - `<html lang="es">`.
@@ -368,12 +358,10 @@ Pensado para **Vercel**:
 
 | # | Problema | Detalle | Sugerencia |
 | --- | --- | --- | --- |
-| 1 | Galería sin imágenes | `/gallery` está habilitada (y en el sitemap) pero `public/images/gallery/` no existe; el link del menú está comentado. | Poner `'/gallery': false` o cargar fotos. |
-| 2 | Imagen OG del home inexistente | `home.image = '/images/og/home.jpg'` no está en `public/`. | Usar `/og?title=…` como en el resto de las páginas. |
-| 3 | Linters duplicados | ESLint (`next lint`, deprecado en Next 16) + Biome, ninguno corre en build. | Elegir uno y sumarlo a CI. |
-| 4 | Tags inconsistentes | `Musica` sin tilde; `Seguridad` y `Ciberseguridad` se solapan. | Normalizar las categorías. |
-| 5 | `formatDate` relativo | Compara año/mes/día por separado; p. ej. un post del 30/09 visto el 01/10 da "hace 1 m". | Calcular la diferencia en días con timestamps. |
-| 6 | Restos de la plantilla | `.github/FUNDING.yml` apunta a los sponsors de Once UI. | Borrarlo. |
+| 1 | Sin linter | Se quitaron ESLint (config `.eslintrc` incompatible con `eslint-config-next` 16) y Biome (no instalado). | Agregar ESLint con flat config (`eslint.config.mjs`) o Biome, y sumarlo a CI. |
+| 2 | Tags inconsistentes | `Musica` sin tilde; `Seguridad` y `Ciberseguridad` se solapan. | Normalizar las categorías. |
+| 3 | `formatDate` relativo | Compara año/mes/día por separado; p. ej. un post del 30/09 visto el 01/10 da "hace 1 m". | Calcular la diferencia en días con timestamps. |
+| 4 | Posts programados | No hay filtro por `publishedAt`: un post con fecha futura se publica igual al hacer push. | Filtrar en `getPosts()` o no commitear hasta la fecha. |
 
 ---
 

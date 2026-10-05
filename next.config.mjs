@@ -1,13 +1,7 @@
-import mdx from '@next/mdx'
 import { fileURLToPath } from 'url'
 import path from 'path'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-
-const withMDX = mdx({
-  extension: /\.mdx?$/,
-  options: {}
-})
 
 const securityHeaders = [
   { key: 'X-Frame-Options', value: 'DENY' },
@@ -21,10 +15,6 @@ const securityHeaders = [
 const nextConfig = {
   /*   output: 'export', // 👈 esto activa el static export en next build*/
   outputFileTracingRoot: __dirname,
-  eslint: {
-    ignoreDuringBuilds: true
-  },
-  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   transpilePackages: ['next-mdx-remote'],
   experimental: {
     // Inline CSS in the HTML to avoid render-blocking stylesheet requests (~27 KiB total)
@@ -83,4 +73,4 @@ const nextConfig = {
   }
 }
 
-export default withMDX(nextConfig)
+export default nextConfig

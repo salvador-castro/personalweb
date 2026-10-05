@@ -10,7 +10,6 @@ const routePriority: Record<string, number> = {
   "/sobre-mi": 0.8,
   "/trabajos": 0.8,
   "/blog": 0.8,
-  "/gallery": 0.5,
 };
 
 const routeChangeFrequency: Record<string, "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never"> = {
@@ -19,7 +18,6 @@ const routeChangeFrequency: Record<string, "always" | "hourly" | "daily" | "week
   "/sobre-mi": "monthly",
   "/trabajos": "monthly",
   "/blog": "weekly",
-  "/gallery": "monthly",
 };
 
 export default async function sitemap() {

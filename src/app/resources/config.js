@@ -9,9 +9,7 @@ const routes = {
   '/sobre-mi': true,
   /* '/work': true, */
   '/blog': true,
-  '/gallery': true,
-  '/trabajos': true,
-  '/landings': false // Accessible via URL but not shown in menu
+  '/trabajos': true
 }
 
 import { Geist } from 'next/font/google'

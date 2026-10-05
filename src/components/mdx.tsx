@@ -193,16 +193,6 @@ const components = {
   CodeBlock,
   InlineCode,
   ShareIcons, // 👈 ahora sí, server-safe
-  Accordion: dynamic(() =>
-    import('@/once-ui/components').then(mod => mod.Accordion)
-  ),
-  AccordionGroup: dynamic(() =>
-    import('@/once-ui/components').then(mod => mod.AccordionGroup)
-  ),
-  Table: dynamic(() => import('@/once-ui/components').then(mod => mod.Table)),
-  Feedback: dynamic(() =>
-    import('@/once-ui/components').then(mod => mod.Feedback)
-  ),
   Button: dynamic(() => import('@/once-ui/components').then(mod => mod.Button)),
   Card: dynamic(() => import('@/once-ui/components').then(mod => mod.Card)),
   Grid: dynamic(() => import('@/once-ui/components').then(mod => mod.Grid)),
