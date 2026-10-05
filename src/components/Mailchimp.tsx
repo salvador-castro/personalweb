@@ -230,6 +230,9 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
             />
           </div>
 
+          {/* Tag "personalweb" para identificar el origen en la audiencia */}
+          <input type='hidden' name='tags' value='120168' />
+
           {/* Honeypot (bot field) */}
           <div
             aria-hidden='true'
