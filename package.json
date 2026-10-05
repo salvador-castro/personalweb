@@ -2,13 +2,12 @@
   "name": "salvacastro-portfolio",
   "version": "2.0.0",
   "description": "Portfolio personal de Salvador Castro, desarrollador web y entusiasta de la tecnología.",
-  "author": "Salvador Castro <salvador@salvacastro.dev>",
+  "author": "Salvador Castro <salvacastro06@gmail.com> (https://www.salvacastro.com.ar)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "bash ./deploy.sh"
+    "lint": "next lint"
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.1.2",
@@ -16,7 +15,6 @@
     "@next/mdx": "15.5.7",
     "@vercel/analytics": "^1.6.1",
     "classnames": "^2.5.1",
-    "cookie": "^1.0.2",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.554.0",
     "next": "^15.5.14",
@@ -36,10 +34,9 @@
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "^2.1.1",
-    "@types/cookie": "^0.6.0",
     "@types/node": "^20.17.30",
-    "@types/react": "^18.3.20",
-    "@types/react-dom": "^18.3.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.4",
     "postcss-custom-media": "^10.0.8",

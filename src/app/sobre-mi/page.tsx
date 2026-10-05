@@ -266,7 +266,7 @@ export default function SobreMi() {
                         </Text>
                         <Column as="ul" gap="16">
                           {experience.achievements?.map(
-                            (achievement: JSX.Element, achIndex: number) => (
+                            (achievement: React.JSX.Element, achIndex: number) => (
                               <Text
                                 as="li"
                                 variant="body-default-m"

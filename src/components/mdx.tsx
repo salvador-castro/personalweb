@@ -91,7 +91,7 @@ function getTextFromChildren (children: ReactNode): string {
       if (typeof child === 'string' || typeof child === 'number') {
         return String(child)
       }
-      if (React.isValidElement(child) && child.props?.children) {
+      if (React.isValidElement<{ children?: ReactNode }>(child) && child.props?.children) {
         return getTextFromChildren(child.props.children)
       }
       return ''
