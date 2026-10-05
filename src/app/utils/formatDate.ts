@@ -13,16 +13,16 @@ export function formatDate(date: string, includeRelative = false) {
   let formattedDate = "";
 
   if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`;
+    formattedDate = `hace ${yearsAgo} a`;
   } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`;
+    formattedDate = `hace ${monthsAgo} m`;
   } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`;
+    formattedDate = `hace ${daysAgo} d`;
   } else {
-    formattedDate = "Today";
+    formattedDate = "Hoy";
   }
 
-  const fullDate = targetDate.toLocaleString("en-us", {
+  const fullDate = targetDate.toLocaleString("es-AR", {
     month: "long",
     day: "numeric",
     year: "numeric",
