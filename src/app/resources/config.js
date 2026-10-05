@@ -1,7 +1,7 @@
-// IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
+// Used for SEO in meta tags and schema; NEXT_PUBLIC_BASE_URL overrides it (set in Vercel)
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL
   ? 'https://' + process.env.NEXT_PUBLIC_BASE_URL
-  : 'https://demo.magic-portfolio.com'
+  : 'https://www.salvacastro.com.ar'
 
 const routes = {
   '/': true,
@@ -12,12 +12,6 @@ const routes = {
   '/gallery': true,
   '/trabajos': true,
   '/landings': false // Accessible via URL but not shown in menu
-}
-
-// Enable password protection on selected routes
-// Set password in the .env file, refer to .env.example
-const protectedRoutes = {
-  '/trabajos/automate-design-handovers-with-a-figma-to-code-pipeline': true
 }
 
 import { Geist } from 'next/font/google'
@@ -150,7 +144,6 @@ const mailchimp = {
 
 export {
   routes,
-  protectedRoutes,
   effects,
   style,
   display,
