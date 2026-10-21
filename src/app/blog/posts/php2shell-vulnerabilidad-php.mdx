@@ -1,56 +1,66 @@
 ---
 title: "php2shell: la vulnerabilidad crítica de PHP que se filtró antes del parche"
 publishedAt: "2026-10-21"
-summary: "Dos fallas críticas en el núcleo de PHP (CVE-2026-109618 y CVE-2026-109619) permiten ejecutar código de forma remota sin autenticación. Los detalles se filtraron el 20 de octubre, un día antes del parche, y ya hay ataques en curso. Qué se sabe, a quién afecta y qué hacer hoy."
+summary: "Dos fallas críticas en el núcleo de PHP (CVE-2026-109618 y CVE-2026-109619) permiten ejecutar código de forma remota sin autenticación. Los detalles se filtraron el 20 de octubre, un día antes del parche, y ya hay ataques en curso. PHP publicó hoy las versiones 8.5.12, 8.4.27, 8.3.36 y 8.2.35: qué dice el aviso oficial, a quién afecta y qué hacer."
 image: "/images/blog/php2shell-vulnerabilidad-php/php2shell-vulnerabilidad-php-1.webp"
 tag: "Ciberseguridad"
 ---
 
 ![](/images/blog/php2shell-vulnerabilidad-php/php2shell-vulnerabilidad-php-1.webp)
 
-El martes 20 de octubre a la mañana apareció un post en Hacker News anunciando que dos vulnerabilidades críticas de PHP estaban a punto de hacerse públicas. Lo bajaron rápido, pero las capturas ya circulaban, junto con una imagen de una herramienta de explotación llamada **PHP2Shell**. La divulgación coordinada estaba prevista para el jueves; en cambio, el equipo de PHP tuvo que adelantar el parche al miércoles 21 a las 14:00 UTC (11:00 de Argentina), y para ese momento ya había atacantes probando sitios en todo el mundo.
+El martes 20 de octubre a la mañana apareció un post en Hacker News anunciando que dos vulnerabilidades críticas de PHP estaban a punto de hacerse públicas. Lo bajaron rápido, pero las capturas ya circulaban, junto con una imagen de una herramienta de explotación llamada **PHP2Shell**. Ese mismo día, el equipo de PHP [confirmó en su sitio](https://www.php.net/archive/2026.php#2026-10-20-1) que publicaría una actualización de seguridad crítica el miércoles 21 a las 14:00 UTC (11:00 de Argentina). Hoy salió el [aviso oficial](https://www.php.net/archive/2026.php#2026-10-21-5), con un título que no deja lugar a dudas: "Critical remote code execution vulnerabilities, update now". Para ese momento ya había atacantes probando sitios en todo el mundo.
 
 No es una falla de WordPress, de Laravel ni de un plugin puntual: está en el núcleo del lenguaje. Eso significa que cualquier servidor web que ejecute PHP está potencialmente expuesto, sin importar qué framework o CMS corra encima.
 
 ## Qué se sabe de las dos fallas
 
-El Centro Nacional de Ciberseguridad del Reino Unido ([NCSC](https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php)) describe el problema así: un atacante puede provocar en PHP una condición de falta de memoria (*out-of-memory*) que termina corrompiendo la memoria, y bajo ciertas condiciones esa corrupción puede explotarse para **ejecutar código de forma remota sin autenticarse**. Las dos fallas son:
+Según el [aviso oficial de PHP](https://www.php.net/archive/2026.php#2026-10-21-5), las dos fallas permiten **ejecutar código de forma remota sin autenticarse**:
 
-- **CVE-2026-109618**: ejecución remota de código a través del parseo de formularios multipart (RFC 1867, el formato que se usa para subir archivos).
-- **CVE-2026-109619**: ejecución remota de código por corrupción del estado global después de un error fatal.
+- **CVE-2026-109618, "RCE via OOM corruption"** ([GHSA-w8hw-w9fx-j79w](https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w)): cuando PHP se queda sin memoria (*out-of-memory*), el manejo de ese error puede interrumpir el proceso mientras los datos internos de la petición están inicializados a medias. Después, la limpieza de la petición trata esos datos inválidos como si fueran válidos.
+- **CVE-2026-109619, "RCE via stale global state"** ([GHSA-6wmf-4rv5-p3rp](https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp)): un estado interno de una petición puede sobrevivir después de que se liberó la memoria que lo respaldaba, y una petición posterior atendida por el mismo proceso puede usarlo antes de que se reinicie.
 
-El equipo de PHP las calificó con **9,2 sobre 10 en CVSS v4.0**, la categoría crítica. Algunos reportes iniciales hablaban de un 10, pero según [Patchstack](https://patchstack.com/articles/php-major-vulnerability-alert-10-2026/) el puntaje oficial es 9,2.
+PHP calificó a las dos con **9,2 sobre 10 en CVSS v4.0**, la categoría crítica (algunos reportes iniciales hablaban de un 10, pero el puntaje oficial es 9,2).
 
-El detalle más incómodo es que PHP procesa las peticiones multipart **antes** de que se ejecute el código de tu aplicación, como explica [Sansec](https://sansec.io/research/php2shell). Por eso no importa qué tan bien esté escrito tu sistema: la falla se dispara antes de llegar a él.
+El detalle más incómodo lo aclara el propio equipo de PHP: el riesgo es mayor con `mod_php`, donde ya hay un exploit demostrado en el que una petición sin autenticar dispara el ataque **antes de que se ejecute cualquier línea de código de la aplicación**. Por eso no importa qué tan bien esté escrito tu sistema: la falla se dispara antes de llegar a él.
 
 ## A quién afecta
 
-Los reportes coinciden en que el problema viene de lejos: Sansec habla de todas las versiones desde **PHP 5.4**, y el NCSC, de "PHP 5 en adelante". Eso incluye prácticamente todo WordPress, WooCommerce, Drupal, Magento, Joomla y cualquier aplicación Laravel o PHP a medida que esté expuesta a internet.
+El aviso oficial dice que están afectadas **todas las instalaciones de PHP que atienden peticiones web**, incluidas PHP-FPM, Apache con `mod_php`, php-cgi, FrankenPHP y LiteSpeed. Y el problema viene de lejos: [Sansec](https://sansec.io/research/php2shell) habla de todas las versiones desde **PHP 5.4**, y el [NCSC del Reino Unido](https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php), de "PHP 5 en adelante". Eso incluye prácticamente todo WordPress, WooCommerce, Drupal, Magento, Joomla y cualquier aplicación Laravel o PHP a medida que esté expuesta a internet.
 
-El problema más serio lo tienen los servidores viejos. PHP solo da soporte oficial a las versiones 8.2 en adelante, así que **los servidores con PHP 8.1 o anterior no van a recibir un parche oficial**, según Sansec. Y en la práctica, mucho hosting compartido, sistemas internos y sitios "que nadie toca desde hace años" siguen corriendo justamente esas versiones.
+Las versiones corregidas son:
+
+- **PHP 8.5** → 8.5.12
+- **PHP 8.4** → 8.4.27
+- **PHP 8.3** → 8.3.36
+- **PHP 8.2** → 8.2.35
+
+El problema más serio lo tienen los servidores viejos. PHP ya no da soporte a la versión 8.1 ni a las anteriores, así que **no hay versiones oficiales nuevas para ellas**. El equipo publicó el código del parche adaptado a 7.4, 8.0 y 8.1, pero aplicarlo implica compilar PHP a mano o depender de que tu distribución o proveedor lo haga. Y en la práctica, mucho hosting compartido, sistemas internos y sitios "que nadie toca desde hace años" siguen corriendo justamente esas versiones.
 
 ## Ya hay ataques en curso
 
 Acá las fuentes no coinciden del todo, y vale la pena decirlo. [watchTowr](https://watchtowr.com/intelligence/php-cve-2026-109618-faq/), que logró reproducir una de las fallas en laboratorio, todavía no había registrado explotación real al momento de su última actualización, y [Huntress](https://www.huntress.com/blog/php2shell-leaked-critical-php-vulnerabilities) tampoco la había visto el 20 de octubre. Pero el 21 a la mañana, Cloudflare informó que ya veía ataques tempranos contra sitios PHP y desplegó reglas de firewall para todos sus planes, incluido el gratuito. Patchstack, por su parte, recibió reportes de intentos de explotación activa de varios proveedores de hosting.
 
-Sansec estima que los ataques masivos van a arrancar **a los 15 minutos de publicado el parche**, porque comparar el código antes y después de la corrección le da a cualquier atacante el mapa exacto de dónde está la falla. Varios sitios importantes de Países Bajos, entre ellos el del Parlamento y el del propio NCSC neerlandés, se desconectaron preventivamente el 21 de octubre.
+Sansec estimó que los ataques masivos iban a arrancar **a los 15 minutos de publicado el parche**, porque comparar el código antes y después de la corrección le da a cualquier atacante el mapa exacto de dónde está la falla. Varios sitios importantes de Países Bajos, entre ellos el del Parlamento y el del propio NCSC neerlandés, se desconectaron preventivamente el 21 de octubre.
 
 ## Qué hacer hoy, en orden
 
-Todos los especialistas coinciden en lo mismo: **la única solución real es actualizar PHP**. Una desarrolladora del núcleo de PHP lo resumió diciendo que actualizar es "la única mitigación". Todo lo demás sirve para ganar tiempo:
+El propio equipo de PHP lo dice sin vueltas: "no hay mitigaciones completas, actualizar es la única opción segura". Todo lo demás sirve para ganar tiempo:
 
 1. **Hacer inventario.** Identificar cada instalación de PHP que tengas: producción, staging, contenedores, el panel de hosting, ese sistema interno viejo y el software de terceros que trae PHP incluido.
-2. **Actualizar a la versión parcheada de tu rama** apenas esté disponible en tu sistema o en tu proveedor de hosting. Las versiones exactas están en el anuncio oficial en [php.net](https://www.php.net/archive/2026.php).
+2. **Actualizar a la versión parcheada de tu rama** (8.5.12, 8.4.27, 8.3.36 u 8.2.35). Las distribuciones de Linux y los proveedores con soporte extendido recibieron los parches por adelantado, así que conviene revisar si tu sistema o tu hosting ya tienen el paquete actualizado.
 3. **Si no podés actualizar ya, poné el sitio detrás de un WAF o CDN** (como Cloudflare) y restringí el servidor de origen para que solo acepte tráfico de ese proveedor.
-4. **Como medida temporal, ajustá `php.ini`**:
+4. **Como medida temporal, aplicá las mitigaciones del aviso oficial** en `php.ini`, en el pool de FPM o en la configuración de Apache (no sirven `ini_set()` ni `.user.ini`), y reiniciá todos los workers:
    ```ini
+   ; CVE-2026-109619
    session.upload_progress.enabled = 0
-   session.use_strict_mode = 1
+   ; CVE-2026-109618
+   memory_limit = -1
+   post_max_size = 8M   ; 32M si el sitio necesita subir archivos
    ```
-   Patchstack aclara que esto **reduce la exposición pero no corrige la vulnerabilidad**.
+   En PHP 8.5 también se recomienda `fatal_error_backtraces = 0`. PHP aclara que estas medidas **reducen la exposición a ciertos caminos de ataque, pero no dejan la instalación segura**, y que ocultar errores con `display_errors` o `@` no ayuda.
 5. **En casos extremos, bloquear las peticiones multipart** desde nginx o Apache, sabiendo que eso rompe cualquier subida de archivos y algunos formularios de checkout.
 6. **Si quedaste expuesto, revisá si ya entraron.** Huntress recomienda buscar procesos de `php-fpm`, `php-cgi`, `httpd` o `apache2` que lancen `sh`, `bash`, `curl`, `wget` o `powershell`, que es la huella típica de un webshell.
-7. **Si el servidor corre PHP 8.1 o anterior**, el plan no es esperar un parche que no va a llegar: es migrar, o como mínimo aislarlo detrás de un WAF hasta hacerlo.
+7. **Si el servidor corre PHP 8.1 o anterior**, el plan no es esperar una versión oficial que no va a llegar: es migrar a una rama con soporte, o como mínimo aislarlo detrás de un WAF hasta hacerlo.
 
 ## En resumen
 
@@ -58,7 +68,9 @@ php2shell combina las tres cosas que convierten una vulnerabilidad en un problem
 
 ## Fuentes
 
-- **NCSC (Reino Unido)** — [Critical security issue affecting PHP](https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php). Descripción técnica de ambas fallas y recomendaciones oficiales.
+- **PHP (aviso oficial)** — [Security advisory: Critical remote code execution vulnerabilities, update now](https://www.php.net/archive/2026.php#2026-10-21-5). Descripción de ambas fallas, versiones corregidas, SAPIs afectados y mitigaciones oficiales.
+- **PHP en GitHub** — [Avisos de seguridad de php-src](https://github.com/php/php-src/security/advisories) (GHSA-w8hw-w9fx-j79w y GHSA-6wmf-4rv5-p3rp).
+- **NCSC (Reino Unido)** — [Critical security issue affecting PHP](https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php). Alcance de las versiones afectadas y recomendaciones del gobierno británico.
 - **Sansec** — [Critical PHP RCE: CVE-2026-109618 and CVE-2026-109619](https://sansec.io/research/php2shell). Cronología de la filtración, versiones afectadas y mitigaciones para nginx, Apache y PHP-FPM.
 - **Patchstack** — [Major security alert: PHP vulnerable to critical RCE, attacks ongoing](https://patchstack.com/articles/php-major-vulnerability-alert-10-2026/). Puntaje CVSS oficial, reportes de explotación activa y medidas temporales.
 - **watchTowr** — [PHP Remote Code Execution FAQ: CVE-2026-109618](https://watchtowr.com/intelligence/php-cve-2026-109618-faq/). Preguntas frecuentes y estado de la explotación.
