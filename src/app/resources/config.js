@@ -1,7 +1,10 @@
 // Used for SEO in meta tags and schema; NEXT_PUBLIC_BASE_URL overrides it (set in the VPS .env.production)
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL
-  ? 'https://' + process.env.NEXT_PUBLIC_BASE_URL
-  : 'https://www.salvacastro.com.ar'
+// Strips any protocol or trailing slash from the env value so the result is always https://<host>
+const baseHost = (process.env.NEXT_PUBLIC_BASE_URL || 'www.salvacastro.com.ar')
+  .trim()
+  .replace(/^https?:\/\//i, '')
+  .replace(/\/+$/, '')
+const baseURL = 'https://' + baseHost
 
 const routes = {
   '/': true,

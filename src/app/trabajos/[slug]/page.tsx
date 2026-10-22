@@ -3,6 +3,7 @@ import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
+import { absoluteUrl, ogImageUrl } from "@/app/utils/url";
 import { sobremi, person, trabajos } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
@@ -33,7 +34,7 @@ export async function generateMetadata({
     title: post.metadata.title,
     description: post.metadata.summary,
     baseURL: baseURL,
-    image: post.metadata.image ? `${baseURL}${post.metadata.image}` : `${baseURL}/og?title=${post.metadata.title}`,
+    image: post.metadata.image ? absoluteUrl(post.metadata.image) : ogImageUrl(post.metadata.title),
     path: `${trabajos.path}/${post.slug}`,
   });
 }
@@ -65,7 +66,7 @@ export default async function Project({
         description={post.metadata.summary}
         datePublished={post.metadata.publishedAt}
         dateModified={post.metadata.publishedAt}
-        image={`${baseURL}/og?title=${encodeURIComponent(post.metadata.title)}`}
+        image={ogImageUrl(post.metadata.title)}
         author={{
           name: person.name,
           url: `${baseURL}${sobremi.path}`,

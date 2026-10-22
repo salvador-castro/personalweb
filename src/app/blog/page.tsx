@@ -4,6 +4,7 @@ import { BlogPage } from '@/components/blog/BlogPagination'
 import { BlogFilters } from '@/components/blog/BlogFilters'
 import { getPosts } from '@/app/utils/utils'
 import { baseURL } from '@/app/resources'
+import { ogImageUrl } from '@/app/utils/url'
 import { blog, person, newsletter } from '@/app/resources/content'
 import { Meta, Schema } from '@/once-ui/modules'
 
@@ -12,7 +13,7 @@ export async function generateMetadata () {
     title: blog.title,
     description: blog.description,
     baseURL: baseURL,
-    image: `${baseURL}/og?title=${encodeURIComponent(blog.title)}`,
+    image: ogImageUrl(blog.title),
     path: blog.path
   })
 }
@@ -36,7 +37,7 @@ export default function Blog () {
         title={blog.title}
         description={blog.description}
         path={blog.path}
-        image={`${baseURL}/og?title=${encodeURIComponent(blog.title)}`}
+        image={ogImageUrl(blog.title)}
         author={{
           name: person.name,
           url: `${baseURL}/blog`,

@@ -14,6 +14,7 @@ import {
 } from "@/once-ui/components";
 import { TrackClick } from "@/components";
 import { baseURL } from "@/app/resources";
+import { ogImageUrl } from "@/app/utils/url";
 import { person, sobremi, servicios } from "@/app/resources/content";
 import { Meta, Schema } from "@/once-ui/modules";
 
@@ -22,7 +23,7 @@ export async function generateMetadata() {
     title: servicios.title,
     description: servicios.description,
     baseURL: baseURL,
-    image: `${baseURL}/og?title=${encodeURIComponent(servicios.title)}`,
+    image: ogImageUrl(servicios.title),
     path: servicios.path,
   });
 }
@@ -36,7 +37,7 @@ export default function Servicios() {
         path={servicios.path}
         title={servicios.title}
         description={servicios.description}
-        image={`${baseURL}/og?title=${encodeURIComponent(servicios.title)}`}
+        image={ogImageUrl(servicios.title)}
         author={{
           name: person.name,
           url: `${baseURL}${sobremi.path}`,

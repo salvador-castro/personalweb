@@ -11,6 +11,7 @@ import {
 } from "@/once-ui/components";
 import { TrackClick } from "@/components";
 import { baseURL } from "@/app/resources";
+import { ogImageUrl } from "@/app/utils/url";
 import TableOfContents from "@/components/sobremi/TableOfContents";
 import styles from "@/components/sobremi/sobremi.module.scss";
 import { person, sobremi, social } from "@/app/resources/content";
@@ -23,7 +24,7 @@ export async function generateMetadata() {
     title: sobremi.title,
     description: sobremi.description,
     baseURL: baseURL,
-    image: `${baseURL}/og?title=${encodeURIComponent(sobremi.title)}`,
+    image: ogImageUrl(sobremi.title),
     path: sobremi.path,
   });
 }
@@ -60,7 +61,7 @@ export default function SobreMi() {
         title={sobremi.title}
         description={sobremi.description}
         path={sobremi.path}
-        image={`${baseURL}/og?title=${encodeURIComponent(sobremi.title)}`}
+        image={ogImageUrl(sobremi.title)}
         author={{
           name: person.name,
           url: `${baseURL}${sobremi.path}`,

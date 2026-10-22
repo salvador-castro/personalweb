@@ -3,6 +3,7 @@ import { Metadata } from 'next'
 import { Column, Heading } from '@/once-ui/components'
 import { BlogPage, getTotalPages } from '@/components/blog/BlogPagination'
 import { baseURL } from '@/app/resources'
+import { ogImageUrl } from '@/app/utils/url'
 import { blog, person } from '@/app/resources/content'
 import { Meta, Schema } from '@/once-ui/modules'
 
@@ -24,7 +25,7 @@ export async function generateMetadata ({
     title,
     description: blog.description,
     baseURL: baseURL,
-    image: `${baseURL}/og?title=${encodeURIComponent(blog.title)}`,
+    image: ogImageUrl(blog.title),
     path: `${blog.path}/page/${page}`
   })
 }
@@ -48,7 +49,7 @@ export default async function BlogPaginated ({
         title={`${blog.title} – Página ${page}`}
         description={blog.description}
         path={`${blog.path}/page/${page}`}
-        image={`${baseURL}/og?title=${encodeURIComponent(blog.title)}`}
+        image={ogImageUrl(blog.title)}
         author={{
           name: person.name,
           url: `${baseURL}/blog`,

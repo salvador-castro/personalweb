@@ -4,6 +4,7 @@ import { getPosts } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Heading, HeadingNav, Icon, Row, Text } from "@/once-ui/components";
 import { sobremi, blog, person, baseURL } from "@/app/resources";
 import { formatDate } from "@/app/utils/formatDate";
+import { absoluteUrl, ogImageUrl } from "@/app/utils/url";
 import ScrollToHash from "@/components/ScrollToHash";
 import { Metadata } from 'next';
 import { Meta, Schema } from "@/once-ui/modules";
@@ -28,41 +29,23 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  const meta = Meta.generate({
-  title: post.metadata.title,
-  description: post.metadata.summary,
-  baseURL: baseURL,
-  image: post.metadata.image
-    ? `${baseURL}${post.metadata.image}`
-    : `${baseURL}/og?title=${post.metadata.title}`,
-  path: `${blog.path}/${post.slug}`,
-  type: "article",
-  publishedTime: post.metadata.publishedAt,
-  author: {
-    name: person.name,
-    url: `${baseURL}${sobremi.path}`,
-  },
-});
+  return Meta.generate({
+    title: post.metadata.title,
+    description: post.metadata.summary,
+    baseURL: baseURL,
+    image: postImageUrl(post.metadata),
+    path: `${blog.path}/${post.slug}`,
+    type: "article",
+    publishedTime: post.metadata.publishedAt,
+    author: {
+      name: person.name,
+      url: `${baseURL}${sobremi.path}`,
+    },
+  });
+}
 
-return {
-  ...meta,
-  openGraph: {
-    ...(meta.openGraph || {}),
-    images: [
-      post.metadata.image
-        ? `${baseURL}${post.metadata.image}`
-        : `${baseURL}/og?title=${post.metadata.title}`,
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: [
-      post.metadata.image
-        ? `${baseURL}${post.metadata.image}`
-        : `${baseURL}/og?title=${post.metadata.title}`,
-    ],
-  },
-};
+function postImageUrl(metadata: { image?: string; title: string }) {
+  return metadata.image ? absoluteUrl(metadata.image) : ogImageUrl(metadata.title);
 }
 
 export default async function Blog({
@@ -95,11 +78,8 @@ export default async function Blog({
             description={post.metadata.summary}
             datePublished={post.metadata.publishedAt}
             dateModified={post.metadata.publishedAt}
-image={
-  post.metadata.image
-    ? `${baseURL}${post.metadata.image}`
-    : `${baseURL}/og?title=${encodeURIComponent(post.metadata.title)}`
-}            author={{
+            image={postImageUrl(post.metadata)}
+            author={{
               name: person.name,
               url: `${baseURL}${sobremi.path}`,
               image: `${baseURL}${person.avatar}`,

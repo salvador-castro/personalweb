@@ -1,6 +1,7 @@
 import React from "react";
 import Script from "next/script";
 import { social } from "@/app/resources/content";
+import { joinUrl, ogImagePath } from "@/app/utils/url";
 
 export interface BreadcrumbItem {
   name: string;
@@ -47,14 +48,10 @@ export function Schema({
   author,
   breadcrumb,
 }: SchemaProps) {
-  const normalizedBaseURL = baseURL.endsWith("/") ? baseURL.slice(0, -1) : baseURL;
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  // joinUrl keeps absolute images as-is, so callers may pass either a path or a full URL
+  const imageUrl = joinUrl(baseURL, image || ogImagePath(title));
 
-  const imageUrl = image
-    ? `${normalizedBaseURL}${image.startsWith("/") ? image : `/${image}`}`
-    : `${normalizedBaseURL}/og?title=${encodeURIComponent(title)}`;
-
-  const url = `${normalizedBaseURL}${normalizedPath}`;
+  const url = joinUrl(baseURL, path);
 
   const schemaType = schemaTypeMap[as];
 

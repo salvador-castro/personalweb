@@ -1,4 +1,5 @@
 import { Metadata as NextMetadata } from "next";
+import { joinUrl, ogImagePath } from "@/app/utils/url";
 
 export interface MetaProps {
   title: string;
@@ -24,14 +25,10 @@ export function generateMetadata({
   publishedTime,
   author,
 }: MetaProps): NextMetadata {
-  const normalizedBaseURL = baseURL.endsWith("/") ? baseURL.slice(0, -1) : baseURL;
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  // joinUrl keeps absolute images as-is, so callers may pass either a path or a full URL
+  const ogImage = joinUrl(baseURL, image || ogImagePath(title));
 
-  const ogImage = image
-    ? `${normalizedBaseURL}${image.startsWith("/") ? image : `/${image}`}`
-    : `${normalizedBaseURL}/og?title=${encodeURIComponent(title)}`;
-
-  const url = `${normalizedBaseURL}${normalizedPath}`;
+  const url = joinUrl(baseURL, path);
 
   return {
     title,
