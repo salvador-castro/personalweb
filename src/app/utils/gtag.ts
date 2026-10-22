@@ -1,6 +1,4 @@
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-export const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
-
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
