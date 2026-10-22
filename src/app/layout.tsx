@@ -12,7 +12,7 @@ import { Background, Column, Flex, ThemeProvider, ToastProvider } from "@/once-u
 import { opacity, SpacingToken } from "@/once-ui/types";
 import { Meta } from "@/once-ui/modules";
 import { Analytics } from "@vercel/analytics/next";
-import { GA_MEASUREMENT_ID } from "@/app/utils/gtag";
+import { GA_MEASUREMENT_ID, UMAMI_WEBSITE_ID } from "@/app/utils/gtag";
 import Script from "next/script";
 import type { Viewport } from "next";
 
@@ -174,6 +174,13 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <Footer />
             <WhatsAppFAB />
             <Analytics />
+            {UMAMI_WEBSITE_ID && (
+              <Script
+                src="https://graph.salvacastro.com.ar/script.js"
+                data-website-id={UMAMI_WEBSITE_ID}
+                strategy="afterInteractive"
+              />
+            )}
           </Column>
         </ToastProvider>
       </ThemeProvider>

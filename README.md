@@ -74,6 +74,7 @@ npm run dev                  # http://localhost:3000
 | --- | --- | --- |
 | `NEXT_PUBLIC_BASE_URL` | **Sí en producción** | Dominio **sin protocolo** (`www.salvacastro.com.ar`). Se le antepone `https://`. Se usa en metadatos, canonical, sitemap, RSS, OG y JSON-LD. Si falta, cae a `https://www.salvacastro.com.ar`. En producción está configurada en Vercel. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | No | ID de GA4 (`G-XXXXXXXXXX`). Si no está, no se carga gtag. |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | No | Website ID de Umami (self-hosted en `graph.salvacastro.com.ar`). Si no está, no se carga el script. |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | No | Código de verificación de Google Search Console (método meta tag). |
 
 ---
