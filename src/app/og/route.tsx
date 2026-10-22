@@ -11,6 +11,8 @@ const HEIGHT = 1080
 const BACKGROUND = '#151515'
 const DEFAULT_TITLE = 'Portfolio'
 const MAX_TITLE_LENGTH = 120
+// Satori can't decode WebP, so the OG image uses a dedicated JPEG copy of the avatar
+const AVATAR_PATH = path.join(process.cwd(), 'public/images/avatar-og.jpg')
 
 const SUCCESS_CACHE = 'public, immutable, no-transform, max-age=31536000'
 // Fallbacks are cached briefly so a fixed render replaces them soon
@@ -32,13 +34,9 @@ function loadFonts (): Promise<Font[]> {
   return fontPromise
 }
 
-// Satori can't decode WebP, so the avatar is read from disk and converted to a PNG data URI
 function loadAvatar (): Promise<string | null> {
-  avatarPromise ??= sharp(path.join(process.cwd(), 'public', person.avatar))
-    .resize(384, 384, { fit: 'cover' })
-    .png()
-    .toBuffer()
-    .then((png) => `data:image/png;base64,${png.toString('base64')}`)
+  avatarPromise ??= readFile(AVATAR_PATH)
+    .then((jpeg) => `data:image/jpeg;base64,${jpeg.toString('base64')}`)
     .catch((error) => {
       console.error('[og] Failed to load avatar, rendering without it:', error)
       avatarPromise = undefined
