@@ -48,9 +48,9 @@ Está construido sobre la plantilla **Magic Portfolio** de [Once UI](https://onc
 | Íconos | `react-icons`, `lucide-react` (registrados en `src/once-ui/icons.ts`) |
 | Imágenes | `next/image` + `sharp` |
 | Tipografía | Geist / Geist Mono vía `next/font/google`; Inter local para las imágenes OG |
-| Analítica | Vercel Analytics + Google Analytics 4 (opcional) |
+| Analítica | Umami self-hosted + Google Analytics 4 (opcional) |
 | Newsletter | Mailchimp (form embebido) |
-| Hosting | Vercel |
+| Hosting | VPS propio en DonWeb (Nginx + PM2), deploy con GitHub Actions |
 
 ---
 
@@ -72,9 +72,8 @@ npm run dev                  # http://localhost:3000
 
 | Variable | Obligatoria | Uso |
 | --- | --- | --- |
-| `NEXT_PUBLIC_BASE_URL` | **Sí en producción** | Dominio **sin protocolo** (`www.salvacastro.com.ar`). Se le antepone `https://`. Se usa en metadatos, canonical, sitemap, RSS, OG y JSON-LD. Si falta, cae a `https://www.salvacastro.com.ar`. En producción está configurada en Vercel. |
+| `NEXT_PUBLIC_BASE_URL` | **Sí en producción** | Dominio **sin protocolo** (`www.salvacastro.com.ar`). Se le antepone `https://`. Se usa en metadatos, canonical, sitemap, RSS, OG y JSON-LD. Si falta, cae a `https://www.salvacastro.com.ar`. En producción va en `~/apps/personalweb/shared/.env.production` del VPS. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | No | ID de GA4 (`G-XXXXXXXXXX`). Si no está, no se carga gtag. |
-| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | No | Website ID de Umami (self-hosted en `graph.salvacastro.com.ar`). Si no está, no se carga el script. |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | No | Código de verificación de Google Search Console (método meta tag). |
 
 ---
@@ -87,7 +86,7 @@ npm run dev                  # http://localhost:3000
 | `npm run build` | Build de producción |
 | `npm run start` | Sirve el build |
 
-El deploy lo hace Vercel automáticamente en cada push (no hay script de deploy). No hay linter configurado.
+El deploy al VPS lo hace GitHub Actions en cada push (ver [Deploy](#deploy)). No hay linter configurado.
 
 ---
 
@@ -275,7 +274,8 @@ Casos actuales: Arte Urbano, Be Orange, Bitcoin Week, Clapton Barbería, Turnos 
 
 ## Analítica y tracking de conversiones
 
-- **Vercel Analytics** (`<Analytics />` en el layout).
+- **Umami** self-hosted (`graph.salvacastro.com.ar`), cargado con `strategy="afterInteractive"`. El website ID está hardcodeado en el layout (no es secreto: queda visible en el HTML).
+- **Vercel Analytics** (`<Analytics />` en el layout): quedó de cuando el sitio estaba en Vercel; fuera de Vercel no registra nada.
 - **Google Analytics 4** (si existe `NEXT_PUBLIC_GA_MEASUREMENT_ID`): un stub inline encola eventos en `dataLayer` y `gtag.js` se carga con `strategy="lazyOnload"` para no competir con el render inicial.
 - **Eventos personalizados** con `gaEvent(name, params)`:
 
@@ -335,11 +335,11 @@ Links externos del MDX con `rel="noopener noreferrer"`. `.env*.local` ignorado p
 
 ## Deploy
 
-Pensado para **Vercel**:
+Hosting en **VPS propio (DonWeb)**: Nginx como reverse proxy + PM2 corriendo `next start`.
 
-1. Importar el repo en Vercel (framework: Next.js, build `next build`).
-2. Configurar `NEXT_PUBLIC_BASE_URL` (y opcionalmente GA / Search Console / `PAGE_ACCESS_PASSWORD`).
-3. Cada push a la rama principal despliega a producción.
+1. Cada push a la rama principal dispara GitHub Actions, que buildea y despliega en el VPS.
+2. Las variables de entorno viven en `~/apps/personalweb/shared/.env.production` del VPS (no en el repo). Las `NEXT_PUBLIC_*` se incrustan al compilar: si agregás o cambiás una, hay que redeployar.
+3. Umami corre en el mismo VPS, en `graph.salvacastro.com.ar`.
 
 `output: 'export'` está comentado en `next.config.mjs`: el sitio **no** es export estático porque usa la ruta `/og` en runtime Node.
 

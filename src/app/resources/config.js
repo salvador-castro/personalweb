@@ -1,4 +1,4 @@
-// Used for SEO in meta tags and schema; NEXT_PUBLIC_BASE_URL overrides it (set in Vercel)
+// Used for SEO in meta tags and schema; NEXT_PUBLIC_BASE_URL overrides it (set in the VPS .env.production)
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL
   ? 'https://' + process.env.NEXT_PUBLIC_BASE_URL
   : 'https://www.salvacastro.com.ar'
