@@ -1,6 +1,13 @@
 // Content of the service landing pages (/servicios/[slug]).
 // Prices are never written here: they come from ./pricing so they are updated in one place.
-import { pricing, pricesForService, fromPrice, minPrice, pricesUpdatedText, type ServiceSlug } from "./pricing";
+import {
+  pricing,
+  pricesForService,
+  fromPrice,
+  minPrice,
+  pricesUpdatedText,
+  type ServiceSlug,
+} from "./pricing";
 import { person, sobremi } from "./content";
 
 export interface FaqItem {
@@ -29,16 +36,26 @@ export interface ServicePage {
   whatsappMessage: string;
 }
 
-const lowerFirst = (text: string) => text.charAt(0).toLowerCase() + text.slice(1);
-const upperFirst = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+const lowerFirst = (text: string) =>
+  text.charAt(0).toLowerCase() + text.slice(1);
+const upperFirst = (text: string) =>
+  text.charAt(0).toUpperCase() + text.slice(1);
 
 /** "landing page desde $150.000 y página institucional (3 a 5 secciones) desde $375.000" */
 function priceSentence(service: ServiceSlug): string {
-  const parts = pricesForService(service).map((item) => `${lowerFirst(item.label)} ${fromPrice(item.from)}`);
-  return parts.length > 1 ? `${parts.slice(0, -1).join(", ")} y ${parts[parts.length - 1]}` : parts[0];
+  const parts = pricesForService(service).map(
+    (item) => `${lowerFirst(item.label)} ${fromPrice(item.from)}`,
+  );
+  return parts.length > 1
+    ? `${parts.slice(0, -1).join(", ")} y ${parts[parts.length - 1]}`
+    : parts[0];
 }
 
-function priceFaq(question: string, service: ServiceSlug, detail: string): FaqItem {
+function priceFaq(
+  question: string,
+  service: ServiceSlug,
+  detail: string,
+): FaqItem {
   return {
     question,
     answer: `${upperFirst(priceSentence(service))} (${pricesUpdatedText.toLowerCase()}). ${detail} ${pricing.foreignNote}`,
@@ -79,7 +96,8 @@ export const servicePages: ServicePage[] = [
         "El precio final depende de la cantidad de secciones, el contenido y las integraciones que necesites.",
       ),
       {
-        question: "¿Qué diferencia hay entre una landing page y una página institucional?",
+        question:
+          "¿Qué diferencia hay entre una landing page y una página institucional?",
         answer:
           "Una landing page es una sola página enfocada en un objetivo concreto, por ejemplo que te escriban por WhatsApp o que se registren a un evento. Una página institucional tiene varias secciones (inicio, servicios, nosotros, contacto) para presentar el negocio completo.",
       },
@@ -89,14 +107,16 @@ export const servicePages: ServicePage[] = [
           "Sí. Cada sitio se entrega con SEO técnico básico (títulos, descripciones, sitemap y datos estructurados) y te ayudo a darlo de alta en Google Search Console. Llegar a los primeros resultados también depende del contenido y de la competencia de tu rubro.",
       },
     ],
-    whatsappMessage: "Hola Salvador! Quiero consultar por una página web para mi negocio.",
+    whatsappMessage:
+      "Hola Salvador! Quiero consultar por una página web para mi negocio.",
   },
   {
     slug: "tiendas-online",
     name: "Tiendas online",
     serviceType: "Desarrollo de tiendas online (e-commerce)",
     icon: "grid",
-    title: "Tienda online para tu negocio: precios y desarrollo | Salvador Castro",
+    title:
+      "Tienda online para tu negocio: precios y desarrollo | Salvador Castro",
     description: `Tiendas online a medida ${fromPrice(minPrice("tiendas-online"))}: catálogo, carrito, Mercado Pago y panel para gestionar productos y pedidos. PyMEs de Argentina y Uruguay.`,
     headline: "Tiendas online para negocios que quieren vender todos los días",
     answer: `Desarrollo tiendas online a medida ${fromPrice(minPrice("tiendas-online"))} para negocios de Argentina y Uruguay: catálogo de productos, carrito, pagos con Mercado Pago y un panel de administración para cargar productos, seguir pedidos y gestionar clientes sin depender de nadie.`,
@@ -134,7 +154,8 @@ export const servicePages: ServicePage[] = [
           "Sí. La tienda incluye un panel de administración para cargar productos, cambiar precios y stock, armar promociones y seguir el estado de cada pedido, sin conocimientos técnicos.",
       },
     ],
-    whatsappMessage: "Hola Salvador! Quiero consultar por una tienda online para mi negocio.",
+    whatsappMessage:
+      "Hola Salvador! Quiero consultar por una tienda online para mi negocio.",
   },
   {
     slug: "sistemas-de-turnos",
@@ -143,7 +164,8 @@ export const servicePages: ServicePage[] = [
     icon: "calendar",
     title: "Sistema de turnos online a medida | Salvador Castro",
     description: `Sistemas de turnos online ${fromPrice(minPrice("sistemas-de-turnos"))} para consultorios, barberías y profesionales: reservas 24/7, recordatorios por WhatsApp y panel de gestión.`,
-    headline: "Sistema de turnos online para consultorios, salones y profesionales",
+    headline:
+      "Sistema de turnos online para consultorios, salones y profesionales",
     answer: `Desarrollo sistemas de turnos online a medida ${fromPrice(minPrice("sistemas-de-turnos"))} para consultorios, centros médicos, barberías, salones y profesionales: tus clientes reservan solos las 24 horas, reciben recordatorios automáticos por WhatsApp o email y vos gestionás agenda, profesionales y servicios desde un panel.`,
     audience: [
       "Consultorios y centros médicos con varios profesionales o sedes",
@@ -179,7 +201,8 @@ export const servicePages: ServicePage[] = [
           "Sí. Se pueden gestionar varios profesionales, sedes y servicios, cada uno con su agenda, y dar a cada usuario permisos según su rol.",
       },
     ],
-    whatsappMessage: "Hola Salvador! Quiero consultar por un sistema de turnos online.",
+    whatsappMessage:
+      "Hola Salvador! Quiero consultar por un sistema de turnos online.",
   },
   {
     slug: "sistemas-a-medida",
@@ -224,7 +247,8 @@ export const servicePages: ServicePage[] = [
           "Sí, como funcionalidad opcional: si tu sistema lo necesita, puede emitir comprobantes electrónicos a través de los servicios web de ARCA (ex AFIP). No viene incluida en todos los sistemas; se define en la propuesta. Es algo distinto de la factura por mi trabajo, que siempre es Factura C.",
       },
     ],
-    whatsappMessage: "Hola Salvador! Quiero consultar por un sistema a medida para mi negocio.",
+    whatsappMessage:
+      "Hola Salvador! Quiero consultar por un sistema a medida para mi negocio.",
   },
 ];
 
@@ -234,9 +258,12 @@ export function getServicePage(slug: string): ServicePage | undefined {
 
 export const servicePath = (slug: ServiceSlug) => `/servicios/${slug}`;
 
-export const invoiceNote = "Sí. Siempre emito Factura C por todos los trabajos.";
+export const invoiceNote =
+  "Sí. Siempre emito Factura C por todos los trabajos.";
 
-const allPricesSentence = pricing.items.map((item) => `${lowerFirst(item.label)} ${fromPrice(item.from)}`).join(", ");
+const allPricesSentence = pricing.items
+  .map((item) => `${lowerFirst(item.label)} ${fromPrice(item.from)}`)
+  .join(", ");
 
 /** General questions, shown on /servicios (with FAQPage markup) and summarized on the home page */
 export const generalFaq: FaqItem[] = [
@@ -251,7 +278,7 @@ export const generalFaq: FaqItem[] = [
   {
     question: "¿Dónde estás y cómo trabajás?",
     answer:
-      "Estoy en la Ciudad de Buenos Aires. Las reuniones son preferentemente virtuales, por videollamada, así que trabajo igual con clientes de todo el país y de Uruguay. Si estás en CABA, también podemos coordinar una reunión presencial.",
+      "Estoy en la Ciudad de Buenos Aires. Las reuniones son preferentemente virtuales, por videollamada, así que trabajo igual con clientes de todo el país y del exterior. Si estás en CABA, también podemos coordinar una reunión presencial.",
   },
   {
     question: "¿Hacés factura?",

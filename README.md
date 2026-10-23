@@ -374,4 +374,4 @@ Basado en [Magic Portfolio](https://github.com/once-ui-system/magic-portfolio) d
 
 ---
 
-**Contacto:** [salvacastro06@gmail.com](mailto:salvacastro06@gmail.com) · [LinkedIn](https://www.linkedin.com/in/salvador-castro95) · [GitHub](https://github.com/salvador-castro) · [YouTube](https://youtube.com/@salva.castro)
+**Contacto:** [salva@salvacastro.com.ar](mailto:salva@salvacastro.com.ar) · [LinkedIn](https://www.linkedin.com/in/salvador-castro95) · [GitHub](https://github.com/salvador-castro) · [YouTube](https://youtube.com/@salva.castro)

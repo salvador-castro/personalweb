@@ -2,7 +2,7 @@
   "name": "salvacastro-portfolio",
   "version": "2.0.0",
   "description": "Portfolio personal de Salvador Castro, desarrollador web y entusiasta de la tecnología.",
-  "author": "Salvador Castro <salvacastro06@gmail.com> (https://www.salvacastro.com.ar)",
+  "author": "Salvador Castro <salva@salvacastro.com.ar> (https://www.salvacastro.com.ar)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

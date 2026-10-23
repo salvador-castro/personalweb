@@ -8,7 +8,7 @@ const person = {
   },
   role: 'Desarrollador web freelance',
   avatar: '/images/avatar.webp',
-  email: 'salvacastro06@gmail.com',
+  email: 'salva@salvacastro.com.ar',
   github: 'https://github.com/salvador-castro/',
   linkedin: 'https://www.linkedin.com/in/salvador-castro95',
   x: 'https://x.com/salva_castro95',
@@ -73,7 +73,9 @@ const home = {
   path: '/',
   label: 'Home',
   title: `Desarrollador web freelance en Buenos Aires | ${person.name}`,
-  description: `Páginas web, tiendas online y sistemas a medida para PyMEs de Argentina y Uruguay. Desarrollo freelance desde Buenos Aires, landing pages ${fromPrice(minPrice())}.`,
+  description: `Páginas web, tiendas online y sistemas a medida para PyMEs de Argentina y Uruguay. Desarrollo freelance desde Buenos Aires, landing pages ${fromPrice(
+    minPrice()
+  )}.`,
   headline: <>Webs y sistemas a medida que hacen crecer tu negocio</>,
   featured: {
     display: true,
@@ -429,7 +431,9 @@ const servicios = {
   path: '/servicios',
   label: 'Servicios',
   title: `Servicios y precios de desarrollo web para PyMEs | ${person.name}`,
-  description: `Landing pages, páginas institucionales, tiendas online, sistemas de turnos y sistemas a medida para PyMEs de Argentina y Uruguay, ${fromPrice(minPrice())}.`,
+  description: `Landing pages, páginas institucionales, tiendas online, sistemas de turnos y sistemas a medida para PyMEs de Argentina y Uruguay, ${fromPrice(
+    minPrice()
+  )}.`,
   hero: {
     title: 'Servicios de desarrollo web para tu negocio',
     subline: (

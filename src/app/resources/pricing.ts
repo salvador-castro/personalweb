@@ -1,7 +1,11 @@
 // Single source of truth for prices. Used by the service pages, FAQ, JSON-LD and /llms.txt.
 // To update prices: change the amounts below and bump `updatedAt` / `updatedLabel`.
 
-export type ServiceSlug = "paginas-web" | "tiendas-online" | "sistemas-de-turnos" | "sistemas-a-medida";
+export type ServiceSlug =
+  | "paginas-web"
+  | "tiendas-online"
+  | "sistemas-de-turnos"
+  | "sistemas-a-medida";
 
 export interface PriceItem {
   id: string;
@@ -18,16 +22,36 @@ export const pricing = {
   foreignNote:
     "Para clientes fuera de Argentina (Uruguay u otros países) el presupuesto se cotiza en dólares (USD).",
   items: [
-    { id: "landing", service: "paginas-web", label: "Landing page", from: 150000 },
+    {
+      id: "landing",
+      service: "paginas-web",
+      label: "Landing page",
+      from: 150000,
+    },
     {
       id: "institucional",
       service: "paginas-web",
-      label: "Página institucional (3 a 5 secciones)",
+      label: "Página institucional (hasta 5 secciones)",
       from: 375000,
     },
-    { id: "tienda", service: "tiendas-online", label: "Tienda online", from: 450000 },
-    { id: "turnos", service: "sistemas-de-turnos", label: "Sistema de turnos", from: 500000 },
-    { id: "medida", service: "sistemas-a-medida", label: "Sistema a medida", from: 500000 },
+    {
+      id: "tienda",
+      service: "tiendas-online",
+      label: "Tienda online",
+      from: 450000,
+    },
+    {
+      id: "turnos",
+      service: "sistemas-de-turnos",
+      label: "Sistema de turnos",
+      from: 500000,
+    },
+    {
+      id: "medida",
+      service: "sistemas-a-medida",
+      label: "Sistema a medida",
+      from: 500000,
+    },
   ] satisfies PriceItem[],
 };
 
