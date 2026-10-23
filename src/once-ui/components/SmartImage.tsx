@@ -62,15 +62,14 @@ const SmartImage: React.FC<SmartImageProps> = ({
     };
   }, [isEnlarged]);
 
+  // Lock scrolling only while enlarged. Never leave an inline "overflow: auto" on <body>:
+  // it turns the body into a scroll container and breaks the sticky header.
   useEffect(() => {
-    if (isEnlarged) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    if (!isEnlarged) return;
 
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     };
   }, [isEnlarged]);
 

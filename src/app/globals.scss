@@ -3,3 +3,12 @@ body {
   overflow-x: clip;
   max-width: 100vw;
 }
+
+// Room for the sticky header when jumping to an anchor (#preguntas-frecuentes, post headings, etc.)
+:root {
+  --header-offset: calc(var(--static-space-80) + env(safe-area-inset-top, 0px));
+}
+
+[id] {
+  scroll-margin-top: var(--header-offset);
+}
