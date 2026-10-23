@@ -4,12 +4,13 @@ import type { FaqItem } from "@/app/resources/services";
 interface FaqProps {
   items: FaqItem[];
   title?: string;
+  id?: string;
 }
 
 // Questions and answers rendered as plain visible text, so crawlers and AI engines can quote them
-export function Faq({ items, title = "Preguntas frecuentes" }: FaqProps) {
+export function Faq({ items, title = "Preguntas frecuentes", id }: FaqProps) {
   return (
-    <Column fillWidth gap="m">
+    <Column id={id} fillWidth gap="m">
       <Heading as="h2" variant="display-strong-xs" wrap="balance">
         {title}
       </Heading>

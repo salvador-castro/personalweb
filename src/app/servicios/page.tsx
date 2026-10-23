@@ -16,9 +16,11 @@ import { TrackClick } from "@/components";
 import { baseURL } from "@/app/resources";
 import { ogImageUrl } from "@/app/utils/url";
 import { person, sobremi, servicios } from "@/app/resources/content";
-import { getServicePage, servicePath } from "@/app/resources/services";
+import { generalFaq, getServicePage, servicePath } from "@/app/resources/services";
+import { faqPage } from "@/app/utils/structuredData";
+import { Faq } from "@/components/Faq";
 import { formatPrice, minPrice } from "@/app/resources/pricing";
-import { Meta, Schema } from "@/once-ui/modules";
+import { JsonLd, Meta, Schema } from "@/once-ui/modules";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -50,6 +52,7 @@ export default function Servicios() {
           { name: servicios.label, url: `${baseURL}${servicios.path}` },
         ]}
       />
+      <JsonLd id="schema-faq-servicios" data={faqPage(generalFaq, `${baseURL}${servicios.path}`)} />
 
       {/* ── HERO ── */}
       <Column fillWidth paddingY="40" gap="m" horizontal="center" align="center">
@@ -188,6 +191,10 @@ export default function Servicios() {
           ))}
         </Grid>
       </Column>
+
+      <Line />
+
+      <Faq id="preguntas-frecuentes" items={generalFaq} />
 
       <Line />
 

@@ -14,6 +14,7 @@ const person = {
   x: 'https://x.com/salva_castro95',
   youtube: 'https://youtube.com/@salva.castro?si=iBf9iVOzOppCvVPP',
   whatsapp: '5491135655755',
+  phone: '+54 9 11 3565-5755',
   // IANA time zone, used by the header clock
   location: 'America/Argentina/Buenos_Aires',
   city: 'Buenos Aires, Argentina',

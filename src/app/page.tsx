@@ -26,7 +26,8 @@ import { Posts } from "@/components/blog/Posts";
 import { Meta, Schema } from "@/once-ui/modules";
 import { getPosts } from "@/app/utils/utils";
 import { ogImageUrl } from "@/app/utils/url";
-import { getServicePage, servicePath } from "@/app/resources/services";
+import { generalFaq, getServicePage, servicePath } from "@/app/resources/services";
+import { Faq } from "@/components/Faq";
 import { formatPrice, minPrice } from "@/app/resources/pricing";
 
 export async function generateMetadata() {
@@ -204,6 +205,18 @@ export default function Home() {
             ))}
           </Grid>
         </RevealFx>
+      </Column>
+
+      <Line />
+
+      {/* ── PREGUNTAS FRECUENTES (resumen; el listado completo y su markup están en /servicios) ── */}
+      <Column fillWidth gap="m">
+        <Faq items={generalFaq.slice(0, 4)} />
+        <SmartLink href={`${servicios.path}#preguntas-frecuentes`}>
+          <Text variant="label-default-s" onBackground="neutral-weak">
+            Ver todas las preguntas →
+          </Text>
+        </SmartLink>
       </Column>
 
       <Line />

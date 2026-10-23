@@ -1,6 +1,7 @@
 // Content of the service landing pages (/servicios/[slug]).
 // Prices are never written here: they come from ./pricing so they are updated in one place.
 import { pricing, pricesForService, fromPrice, minPrice, pricesUpdatedText, type ServiceSlug } from "./pricing";
+import { person, sobremi } from "./content";
 
 export interface FaqItem {
   question: string;
@@ -232,3 +233,41 @@ export function getServicePage(slug: string): ServicePage | undefined {
 }
 
 export const servicePath = (slug: ServiceSlug) => `/servicios/${slug}`;
+
+const allPricesSentence = pricing.items.map((item) => `${lowerFirst(item.label)} ${fromPrice(item.from)}`).join(", ");
+
+/** General questions, shown on /servicios (with FAQPage markup) and summarized on the home page */
+export const generalFaq: FaqItem[] = [
+  {
+    question: "¿Cuánto cuesta una página web, una tienda online o un sistema?",
+    answer: `${upperFirst(allPricesSentence)} (${pricesUpdatedText.toLowerCase()}, en pesos argentinos). El precio final depende del alcance y te lo paso por escrito antes de empezar. ${pricing.foreignNote}`,
+  },
+  {
+    question: "¿Trabajás con clientes de otros países?",
+    answer: `Sí. Trabajo con PyMEs de Argentina y Uruguay y también con clientes de otros países, de forma remota: reuniones por videollamada y seguimiento por WhatsApp. ${pricing.foreignNote}`,
+  },
+  {
+    question: "¿Dónde estás y cómo trabajás?",
+    answer:
+      "Estoy en la Ciudad de Buenos Aires. Trabajo de forma remota con clientes de todo el país y de Uruguay, y si estás en CABA o el AMBA también podemos coordinar una reunión presencial.",
+  },
+  {
+    question: "¿Cuánto tarda en estar lista?",
+    answer:
+      "Una landing page suele estar lista en 1 a 2 semanas, una página institucional en 2 a 4, una tienda online en 4 a 6 y un sistema de turnos o a medida en 4 a 8 semanas. El plazo exacto queda en la propuesta.",
+  },
+  {
+    question: "¿Cómo es el proceso de trabajo?",
+    answer:
+      "Primero tenemos una charla sin cargo para entender tu negocio. Después te envío una propuesta por escrito con alcance, plazos y precio. Durante el desarrollo vas viendo avances reales y, al final, te capacito para usar tu sitio o sistema.",
+  },
+  {
+    question: "¿Ofrecés mantenimiento después de la entrega?",
+    answer:
+      "Sí. Después de la entrega quedo disponible para soporte, actualizaciones y nuevas funcionalidades. El mantenimiento mensual se cotiza según lo que necesite cada proyecto.",
+  },
+  {
+    question: "¿Cómo te contacto?",
+    answer: `Por WhatsApp al ${person.phone}, por email a ${person.email} o agendando una llamada de 30 minutos en ${sobremi.calendar.link}.`,
+  },
+];
