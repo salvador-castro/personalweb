@@ -18,6 +18,12 @@ type Metadata = {
   tag?: string;
   team: Team[];
   link?: string;
+  // Case study sheet (trabajos only)
+  client?: string;
+  industry?: string;
+  location?: string;
+  service?: string;
+  stack?: string[];
 };
 
 import { notFound } from 'next/navigation';
@@ -47,6 +53,11 @@ function readMDXFile(filePath: string) {
     tag: data.tag || [],
     team: data.team || [],
     link: data.link || "",
+    client: data.client,
+    industry: data.industry,
+    location: data.location,
+    service: data.service,
+    stack: data.stack || [],
   };
 
   return { metadata, content };

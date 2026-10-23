@@ -80,7 +80,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={link}
                 >
-                  <Text variant="body-default-s">Ver sitio online</Text>
+                  <Text variant="body-default-s">{link.includes("github.com") ? "Ver código en GitHub" : "Ver sitio online"}</Text>
                 </SmartLink>
               )}
             </Flex>
