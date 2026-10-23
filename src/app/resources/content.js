@@ -441,9 +441,9 @@ const servicios = {
   },
   offerings: [
     {
-      slug: 'landing-pages',
+      slug: 'paginas-web',
       icon: 'globe',
-      title: 'Landing Pages y Sitios Web',
+      title: 'Páginas web y landing pages',
       tagline: 'Tu negocio, online y bien presentado',
       description:
         'Un sitio a medida para mostrar tus servicios, generar confianza y convertir visitas en consultas por WhatsApp o formulario.',
@@ -461,7 +461,7 @@ const servicios = {
     {
       slug: 'sistemas-de-turnos',
       icon: 'calendar',
-      title: 'Sistemas de Turnos y Reservas',
+      title: 'Sistemas de turnos y reservas',
       tagline: 'Menos mensajes, más agenda ordenada',
       description:
         'Plataformas de reserva online para salones, consultorios y profesionales con agenda, recordatorios automáticos y panel de administración.',
@@ -477,9 +477,9 @@ const servicios = {
       }
     },
     {
-      slug: 'ecommerce',
+      slug: 'tiendas-online',
       icon: 'grid',
-      title: 'E-commerce y Tiendas Online',
+      title: 'Tiendas online',
       tagline: 'Vendé todos los días, no solo cuando abrís',
       description:
         'Tiendas online con catálogo, carrito y pagos integrados, más un panel para gestionar productos, pedidos y clientes vos mismo.',
@@ -492,6 +492,24 @@ const servicios = {
       caseStudy: {
         label: 'Ver caso: La Vaca Roja',
         href: '/trabajos/LaVacaRoja'
+      }
+    },
+    {
+      slug: 'sistemas-a-medida',
+      icon: 'document',
+      title: 'Sistemas a medida',
+      tagline: 'Gestión, SaaS y facturación sin planillas',
+      description:
+        'Sistemas web para ordenar la operación de tu PyME: gestión interna, paneles de administración, productos SaaS, facturación electrónica y automatizaciones.',
+      features: [
+        'Panel con usuarios, roles y permisos',
+        'Dashboards y reportes exportables',
+        'Integraciones: Mercado Pago, WhatsApp y facturación electrónica',
+        'Automatizaciones y tareas programadas'
+      ],
+      caseStudy: {
+        label: 'Ver caso: Turnos Clapton',
+        href: '/trabajos/Turnos-Clapton'
       }
     },
     {

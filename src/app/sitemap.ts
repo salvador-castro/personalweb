@@ -1,6 +1,8 @@
 import { getPosts } from "@/app/utils/utils";
 import { baseURL, routes as routesConfig } from "@/app/resources";
 import { getTotalPages } from "@/components/blog/BlogPagination";
+import { servicePages, servicePath } from "@/app/resources/services";
+import { pricing } from "@/app/resources/pricing";
 
 export const dynamic = "force-static";
 
@@ -35,6 +37,15 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
+  const servicios = routesConfig["/servicios"]
+    ? servicePages.map((page) => ({
+        url: `${baseURL}${servicePath(page.slug)}`,
+        lastModified: pricing.updatedAt,
+        changeFrequency: "monthly" as const,
+        priority: 0.9,
+      }))
+    : [];
+
   const activeRoutes = Object.keys(routesConfig).filter((route) => routesConfig[route as keyof typeof routesConfig]);
 
   const routes = activeRoutes.map((route) => ({
@@ -61,5 +72,5 @@ export default async function sitemap() {
     priority: 0.5,
   }));
 
-  return [...routes, ...blogs, ...blogPages, ...trabajos, ...tagPages];
+  return [...routes, ...servicios, ...blogs, ...blogPages, ...trabajos, ...tagPages];
 }

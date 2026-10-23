@@ -26,6 +26,8 @@ import { Posts } from "@/components/blog/Posts";
 import { Meta, Schema } from "@/once-ui/modules";
 import { getPosts } from "@/app/utils/utils";
 import { ogImageUrl } from "@/app/utils/url";
+import { getServicePage, servicePath } from "@/app/resources/services";
+import { formatPrice, minPrice } from "@/app/resources/pricing";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -178,10 +180,13 @@ export default function Home() {
         </RevealFx>
         <RevealFx translateY="16" delay={0.2} fillWidth>
           <Grid fillWidth columns="4" mobileColumns="1" tabletColumns="2" gap="16">
-            {servicios.offerings.map((offering) => (
+            {servicios.offerings.flatMap((offering) => {
+              const servicePage = getServicePage(offering.slug);
+              return servicePage ? [{ offering, servicePage }] : [];
+            }).map(({ offering, servicePage }) => (
               <Card
                 key={offering.slug}
-                href={servicios.path}
+                href={servicePath(servicePage.slug)}
                 direction="column"
                 padding="20"
                 gap="8"
@@ -191,6 +196,9 @@ export default function Home() {
                 <Text variant="heading-strong-s">{offering.title}</Text>
                 <Text variant="body-default-s" onBackground="neutral-weak">
                   {offering.tagline}
+                </Text>
+                <Text variant="label-default-s" onBackground="brand-weak">
+                  Desde {formatPrice(minPrice(servicePage.slug))}
                 </Text>
               </Card>
             ))}

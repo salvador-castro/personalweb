@@ -16,6 +16,8 @@ import { TrackClick } from "@/components";
 import { baseURL } from "@/app/resources";
 import { ogImageUrl } from "@/app/utils/url";
 import { person, sobremi, servicios } from "@/app/resources/content";
+import { getServicePage, servicePath } from "@/app/resources/services";
+import { formatPrice, minPrice } from "@/app/resources/pricing";
 import { Meta, Schema } from "@/once-ui/modules";
 
 export async function generateMetadata() {
@@ -101,7 +103,9 @@ export default function Servicios() {
           Qué puedo hacer por tu negocio
         </Heading>
         <Grid fillWidth columns="2" mobileColumns="1" gap="16">
-          {servicios.offerings.map((offering) => (
+          {servicios.offerings.map((offering) => {
+            const servicePage = getServicePage(offering.slug);
+            return (
             <Card key={offering.slug} direction="column" padding="24" gap="12" radius="l">
               <Flex gap="12" vertical="center">
                 <Flex
@@ -134,8 +138,19 @@ export default function Servicios() {
                 ))}
               </Column>
 
-              {offering.caseStudy && (
-                <Row paddingTop="8">
+              {servicePage && (
+                <Text variant="label-default-m" onBackground="brand-weak">
+                  Desde {formatPrice(minPrice(servicePage.slug))}
+                </Text>
+              )}
+
+              <Row paddingTop="8" gap="8" wrap>
+                {servicePage && (
+                  <Button href={servicePath(servicePage.slug)} variant="secondary" size="s" arrowIcon>
+                    Ver servicio y precios
+                  </Button>
+                )}
+                {offering.caseStudy && (
                   <Button
                     href={offering.caseStudy.href}
                     variant="tertiary"
@@ -144,10 +159,11 @@ export default function Servicios() {
                   >
                     {offering.caseStudy.label}
                   </Button>
-                </Row>
-              )}
+                )}
+              </Row>
             </Card>
-          ))}
+            );
+          })}
         </Grid>
       </Column>
 

@@ -1,6 +1,7 @@
 import { baseURL } from "@/app/resources";
 import { person, home, servicios } from "@/app/resources/content";
 import { pricing, formatPrice, minPrice } from "@/app/resources/pricing";
+import { servicePath, type FaqItem } from "@/app/resources/services";
 import { absoluteUrl } from "@/app/utils/url";
 
 // Stable @id anchors so every page can reference the same entities
@@ -95,7 +96,7 @@ export function siteGraph() {
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Servicios de desarrollo web",
-          itemListElement: pricing.items.map((item) => priceOffer(item, absoluteUrl(servicios.path))),
+          itemListElement: pricing.items.map((item) => priceOffer(item, absoluteUrl(servicePath(item.service)))),
         },
       },
       {
@@ -108,5 +109,20 @@ export function siteGraph() {
         publisher: { "@id": schemaIds.person },
       },
     ],
+  };
+}
+
+export function faqPage(items: FaqItem[], pageUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    url: pageUrl,
+    inLanguage: "es-AR",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
   };
 }

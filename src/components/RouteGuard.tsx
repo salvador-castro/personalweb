@@ -15,7 +15,7 @@ const checkRouteEnabled = (pathname: string | null) => {
     return routes[pathname as keyof typeof routes];
   }
 
-  const dynamicRoutes = ["/blog", "/trabajos"] as const;
+  const dynamicRoutes = ["/blog", "/trabajos", "/servicios"] as const;
   for (const route of dynamicRoutes) {
     if (pathname.startsWith(route) && routes[route]) {
       return true;
