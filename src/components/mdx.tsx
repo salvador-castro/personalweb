@@ -207,7 +207,8 @@ function createCodeBlock (props: any) {
 
 const components = {
   p: createParagraph as any,
-  h1: createHeading('h1') as any,
+  // The page title is the only h1: '#' inside a post renders as h2
+  h1: createHeading('h2') as any,
   h2: createHeading('h2') as any,
   h3: createHeading('h3') as any,
   h4: createHeading('h4') as any,
