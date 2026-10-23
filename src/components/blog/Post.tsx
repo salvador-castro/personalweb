@@ -38,6 +38,8 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
                         cursor="interactive"
                         radius="l"
                         src={post.metadata.image}
+                        // The generated OG fallback (/og?title=...) is already an optimized PNG
+                        unoptimized={post.metadata.image.startsWith('/og')}
                         alt={'Thumbnail of ' + post.metadata.title}
                         aspectRatio="16 / 9"
                     />

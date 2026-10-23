@@ -4,7 +4,7 @@ import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import React, { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import remarkGfm from 'remark-gfm'
-import { getPublishedBlogSlugs } from '@/app/utils/utils'
+import { getPublishedBlogSlugs, localImageExists } from '@/app/utils/utils'
 
 import {
   Heading,
@@ -85,6 +85,11 @@ function createImage ({
 }: SmartImageProps & { src: string }) {
   if (!src) {
     console.error("SmartImage requires a valid 'src' property.")
+    return null
+  }
+
+  // Missing local files are reported by getPosts; skip them instead of rendering a broken image
+  if (!localImageExists(src)) {
     return null
   }
 

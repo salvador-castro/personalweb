@@ -33,6 +33,11 @@ const nextConfig = {
     ]
   },
   images: {
+    // Local images: static files under /images, plus the generated OG image used as cover fallback
+    localPatterns: [
+      { pathname: '/images/**', search: '' },
+      { pathname: '/og' }
+    ],
     remotePatterns: [
       {
         protocol: 'https',

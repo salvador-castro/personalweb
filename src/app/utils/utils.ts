@@ -27,6 +27,28 @@ type Metadata = {
 };
 
 import { notFound } from 'next/navigation';
+import { ogImagePath } from "@/app/utils/url";
+
+const LOCAL_IMAGE_IN_BODY = /(?:\]\(|src=["'])(\/images\/[^)"'\s]+)/g;
+
+const warnedMissing = new Set<string>();
+
+/** Whether a site-relative asset (e.g. "/images/x.webp") exists in /public. Remote URLs count as existing. */
+export function localImageExists(src: string): boolean {
+  if (!src.startsWith("/") || src.startsWith("//")) return true;
+  const pathname = decodeURI(src.split(/[?#]/)[0]);
+  return fs.existsSync(path.join(process.cwd(), "public", pathname));
+}
+
+/** Logs a missing image once per file and path, so builds point to exactly what to add. */
+function warnMissingImage(filePath: string, src: string) {
+  const key = `${filePath}|${src}`;
+  if (warnedMissing.has(key)) return;
+  warnedMissing.add(key);
+  console.warn(
+    `[posts] Missing image in ${path.relative(process.cwd(), filePath)}: public${src} (falling back)`
+  );
+}
 
 function getMDXFiles(dir: string) {
   if (!fs.existsSync(dir)) {
@@ -44,12 +66,33 @@ function readMDXFile(filePath: string) {
   const rawContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(rawContent);
 
+  const title: string = data.title || "";
+
+  // Cover: fall back to the generated OG image when the file isn't in /public
+  let image: string = data.image || "";
+  if (image && !localImageExists(image)) {
+    warnMissingImage(filePath, image);
+    image = ogImagePath(title);
+  }
+
+  // Gallery (case studies): drop missing files so the carousel never shows a broken image
+  const images: string[] = (data.images || []).filter((src: string) => {
+    const exists = localImageExists(src);
+    if (!exists) warnMissingImage(filePath, src);
+    return exists;
+  });
+
+  // Images inside the body are skipped at render time (components/mdx.tsx); report them here
+  for (const [, src] of content.matchAll(LOCAL_IMAGE_IN_BODY)) {
+    if (!localImageExists(src)) warnMissingImage(filePath, src);
+  }
+
   const metadata: Metadata = {
-    title: data.title || "",
+    title,
     publishedAt: data.publishedAt,
     summary: data.summary || "",
-    image: data.image || "",
-    images: data.images || [],
+    image,
+    images,
     tag: data.tag || [],
     team: data.team || [],
     link: data.link || "",
