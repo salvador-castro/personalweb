@@ -499,9 +499,9 @@ const servicios = {
       slug: 'sistemas-a-medida',
       icon: 'document',
       title: 'Sistemas a medida',
-      tagline: 'Gestión, SaaS y facturación sin planillas',
+      tagline: 'Gestión, paneles y SaaS sin planillas',
       description:
-        'Sistemas web para ordenar la operación de tu PyME: gestión interna, paneles de administración, productos SaaS, facturación electrónica y automatizaciones.',
+        'Sistemas web para ordenar la operación de tu PyME: gestión interna, paneles de administración, productos SaaS y automatizaciones.',
       features: [
         'Panel con usuarios, roles y permisos',
         'Dashboards y reportes exportables',

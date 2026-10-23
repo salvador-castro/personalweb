@@ -187,14 +187,14 @@ export const servicePages: ServicePage[] = [
     serviceType: "Desarrollo de software y sistemas web a medida",
     icon: "document",
     title: "Sistemas de gestión a medida para PyMEs | Salvador Castro",
-    description: `Sistemas web a medida ${fromPrice(minPrice("sistemas-a-medida"))}: gestión interna, paneles, SaaS, facturación electrónica y automatizaciones para PyMEs de Argentina y Uruguay.`,
-    headline: "Sistemas a medida para PyMEs: gestión, SaaS y facturación",
-    answer: `Desarrollo sistemas web a medida ${fromPrice(minPrice("sistemas-a-medida"))} para PyMEs de Argentina y Uruguay que necesitan ordenar su operación: sistemas de gestión interna, paneles de administración, productos SaaS, facturación electrónica y automatizaciones que reemplazan planillas y tareas manuales.`,
+    description: `Sistemas de gestión a medida ${fromPrice(minPrice("sistemas-a-medida"))}: gestión interna, paneles de administración, SaaS y automatizaciones para PyMEs de Argentina y Uruguay.`,
+    headline: "Sistemas a medida y de gestión para PyMEs",
+    answer: `Desarrollo sistemas web a medida ${fromPrice(minPrice("sistemas-a-medida"))} para PyMEs de Argentina y Uruguay que necesitan ordenar su operación: sistemas de gestión interna, paneles de administración, productos SaaS y automatizaciones que reemplazan planillas y tareas manuales.`,
     audience: [
       "PyMEs que manejan su operación en planillas de Excel",
       "Negocios que necesitan un panel para pedidos, stock, clientes o comisiones",
       "Emprendedores que quieren lanzar un producto SaaS",
-      "Empresas que necesitan facturación electrónica o automatizar tareas repetitivas",
+      "Empresas que quieren automatizar tareas repetitivas e integrar sus herramientas",
     ],
     includes: [
       "Relevamiento del proceso y propuesta de alcance por etapas",
