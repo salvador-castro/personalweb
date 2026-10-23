@@ -505,7 +505,7 @@ const servicios = {
       features: [
         'Panel con usuarios, roles y permisos',
         'Dashboards y reportes exportables',
-        'Integraciones: Mercado Pago, WhatsApp y facturación electrónica',
+        'Integraciones: Mercado Pago, WhatsApp y facturación electrónica (opcional)',
         'Automatizaciones y tareas programadas'
       ],
       caseStudy: {

@@ -200,7 +200,7 @@ export const servicePages: ServicePage[] = [
       "Relevamiento del proceso y propuesta de alcance por etapas",
       "Panel web con usuarios, roles y permisos",
       "Dashboards con métricas y reportes exportables",
-      "Integraciones con Mercado Pago, WhatsApp, email y facturación electrónica (ARCA)",
+      "Integraciones con Mercado Pago, WhatsApp y email, y facturación electrónica con ARCA si tu sistema la necesita",
       "Automatizaciones y tareas programadas",
       "Puesta en producción y soporte posterior",
     ],
@@ -219,9 +219,9 @@ export const servicePages: ServicePage[] = [
           "Es un software web hecho para el proceso de tu negocio, en lugar de adaptar el negocio a una herramienta genérica. Conviene cuando las planillas o los sistemas enlatados ya no alcanzan, o cuando pagás varias herramientas que no se integran entre sí.",
       },
       {
-        question: "¿Se puede integrar facturación electrónica?",
+        question: "¿Se puede integrar facturación electrónica en el sistema?",
         answer:
-          "Sí. Un sistema a medida puede emitir comprobantes electrónicos a través de los servicios web de ARCA (ex AFIP) y además integrarse con Mercado Pago, WhatsApp y email.",
+          "Sí, como funcionalidad opcional: si tu sistema lo necesita, puede emitir comprobantes electrónicos a través de los servicios web de ARCA (ex AFIP). No viene incluida en todos los sistemas; se define en la propuesta. Es algo distinto de la factura por mi trabajo, que siempre es Factura C.",
       },
     ],
     whatsappMessage: "Hola Salvador! Quiero consultar por un sistema a medida para mi negocio.",
@@ -233,6 +233,8 @@ export function getServicePage(slug: string): ServicePage | undefined {
 }
 
 export const servicePath = (slug: ServiceSlug) => `/servicios/${slug}`;
+
+export const invoiceNote = "Sí. Siempre emito Factura C por todos los trabajos.";
 
 const allPricesSentence = pricing.items.map((item) => `${lowerFirst(item.label)} ${fromPrice(item.from)}`).join(", ");
 
@@ -249,7 +251,11 @@ export const generalFaq: FaqItem[] = [
   {
     question: "¿Dónde estás y cómo trabajás?",
     answer:
-      "Estoy en la Ciudad de Buenos Aires. Trabajo de forma remota con clientes de todo el país y de Uruguay, y si estás en CABA o el AMBA también podemos coordinar una reunión presencial.",
+      "Estoy en la Ciudad de Buenos Aires. Las reuniones son preferentemente virtuales, por videollamada, así que trabajo igual con clientes de todo el país y de Uruguay. Si estás en CABA, también podemos coordinar una reunión presencial.",
+  },
+  {
+    question: "¿Hacés factura?",
+    answer: invoiceNote,
   },
   {
     question: "¿Cuánto tarda en estar lista?",
