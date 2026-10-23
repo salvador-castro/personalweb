@@ -82,7 +82,7 @@ export const Header = () => {
           textVariant="body-default-s"
           style={{ minWidth: 0 }}
         >
-          {display.location && <Flex hide="s">{person.location}</Flex>}
+          {display.location && <Flex hide="s">{person.city}</Flex>}
         </Flex>
 
         {/* Columna central: navegación */}

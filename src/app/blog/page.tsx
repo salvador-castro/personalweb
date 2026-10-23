@@ -10,7 +10,7 @@ import { Meta, Schema } from '@/once-ui/modules'
 
 export async function generateMetadata () {
   return Meta.generate({
-    title: blog.title,
+    title: blog.metaTitle,
     description: blog.description,
     baseURL: baseURL,
     image: ogImageUrl(blog.title),

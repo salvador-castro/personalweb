@@ -1,10 +1,12 @@
+import { fromPrice, minPrice } from './pricing'
+
 const person = {
   firstName: 'Salvador',
   lastName: 'Castro',
   get name () {
     return `${this.firstName} ${this.lastName}`
   },
-  role: 'Frontend Developer',
+  role: 'Desarrollador web freelance',
   avatar: '/images/avatar.webp',
   email: 'salvacastro06@gmail.com',
   github: 'https://github.com/salvador-castro/',
@@ -12,8 +14,10 @@ const person = {
   x: 'https://x.com/salva_castro95',
   youtube: 'https://youtube.com/@salva.castro?si=iBf9iVOzOppCvVPP',
   whatsapp: '5491135655755',
+  // IANA time zone, used by the header clock
   location: 'America/Argentina/Buenos_Aires',
-  languages: ['English', 'Spanish']
+  city: 'Buenos Aires, Argentina',
+  languages: ['Español', 'Inglés']
 }
 
 const newsletter = {
@@ -67,8 +71,8 @@ const social = [
 const home = {
   path: '/',
   label: 'Home',
-  title: `Desarrollo web para negocios y PyMEs | ${person.name}`,
-  description: `Sitios web, sistemas de turnos y tiendas online a medida para negocios y profesionales en Argentina. Desarrollado por ${person.name}, ${person.role}.`,
+  title: `Desarrollador web freelance en Buenos Aires | ${person.name}`,
+  description: `Páginas web, tiendas online y sistemas a medida para PyMEs de Argentina y Uruguay. Desarrollo freelance desde Buenos Aires, landing pages ${fromPrice(minPrice())}.`,
   headline: <>Webs y sistemas a medida que hacen crecer tu negocio</>,
   featured: {
     display: true,
@@ -90,9 +94,9 @@ const home = {
 
 const sobremi = {
   path: '/sobre-mi',
-  label: 'Sobre Mi',
-  title: `Sobre Mi – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  label: 'Sobre mí',
+  title: `Sobre mí – ${person.name}, desarrollador web freelance`,
+  description: `Soy ${person.name}, desarrollador web freelance en Buenos Aires. Hago páginas web, tiendas online y sistemas a medida para PyMEs de Argentina y Uruguay.`,
   tableOfContent: {
     display: true,
     subItems: false
@@ -109,15 +113,29 @@ const sobremi = {
     title: 'Introducción',
     description: (
       <>
-        Soy Salvador, estudiante de Ingeniería en Sistemas y apasionado por el
-        desarrollo web. Actualmente formo parte de la Legislatura de la Ciudad
-        de Buenos Aires, donde desempeño dos roles complementarios: como
-        Frontend Developer, desarrollando interfaces modernas con React, Next.js
-        y Tailwind para sistemas internos, y como Help Desk, garantizando el
-        funcionamiento óptimo de la infraestructura tecnológica. Mi camino
-        combina diseño, tecnología y soporte, impulsándome a aprender, mejorar y
-        construir soluciones digitales simples, funcionales y orientadas a las
-        personas.
+        <p>
+          Soy Salvador Castro, desarrollador web freelance para PyMEs en Buenos
+          Aires, Argentina y Uruguay. Diseño y desarrollo páginas web, tiendas
+          online, sistemas de turnos y sistemas a medida para comercios,
+          profesionales y empresas que quieren conseguir más clientes por
+          internet: sitios rápidos, pensados para el celular y para aparecer en
+          Google, con contacto directo por WhatsApp.
+        </p>
+        <p>
+          Trabajé con barberías y salones de belleza, una carnicería con tienda
+          online, un centro médico que gestiona sus turnos online y eventos en
+          Uruguay. Podés ver esos proyectos en <a href='/trabajos'>Trabajos</a>{' '}
+          o conocer qué hago y cuánto cuesta en{' '}
+          <a href='/servicios'>Servicios</a>.
+        </p>
+        <p>
+          En paralelo estudio Ingeniería en Sistemas de Información en la UTN y
+          formo parte de la Legislatura de la Ciudad de Buenos Aires, donde
+          desarrollo interfaces con React, Next.js y Tailwind para sistemas
+          internos y antes me ocupé del Help Desk. Esa trayectoria combina
+          diseño, desarrollo y soporte, y es la base con la que trabajo en cada
+          proyecto.
+        </p>
       </>
     )
   },
@@ -394,22 +412,23 @@ const blog = {
   path: '/blog',
   label: 'Blog',
   title: `Noticias y Tendencias Tech`,
-  description: `Actualidad tecnológica con novedades, lanzamientos, tendencias y 
-  herramientas verificadas para mantenerse al día en el mundo digital.`
+  metaTitle: `Blog de tecnología: noticias y guías prácticas | ${person.name}`,
+  description: `Actualidad tecnológica con novedades, lanzamientos, tendencias y herramientas verificadas para mantenerse al día en el mundo digital.`
 }
 
 const trabajos = {
   path: '/trabajos',
   label: 'Trabajos',
-  title: `Casos de éxito: sitios web y sistemas para negocios – ${person.name}`,
-  description: `Landing pages, sistemas de turnos y tiendas online desarrollados para comercios, profesionales y PyMEs reales en Argentina.`
+  title: `Casos de éxito: páginas web y sistemas para PyMEs | ${person.name}`,
+  headline: 'Casos de éxito',
+  description: `Proyectos reales: webs para barberías y salones, tienda online para una carnicería, sistemas de turnos y sitios de eventos en Argentina y Uruguay.`
 }
 
 const servicios = {
   path: '/servicios',
   label: 'Servicios',
-  title: `Servicios de desarrollo web para negocios y PyMEs – ${person.name}`,
-  description: `Landing pages, sistemas de turnos y tiendas online a medida para comercios, profesionales y PyMEs en Argentina.`,
+  title: `Servicios y precios de desarrollo web para PyMEs | ${person.name}`,
+  description: `Landing pages, páginas institucionales, tiendas online, sistemas de turnos y sistemas a medida para PyMEs de Argentina y Uruguay, ${fromPrice(minPrice())}.`,
   hero: {
     title: 'Servicios de desarrollo web para tu negocio',
     subline: (
