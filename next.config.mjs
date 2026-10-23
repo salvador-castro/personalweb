@@ -56,7 +56,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'vitejs.dev',
+        hostname: 'vite.dev',
         pathname: '/**'
       },
       {

@@ -297,7 +297,7 @@ const sobremi = {
             height: 64
           },
           {
-            src: 'https://vitejs.dev/logo.svg',
+            src: 'https://vite.dev/logo.svg',
             alt: 'Vite',
             width: 64,
             height: 64
