@@ -126,6 +126,7 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
         }}
       />
       <Heading
+        as='h2'
         style={{ position: 'relative' }}
         marginBottom='s'
         variant='display-strong-xs'

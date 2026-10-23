@@ -48,7 +48,7 @@ export default function Blog () {
         {blog.title}
       </Heading>
 
-      <Heading marginBottom='l' variant='body-default-l'>
+      <Heading as='p' marginBottom='l' variant='body-default-l'>
         {blog.description}
       </Heading>
       <Column fillWidth flex={1}>
