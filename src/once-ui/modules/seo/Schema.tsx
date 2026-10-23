@@ -1,7 +1,7 @@
 import React from "react";
-import Script from "next/script";
-import { social } from "@/app/resources/content";
 import { joinUrl, ogImagePath } from "@/app/utils/url";
+import { schemaIds } from "@/app/utils/structuredData";
+import { JsonLd } from "./JsonLd";
 
 export interface BreadcrumbItem {
   name: string;
@@ -9,7 +9,17 @@ export interface BreadcrumbItem {
 }
 
 export interface SchemaProps {
-  as: "website" | "article" | "blog" | "blogPosting" | "techArticle" | "webPage" | "organization" | "profilePage";
+  as:
+    | "website"
+    | "article"
+    | "blog"
+    | "blogPosting"
+    | "techArticle"
+    | "webPage"
+    | "collectionPage"
+    | "creativeWork"
+    | "organization"
+    | "profilePage";
   title: string;
   description: string;
   baseURL: string;
@@ -23,6 +33,8 @@ export interface SchemaProps {
     image?: string;
   };
   breadcrumb?: BreadcrumbItem[];
+  /** Extra properties merged into the main node (e.g. `about`, `mainEntity`) */
+  extra?: Record<string, unknown>;
 }
 
 const schemaTypeMap = {
@@ -32,9 +44,14 @@ const schemaTypeMap = {
   blogPosting: "BlogPosting",
   techArticle: "TechArticle",
   webPage: "WebPage",
+  collectionPage: "CollectionPage",
+  creativeWork: "CreativeWork",
   organization: "Organization",
   profilePage: "ProfilePage",
 };
+
+// Page-like types: described by name and attached to the site
+const pageTypes = new Set(["website", "webPage", "collectionPage", "organization", "profilePage", "blog"]);
 
 export function Schema({
   as,
@@ -47,38 +64,28 @@ export function Schema({
   image,
   author,
   breadcrumb,
+  extra,
 }: SchemaProps) {
   // joinUrl keeps absolute images as-is, so callers may pass either a path or a full URL
   const imageUrl = joinUrl(baseURL, image || ogImagePath(title));
 
   const url = joinUrl(baseURL, path);
 
-  const schemaType = schemaTypeMap[as];
-
   const schema: Record<string, any> = {
     "@context": "https://schema.org",
-    "@type": schemaType,
+    "@type": schemaTypeMap[as],
+    "@id": url,
     url,
+    inLanguage: "es-AR",
+    isPartOf: { "@id": schemaIds.website },
+    image: imageUrl,
+    description,
   };
-  
-  schema.sameAs = Object.values(social).filter(Boolean)
 
-  if (as === "website") {
+  if (pageTypes.has(as)) {
     schema.name = title;
-    schema.description = description;
-    schema.image = imageUrl;
-  } else if (as === "organization") {
-    schema.name = title;
-    schema.description = description;
-    schema.image = imageUrl;
-  } else if (as === "profilePage") {
-    schema.name = title;
-    schema.description = description;
-    schema.image = imageUrl;
   } else {
     schema.headline = title;
-    schema.description = description;
-    schema.image = imageUrl;
     schema.mainEntityOfPage = {
       "@type": "WebPage",
       "@id": url,
@@ -103,16 +110,13 @@ export function Schema({
   }
 
   if (author) {
+    // The author is always the site owner: reference the Person node from the root layout
     const person = {
       "@type": "Person",
+      "@id": schemaIds.person,
       name: author.name,
       ...(author.url && { url: author.url }),
-      ...(author.image && {
-        image: {
-          "@type": "ImageObject",
-          url: author.image,
-        },
-      }),
+      ...(author.image && { image: author.image }),
     };
 
     if (as === "profilePage") {
@@ -122,15 +126,9 @@ export function Schema({
     }
   }
 
-  return (
-    <Script
-      id={`schema-${as}-${path}`}
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(schema),
-      }}
-    />
-  );
+  Object.assign(schema, extra);
+
+  return <JsonLd id={`schema-${as}-${path}`} data={schema} />;
 }
 
 export default Schema;

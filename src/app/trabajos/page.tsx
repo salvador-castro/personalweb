@@ -22,7 +22,7 @@ export default function Trabajos() {
   return (
     <Column maxWidth="m">
       <Schema
-        as="webPage"
+        as="collectionPage"
         baseURL={baseURL}
         path={trabajos.path}
         title={trabajos.title}

@@ -59,14 +59,14 @@ export default async function Project({
   return (
     <Column as="section" maxWidth="m" horizontal="center" gap="l">
       <Schema
-        as="blogPosting"
+        as="creativeWork"
         baseURL={baseURL}
         path={`${trabajos.path}/${post.slug}`}
         title={post.metadata.title}
         description={post.metadata.summary}
         datePublished={post.metadata.publishedAt}
         dateModified={post.metadata.publishedAt}
-        image={ogImageUrl(post.metadata.title)}
+        image={post.metadata.images[0] ? absoluteUrl(post.metadata.images[0]) : ogImageUrl(post.metadata.title)}
         author={{
           name: person.name,
           url: `${baseURL}${sobremi.path}`,

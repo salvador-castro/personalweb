@@ -10,7 +10,8 @@ import styles from "./layout.module.scss";
 
 import { Background, Column, Flex, ThemeProvider, ToastProvider } from "@/once-ui/components";
 import { opacity, SpacingToken } from "@/once-ui/types";
-import { Meta } from "@/once-ui/modules";
+import { Meta, JsonLd } from "@/once-ui/modules";
+import { siteGraph } from "@/app/utils/structuredData";
 import { Analytics } from "@vercel/analytics/next";
 import { GA_MEASUREMENT_ID } from "@/app/utils/gtag";
 import Script from "next/script";
@@ -116,6 +117,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       <ThemeProvider>
         <ToastProvider>
           <Column style={{ minHeight: "100vh" }} as="body" fillWidth margin="0" padding="0">
+            <JsonLd id="schema-site" data={siteGraph()} />
             <Background
               position="fixed"
               mask={{
