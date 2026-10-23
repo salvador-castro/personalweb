@@ -4,6 +4,7 @@ import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import React, { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import remarkGfm from 'remark-gfm'
+import { getPublishedBlogSlugs } from '@/app/utils/utils'
 
 import {
   Heading,
@@ -25,7 +26,35 @@ type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode
 }
 
+// Matches /blog/<slug> with an optional trailing slash, ?query or #anchor (not /blog/tag/... or /blog/page/...)
+const BLOG_POST_HREF = /^\/blog\/([^/?#]+)\/?(?:[?#].*)?$/
+const BLOG_RESERVED_SEGMENTS = new Set(['tag', 'page'])
+
+function getUnpublishedBlogSlug (href: string): string | null {
+  const match = href.match(BLOG_POST_HREF)
+  if (!match) return null
+
+  let slug = match[1]
+  try {
+    slug = decodeURIComponent(slug)
+  } catch {
+    // Keep the raw segment if it isn't valid URI encoding
+  }
+
+  if (BLOG_RESERVED_SEGMENTS.has(slug)) return null
+  return getPublishedBlogSlugs().has(slug) ? null : slug
+}
+
 function CustomLink ({ href, children, ...props }: CustomLinkProps) {
+  // Links to posts that aren't published yet render as plain text and activate once the post exists
+  const unpublishedSlug = getUnpublishedBlogSlug(href)
+  if (unpublishedSlug) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(`[mdx] link to unpublished post: ${unpublishedSlug}`)
+    }
+    return <>{children}</>
+  }
+
   if (href.startsWith('/')) {
     return (
       <SmartLink href={href} {...props}>

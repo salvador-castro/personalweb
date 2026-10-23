@@ -70,3 +70,18 @@ export function getPosts(customPath = ["", "", "", ""]) {
   const postsDir = path.join(process.cwd(), ...customPath);
   return getMDXData(postsDir);
 }
+
+let publishedBlogSlugs: Set<string> | undefined;
+
+/**
+ * Slugs of the blog posts whose .mdx exists on disk. Computed once per process,
+ * so in production it reflects the files present at build time.
+ */
+export function getPublishedBlogSlugs(): Set<string> {
+  publishedBlogSlugs ??= new Set(
+    getMDXFiles(path.join(process.cwd(), "src", "app", "blog", "posts")).map((file) =>
+      path.basename(file, ".mdx")
+    )
+  );
+  return publishedBlogSlugs;
+}
