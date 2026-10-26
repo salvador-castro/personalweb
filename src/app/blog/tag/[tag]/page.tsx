@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getBlogTags } from "@/app/utils/utils";
-import { tagPath } from "@/app/utils/tags";
+import { MIN_POSTS_TO_INDEX_TAG, tagPath } from "@/app/utils/tags";
 import { Column, Grid, Heading, Tag } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { blog, person } from "@/app/resources/content";
@@ -27,12 +27,18 @@ export async function generateMetadata({
   const tag = findTag(slug);
   if (!tag) notFound();
 
-  return Meta.generate({
-    title: `${tag.name} – ${blog.title}`,
-    description: `Posts sobre ${tag.name} en el blog de ${person.name}.`,
-    baseURL: baseURL,
-    path: tagPath(tag.name),
-  });
+  return {
+    ...Meta.generate({
+      title: `${tag.name} – ${blog.title}`,
+      description: `Posts sobre ${tag.name} en el blog de ${person.name}.`,
+      baseURL: baseURL,
+      path: tagPath(tag.name),
+    }),
+    // Thin tag pages: keep them out of the index but let Google follow their posts
+    ...(tag.posts.length < MIN_POSTS_TO_INDEX_TAG && {
+      robots: { index: false, follow: true },
+    }),
+  };
 }
 
 export default async function TagPage({
