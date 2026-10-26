@@ -37,7 +37,10 @@ export default function Post({ post, thumbnail, direction, headingAs = "h2" }: P
                     aspectRatio="16 / 9"
                 />
             )}
+            {/* Flex defaults to position: relative; static here so the title link's ::after
+                covers the whole card (image included), not just this column */}
             <Column
+                position="static"
                 fillWidth gap="4"
                 padding="24"
                 vertical="center">
