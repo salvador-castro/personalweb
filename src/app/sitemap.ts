@@ -1,7 +1,7 @@
-import { getPosts } from "@/app/utils/utils";
-import { baseURL, routes as routesConfig } from "@/app/resources";
-import { getTotalPages } from "@/components/blog/BlogPagination";
-import { tagPath } from "@/app/utils/tags";
+import { getBlogTags, getPosts, newestLastModified, postLastModified } from "@/app/utils/utils";
+import { baseURL, routes as routesConfig, sobremi } from "@/app/resources";
+import { getTotalPages, POSTS_PER_PAGE } from "@/components/blog/BlogPagination";
+import { MIN_POSTS_TO_INDEX_TAG, tagPath } from "@/app/utils/tags";
 import { servicePages, servicePath } from "@/app/resources/services";
 import { pricing } from "@/app/resources/pricing";
 
@@ -23,15 +23,21 @@ const routeChangeFrequency: Record<string, "always" | "hourly" | "daily" | "week
   "/blog": "weekly",
 };
 
+// Every lastmod comes from content dates, never from the build date
 export default async function sitemap() {
-  const blogs = getPosts(["src", "app", "blog", "posts"]).map((post) => ({
+  const allBlogPosts = getPosts(["src", "app", "blog", "posts"]).sort(
+    (a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+  );
+  const allProjects = getPosts(["src", "app", "trabajos", "projects"]);
+
+  const blogs = allBlogPosts.map((post) => ({
     url: `${baseURL}/blog/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
+    lastModified: postLastModified(post),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  const trabajos = getPosts(["src", "app", "trabajos", "projects"]).map((post) => ({
+  const trabajos = allProjects.map((post) => ({
     url: `${baseURL}/trabajos/${post.slug}`,
     lastModified: post.metadata.publishedAt,
     changeFrequency: "monthly" as const,
@@ -47,31 +53,48 @@ export default async function sitemap() {
       }))
     : [];
 
+  const newestPost = newestLastModified(allBlogPosts);
+  const newestProject = allProjects.map((post) => post.metadata.publishedAt).sort().at(-1);
+
+  const routeLastModified: Record<string, string | undefined> = {
+    // The home lists services, the featured project and the latest posts
+    "/": [newestPost, newestProject, pricing.updatedAt].filter(Boolean).sort().at(-1),
+    "/servicios": pricing.updatedAt,
+    "/sobre-mi": sobremi.updatedAt,
+    "/trabajos": newestProject,
+    "/blog": newestPost,
+  };
+
   const activeRoutes = Object.keys(routesConfig).filter((route) => routesConfig[route as keyof typeof routesConfig]);
 
   const routes = activeRoutes.map((route) => ({
     url: `${baseURL}${route !== "/" ? route : ""}`,
-    lastModified: new Date().toISOString().split("T")[0],
+    lastModified: routeLastModified[route],
     changeFrequency: routeChangeFrequency[route] ?? "monthly",
     priority: routePriority[route] ?? 0.5,
   }));
 
-  const allBlogPosts = getPosts(["src", "app", "blog", "posts"]);
-  const uniqueTags = [...new Set(allBlogPosts.map((p) => p.metadata.tag).filter(Boolean))] as string[];
-  const tagPages = uniqueTags.map((tag) => ({
-    url: `${baseURL}${tagPath(tag)}`,
-    lastModified: new Date().toISOString().split("T")[0],
-    changeFrequency: "weekly" as const,
-    priority: 0.6,
-  }));
+  // Thin tags are noindex (see blog/tag/[tag]/page.tsx), so they stay out of the sitemap
+  const tagPages = getBlogTags()
+    .filter((tag) => tag.posts.length >= MIN_POSTS_TO_INDEX_TAG)
+    .map((tag) => ({
+      url: `${baseURL}${tagPath(tag.name)}`,
+      lastModified: newestLastModified(tag.posts),
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    }));
 
-  const totalBlogPages = getTotalPages();
-  const blogPages = Array.from({ length: totalBlogPages - 1 }, (_, i) => ({
-    url: `${baseURL}/blog/page/${i + 2}`,
-    lastModified: new Date().toISOString().split("T")[0],
-    changeFrequency: "weekly" as const,
-    priority: 0.5,
-  }));
+  // Same order as the blog listing: each page's lastmod is the newest post it shows
+  const blogPages = Array.from({ length: getTotalPages() - 1 }, (_, i) => {
+    const page = i + 2;
+    const start = (page - 1) * POSTS_PER_PAGE;
+    return {
+      url: `${baseURL}/blog/page/${page}`,
+      lastModified: newestLastModified(allBlogPosts.slice(start, start + POSTS_PER_PAGE)),
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    };
+  });
 
   return [...routes, ...servicios, ...blogs, ...blogPages, ...trabajos, ...tagPages];
 }

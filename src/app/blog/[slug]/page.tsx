@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
-import { getPosts } from "@/app/utils/utils";
+import { getPosts, postLastModified } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Heading, HeadingNav, Icon, Row, Tag, Text } from "@/once-ui/components";
 import { sobremi, blog, person, baseURL } from "@/app/resources";
 import { formatDate } from "@/app/utils/formatDate";
@@ -43,6 +43,7 @@ export async function generateMetadata({
     path: `${blog.path}/${post.slug}`,
     type: "article",
     publishedTime: post.metadata.publishedAt,
+    modifiedTime: postLastModified(post),
     author: {
       name: person.name,
       url: `${baseURL}${sobremi.path}`,
@@ -83,7 +84,7 @@ export default async function Blog({
             title={post.metadata.title}
             description={post.metadata.summary}
             datePublished={post.metadata.publishedAt}
-            dateModified={post.metadata.publishedAt}
+            dateModified={postLastModified(post)}
             image={postImageUrl(post.metadata)}
             author={{
               name: person.name,

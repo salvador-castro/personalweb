@@ -12,6 +12,8 @@ type Team = {
 type Metadata = {
   title: string;
   publishedAt: string;
+  // Set only when the content itself changes (not for title/summary tweaks)
+  updatedAt?: string;
   summary: string;
   image?: string;
   images: string[];
@@ -91,6 +93,7 @@ function readMDXFile(filePath: string) {
   const metadata: Metadata = {
     title,
     publishedAt: data.publishedAt,
+    updatedAt: data.updatedAt,
     summary: data.summary || "",
     image,
     images,
@@ -159,4 +162,14 @@ export function getBlogTags(): { name: string; slug: string; posts: BlogPost[] }
     );
   }
   return [...tags.values()];
+}
+
+/** Last real content change of a post: updatedAt if set, otherwise publishedAt. */
+export function postLastModified(post: BlogPost): string {
+  return post.metadata.updatedAt || post.metadata.publishedAt;
+}
+
+/** Most recent postLastModified among the given posts. */
+export function newestLastModified(posts: BlogPost[]): string | undefined {
+  return posts.map(postLastModified).sort().at(-1);
 }

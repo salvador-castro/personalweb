@@ -9,6 +9,7 @@ export interface MetaProps {
   type?: "website" | "article";
   image?: string;
   publishedTime?: string;
+  modifiedTime?: string;
   author?: {
     name: string;
     url?: string;
@@ -23,6 +24,7 @@ export function generateMetadata({
   type = "website",
   image,
   publishedTime,
+  modifiedTime,
   author,
 }: MetaProps): NextMetadata {
   // joinUrl keeps absolute images as-is, so callers may pass either a path or a full URL
@@ -41,6 +43,7 @@ export function generateMetadata({
       description,
       type,
       ...(publishedTime && type === "article" ? { publishedTime } : {}),
+      ...(modifiedTime && type === "article" ? { modifiedTime } : {}),
       url,
       images: [
         {

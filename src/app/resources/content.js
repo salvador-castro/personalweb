@@ -97,6 +97,8 @@ const home = {
 
 const sobremi = {
   path: '/sobre-mi',
+  // Last content change, used as the sitemap lastmod
+  updatedAt: '2026-10-23',
   label: 'Sobre mí',
   title: `Sobre mí – ${person.name}, desarrollador web freelance`,
   description: `Soy ${person.name}, desarrollador web freelance en Buenos Aires. Hago páginas web, tiendas online y sistemas a medida para PyMEs de Argentina y Uruguay.`,
