@@ -6,6 +6,24 @@
     }
 }
 
+.stretchedLink {
+    color: inherit;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        border-radius: var(--radius-l);
+    }
+}
+
+.tagLink {
+    position: relative;
+    z-index: 2;
+    width: fit-content;
+}
+
 .image {
     transition: var(--transition-micro-medium);
     transform: scale(1);
