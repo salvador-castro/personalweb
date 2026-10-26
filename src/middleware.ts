@@ -11,6 +11,11 @@ const SITE_HOST = /^(?:www\.)?salvacastro\.com\.ar(?=\/|$)/i;
 // can't match accented paths and compare case-insensitively, so they're handled here
 const TAG_PATH = /^\/blog\/tag\/([^/]+)\/?$/;
 
+// Merged tags: old slug -> the tag that replaced it
+const TAG_ALIASES: Record<string, string> = {
+  seguridad: "ciberseguridad",
+};
+
 function redirect(path: string, search = "") {
   return NextResponse.redirect(`${CANONICAL_ORIGIN}${path}${search}`, 301);
 }
@@ -33,7 +38,8 @@ export function middleware(request: NextRequest) {
 
   const tagMatch = pathname.match(TAG_PATH);
   if (tagMatch) {
-    const slug = tagSlug(decode(tagMatch[1]));
+    const cleanSlug = tagSlug(decode(tagMatch[1]));
+    const slug = TAG_ALIASES[cleanSlug] ?? cleanSlug;
     if (slug && slug !== tagMatch[1]) return redirect(`/blog/tag/${slug}`, search);
   }
 
