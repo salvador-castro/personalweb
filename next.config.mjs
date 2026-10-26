@@ -26,6 +26,7 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      { source: '/blog/page/1', destination: '/blog', statusCode: 301 },
       // Renamed images still discovered by Google
       ...[1, 2, 3, 4].map((n) => ({
         source: `/images/blog/gestorContraseniasGoogle/gestorContraseniasGoogle${n}.webp`,

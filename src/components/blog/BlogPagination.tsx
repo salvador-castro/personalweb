@@ -1,4 +1,4 @@
-import { Button, Flex, Text } from '@/once-ui/components'
+import { Button, Flex } from '@/once-ui/components'
 import { getPosts } from '@/app/utils/utils'
 import { Posts } from './Posts'
 
@@ -28,48 +28,60 @@ export function BlogPage ({ page }: { page: number }) {
   )
 }
 
+// Every page is linked from every page, so the deepest ones stay one click away
 function BlogPagination ({ page, totalPages }: { page: number, totalPages: number }) {
   if (totalPages <= 1) return null
+
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
 
   return (
     <Flex
       as='nav'
       aria-label='Paginación del blog'
       fillWidth
-      horizontal='space-between'
+      horizontal='center'
       vertical='center'
-      gap='12'
+      gap='8'
+      wrap
       marginBottom='40'
     >
-      <Flex flex={1} horizontal='start'>
-        {page > 1 && (
-          <Button
-            data-border='rounded'
-            href={pageHref(page - 1)}
-            variant='tertiary'
-            size='s'
-            prefixIcon='chevronLeft'
-          >
-            Anteriores
-          </Button>
-        )}
-      </Flex>
-      <Text variant='body-default-s' onBackground='neutral-weak'>
-        Página {page} de {totalPages}
-      </Text>
-      <Flex flex={1} horizontal='end'>
-        {page < totalPages && (
-          <Button
-            data-border='rounded'
-            href={pageHref(page + 1)}
-            variant='tertiary'
-            size='s'
-            suffixIcon='chevronRight'
-          >
-            Siguientes
-          </Button>
-        )}
-      </Flex>
+      {page > 1 && (
+        <Button
+          data-border='rounded'
+          href={pageHref(page - 1)}
+          variant='tertiary'
+          size='s'
+          prefixIcon='chevronLeft'
+          aria-label='Página anterior'
+        >
+          Anterior
+        </Button>
+      )}
+      {pages.map((n) => (
+        <Button
+          key={n}
+          data-border='rounded'
+          href={pageHref(n)}
+          variant={n === page ? 'primary' : 'tertiary'}
+          size='s'
+          aria-label={`Página ${n}`}
+          aria-current={n === page ? 'page' : undefined}
+        >
+          {n}
+        </Button>
+      ))}
+      {page < totalPages && (
+        <Button
+          data-border='rounded'
+          href={pageHref(page + 1)}
+          variant='tertiary'
+          size='s'
+          suffixIcon='chevronRight'
+          aria-label='Página siguiente'
+        >
+          Siguiente
+        </Button>
+      )}
     </Flex>
   )
 }
