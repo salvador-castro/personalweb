@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { tagSlug } from "@/app/utils/tags";
 
 const CANONICAL_ORIGIN = "https://www.salvacastro.com.ar";
 
@@ -6,15 +7,34 @@ const CANONICAL_ORIGIN = "https://www.salvacastro.com.ar";
 const DUPLICATED_DOMAIN = /^\/https?:\/+/i;
 const SITE_HOST = /^(?:www\.)?salvacastro\.com\.ar(?=\/|$)/i;
 
+// Legacy tag URLs used the raw tag name (/blog/tag/Tecnolog%C3%ADa). next.config redirects
+// can't match accented paths and compare case-insensitively, so they're handled here
+const TAG_PATH = /^\/blog\/tag\/([^/]+)\/?$/;
+
+function redirect(path: string, search = "") {
+  return NextResponse.redirect(`${CANONICAL_ORIGIN}${path}${search}`, 301);
+}
+
+function decode(value: string) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
   if (DUPLICATED_DOMAIN.test(pathname)) {
     const rest = pathname.replace(DUPLICATED_DOMAIN, "");
-    if (SITE_HOST.test(rest)) {
-      const path = rest.replace(SITE_HOST, "") || "/";
-      return NextResponse.redirect(`${CANONICAL_ORIGIN}${path}${search}`, 301);
-    }
+    if (SITE_HOST.test(rest)) return redirect(rest.replace(SITE_HOST, "") || "/", search);
+  }
+
+  const tagMatch = pathname.match(TAG_PATH);
+  if (tagMatch) {
+    const slug = tagSlug(decode(tagMatch[1]));
+    if (slug && slug !== tagMatch[1]) return redirect(`/blog/tag/${slug}`, search);
   }
 
   return NextResponse.next();

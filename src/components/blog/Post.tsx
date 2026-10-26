@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Column, Flex, Heading, SmartImage, SmartLink, Tag, Text } from '@/once-ui/components';
 import styles from './Posts.module.scss';
 import { formatDate } from '@/app/utils/formatDate';
+import { tagPath } from '@/app/utils/tags';
 
 interface PostProps {
     post: any;
@@ -58,7 +59,7 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
                 {post.metadata.tag && (
                     <Link
                         className={styles.tagLink}
-                        href={`/blog/tag/${encodeURIComponent(post.metadata.tag)}`}>
+                        href={tagPath(post.metadata.tag)}>
                         <Tag
                             className="mt-12"
                             label={post.metadata.tag}

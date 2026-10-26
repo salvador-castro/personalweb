@@ -5,6 +5,7 @@ import { getPosts } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Heading, HeadingNav, Icon, Row, Tag, Text } from "@/once-ui/components";
 import { sobremi, blog, person, baseURL } from "@/app/resources";
 import { formatDate } from "@/app/utils/formatDate";
+import { tagPath } from "@/app/utils/tags";
 import { absoluteUrl, ogImageUrl } from "@/app/utils/url";
 import ScrollToHash from "@/components/ScrollToHash";
 import { Metadata } from 'next';
@@ -104,7 +105,7 @@ export default async function Blog({
               {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
             </Text>
             {post.metadata.tag && (
-              <Link href={`/blog/tag/${encodeURIComponent(post.metadata.tag)}`}>
+              <Link href={tagPath(post.metadata.tag)}>
                 <Tag label={post.metadata.tag} variant="neutral" />
               </Link>
             )}

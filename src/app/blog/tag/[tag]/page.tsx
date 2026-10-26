@@ -1,16 +1,21 @@
 import { notFound } from "next/navigation";
-import { getPosts } from "@/app/utils/utils";
-import { Column, Grid, Heading, Tag, Text } from "@/once-ui/components";
+import { getBlogTags } from "@/app/utils/utils";
+import { tagPath } from "@/app/utils/tags";
+import { Column, Grid, Heading, Tag } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { blog, person } from "@/app/resources/content";
 import { Meta, Schema } from "@/once-ui/modules";
 import Post from "@/components/blog/Post";
 import { Metadata } from "next";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
-  const posts = getPosts(["src", "app", "blog", "posts"]);
-  const tags = [...new Set(posts.map((post) => post.metadata.tag).filter(Boolean))] as string[];
-  return tags.map((tag) => ({ tag: encodeURIComponent(tag) }));
+  return getBlogTags().map((tag) => ({ tag: tag.slug }));
+}
+
+function findTag(slug: string) {
+  return getBlogTags().find((tag) => tag.slug === slug);
 }
 
 export async function generateMetadata({
@@ -18,13 +23,15 @@ export async function generateMetadata({
 }: {
   params: Promise<{ tag: string }>;
 }): Promise<Metadata> {
-  const { tag } = await params;
-  const decodedTag = decodeURIComponent(tag);
+  const { tag: slug } = await params;
+  const tag = findTag(slug);
+  if (!tag) notFound();
+
   return Meta.generate({
-    title: `${decodedTag} – ${blog.title}`,
-    description: `Posts sobre ${decodedTag} en el blog de ${person.name}.`,
+    title: `${tag.name} – ${blog.title}`,
+    description: `Posts sobre ${tag.name} en el blog de ${person.name}.`,
     baseURL: baseURL,
-    path: `/blog/tag/${tag}`,
+    path: tagPath(tag.name),
   });
 }
 
@@ -33,30 +40,20 @@ export default async function TagPage({
 }: {
   params: Promise<{ tag: string }>;
 }) {
-  const { tag } = await params;
-  const decodedTag = decodeURIComponent(tag);
+  const { tag: slug } = await params;
+  const tag = findTag(slug);
+  if (!tag) notFound();
 
-  const allPosts = getPosts(["src", "app", "blog", "posts"]);
-  const filteredPosts = allPosts
-    .filter((post) => post.metadata.tag === decodedTag)
-    .sort(
-      (a, b) =>
-        new Date(b.metadata.publishedAt).getTime() -
-        new Date(a.metadata.publishedAt).getTime()
-    );
-
-  if (filteredPosts.length === 0) {
-    notFound();
-  }
+  const path = tagPath(tag.name);
 
   return (
     <Column maxWidth="s">
       <Schema
         as="blog"
         baseURL={baseURL}
-        title={`${decodedTag} – ${blog.title}`}
-        description={`Posts sobre ${decodedTag} en el blog de ${person.name}.`}
-        path={`/blog/tag/${tag}`}
+        title={`${tag.name} – ${blog.title}`}
+        description={`Posts sobre ${tag.name} en el blog de ${person.name}.`}
+        path={path}
         author={{
           name: person.name,
           url: `${baseURL}/sobre-mi`,
@@ -65,18 +62,18 @@ export default async function TagPage({
         breadcrumb={[
           { name: "Inicio", url: baseURL },
           { name: blog.label, url: `${baseURL}${blog.path}` },
-          { name: decodedTag, url: `${baseURL}/blog/tag/${tag}` },
+          { name: tag.name, url: `${baseURL}${path}` },
         ]}
       />
       <Heading marginBottom="xs" variant="display-strong-m">
         {blog.title}
       </Heading>
       <Heading as="p" marginBottom="l" variant="body-default-l">
-        Posts etiquetados con <Tag label={decodedTag} variant="brand" />
+        Posts etiquetados con <Tag label={tag.name} variant="brand" />
       </Heading>
       <Grid columns="1" fillWidth marginBottom="40" gap="12">
-        {filteredPosts.map((post) => (
-          <Post key={post.slug} post={post} thumbnail direction="column" />
+        {tag.posts.map((post) => (
+          <Post key={post.slug} post={{ ...post, content: "" }} thumbnail direction="column" />
         ))}
       </Grid>
     </Column>

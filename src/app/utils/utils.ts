@@ -28,6 +28,7 @@ type Metadata = {
 
 import { notFound } from 'next/navigation';
 import { ogImagePath } from "@/app/utils/url";
+import { tagSlug } from "@/app/utils/tags";
 
 const LOCAL_IMAGE_IN_BODY = /(?:\]\(|src=["'])(\/images\/[^)"'\s]+)/g;
 
@@ -138,4 +139,24 @@ export function getPublishedBlogSlugs(): Set<string> {
     )
   );
   return publishedBlogSlugs;
+}
+
+export type BlogPost = ReturnType<typeof getPosts>[number];
+
+/** Blog tags with their posts, newest first. */
+export function getBlogTags(): { name: string; slug: string; posts: BlogPost[] }[] {
+  const tags = new Map<string, { name: string; slug: string; posts: BlogPost[] }>();
+  for (const post of getPosts(["src", "app", "blog", "posts"])) {
+    const name = post.metadata.tag;
+    if (!name) continue;
+    const slug = tagSlug(name);
+    if (!tags.has(slug)) tags.set(slug, { name, slug, posts: [] });
+    tags.get(slug)!.posts.push(post);
+  }
+  for (const tag of tags.values()) {
+    tag.posts.sort(
+      (a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+    );
+  }
+  return [...tags.values()];
 }

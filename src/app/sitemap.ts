@@ -1,6 +1,7 @@
 import { getPosts } from "@/app/utils/utils";
 import { baseURL, routes as routesConfig } from "@/app/resources";
 import { getTotalPages } from "@/components/blog/BlogPagination";
+import { tagPath } from "@/app/utils/tags";
 import { servicePages, servicePath } from "@/app/resources/services";
 import { pricing } from "@/app/resources/pricing";
 
@@ -58,7 +59,7 @@ export default async function sitemap() {
   const allBlogPosts = getPosts(["src", "app", "blog", "posts"]);
   const uniqueTags = [...new Set(allBlogPosts.map((p) => p.metadata.tag).filter(Boolean))] as string[];
   const tagPages = uniqueTags.map((tag) => ({
-    url: `${baseURL}/blog/tag/${encodeURIComponent(tag)}`,
+    url: `${baseURL}${tagPath(tag)}`,
     lastModified: new Date().toISOString().split("T")[0],
     changeFrequency: "weekly" as const,
     priority: 0.6,
