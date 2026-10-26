@@ -24,6 +24,27 @@ const nextConfig = {
     compiler: 'modern',
     silenceDeprecations: ['legacy-js-api']
   },
+  async redirects() {
+    return [
+      // Renamed images still discovered by Google
+      ...[1, 2, 3, 4].map((n) => ({
+        source: `/images/blog/gestorContraseniasGoogle/gestorContraseniasGoogle${n}.webp`,
+        destination: `/images/blog/gestorContraseniaGoogle/gestorContraseniaGoogle${n}.webp`,
+        statusCode: 301,
+      })),
+      {
+        source: '/images/blog/gestorContraseniasGoogle/:file',
+        destination: '/images/blog/gestorContraseniaGoogle/:file',
+        statusCode: 301,
+      },
+      { source: '/images/avatar.jpeg', destination: '/images/avatar.webp', statusCode: 301 },
+      {
+        source: '/images/projects/clapton-barberia/logoHorizontal.webp',
+        destination: '/images/projects/clapton-barberia/clapton-1.webp',
+        statusCode: 301,
+      },
+    ]
+  },
   async headers() {
     return [
       {
