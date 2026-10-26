@@ -42,6 +42,7 @@ social-media
 .env*
 
 .seo/
+docs/prompt-*.md
 
 # local SEO exports
 seo-context*.txt
