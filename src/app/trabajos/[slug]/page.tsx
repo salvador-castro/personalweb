@@ -13,6 +13,9 @@ import ScrollToHash from "@/components/ScrollToHash";
 import { Metadata } from "next";
 import { Meta, Schema } from "@/once-ui/modules";
 
+// Unknown slugs must return a real 404 instead of a streamed 200
+export const dynamicParams = false;
+
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(["src", "app", "trabajos", "projects"]);
   return posts.map((post) => ({
@@ -31,7 +34,7 @@ export async function generateMetadata({
   const posts = getPosts(["src", "app", "trabajos", "projects"])
   let post = posts.find((post) => post.slug === slugPath);
 
-  if (!post) return {};
+  if (!post) notFound();
 
   return Meta.generate({
     title: post.metadata.title,
