@@ -8,10 +8,11 @@ interface PostProps {
     post: any;
     thumbnail: boolean;
     direction?: "row" | "column";
+    headingAs?: "h2" | "h3";
 }
 
 // The post link stretches over the whole card; the tag link is a sibling on top of it (no nested <a>)
-export default function Post({ post, thumbnail, direction }: PostProps) {
+export default function Post({ post, thumbnail, direction, headingAs = "h2" }: PostProps) {
     return (
         <Flex
             position="relative"
@@ -41,7 +42,7 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
                 padding="24"
                 vertical="center">
                 <Heading
-                    as="h2"
+                    as={headingAs}
                     variant="heading-strong-l"
                     wrap="balance">
                     <SmartLink

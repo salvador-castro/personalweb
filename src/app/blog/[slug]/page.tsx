@@ -8,6 +8,7 @@ import { formatDate } from "@/app/utils/formatDate";
 import { tagPath } from "@/app/utils/tags";
 import { absoluteUrl, ogImageUrl } from "@/app/utils/url";
 import ScrollToHash from "@/components/ScrollToHash";
+import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import { Metadata } from 'next';
 import { Meta, Schema } from "@/once-ui/modules";
 
@@ -113,6 +114,7 @@ export default async function Blog({
           <Column as="article" fillWidth>
             <CustomMDX source={post.content} />
           </Column>
+          <RelatedPosts post={post} />
           <ScrollToHash />
         </Column>
     </Row>

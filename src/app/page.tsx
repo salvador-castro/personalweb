@@ -241,7 +241,7 @@ export default function Home() {
             <RevealFx translateY="4" fillWidth horizontal="start">
               <Row fillWidth vertical="center" horizontal="space-between">
                 <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                  📡 Últimas señales tech
+                  Últimos artículos
                 </Heading>
                 <SmartLink href="/blog">
                   <Text variant="label-default-s" onBackground="neutral-weak">
@@ -251,7 +251,7 @@ export default function Home() {
               </Row>
             </RevealFx>
             <RevealFx translateY="8" delay={0.2} fillWidth>
-              <Posts range={[1, 2]} columns="2" />
+              <Posts range={[1, 4]} columns="2" />
             </RevealFx>
           </Column>
         </>
