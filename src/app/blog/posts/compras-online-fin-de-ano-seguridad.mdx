@@ -1,0 +1,84 @@
+---
+title: "Tiendas falsas y avisos de envío truchos: las estafas de las compras de fin de año"
+publishedAt: "2026-10-30"
+summary: "Cómo funciona una red de más de 20.000 tiendas online falsas, por qué el aviso de 'tu paquete está retenido' es la estafa que más crece después de comprar, y un chequeo de 5 minutos antes y después del CyberMonday 2026 y las compras de fin de año."
+image: "/images/blog/compras-online-fin-de-ano-seguridad/compras-online-fin-de-ano-seguridad-1.webp"
+tag: "Ciberseguridad"
+---
+
+![](/images/blog/compras-online-fin-de-ano-seguridad/compras-online-fin-de-ano-seguridad-1.webp)
+
+El lunes arranca el CyberMonday y, detrás, viene la temporada más larga de compras online del año: el Black Friday de Estados Unidos el 27 de noviembre, las fiestas y las vacaciones. En [la guía del CyberMonday 2026](/blog/cybermonday-2026-comprar-seguro) repasé cómo distinguir un descuento real de uno inflado, cuándo convienen las cuotas y qué hacer si te estafan. Este posteo mira dos cosas que esa guía toca de pasada: cómo están armadas por dentro las tiendas falsas, y las estafas que llegan **después** de comprar, cuando todo el mundo está esperando un paquete.
+
+## ¿Cómo saber si una tienda online es falsa?
+
+No hay una sola señal que lo confirme, pero sí una combinación que debería frenarte: un dominio que no es el de la marca o que usa extensiones como `.shop`, `.store` o `.top`; precios muy por debajo del resto del mercado en productos de marcas conocidas; una tienda que no figura en el [listado oficial del CyberMonday](https://www.cybermonday.com.ar/) aunque diga participar; ninguna reseña fuera de su propia página; y medios de pago que no te dejan reclamar, como transferencias a cuentas personales. El candado de HTTPS no sirve para decidir: solo indica que la conexión está cifrada, y hoy casi cualquier sitio falso lo tiene.
+
+## El problema: las tiendas falsas ya son una industria
+
+La imagen del estafador solitario que arma una página trucha quedó vieja. En marzo de 2026, investigadores de [Malwarebytes](https://www.malwarebytes.com/blog/scams/2026/03/inside-a-network-of-20000-fake-shops) documentaron una red de más de 20.000 dominios de tiendas falsas que funcionan como una franquicia: un equipo central mantiene la infraestructura y distintos operadores lanzan sus propias tiendas encima. Lo que encontraron explica por qué cuesta tanto distinguirlas a simple vista:
+
+| Lo que vio el usuario | Lo que había detrás |
+|---|---|
+| Miles de tiendas distintas, cada una con su marca y su estética | Las mismas dos plantillas base con cambios cosméticos (las "seis" variantes eran en realidad dos) |
+| Sitios con apariencia profesional y catálogo completo | WordPress sobre Sellvia, una plataforma legítima de dropshipping de Estados Unidos |
+| Dominios variados, a veces con el nombre de una marca | La mayoría con extensión `.shop` |
+| Tiendas aparentemente independientes | Más de 20.000 dominios apuntando a solo 36 direcciones IP |
+
+Ese último dato es el que más dice: no son miles de estafas aisladas, sino una sola operación con muchas fachadas. También explica por qué una tienda falsa que denunciás hoy reaparece mañana con otro nombre: cambiar la fachada cuesta minutos. La contracara, según los propios investigadores, es que basta con dar de baja unos pocos servidores para sacar de línea miles de tiendas a la vez.
+
+## Cómo llegan hasta vos
+
+Una tienda falsa necesita tráfico, y casi nunca lo consigue por búsqueda orgánica. Llega por tres caminos:
+
+- **Publicidad en redes.** Un anuncio en Instagram o Facebook con un producto de marca a mitad de precio y un contador regresivo. El anuncio es real y pago; la tienda, no.
+- **Mensajes con enlace.** Un WhatsApp o SMS con "solo por hoy" y un enlace acortado, que es la variante de [phishing](/blog/phishing-email-como-detectar) más común en temporada de ofertas.
+- **Códigos QR** en carteles, folletos o publicaciones, una forma de ocultar la dirección real que ya repasamos al hablar de [quishing](/blog/quishing-estafa-qr).
+
+En los tres casos el truco es el mismo: que llegues a la tienda sin haber escrito la dirección vos.
+
+## La estafa que viene después: "tu paquete está retenido"
+
+Es la que más gente agarra desprevenida, porque llega cuando efectivamente estás esperando algo. Un SMS o un mail dice que tu envío no pudo entregarse por un problema con la dirección, o que hay que pagar una "tasa de aduana" o un "costo de reprogramación" para liberarlo, y te lleva a un sitio casi idéntico al de Correo Argentino o al de una empresa de logística. Ahí te piden los datos de la tarjeta para un pago mínimo, a veces una foto del DNI. Correo Argentino viene advirtiendo hace años que no envía mensajes de texto pidiendo pagos ([Chequeado](https://chequeado.com/nota/no-este-mensaje-que-asegura-que-el-paquete-no-pudo-ser-entregado-no-es-del-correo-argentino-es-un-caso-de-phishing/)), y Kaspersky incluyó la "entrega de paquete inexistente" entre los cinco fraudes en expansión de 2026, con Argentina entre los países más afectados por mensajes falsos de seguimiento ([iProUP](https://www.iproup.com/innovacion/64547-cinco-estafas-digitales-amenazan-tus-ahorros-en-2026-como-protegerte-hoy)).
+
+Hay variantes con el mismo objetivo:
+
+| Mensaje que recibís | Qué buscan | Cómo comprobarlo |
+|---|---|---|
+| "Tu paquete está retenido, pagá $1.500 para liberarlo" | Datos completos de la tarjeta | Entrar a la app o web de la tienda donde compraste y ver el estado real del envío |
+| "Tu pago fue rechazado, volvé a cargar la tarjeta" | Datos de la tarjeta | Revisar el pedido desde tu cuenta, nunca desde el enlace |
+| "Hay un reintegro a tu favor, confirmá tus datos" | Clave bancaria o código de verificación | Ningún reintegro real pide claves ni códigos |
+| Llamado de "soporte" de la tienda o del banco por un "problema con tu compra" | Que digas un código que te llega por SMS | Cortar y llamar vos al número oficial |
+| "Encuesta de satisfacción con premio" después de la compra | Datos personales y de tarjeta | Las tiendas no regalan productos por responder encuestas |
+
+## La solución: un chequeo de 5 minutos, antes y después
+
+**Antes de pagar:**
+
+1. Entrá a la tienda escribiendo la dirección o desde el listado oficial del evento, no desde un anuncio o un mensaje.
+2. Si no conocés la tienda, buscá su nombre junto a "estafa" u "opiniones" fuera de su propio sitio.
+3. Desconfiá de las extensiones raras y de los dominios con letras o guiones de más.
+4. Pagá con tarjeta de crédito o con un medio que permita reclamar. Si podés, usá una tarjeta virtual de uso único o con límite.
+5. Guardá captura del producto, el precio y la confirmación del pedido.
+
+**Después de comprar:**
+
+1. Seguí el envío **solo** desde la app o el mail de confirmación de la tienda donde compraste.
+2. Ignorá cualquier pedido de pago extra que llegue por SMS, WhatsApp o mail. Si dudás, entrá vos a la web oficial de la empresa de envíos.
+3. No le digas a nadie, por ningún medio, un código que te llegue por SMS.
+4. Tené activadas las notificaciones de consumo de la tarjeta para ver cualquier cargo raro en el momento.
+
+Si igual caíste, el orden de lo que conviene hacer —avisar al banco, desconocer el cargo dentro de los 30 días del resumen, guardar todo y denunciar— está en [la guía del CyberMonday](/blog/cybermonday-2026-comprar-seguro).
+
+## En resumen
+
+Las tiendas falsas ya no son casos aislados: una sola red documentada por Malwarebytes maneja más de 20.000 dominios con dos plantillas y 36 direcciones IP, y por eso una tienda denunciada reaparece al día siguiente con otro nombre. La defensa más efectiva no es aprender a detectar cada fachada, sino no llegar a ellas: entrar a las tiendas escribiendo la dirección, desconfiar de anuncios y mensajes con enlace, y pagar con un medio que permita reclamar. Y después de comprar, cuando el paquete todavía no llegó, recordar que ninguna empresa de envíos pide pagos ni datos de tarjeta por SMS: el estado del pedido se mira en la tienda donde compraste, no en el enlace que te mandaron.
+
+## Fuentes
+
+- **Malwarebytes** — [Inside a network of 20,000+ fake shops](https://www.malwarebytes.com/blog/scams/2026/03/inside-a-network-of-20000-fake-shops). Investigación sobre la infraestructura de una red global de tiendas falsas.
+- **iProUP** — [Cinco estafas digitales amenazan tus ahorros en 2026](https://www.iproup.com/innovacion/64547-cinco-estafas-digitales-amenazan-tus-ahorros-en-2026-como-protegerte-hoy). Informe de Kaspersky sobre fraudes en expansión, incluido el de paquetes inexistentes.
+- **Chequeado** — [Este mensaje que asegura que el paquete no pudo ser entregado no es del Correo Argentino](https://chequeado.com/nota/no-este-mensaje-que-asegura-que-el-paquete-no-pudo-ser-entregado-no-es-del-correo-argentino-es-un-caso-de-phishing/). Funcionamiento de la estafa del envío retenido.
+- **CyberMonday** — [Sitio oficial y listado de marcas participantes](https://www.cybermonday.com.ar/).
+
+<ShareIcons />
