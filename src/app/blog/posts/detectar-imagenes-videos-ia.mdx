@@ -1,0 +1,157 @@
+---
+title: "¿Es real o es IA? Cómo detectar fotos y videos generados con inteligencia artificial"
+publishedAt: "2026-11-02"
+summary: "Guía completa para saber si una foto o un video fue hecho con inteligencia artificial: qué dicen los estudios sobre nuestra capacidad de detectarlos, las señales visuales que todavía funcionan, cómo usar SynthID, Content Credentials y la búsqueda inversa, por qué los detectores automáticos fallan, y los casos de deepfakes y estafas que circularon en Argentina en 2026."
+image: "/images/blog/detectar-imagenes-videos-ia/detectar-imagenes-videos-ia-1.webp"
+tag: "Inteligencia Artificial"
+---
+
+![](/images/blog/detectar-imagenes-videos-ia/detectar-imagenes-videos-ia-1.webp)
+
+A fines de octubre circuló un video en el que Javier Milei ayudaba a Flávio Bolsonaro a escapar del país a bordo de un avión de combate F-16. Era falso: había sido generado con inteligencia artificial, y Bolsonaro en realidad se había ido en un avión privado ([Mala Espina](https://www.malaespinacheck.cl/mundo/2026/10/30/este-video-donde-javier-milei-ayuda-a-flavio-bolsonaro-a-escapar-en-un-f-16-fue-generado-con-ia/)). Esa misma semana, un jubilado de Mendoza perdió 24,5 millones de pesos después de ver un video, también falso, en el que Lionel Messi recomendaba una plataforma de inversión en criptomonedas ([iProup](https://www.iproup.com/economia-digital/72667-estafa-cripto-video-falso-messi-ia-jubilado-mendoza-prestamos-octubre-2026)).
+
+Los dos casos muestran el mismo problema desde ángulos distintos. Uno es desinformación que se comparte porque es llamativa; el otro, una estafa que se aprovecha de la confianza en una cara conocida. En ambos, el contenido era lo bastante bueno como para engañar a mucha gente. Esta guía repasa qué tan bien —o qué tan mal— detectamos estas imágenes, qué señales todavía sirven, qué herramientas existen y, sobre todo, qué hábitos protegen mejor que cualquier truco visual.
+
+## ¿Cómo saber si una foto o un video fue hecho con IA?
+
+No existe un método único y infalible. Lo que funciona es combinar tres capas de verificación: **mirar** el contenido buscando errores típicos de la IA (manos, texto, sombras, reflejos, física del movimiento); **revisar las marcas técnicas** que algunas herramientas dejan en el archivo, como SynthID de Google o las Content Credentials (C2PA); y **verificar el origen** con búsqueda inversa de imágenes, rastreando quién lo publicó primero y si algún medio confiable lo confirma. Los detectores automáticos online pueden dar una pista, pero se equivocan en ambas direcciones y nunca deberían ser la única prueba. Ante la duda, lo más seguro es no compartir y, si el contenido te pide dinero o datos, asumir que es falso.
+
+## El problema: ya no alcanza con mirar
+
+Durante un par de años, detectar una imagen de IA era casi un juego: personas con seis dedos, textos ilegibles, dientes de más, fondos que se derretían. Esos errores todavía aparecen, pero cada generación de modelos los reduce. Hoy herramientas como Gemini, ChatGPT, Midjourney o los generadores de video como Veo y Sora producen imágenes fotorrealistas y clips con sonido sincronizado en segundos, sin conocimientos técnicos y, muchas veces, gratis.
+
+Y nuestro ojo no está tan entrenado como creemos. En un estudio publicado en la revista *PNAS*, Sophie Nightingale y Hany Farid mostraron a 315 personas caras reales y caras generadas por IA. La tasa de acierto fue del **48%**, es decir, peor que tirar una moneda. Un segundo grupo, que recibió entrenamiento previo sobre qué errores buscar, apenas llegó al 59%. El dato más inquietante: las caras sintéticas fueron calificadas como **un 7,7% más confiables** que las reales ([PNAS](https://www.pnas.org/doi/10.1073/pnas.2120481119)). En 2024, un estudio de la Universidad de Waterloo encontró algo parecido: solo el 61% de los participantes logró distinguir caras reales de generadas, cuando los investigadores esperaban un 85% ([PetaPixel](https://petapixel.com/2024/03/14/40-of-people-cant-tell-if-a-face-is-ai-generated-can-you)).
+
+Esos estudios usaron modelos que hoy ya quedaron viejos. La conclusión práctica es incómoda pero importante: **si tu único método es "a mí no me la van a hacer", estás en desventaja.**
+
+## Por qué importa: tres usos que ya están pasando en Argentina
+
+### 1. Estafas con caras famosas
+
+Es el uso más dañino y el más frecuente. El esquema se repite: un video de un famoso, un funcionario o un periodista conocido que "recomienda" una inversión con rendimientos imposibles, distribuido como publicidad paga en redes sociales. [Chequeado](https://chequeado.com/ultimas-noticias/estafas-y-videos-creados-con-inteligencia-artificial-asi-se-utiliza-la-imagen-de-famosos-para-enganar-con-falsas-inversiones-en-ypf/) documentó cómo se usó la imagen de figuras públicas para promocionar supuestas inversiones en YPF. El caso de Messi que mencioné al principio prometía ganancias de "hasta 3.400% mensual" ([iProup](https://www.iproup.com/economia-digital/72667-estafa-cripto-video-falso-messi-ia-jubilado-mendoza-prestamos-octubre-2026)). En 2026 también circularon videos fabricados del ministro de Economía y del presidente promocionando una plataforma de inversión, que el Gobierno tuvo que desmentir públicamente.
+
+A esto se suma la voz: con pocos segundos de audio se puede clonar la voz de una persona, algo que expliqué en detalle en el post sobre [clonación de voz y estafas](/blog/clonacion-voz-ia-estafa).
+
+### 2. Desinformación política
+
+Durante las elecciones legislativas de 2025 circularon videos falsos de candidatos, entre ellos uno en el que Jorge Taiana supuestamente anunciaba que bajaba su candidatura; la Justicia argentina investigó esos casos ([OECD.AI](https://oecd.ai/en/incidents/2025-10-26-4a55)). Estos videos no necesitan ser perfectos: alcanza con que circulen unas horas, en el momento justo, por grupos de WhatsApp donde nadie se detiene a verificar.
+
+### 3. Imágenes íntimas falsas
+
+El uso más cruel es la creación de imágenes sexuales falsas de personas reales, muchas veces adolescentes, a partir de fotos comunes de sus redes. [Chequeado](https://chequeado.com/el-explicador/deepfakes-y-adolescentes-existe-un-vacio-legal-sobre-los-videos-con-contenido-sexual-creados-con-ia-y-su-difusion-en-redes/) señaló el vacío legal que existe en Argentina frente a estos casos. Acá detectar si es IA importa poco: el daño ocurre igual. Lo urgente es no reenviar, denunciar en la plataforma y acompañar a la víctima.
+
+## Primera capa: lo que todavía se puede ver
+
+Los errores visuales ya no son garantía, pero siguen apareciendo, sobre todo en contenido hecho rápido y en masa, como el de las estafas. Conviene mirar la imagen ampliada, no en la miniatura del feed.
+
+### En fotos
+
+- **Manos, dedos y dientes.** Mejoraron mucho, pero todavía aparecen dedos fusionados, uñas raras o dentaduras demasiado uniformes.
+- **Texto.** Carteles, patentes, etiquetas o letras en remeras con caracteres sin sentido o que cambian de forma.
+- **Accesorios que no coinciden.** Aros distintos en cada oreja, anteojos con patillas que desaparecen, botones que no siguen un patrón ([Primicias](https://primicias.ec/noticias/tecnologia/imagenes-inteligencia-artificial-diferencias)).
+- **Luz y sombras.** Sombras que apuntan en direcciones distintas, reflejos en ojos o vidrios que no corresponden a la escena, iluminación de estudio en una foto supuestamente espontánea.
+- **Texturas demasiado lisas.** Piel sin poros, pelo que parece pintado, zonas desenfocadas donde debería haber un patrón continuo, como un piso de baldosas o una pared de ladrillos ([Forbes Argentina](https://www.forbesargentina.com/innovacion/cinco-trucos-saber-una-imagen-fue-generada-ia-n59839)).
+- **El fondo.** La IA suele concentrar el detalle en el sujeto principal. En el fondo aparecen personas deformes, objetos que se funden entre sí o arquitectura imposible.
+- **Demasiado perfecta.** Una composición de póster, colores saturados y una estética "de película" en una foto que supuestamente sacó alguien con el celular.
+
+### En videos
+
+- **Duración.** Muchos generadores producen clips de pocos segundos. Un video viral de 8 a 10 segundos, o hecho de varios cortes breves, merece una segunda mirada.
+- **Boca y voz.** Sincronización labial apenas desfasada, dientes que cambian entre cuadros, una voz sin respiración ni muletillas.
+- **Física.** Objetos que atraviesan otros, líquidos que se comportan raro, personas que aparecen o desaparecen del fondo, pasos que no coinciden con el desplazamiento.
+- **Parpadeo y mirada.** Mirada fija a cámara durante demasiado tiempo o expresiones que no acompañan lo que se dice.
+- **Marcas de agua tapadas.** Algunos generadores agregan una marca visible. Un recorte raro, una zona borrosa en una esquina o un emoji encima pueden estar escondiéndola.
+- **Calidad sospechosamente baja.** Pixelado, compresión fuerte o filmado de una pantalla: a veces es casual, pero también es una forma de esconder los defectos.
+
+Un detalle clave: **la ausencia de errores no prueba nada.** Una imagen limpia puede ser IA, y una foto real puede tener defectos raros por la compresión, un filtro o el modo retrato del celular. Por eso esta capa sirve para encender una alarma, no para dar un veredicto.
+
+## Segunda capa: las marcas que la IA deja adentro del archivo
+
+Además de lo visible, varias empresas incorporan señales técnicas en el contenido que generan. Son la herramienta más precisa disponible hoy, con una condición: solo funcionan si la marca existe y sobrevivió en el camino.
+
+### SynthID: la marca invisible de Google
+
+SynthID es una marca de agua invisible que Google incrusta en las imágenes, videos y audios generados con sus modelos, como Gemini, Imagen o Veo. No se ve, y está diseñada para resistir recortes, filtros y compresión. A principios de octubre de 2026 Google abrió al público un sitio de verificación de SynthID ([TechCrunch](https://techcrunch.com/2026/10/07/googles-new-synthid-website-can-identify-ai-generated-media/)), y la verificación también se puede hacer desde la app de Gemini: se sube el archivo y se pregunta si fue generado o editado con IA ([Engadget](https://www.engadget.com/2286802/how-to-use-google-ai-detection-website-synthid/)).
+
+Hay que leer bien el resultado. Si detecta la marca, el contenido fue creado o editado, total o parcialmente, con herramientas que usan SynthID. Si no la detecta, **no significa que sea real**: puede haber sido hecho con otro generador que no usa esa marca ([Infobae](https://www.infobae.com/america/agencias/2026/10/19/google-synthid-detector-como-usarlo-para-identificar-contenido-generado-con-ia-y-cuales-son-sus-limitaciones/)). Tampoco indica qué parte de la imagen fue modificada. Y cuidado con los sitios de terceros que dicen ser "detectores de SynthID": no son la herramienta oficial.
+
+### Content Credentials (C2PA): la "etiqueta nutricional" del contenido
+
+El otro estándar es C2PA, más conocido como **Content Credentials**. En lugar de una marca de agua, es un registro firmado digitalmente que viaja con el archivo y cuenta su historia: con qué cámara o herramienta se creó, si se editó y con qué programa. Lo impulsan Adobe, Microsoft, Google, OpenAI y fabricantes de cámaras, entre otros. Las herramientas de Adobe, como Photoshop y Firefly, lo agregan a sus exportaciones, y algunas cámaras profesionales y celulares de gama alta firman las fotos al momento de sacarlas ([Fotoware](https://www.fotoware.com/blog/what-is-c2pa)).
+
+Para revisar si una imagen tiene Content Credentials, se puede subir a [Content Credentials Verify](https://contentcredentials.org/verify). Algunas redes, como LinkedIn, ya muestran un ícono cuando la imagen las tiene, y otras plataformas las leen para agregar etiquetas como "Info de IA".
+
+El gran límite: **la mayoría del contenido que circula no tiene credenciales.** Muchas plataformas eliminan los metadatos al subir o comprimir un archivo, y una captura de pantalla los borra por completo. Además, la Unión Europea ya exige, a través de su ley de IA, que el contenido generado con IA esté marcado, pero esa obligación no rige para quien crea un video falso en otro país para estafar. Igual que con SynthID, encontrar una credencial es información valiosa; no encontrarla no prueba nada.
+
+### Las etiquetas de las redes
+
+Instagram, Facebook, TikTok y YouTube muestran etiquetas como "Hecho con IA" o "Contenido alterado" cuando detectan esas marcas o cuando quien publica lo declara. Son útiles, pero dependen de que el contenido traiga la marca o de la honestidad de quien lo sube. Un estafador no lo va a declarar. **Que un video no tenga etiqueta no significa que sea real.**
+
+## Tercera capa: verificar el origen
+
+Es la capa más vieja y la más confiable, porque no depende de cómo se hizo el contenido sino de dónde salió. Es lo que hacen los equipos de verificación profesionales.
+
+1. **Búsqueda inversa de imágenes.** Subí la imagen o una captura a [Google Lens](https://lens.google/) o [TinEye](https://tineye.com/). Si es una foto real de un hecho, probablemente aparezca en medios o agencias con fecha y contexto. Si es IA, quizá encuentres su primera publicación en una cuenta de "arte digital" o un desmentido.
+2. **Para videos, buscá cuadros sueltos.** Hacé capturas de dos o tres momentos y buscalas por separado. La extensión gratuita InVID-WeVerify, pensada para periodistas, extrae cuadros clave automáticamente ([IJNet](https://ijnet.org/es/story/herramientas-de-inteligencia-artificial-para-detectar-deepfakes)).
+3. **¿Quién lo publicó primero?** Una cuenta creada hace dos semanas, sin historial, con un nombre genérico, es una señal fuerte. Un perfil verificado tampoco garantiza nada: puede ser una cuenta robada o comprada.
+4. **¿Lo cuenta algún medio confiable?** Si un ministro anunció algo explosivo, o un famoso recomendó una inversión, debería aparecer en varios medios y en sus cuentas oficiales. Si solo existe en un anuncio pago o en una cadena de WhatsApp, desconfiá.
+5. **¿Hay otras fotos del mismo hecho?** Un evento real suele tener muchas fotos desde ángulos distintos. Una sola imagen espectacular, sin ninguna otra que la acompañe, es sospechosa.
+6. **Revisá los sitios de verificación.** Chequeado y otros verificadores de la región suelen desmentir los casos virales en pocas horas.
+
+## ¿Y los detectores automáticos online?
+
+Hay muchos sitios que prometen decirte, con un porcentaje, si una imagen es IA: Hive, AI or Not, Sightengine y decenas más. Pueden ser útiles como una opinión más, pero tienen dos problemas serios.
+
+El primero son los **falsos positivos**. En una prueba de [NewsGuard](https://www.newsguardtech.com/?p=33448), algunas herramientas marcaron como IA fotos reales, y con retoques leves —un fondo difuminado, un filtro— el error se disparó: una de ellas clasificó como IA el 87% de las imágenes reales levemente editadas. En un caso, un video real con el fondo apenas difuminado fue marcado como generado con un 96,9% de probabilidad. Esto es peligroso porque se puede usar para desacreditar una foto auténtica: "el detector dice que es IA".
+
+El segundo son los **falsos negativos**. Los detectores se entrenan con imágenes de generadores conocidos, y cada vez que sale un modelo nuevo quedan un paso atrás. Una captura de pantalla, un recorte o una compresión fuerte también los confunden.
+
+Mi recomendación: si usás un detector, probá con dos o tres distintos, tomá el resultado como un indicio más y nunca como una prueba. Un "99% IA" no reemplaza saber de dónde salió el video.
+
+## Chequeo rápido antes de compartir o creer
+
+| Pregunta | Si la respuesta es... | Entonces |
+|---|---|---|
+| ¿Me pide plata, datos o hacer clic en un link? | Sí | Asumí que es una estafa, sin importar si es IA o no |
+| ¿Me genera una emoción fuerte (indignación, miedo, euforia)? | Sí | Frená: es exactamente lo que buscan los contenidos falsos |
+| ¿Lo publica algún medio confiable o la cuenta oficial de la persona? | No | No lo compartas hasta confirmarlo |
+| ¿Aparece en una búsqueda inversa con otro contexto o fecha? | Sí | Probablemente esté sacado de contexto o sea falso |
+| ¿Tiene errores visuales (manos, texto, sombras, física)? | Sí | Fuerte indicio de IA |
+| ¿SynthID o Content Credentials indican IA? | Sí | Confirmado que fue generado o editado con IA |
+| ¿Ningún método encontró nada? | — | No es prueba de que sea real: decidí por el origen |
+
+## Lo que más protege no es técnico
+
+Todas estas herramientas van a seguir quedando un paso atrás de los generadores. Lo que no cambia son algunos hábitos:
+
+- **Ningún famoso te va a recomendar una inversión por un anuncio en Instagram.** Ni Messi, ni un ministro, ni un periodista. Ese solo filtro desarma la mayoría de las estafas con deepfakes.
+- **Acordá una palabra clave con tu familia** para emergencias. Si te llega un audio o una videollamada de un familiar pidiendo plata, pedí la palabra o cortá y llamá vos al número que tenés agendado.
+- **Pensá antes de reenviar.** Si no estás seguro, no lo compartas. Un contenido falso necesita que lo multipliquemos para funcionar.
+- **No te vayas al otro extremo.** Que exista la IA no significa que todo sea falso. "Es IA" también se usa para negar fotos y videos reales e incómodos. Verificar sirve en las dos direcciones.
+- **Hablalo con los más grandes y los más chicos de la casa.** Los adultos mayores son blanco frecuente de las estafas de inversión; los adolescentes, de las imágenes íntimas falsas.
+
+Si ya caíste en una estafa, los pasos son los mismos que con cualquier fraude digital: avisá a tu banco, cambiá contraseñas, activá la [verificación en dos pasos](/blog/doble-factor-autenticacion) y hacé la denuncia. Las señales de alerta de los mensajes fraudulentos están en el post sobre [cómo detectar phishing](/blog/phishing-email-como-detectar).
+
+## En resumen
+
+Detectar fotos y videos generados con IA a simple vista es cada vez más difícil: en estudios controlados, las personas aciertan en menos del 60% de los casos, y los generadores mejoran todos los meses. La estrategia que funciona combina tres capas: mirar con atención los errores que todavía aparecen (manos, texto, sombras, física del movimiento y duración de los clips); revisar las marcas técnicas, como SynthID de Google, que desde octubre de 2026 se puede verificar públicamente, y las Content Credentials (C2PA); y verificar el origen con búsqueda inversa, cuentas oficiales y medios confiables. Los detectores automáticos online sirven como indicio, pero fallan en las dos direcciones. En Argentina, los deepfakes ya se usan para estafas de inversión con caras famosas, para desinformación política y para crear imágenes íntimas falsas. La regla más útil es también la más simple: si un video de alguien famoso te pide plata, es falso.
+
+## Fuentes
+
+- **Mala Espina** — [Este video donde Javier Milei ayuda a Flávio Bolsonaro a escapar en un F-16 fue generado con IA](https://www.malaespinacheck.cl/mundo/2026/10/30/este-video-donde-javier-milei-ayuda-a-flavio-bolsonaro-a-escapar-en-un-f-16-fue-generado-con-ia/). Verificación del video viral de octubre de 2026.
+- **iProup** — [Estafa cripto con un video falso de Messi hecho con IA: un jubilado perdió $24,5 millones](https://www.iproup.com/economia-digital/72667-estafa-cripto-video-falso-messi-ia-jubilado-mendoza-prestamos-octubre-2026). Caso de estafa en Mendoza.
+- **Chequeado** — [Estafas y videos creados con inteligencia artificial: así se utiliza la imagen de famosos para engañar con falsas inversiones en YPF](https://chequeado.com/ultimas-noticias/estafas-y-videos-creados-con-inteligencia-artificial-asi-se-utiliza-la-imagen-de-famosos-para-enganar-con-falsas-inversiones-en-ypf/).
+- **Chequeado** — [Deepfakes y adolescentes: existe un vacío legal sobre los videos con contenido sexual creados con IA](https://chequeado.com/el-explicador/deepfakes-y-adolescentes-existe-un-vacio-legal-sobre-los-videos-con-contenido-sexual-creados-con-ia-y-su-difusion-en-redes/).
+- **OECD.AI** — [Argentine Justice Investigates AI-Generated Deepfake Videos Targeting Political Candidates](https://oecd.ai/en/incidents/2025-10-26-4a55). Deepfakes en las elecciones de 2025.
+- **PNAS** — Nightingale y Farid, [AI-synthesized faces are indistinguishable from real faces and more trustworthy](https://www.pnas.org/doi/10.1073/pnas.2120481119). Estudio sobre la detección humana de caras generadas.
+- **PetaPixel** — [40% of People Can't Tell if a Face is AI Generated](https://petapixel.com/2024/03/14/40-of-people-cant-tell-if-a-face-is-ai-generated-can-you). Estudio de la Universidad de Waterloo.
+- **TechCrunch** — [Google's new SynthID website can identify AI-generated media](https://techcrunch.com/2026/10/07/googles-new-synthid-website-can-identify-ai-generated-media/).
+- **Engadget** — [How to use Google's SynthID AI detection website](https://www.engadget.com/2286802/how-to-use-google-ai-detection-website-synthid/).
+- **Infobae** — [Google SynthID Detector: cómo usarlo y cuáles son sus limitaciones](https://www.infobae.com/america/agencias/2026/10/19/google-synthid-detector-como-usarlo-para-identificar-contenido-generado-con-ia-y-cuales-son-sus-limitaciones/).
+- **Fotoware** — [What is C2PA? A Guide to Content Credentials](https://www.fotoware.com/blog/what-is-c2pa). Cómo funciona el estándar.
+- **NewsGuard** — [Prueba de detectores de imágenes de IA](https://www.newsguardtech.com/?p=33448). Falsos positivos en fotos reales y retocadas.
+- **IJNet** — [Herramientas de inteligencia artificial para detectar deepfakes](https://ijnet.org/es/story/herramientas-de-inteligencia-artificial-para-detectar-deepfakes). Herramientas de verificación para periodistas.
+- **Forbes Argentina** — [Cinco trucos para saber si una imagen fue generada por IA](https://www.forbesargentina.com/innovacion/cinco-trucos-saber-una-imagen-fue-generada-ia-n59839).
+- **Primicias** — [¿Cómo diferenciar imágenes creadas con inteligencia artificial?](https://primicias.ec/noticias/tecnologia/imagenes-inteligencia-artificial-diferencias).
+
+<ShareIcons />
