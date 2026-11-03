@@ -88,7 +88,7 @@ export const servicePages: ServicePage[] = [
     ],
     timeline:
       "Una landing page suele estar lista en 1 a 2 semanas y una página institucional en 2 a 4 semanas, según cuánto contenido (textos, fotos) haya que preparar.",
-    cases: ["ClaptonBarberia", "DarioBlanco", "ArteUrbano", "BeOrange"],
+    cases: ["MoraMachado", "ClaptonBarberia", "DarioBlanco", "ArteUrbano", "BeOrange"],
     faq: [
       priceFaq(
         "¿Cuánto cuesta una página web para una PyME?",

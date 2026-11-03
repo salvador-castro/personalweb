@@ -1,0 +1,128 @@
+---
+title: "Mora Machado Construcciones: sitio web autoadministrable para una constructora"
+publishedAt: "2026-11-02"
+client: "Mora Machado Construcciones"
+industry: "Construcción"
+location: "Zárate, Buenos Aires, Argentina"
+service: "paginas-web"
+stack: ["Next.js", "React", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS", "Resend"]
+link: "https://moramachadoconstrucciones.com/"
+summary: "Sitio web institucional con panel de administración propio para una constructora familiar de Zárate. Muestra obras reales con fotos y videos, servicios y un formulario de contacto que avisa por email y permite seguir la conversación por WhatsApp. Todo el contenido se edita desde el panel, sin tocar código, y corre en un servidor propio con backups diarios."
+images:
+  - "/images/projects/mora-machado/demo1-MoraMachado.webp"
+  - "/images/projects/mora-machado/demo2-MoraMachado.webp"
+  - "/images/projects/mora-machado/demo3-MoraMachado.webp"
+  - "/images/projects/mora-machado/demo4-MoraMachado.webp"
+  - "/images/projects/mora-machado/demo5-MoraMachado.webp"
+  - "/images/projects/mora-machado/demo6-MoraMachado.webp"
+team:
+  - name: "Salvador Castro"
+    role: "Desarrollador"
+    avatar: "/images/avatar.webp"
+    linkedIn: "https://www.linkedin.com/in/salvador-castro"
+---
+
+## Visión general
+
+[Mora Machado Construcciones](https://moramachadoconstrucciones.com/) es una empresa constructora familiar de Zárate, provincia de Buenos Aires, que hace obras civiles, plateas y pisos de hormigón, pulido de pisos, construcciones nuevas, reformas, espacios deportivos y obras industriales en todo el país.
+
+Tenían un sitio estático viejo: unas pocas páginas en HTML y 11 fotos, que solo se podían cambiar tocando el código. El objetivo del proyecto fue reemplazarlo por un **sitio moderno, rápido y fácil de encontrar en Google**, que mostrara sus obras reales y que se pudiera actualizar **sin depender de un programador** para cada cambio.
+
+El sitio está en línea desde el **2 de noviembre de 2026**.
+
+![Portada del sitio con el mensaje principal y los botones para pedir presupuesto](/images/projects/mora-machado/demo1-MoraMachado.webp)
+
+## El desafío
+
+En construcción, la confianza se gana mostrando trabajo hecho. Por eso el sitio tenía que:
+
+- **Mostrar obras reales, no renders**: fotos y videos de cada etapa, desde el movimiento de suelos hasta la terminación.
+- **Generar consultas**: que cualquier persona que entre pueda pedir un presupuesto en pocos segundos, por formulario o por WhatsApp.
+- **Ser fácil de mantener**: que se puedan sumar obras, cambiar textos o fotos desde un panel, como quien edita un documento.
+- **Cargar rápido en el celular**: la mayoría de las visitas llegan desde el teléfono, muchas veces con datos móviles.
+
+## El sitio público
+
+![Sección de trabajos realizados con fotos de obras reales](/images/projects/mora-machado/demo2-MoraMachado.webp)
+
+### Trabajos realizados
+
+Cada obra tiene su propia página con título, ubicación, servicio, categoría, descripción y una galería de fotos y videos. El listado de obras se puede filtrar por categoría (obra civil, construcción nueva, espacio deportivo, industrial, remodelación) para que cada visitante encuentre trabajos parecidos al que necesita.
+
+![Página de detalle de una obra: Parque Industrial](/images/projects/mora-machado/demo5-MoraMachado.webp)
+
+### Servicios
+
+Los ocho servicios de la empresa tienen una tarjeta en la portada y una página propia donde se explica qué incluye cada uno, con sus obras relacionadas y un botón directo para consultar.
+
+![Grilla de servicios de la constructora](/images/projects/mora-machado/demo3-MoraMachado.webp)
+
+### Galería, proceso y nosotros
+
+La portada también cuenta **cómo trabajan** (relevamiento, propuesta y ejecución), qué los diferencia como empresa familiar, y una galería con detalles de avance y terminación de obra. La sección "Nosotros" cuenta la historia de la empresa.
+
+![Galería con fotos de avance y terminación de obras](/images/projects/mora-machado/demo4-MoraMachado.webp)
+
+### Contacto y consultas
+
+![Sección de contacto con datos de la empresa y formulario de consulta](/images/projects/mora-machado/demo6-MoraMachado.webp)
+
+El formulario pide solo lo necesario (nombre, teléfono y un comentario sobre el proyecto). Cuando alguien lo envía:
+
+1. La consulta queda guardada en el sistema.
+2. A la empresa le llega un **email de aviso** con un botón para **responder por WhatsApp** con un saludo ya escrito, o puede contestar el mail directamente.
+3. La persona que consultó recibe un **email de confirmación**.
+4. En pantalla se le ofrece seguir la conversación por WhatsApp.
+
+Además hay un botón flotante de WhatsApp en todas las páginas y una barra de aviso arriba ("Agenda abierta para obras 2027") que se puede activar o cambiar desde el panel.
+
+El formulario tiene protecciones contra spam y bots: un campo invisible que solo completan los robots, un límite de envíos por persona y detección automática de mensajes sospechosos.
+
+## El panel de administración
+
+Todo lo que se ve en el sitio — textos, fotos, obras, servicios, datos de contacto, horarios, redes sociales, logo — sale de una base de datos y se edita desde un **panel privado** (`/admin`), sin tocar código. Desde ahí se puede:
+
+- **Crear, editar, ocultar y ordenar obras y servicios**, arrastrándolos para cambiar el orden en que aparecen.
+- **Subir fotos y videos**. El sistema los optimiza solo: las fotos se convierten a WebP en varios tamaños (cada dispositivo descarga el que necesita) y los videos grabados con el celular se convierten a un formato que funciona en todos los navegadores.
+- **Ver y gestionar las consultas** recibidas, con búsqueda, filtros por estado, notas internas y exportación a Excel (CSV).
+- **Editar los textos de cada sección** del sitio y los datos para Google (título y descripción de cada página).
+- **Gestionar usuarios** con dos roles: administrador (acceso total) y editor (solo contenido).
+- **Vista previa** de los cambios antes de publicarlos.
+
+## Pensado para Google y para cualquier persona
+
+- **SEO**: mapa del sitio automático, datos estructurados para que Google entienda que se trata de una empresa constructora, URLs claras por obra y por servicio, y títulos y descripciones editables.
+- **Accesibilidad**: el sitio pasa los controles automáticos de accesibilidad (WCAG A/AA), para que se pueda navegar con teclado o lector de pantalla.
+- **Rendimiento**: en Lighthouse (la herramienta de Google que mide la calidad de una página) obtiene **100 en accesibilidad, buenas prácticas y SEO**, y entre **92 y 99 en rendimiento en celular**.
+- **Diseño adaptable**: se ve bien en celular, tablet y computadora.
+
+## Seguridad y confiabilidad
+
+- Acceso al panel con contraseñas cifradas y sesiones que se pueden revocar (si se cambia una contraseña o se desactiva un usuario, se cierran sus sesiones abiertas).
+- Cabeceras de seguridad y conexión cifrada (HTTPS) en todo el sitio.
+- **Copias de seguridad automáticas todos los días**, guardadas también fuera del servidor (en Google Drive) durante 90 días.
+- **Monitoreo cada 5 minutos**: si el sitio se cae, llega un aviso.
+- Cada actualización se publica con un proceso automático que, si algo falla, **vuelve solo a la versión anterior**.
+- Tests automáticos que recorren el sitio y el panel como lo haría una persona antes de cada publicación.
+
+## Tecnologías utilizadas
+
+Para quien le interese el detalle técnico:
+
+- ⚛️ **Framework:** Next.js 16 (App Router, Cache Components) con React 19 y TypeScript.
+- 🗄️ **Base de datos:** PostgreSQL 16 con Prisma 7 como ORM.
+- 🔐 **Autenticación propia:** contraseñas con argon2 y sesiones con JWT en cookie httpOnly, respaldadas por una tabla de sesiones revocables. Control de acceso por roles (Admin / Editor).
+- ✅ **Validación:** zod v4, con los mismos esquemas para los formularios del panel y las acciones del servidor.
+- 🎨 **Estilos:** Tailwind CSS v4 con un design system propio y componentes shadcn/ui en el panel.
+- 🖼️ **Medios:** sharp para generar variantes WebP (480 / 960 / 1600 / 2400 px) y ffmpeg para convertir videos a H.264 con póster automático.
+- ✉️ **Emails:** Resend + React Email para los avisos de consultas y confirmaciones.
+- 🧪 **Testing:** Playwright (escritorio, móvil y panel), con chequeos de accesibilidad (axe) y SEO, en CI con GitHub Actions.
+- 🖥️ **Infraestructura:** VPS propio con Ubuntu 24.04, Nginx, PM2, certificados HTTPS, backups con rclone y monitoreo con UptimeRobot.
+
+## Resultado
+
+Mora Machado Construcciones pasó de un sitio estático que no se podía actualizar a una **plataforma completa y autoadministrable**: muestra sus obras reales, recibe consultas que llegan directo al mail y a WhatsApp, aparece correctamente en Google y se mantiene sola con backups y monitoreo. Sumar una obra nueva es tan simple como subir las fotos y escribir dos líneas desde el panel.
+
+## Enlaces
+
+🔗 **Sitio web:** [https://moramachadoconstrucciones.com/](https://moramachadoconstrucciones.com/)
