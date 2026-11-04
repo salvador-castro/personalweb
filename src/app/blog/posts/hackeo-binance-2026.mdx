@@ -1,0 +1,77 @@
+---
+title: "Hackeo a Binance: cómo una entrevista de trabajo falsa terminó en el robo cripto más grande de la historia"
+publishedAt: "2026-11-04"
+summary: "Qué pasó en el hackeo a Binance del 29 de octubre de 2026, por qué empezó con una entrevista laboral falsa a un ingeniero, qué tiene que ver Corea del Norte y qué conviene hacer si tenés criptomonedas en un exchange desde Argentina."
+image: "/images/blog/hackeo-binance-2026/hackeo-binance-2026-1.webp"
+tag: "Ciberseguridad"
+---
+
+![](/images/blog/hackeo-binance-2026/hackeo-binance-2026-1.webp)
+
+El 29 de octubre, en unos 20 minutos, salieron de las billeteras de Binance más de 6.300 millones de dólares en criptomonedas, repartidos en diez blockchains distintas. Es el robo cripto más grande de la historia: cuatro veces el de Bybit en febrero de 2025, que hasta ese momento tenía el récord. Lo más interesante, sobre todo para quienes trabajamos en desarrollo, no es el monto: es cómo empezó. No fue una falla en la criptografía ni un bug exótico. Fue una entrevista de trabajo falsa y un paquete instalado en la computadora de un ingeniero.
+
+## ¿Qué pasó con Binance?
+
+El 29 de octubre de 2026 un grupo de atacantes vinculado a Corea del Norte, al que el FBI llama TraderTraitor, logró que la propia infraestructura de retiros de Binance firmara y enviara fondos a direcciones controladas por ellos. Se llevaron entre 6.300 y 6.430 millones de dólares según la fuente. Binance suspendió los retiros esa noche, los fue reabriendo por etapas desde el 1 de noviembre y asegura que cubre las pérdidas de los usuarios con fondos propios. Hasta ahora no se informó una filtración de claves privadas.
+
+## Cronología: meses de preparación, 20 minutos de robo
+
+Lo que se sabe hasta hoy, según lo que publicó Binance y los análisis de [TRM Labs](https://www.trmlabs.com/resources/blog/north-korea-steals-usd-6-36-billion-from-binance-in-the-largest-hack-in-history), [Chainalysis](https://www.chainalysis.com/blog/binance-exploit-latest-findings-and-response/) y [CoinDesk](https://www.coindesk.com/business/2026/11/03/binance-s-usd6-3-billion-hack-began-with-a-fake-job-interview-exchange-says):
+
+| Cuándo | Qué pasó |
+|---|---|
+| Junio de 2026 | Un ingeniero del equipo que maneja las billeteras instala un paquete de Homebrew adulterado mientras buscaba una herramienta de programación con IA |
+| Septiembre de 2026 | Otro ingeniero hace una "entrevista de trabajo" con una empresa falsa y ejecuta en su computadora del trabajo un ejercicio técnico que traía código malicioso |
+| Al menos 36 horas antes del robo | Los atacantes financian billeteras a través de Tornado Cash y prueban el código en varias direcciones |
+| 29 de octubre, desde las 20:05 UTC | La mayor parte de los fondos sale en unos 20 minutos. Una sola transacción se lleva 167.464 ETH y 63 tokens distintos, entre ellos 1.615 millones de USDT |
+| Esa misma noche | Binance suspende los retiros |
+| 31 de octubre | El FBI atribuye el robo a Corea del Norte (TraderTraitor) |
+| Desde el 1 de noviembre | Los retiros se reabren por etapas |
+
+Según TRM Labs, la pieza técnica clave fue EIP-7702, una función de Ethereum que permite que una billetera común delegue su control a un contrato. Los atacantes prepararon 50 autorizaciones firmadas por adelantado, una para cada número de transacción consecutivo de la billetera; cuando ejecutaron el ataque, una de esas firmas seguía siendo válida y convirtió una billetera "caliente" de Binance en una aspiradora que mandaba todo a sus direcciones. Como esa billetera usaba firma distribuida (MPC), no había una única clave que revocar, y Binance tuvo que armar un procedimiento especial para cortar el acceso.
+
+## El dato que más me interesa: empezó con una entrevista de trabajo
+
+TraderTraitor no es nuevo. Es el mismo grupo al que el FBI responsabilizó por el robo de 1.500 millones de dólares a Bybit, y su método preferido está muy documentado: contactar a desarrolladores con ofertas de trabajo atractivas, hacerlos pasar por un proceso de selección que parece real y, en algún momento, pedirles que bajen y ejecuten un "ejercicio técnico". El repositorio parece un proyecto común de Node o Python, pero alguna dependencia o un script de instalación trae el malware.
+
+Lo mismo con el paquete de Homebrew: alguien busca una herramienta de IA para programar, encuentra un instalador que parece oficial y lo corre con permisos en una máquina que tiene acceso a sistemas críticos. Ninguno de los dos casos requiere que el ingeniero sea descuidado; requiere que haga lo que hacemos todos los días.
+
+Para quienes trabajamos en desarrollo esto deja tres reglas concretas:
+
+1. **Un ejercicio técnico de una entrevista nunca se corre en la máquina del trabajo.** Si te lo piden, usá una máquina virtual, un contenedor o un entorno en la nube descartable. Y desconfiá de cualquier proceso que te pida ejecutar código antes de hablar con una persona real de la empresa.
+2. **Antes de `npm install` o `pip install` de un repo ajeno, leé los scripts.** Los `postinstall` del `package.json` y los `setup.py` son el lugar favorito para esconder código.
+3. **Las herramientas de IA son el nuevo anzuelo.** Hay muchísimos instaladores falsos de asistentes de código, extensiones y CLIs. Bajalos solo desde el sitio o el repositorio oficial, y revisá quién publica el paquete. En [la nota sobre extensiones de navegador](/blog/extensiones-navegador) hay más sobre este tipo de trampa.
+
+## ¿Mis criptomonedas están seguras si uso Binance desde Argentina?
+
+Binance dice que los saldos de los usuarios están respaldados y que repuso la mayor parte de los fondos robados con dinero propio, aunque las cifras no coinciden: algunas fuentes hablan del 90% y la empresa del 98% de los tokens afectados. Según [Infobae](https://www.infobae.com/economia/2026/11/01/hackeo-en-binance-tres-claves-que-deben-tener-en-cuenta-los-usuarios-argentinos-de-la-plataforma-cripto/), los retiros se reabrieron por etapas y no hay un plazo público para que todo vuelva a la normalidad. Exchanges locales como Lemon y Bitso informaron que no vieron movimientos anormales entre sus usuarios ([iProUP](https://www.iproup.com/economia-digital/72766-hackeo-binance-por-6300-millones-usuario-argentino-no-panico)).
+
+Un matiz que vale la pena tener presente: la promesa de cubrir las pérdidas es una decisión de la empresa, no una garantía legal como la que tiene un depósito bancario. Y además del hackeo en sí, en estos días aparecen las estafas que se cuelgan de la noticia.
+
+**Lo que conviene hacer:**
+
+- Revisá el estado de tu cuenta y los avisos **solo** desde la app oficial o escribiendo la dirección del sitio. Guardá capturas de tus saldos y de las fechas.
+- Ignorá cualquier mensaje, mail o perfil de "soporte" que ofrezca recuperar fondos, "proteger" tu cuenta o acelerar un retiro a cambio de una transferencia o de tus datos. Es la misma lógica del [phishing](/blog/phishing-email-como-detectar) de siempre.
+- Activá el [doble factor](/blog/doble-factor-autenticacion) con una app o con una llave física, no por SMS, y si el exchange lo permite, una lista blanca de direcciones de retiro.
+- No tengas en un exchange más de lo que necesitás para operar. Lo que es ahorro a largo plazo está mejor en una billetera propia de la que solo vos tenés las claves, con la frase de recuperación guardada fuera de internet.
+- Diversificá: tener todo en una sola plataforma es el mismo error que [depender de un solo proveedor de nube](/blog/caida-de-la-nube).
+
+## No fue un caso aislado
+
+En la misma semana, Mercado Bitcoin, el exchange más grande de Brasil, perdió más de 46 millones de dólares, y BitMart confirmó otro ataque que los investigadores atribuyen al mismo grupo ([La Nación](https://www.lanacion.com.ar/tecnologia/el-exchange-cripto-mercado-bitcoin-confirma-el-hackeo-y-robo-de-al-menos-us46-millones-en-brasil-nid02112026/), [CriptoNoticias](https://www.criptonoticias.com/sucesos/fundador-bitmart-hackeo-cierre-exchange/)). Según DefiLlama, entre enero y octubre de 2026 hubo 325 hackeos en el mundo cripto, contra 120 en el mismo período de 2025. Los ataques no apuntan a romper la criptografía: apuntan a las personas que operan los sistemas.
+
+## En resumen
+
+El hackeo a Binance se llevó más de 6.300 millones de dólares en unos 20 minutos, pero se preparó durante meses y empezó por el eslabón más humano: un ingeniero que instaló un paquete adulterado y otro que corrió el ejercicio de una entrevista de trabajo falsa. Si tenés cripto en un exchange, revisá todo desde los canales oficiales, desconfiá de quien te ofrezca "recuperar" fondos y no dejes ahí tus ahorros a largo plazo. Y si trabajás en desarrollo, la lección es todavía más directa: el código de una entrevista o de un repo desconocido se corre en un entorno aislado, nunca en la máquina que tiene acceso a producción.
+
+## Fuentes
+
+- **TRM Labs** — [North Korea Steals USD 6.36 Billion From Binance in the Largest Hack in History](https://www.trmlabs.com/resources/blog/north-korea-steals-usd-6-36-billion-from-binance-in-the-largest-hack-in-history). Análisis técnico del ataque y del uso de EIP-7702.
+- **Chainalysis** — [Binance Hack: Tracing the $6.4 Billion Theft to North Korea](https://www.chainalysis.com/blog/binance-exploit-latest-findings-and-response/). Rastreo de los fondos y atribución.
+- **CoinDesk** — [North Korea-linked hackers infiltrated Binance for months before $6.3 billion hack](https://www.coindesk.com/business/2026/11/03/binance-s-usd6-3-billion-hack-began-with-a-fake-job-interview-exchange-says). Cómo empezó el acceso: el paquete adulterado y la entrevista falsa.
+- **CNBC** — [Binance's $6.3 billion hack: What we know and what comes next](https://www.cnbc.com/2026/10/30/billions-in-crypto-frozen-in-binance-hack-heres-what-happens-next-.html).
+- **Infobae** — [Hackeo en Binance: tres claves que deben tener en cuenta los usuarios argentinos](https://www.infobae.com/economia/2026/11/01/hackeo-en-binance-tres-claves-que-deben-tener-en-cuenta-los-usuarios-argentinos-de-la-plataforma-cripto/).
+- **iProUP** — [Hackeo a Binance: Lemon y Bitso revelaron qué hicieron sus usuarios argentinos](https://www.iproup.com/economia-digital/72766-hackeo-binance-por-6300-millones-usuario-argentino-no-panico).
+- **La Nación** — [Mercado Bitcoin confirma el hackeo y robo de al menos US$46 millones](https://www.lanacion.com.ar/tecnologia/el-exchange-cripto-mercado-bitcoin-confirma-el-hackeo-y-robo-de-al-menos-us46-millones-en-brasil-nid02112026/).
+
+<ShareIcons />
