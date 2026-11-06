@@ -1,0 +1,77 @@
+---
+title: "Qué no pegar en ChatGPT en el trabajo: la guía para usar IA sin filtrar datos de tu empresa"
+publishedAt: "2026-11-06"
+summary: "Qué información nunca conviene pegar en ChatGPT, Gemini o Claude en el trabajo, por qué la cuenta personal es el problema más grande, qué dice la ley argentina de datos personales y cómo anonimizar un texto o un pedazo de código antes de usar la IA."
+image: "/images/blog/datos-que-no-pegar-en-la-ia/datos-que-no-pegar-en-la-ia-1.webp"
+tag: "Inteligencia Artificial"
+---
+
+![](/images/blog/datos-que-no-pegar-en-la-ia/datos-que-no-pegar-en-la-ia-1.webp)
+
+En marzo de 2023, a pocas semanas de que Samsung habilitara ChatGPT en su división de semiconductores, tres ingenieros hicieron lo que hace cualquiera: uno pegó el código fuente de un programa interno para encontrar un error, otro pegó código para optimizarlo y un tercero subió la transcripción de una reunión para que le armara la minuta. En mayo, la empresa restringió el uso de IA generativa en sus equipos ([Bloomberg](https://www.bloomberg.com/news/articles/2023-05-02/samsung-bans-chatgpt-and-other-generative-ai-use-by-staff-after-leak)). Tres años después, el problema no se resolvió: se multiplicó.
+
+## ¿Qué datos no hay que pegar en ChatGPT en el trabajo?
+
+Como regla, nunca pegues en una IA (sobre todo desde una cuenta personal) contraseñas, claves de API, tokens o archivos `.env`; datos personales de clientes o compañeros (nombres con DNI, mails, teléfonos, datos de salud o financieros); código propietario que no sea público; contratos, información financiera no publicada o estrategia comercial; ni transcripciones de reuniones internas. Si necesitás ayuda con algo así, anonimizalo antes o usá la herramienta de IA que tu empresa haya contratado y aprobado.
+
+## El tamaño del problema
+
+Según el informe de seguridad de IA y SaaS 2025 de LayerX, citado por [Escudo Digital](https://www.escudodigital.com/ciberseguridad/empleados-comparten-secretos-empresas-chatgpt.html), el 45% de los empleados de grandes empresas ya usa herramientas de IA generativa, y el 77% de ellos copia y pega información en sus consultas. El dato más preocupante es otro: el 82% de esos textos pegados sale de **cuentas personales**, no de las corporativas. Otra encuesta, de TELUS Digital, encontró que el 68% de quienes usan asistentes como ChatGPT, Copilot o Gemini en el trabajo lo hacen desde su cuenta personal ([El Tiempo](https://www.eltiempo.com/economia/shadow-ai-empleados-usan-inteligencia-artificial-con-datos-sensibles-y-las-empresas-no-siempre-saben-como-3586926)).
+
+A esto se le llama "shadow AI": el uso de IA que el área de sistemas no conoce ni controla. No es mala fe. Es que la herramienta corporativa no existe, es peor, o pide un trámite, y la personal está a un clic.
+
+## Por qué la cuenta personal cambia todo
+
+No todas las cuentas de IA tratan tus datos igual. En los planes gratuitos y personales de la mayoría de los servicios, lo que escribís puede usarse para entrenar modelos futuros salvo que lo desactives, y el historial queda guardado en una cuenta que la empresa no puede auditar ni borrar. En los planes empresariales (ChatGPT Business o Enterprise, Gemini para Workspace, Claude for Work, Copilot con cuenta corporativa) el proveedor se compromete por contrato a no entrenar con tus datos, y la empresa controla quién accede y cuánto tiempo se guarda todo. OpenAI lo explica en sus [preguntas frecuentes sobre controles de datos](https://help.openai.com/en/articles/7730893-data-controls-faq).
+
+| | Cuenta personal (gratis o paga) | Cuenta empresarial |
+|---|---|---|
+| ¿Se entrena con tus conversaciones? | Puede, salvo que lo desactives en la configuración | No, por contrato |
+| ¿Quién controla el historial? | Vos | La empresa (retención, auditoría, borrado) |
+| ¿Si dejás la empresa? | Las conversaciones se van con vos | Quedan en la organización |
+| ¿Cumple las políticas de la empresa? | Casi nunca | Es para lo que existe |
+
+Desactivar el entrenamiento en tu cuenta personal ayuda, pero no resuelve el problema de fondo: los datos de la empresa siguen saliendo hacia un lugar que la empresa no controla.
+
+## Qué dice la ley en Argentina
+
+Si lo que pegás incluye datos personales (de clientes, pacientes, empleados), entra en juego la Ley 25.326 de Protección de Datos Personales. Su artículo 12 prohíbe, como regla general, transferir datos a países que no tengan un nivel de protección adecuado, salvo excepciones, consentimiento o contratos con cláusulas modelo ([AAIP](https://argentina.gob.ar/aaip/datospersonales/transferencias-internacionales)). Mandar el texto de una consulta a un modelo alojado en otro país puede ser exactamente eso: una transferencia internacional. Una empresa con un contrato corporativo con el proveedor de IA tiene cómo encuadrarlo; una persona pegando la base de clientes en su cuenta gratuita, no.
+
+## Semáforo: qué se puede pegar y qué no
+
+| Verde: se puede | Amarillo: anonimizar antes | Rojo: nunca |
+|---|---|---|
+| Documentación pública, código open source, errores genéricos | Código propio con nombres de clases, tablas o dominios internos | Contraseñas, tokens, claves de API, `.env`, certificados |
+| Textos que ya están publicados (posts, web de la empresa) | Mails o textos con nombres de clientes o compañeros | Bases de datos con datos personales, DNI, CUIT, datos de salud |
+| Preguntas conceptuales ("cómo funciona un índice en MySQL") | Logs de errores con IPs, rutas o IDs de usuarios | Contratos, balances no publicados, estrategia, precios internos |
+| Tu propio texto para corregir, si no tiene info sensible | Consultas SQL con nombres reales de tablas y columnas | Transcripciones de reuniones internas y datos de incidentes de seguridad |
+
+## Cómo anonimizar en 2 minutos
+
+La mayoría de las veces la IA no necesita los datos reales para ayudarte. Necesita la estructura del problema.
+
+1. **Reemplazá nombres por genéricos.** "Juan Pérez, DNI 30.123.456" pasa a ser "CLIENTE_1, DNI_1". Si son varios, numeralos para no perder la relación entre ellos.
+2. **En código, cambiá lo que identifica a la empresa:** el nombre del dominio, de las tablas, los endpoints internos. `facturacion_acme.clientes_vip` puede ser `db.tabla_a` sin que la respuesta cambie.
+3. **Borrá todo lo que sea secreto antes de pegar**, aunque "sea de desarrollo". Las claves de desarrollo también se filtran, y a veces son las mismas que las de producción.
+4. **Recortá.** Pegá la función que falla, no el repositorio entero.
+5. **En los logs, enmascará IPs, mails e IDs.** Un buscar y reemplazar alcanza.
+
+Y si lo que necesitás es justamente trabajar con los datos reales (analizar una planilla de clientes, resumir reuniones), ese trabajo va en la herramienta que la empresa aprobó, o en un [modelo que corra localmente](/blog/ia-local-vs-nube), no en tu cuenta personal.
+
+## Si sos líder de equipo
+
+Prohibir no funciona: el uso se vuelve invisible. Lo que sí funciona es darle a la gente una alternativa aprobada que sea igual de cómoda, una política corta y clara (este semáforo puede ser el punto de partida) y un canal para preguntar sin miedo. En [la nota sobre automatizaciones con IA](/blog/automatizaciones-ia-sin-codigo) hay más ideas para sumar IA al trabajo de forma ordenada.
+
+## En resumen
+
+El riesgo de usar IA en el trabajo no es la IA: es pegar datos de la empresa en una cuenta personal que nadie controla, algo que según LayerX pasa en el 82% de los casos. La regla práctica es simple: nada de secretos, datos personales, código propietario ni información interna sin anonimizar, y para trabajo con datos reales, la herramienta corporativa. Anonimizar lleva dos minutos y casi nunca empeora la respuesta. Y si en tu empresa no hay una herramienta aprobada, ese es el pedido para hacer, no un motivo para usar la propia.
+
+## Fuentes
+
+- **Bloomberg** — [Samsung Bans ChatGPT, Google Bard, Other Generative AI Use by Staff After Leak](https://www.bloomberg.com/news/articles/2023-05-02/samsung-bans-chatgpt-and-other-generative-ai-use-by-staff-after-leak).
+- **Escudo Digital** — [Ocho de cada diez empleados comparten secretos de sus empresas en prompts de ChatGPT](https://www.escudodigital.com/ciberseguridad/empleados-comparten-secretos-empresas-chatgpt.html). Datos del informe de LayerX.
+- **El Tiempo** — ['Shadow AI': empleados usan inteligencia artificial con datos sensibles](https://www.eltiempo.com/economia/shadow-ai-empleados-usan-inteligencia-artificial-con-datos-sensibles-y-las-empresas-no-siempre-saben-como-3586926). Encuesta de TELUS Digital.
+- **OpenAI** — [Data Controls FAQ](https://help.openai.com/en/articles/7730893-data-controls-faq). Cómo se usan los datos según el tipo de cuenta.
+- **Agencia de Acceso a la Información Pública (AAIP)** — [Transferencias internacionales de datos personales](https://argentina.gob.ar/aaip/datospersonales/transferencias-internacionales).
+
+<ShareIcons />
