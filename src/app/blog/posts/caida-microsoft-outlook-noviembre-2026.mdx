@@ -1,22 +1,25 @@
 ---
 title: "Se cayó Outlook (y medio Microsoft 365): qué pasó, qué se sabe hasta ahora y qué hacer mientras tanto"
 publishedAt: "2026-11-13"
-summary: "Desde el jueves 12 de noviembre, Outlook, Teams, SharePoint, OneDrive y Copilot fallan en todo el mundo. Qué dijo Microsoft sobre la causa, qué servicios se vieron afectados, cómo viene la recuperación y qué conviene hacer si dependés de su correo para trabajar."
+updatedAt: "2026-11-16"
+summary: "Outlook, Teams, SharePoint, OneDrive y Copilot fallaron en todo el mundo desde el jueves 12 de noviembre. Microsoft ya restableció el servicio y explicó la causa: un defecto de software introducido en julio. Qué pasó, a quién afectó y qué conviene hacer si dependés de su correo para trabajar."
 image: "/images/blog/caida-microsoft-outlook-noviembre-2026/caida-microsoft-outlook-noviembre-2026-1.webp"
 tag: "Tecnología"
 ---
 
 ![](/images/blog/caida-microsoft-outlook-noviembre-2026/caida-microsoft-outlook-noviembre-2026-1.webp)
 
-Si ayer a la tarde no te llegaban los mails, Teams no conectaba o el Outlook de la oficina se quedaba en "Intentando conectar...", no era tu internet ni tu computadora. Desde el jueves 12 de noviembre, poco antes de las 15 (hora argentina), Microsoft atraviesa una de las caídas más grandes de su historia: Outlook, Teams, Exchange Online, SharePoint, OneDrive y Copilot empezaron a fallar en todo el mundo, y al momento de escribir esta nota, el viernes a la mañana, el servicio se está recuperando pero todavía no está normalizado.
+> **Nota actualizada al lunes 16 de noviembre.** Microsoft dio por restablecido el servicio en la madrugada del sábado 14 y el domingo 15 publicó un informe preliminar con la causa de la caída. Agregamos el cierre del incidente, la explicación oficial y el impacto estimado. La versión original se publicó el viernes 13 con el servicio todavía en recuperación.
 
-Esta nota reúne lo que se sabe hasta ahora, con lo que dijo Microsoft y lo que todavía no está confirmado, y qué podés hacer si tu trabajo depende de estas herramientas.
+Si el jueves a la tarde no te llegaban los mails, Teams no conectaba o el Outlook de la oficina se quedaba en "Intentando conectar...", no era tu internet ni tu computadora. El jueves 12 de noviembre, poco antes de las 15 (hora argentina), Microsoft empezó a atravesar una de las caídas más grandes de su historia: Outlook, Teams, Exchange Online, SharePoint, OneDrive y Copilot fallaron en todo el mundo. La recuperación llevó buena parte del viernes, y Microsoft recién dio el incidente por cerrado en la madrugada del sábado 14, unas 34 horas después del primer aviso.
 
-> **Aclaración:** la situación sigue en curso. Lo que sigue es lo que se sabía el viernes 13 a la mañana. Cuando Microsoft publique su informe técnico final, puede que la explicación cambie.
+Esta nota reúne lo que pasó, la causa que confirmó Microsoft y qué podés hacer si tu trabajo depende de estas herramientas.
+
+> **Aclaración:** la explicación de la causa sale de un informe *preliminar*. Microsoft anunció el informe final para el 20 de noviembre, y algunos detalles podrían ajustarse.
 
 ## Qué pasó, hora por hora
 
-Los horarios están convertidos a hora argentina (UTC-3) a partir de lo que publicaron [NBC News](https://www.nbcnews.com/tech/tech-news/outlook-widespread-outage-hits-microsoft-apps-rcna609047), [CNBC](https://www.cnbc.com/2026/11/12/microsoft-outage-outlook-aws-google.html) y la [cobertura en vivo de ABC7](https://abc7news.com/live-updates/microsoft-outage-live-updates-what-know-outlook-365-other-apps-remain-down/20036817/).
+Los horarios están convertidos a hora argentina (UTC-3) a partir de lo que publicaron [NBC News](https://www.nbcnews.com/tech/tech-news/outlook-widespread-outage-hits-microsoft-apps-rcna609047), [CNBC](https://www.cnbc.com/2026/11/12/microsoft-outage-outlook-aws-google.html), la [cobertura en vivo de ABC7](https://abc7news.com/live-updates/microsoft-outage-live-updates-what-know-outlook-365-other-apps-remain-down/20036817/) y [The Register](https://www.theregister.com/saas/2026/11/13/microsoft-services-restored-to-all-customers-company-says-its-deeply-sorry/5309609).
 
 | Hora (Argentina) | Qué pasó |
 |---|---|
@@ -28,8 +31,13 @@ Los horarios están convertidos a hora argentina (UTC-3) a partir de lo que publ
 | Viernes, ~04:44 | Informa "resultados positivos en la estabilidad del servicio" gracias a nuevas acciones de optimización del tráfico |
 | Viernes, ~09:09 | Habla de un "progreso alentador": mejora la disponibilidad y la entrega de mails, sobre todo en Europa, y también en Norteamérica |
 | Viernes, ~10:00 | Mejoras "amplias" en Norteamérica, "sostenidas" en buena parte de Europa y "señales alentadoras" en Asia-Pacífico. Advierte que puede haber "problemas intermitentes" mientras sigue la recuperación |
+| Viernes, ~11:17 | Según el registro del incidente, termina el período de impacto principal. Las colas de mails están "significativamente reducidas y acercándose a niveles normales" |
+| Viernes, ~13:10 | Microsoft confirma que los servicios vuelven a verse sanos. Aclara que el acceso puede recuperarse antes que la entrega de mails, que sigue poniéndose al día |
+| Viernes, tarde | Microsoft pide disculpas públicamente: dice estar "profundamente apenada por la interrupción que este incidente causó a nuestros clientes y socios" |
+| Sábado 14, ~01:15 | Último aviso: Microsoft informa que completó el trabajo sobre el problema de fondo y restableció el servicio a "los clientes y regiones que seguían afectados". Incidente cerrado |
+| Domingo 15 | Publica un informe preliminar con la causa raíz (ver más abajo) |
 
-Más de 18 horas después del inicio, Microsoft todavía no había dado el incidente por resuelto.
+En total, unas 34 horas entre el primer aviso de Microsoft y el cierre del incidente. Fue la caída más larga de Microsoft 365 en años.
 
 ## Qué servicios se cayeron
 
@@ -44,9 +52,21 @@ No fue "solo Outlook". Según la página de estado de Microsoft y lo que relevar
 
 Lo que **no** se cayó, según NBC: **Azure**, la nube de Microsoft que usan las empresas para alojar sus propios sistemas, "siguió en línea sin problemas adicionales". Tampoco hay reportes de que Windows, Xbox o los equipos en sí dejaran de funcionar: el problema estuvo en los servidores de Microsoft 365, no en las computadoras de los usuarios.
 
-## Por qué se cayó: lo que dijo Microsoft
+## Por qué se cayó: la causa confirmada
 
-La explicación fue cambiando a medida que avanzaba el día, algo habitual en estas situaciones.
+*Actualizado al 16 de noviembre.* El domingo 15, Microsoft [anunció](https://x.com/MSFT365Status/status/2122205066157257160) que publicó el informe preliminar del incidente en el Centro de administración de Microsoft 365 (incidentes MO1550821 y EX1550543). Charles Lamanna, uno de sus vicepresidentes ejecutivos, compartió una [versión resumida](https://x.com/clamanna/status/2122209697226948729) y volvió a pedir disculpas: "Lamentamos profundamente el impacto para todos nuestros clientes y reconocemos el impacto que esto tiene en sus negocios y operaciones". La explicación combina tres cosas que pasaron a la vez:
+
+1. **Un defecto que llevaba meses escondido.** En julio de 2026, Microsoft aplicó una actualización a los servidores de su *gateway* de red, la puerta de entrada por la que pasan las conexiones a Microsoft 365. Esa actualización tenía un error que provocaba un bloqueo interno en un proceso de Windows: bajo mucha carga, el servidor se trababa y se quedaba sin CPU ni memoria. Pasó las pruebas de carga y funcionó sin problemas durante meses porque, según Microsoft, "nuestras pruebas de carga solían enfocarse en hardware más débil, con menos núcleos", y el problema "empeora en máquinas con más núcleos y hardware más nuevo".
+2. **Capacidad reducida por mantenimiento.** Ese día, casi el 14% de los servidores del gateway estaba fuera de servicio por tareas programadas. Microsoft dice que igual tenía margen suficiente.
+3. **Un pico de tráfico normal.** En la noche del miércoles 11 (hora argentina), Teams pasó su tráfico al gateway principal, el mismo que usa Exchange Online. No era una carga inusual, pero sumada a lo anterior fue suficiente para activar el defecto.
+
+Lo que siguió fue el efecto dominó: los servidores trabados salían de circulación, los que quedaban recibían más carga y se trababan también. En el peor momento, **más del 80% de los servidores dejó de responder**. Servicios como Teams, OneDrive y SharePoint pudieron desviarse a otra infraestructura, pero Exchange Online, por su escala, no, y por eso el correo fue lo más golpeado y lo último en volver.
+
+**Por qué tardó tanto.** Según Microsoft, sus procesos de recuperación automática "no estaban diseñados para restaurar el servicio desde un estado de falta de respuesta tan amplio". Tampoco se podía deshacer el cambio sin más, porque el defecto tenía meses y no estaba ligado a ninguna modificación reciente. Y cada servidor que se reiniciaba volvía a caerse apenas recibía tráfico. La solución final fue una actualización que devolvió ese código de Windows a su estado anterior, aplicada por grupos de servidores. Mientras tanto, Microsoft frenó todos los despliegues y cambios de configuración que tenía en marcha.
+
+### Lo que se dijo durante la caída
+
+Mientras el incidente estaba abierto, la explicación fue cambiando, algo habitual en estas situaciones. Vale la pena repasarla, porque ayuda a entender lo que se veía desde afuera.
 
 **Primera explicación (jueves a la tarde):** Microsoft habló de "carga elevada en varias regiones", provocada por "una cantidad de servidores que quedaron inesperadamente fuera de servicio, sobrecargando al resto de la infraestructura". Agregó que "algunos servidores estaban fallando las verificaciones automáticas de salud" ([CNBC](https://www.cnbc.com/2026/11/12/microsoft-outage-outlook-aws-google.html)).
 
@@ -60,7 +80,7 @@ Para entenderlo: los grandes servicios en la nube tienen sistemas automáticos q
 
 Según Microsoft, no. La empresa dijo que **no detectó actividad maliciosa** como causa de la caída ([CNBC](https://www.cnbc.com/2026/11/12/microsoft-outage-outlook-aws-google.html)).
 
-Lo que **todavía no se sabe** es qué provocó que tantos servidores fallaran a la vez. El ministro de Ciberseguridad de Australia, Tony Burke, dijo que Microsoft cree estar frente a algo "en algunos aspectos similar a lo que vimos con CrowdStrike, donde hay una actualización que salió mal" (Reuters, citado por CNBC). Es su lectura, no una confirmación de Microsoft: la causa raíz oficial va a llegar con el informe técnico posterior (lo que en la industria se llama *post-mortem*).
+Durante la caída, el ministro de Ciberseguridad de Australia, Tony Burke, dijo que Microsoft creía estar frente a algo "en algunos aspectos similar a lo que vimos con CrowdStrike, donde hay una actualización que salió mal" (Reuters, citado por CNBC). El informe preliminar le dio la razón en lo esencial: fue una actualización defectuosa propia, aunque instalada meses antes y no el mismo día. Microsoft también descartó que la causa tuviera que ver con agentes de IA.
 
 ## ¿Se cayó también Amazon o Google?
 
@@ -74,6 +94,7 @@ Microsoft tiene unos 450 millones de usuarios en estos servicios, según NBC, y 
 - **Gobiernos:** en Estados Unidos hubo agencias federales y oficinas del Congreso sin correo, además de organismos del condado de Los Ángeles. En un condado de Colorado, las fianzas pasaron a pagarse solo en persona "hasta que se restablezca el correo de Outlook" ([NBC](https://www.nbcnews.com/tech/tech-news/outlook-widespread-outage-hits-microsoft-apps-rcna609047)).
 - **Empresas:** la automotriz Workhorse postergó la presentación de sus resultados trimestrales por las "interrupciones causadas por las caídas globales de Microsoft". La suiza Richemont (dueña de Cartier) demoró la suya. Air India tuvo que redirigir sus mails, aunque aclaró que los vuelos no se vieron afectados ([CNBC](https://www.cnbc.com/2026/11/12/microsoft-outage-outlook-aws-google.html)).
 - **Mercado:** la acción de Microsoft caía alrededor de un 2% antes de la apertura del viernes.
+- **Costo:** la consultora estadounidense Anderson Economic Group estimó que la productividad perdida podría acercarse a los **7.000 millones de dólares**, y anticipó que la cifra puede crecer ([webhosting.today](https://webhosting.today/2026/11/16/microsoft-points-to-a-latent-bug-behind-its-day-long-outlook-outage/)). Es una estimación privada, no un dato de Microsoft.
 
 En Argentina pegó de lleno en el horario laboral del jueves: muchas empresas, organismos públicos y universidades usan Outlook y Teams como herramienta principal, y la tarde se pasó entre reuniones que no conectaban y mails que no salían.
 
@@ -89,7 +110,9 @@ El patrón se repite: una falla interna, sin ataque de por medio, en una empresa
 
 **2. No reenvíes todo.** Microsoft extendió a 48 horas la retención de mails demorados: lo que mandaste probablemente esté en cola y va a llegar. Si reenviás cinco veces, después le llegan cinco copias. Para algo urgente, usá otro canal (teléfono, WhatsApp) y aclaralo.
 
-**3. Revisá la bandeja de salida cuando vuelva.** Algunos mails pueden quedar trabados en "Bandeja de salida" o volver con error. Cuando el servicio se normalice, fijate qué salió y qué no.
+**3. Revisá la bandeja de salida y los rebotes.** Con el servicio ya restablecido, fijate si quedó algo trabado en "Bandeja de salida" o si te volvió algún mail con error de entrega. Reenviá solo esos: lo que quedó en cola durante la caída se fue entregando a medida que se normalizó el servicio, y no hubo reportes de mails perdidos.
+
+**Si administrás la cuenta de una empresa:** el incidente figura como **MO1550821** en el Centro de administración de Microsoft 365. Los contratos de Microsoft 365 contemplan créditos por incumplimiento del nivel de servicio (SLA), proporcionales a la duración de la caída y solo para los servicios afectados. Microsoft no anunció una compensación automática, así que hay que pedirlos, en general a través del proveedor o partner con el que se contrató la licencia.
 
 **4. Ojo con el phishing de la caída.** Cada caída grande trae mails y mensajes falsos que aprovechan la confusión: "verificá tu cuenta de Microsoft para recuperar tus correos", "tu buzón fue suspendido por la falla, hacé clic acá". Microsoft no te va a pedir la contraseña por mail para resolver una caída suya. Si te llega algo así, aplicá lo de [cómo detectar un mail de phishing](/blog/phishing-email-como-detectar).
 
@@ -108,16 +131,26 @@ No se trata de dejar de usar Microsoft 365 ni la nube: para la mayoría de las o
 ## En resumen
 
 - La caída empezó el jueves 12 de noviembre cerca de las 14:50 (hora argentina) y afectó Outlook, Teams, Exchange Online, SharePoint, OneDrive, Copilot y más servicios de Microsoft 365 en todo el mundo.
-- Microsoft lo atribuyó a servidores que fallaron sus verificaciones de salud y a un proceso de conexiones seguras desbordado, lo que generó un efecto dominó sobre el resto de la infraestructura.
-- No hubo ciberataque, según Microsoft. La causa raíz exacta todavía no se publicó.
-- El viernes a la mañana la recuperación avanzaba, pero con problemas intermitentes.
-- Los mails demorados se retienen hasta 48 horas: no hace falta reenviarlos.
+- Microsoft restableció el servicio el viernes 13 y cerró el incidente en la madrugada del sábado 14: unas 34 horas en total. Pidió disculpas públicamente.
+- La causa, según el informe preliminar: un defecto en una actualización de julio para sus servidores de red, que se activó con la combinación de capacidad reducida por mantenimiento y un pico de tráfico. Más del 80% de esos servidores dejó de responder.
+- No hubo ciberataque, según Microsoft. El informe final está previsto para el 20 de noviembre.
+- Si te rebotó algún mail, reenviá solo ese: lo que quedó en cola se fue entregando.
 - Cuidado con los mails falsos que usan la caída como excusa para robar contraseñas.
 
 ## Fuentes
 
+**Oficiales de Microsoft:**
+
+- [Microsoft 365 Status en X: publicación del informe preliminar del incidente](https://x.com/MSFT365Status/status/2122205066157257160)
+- [Charles Lamanna (Microsoft) en X: resumen del informe preliminar](https://x.com/clamanna/status/2122209697226948729)
+- [Estado de los servicios de Microsoft 365](https://status.cloud.microsoft)
+
+**Medios:**
+
+- [The Register: Microsoft blames monster email outage on software defect introduced in July fix](https://www.theregister.com/saas/2026/11/16/microsoft-blames-monster-email-outage-on-software-defect-introduced-in-july-fix/5310026)
+- [The Register: Microsoft services restored to all customers, company says it's "deeply sorry"](https://www.theregister.com/saas/2026/11/13/microsoft-services-restored-to-all-customers-company-says-its-deeply-sorry/5309609)
+- [webhosting.today: Microsoft points to a latent bug behind its day-long Outlook outage](https://webhosting.today/2026/11/16/microsoft-points-to-a-latent-bug-behind-its-day-long-outlook-outage/)
 - [CNBC: Outlook outage continues as Microsoft flags "encouraging recovery signals"](https://www.cnbc.com/2026/11/12/microsoft-outage-outlook-aws-google.html)
 - [NBC News: Microsoft services hit by major outage across the world](https://www.nbcnews.com/tech/tech-news/outlook-widespread-outage-hits-microsoft-apps-rcna609047)
 - [ABC7: Microsoft outage live updates](https://abc7news.com/live-updates/microsoft-outage-live-updates-what-know-outlook-365-other-apps-remain-down/20036817/)
 - [Variety: Outlook Outage: Microsoft's Email Service Goes Down Nationwide](https://variety.com/2026/digital/news/outlook-outage-microsoft-email-down-1236946411/)
-- [Estado de los servicios de Microsoft 365](https://status.cloud.microsoft)
