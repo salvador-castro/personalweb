@@ -1,0 +1,70 @@
+---
+title: "¿La IA te hace más rápido o solo te hace sentir más rápido? Cómo medirlo en tu trabajo"
+publishedAt: "2026-11-17"
+summary: "Qué dicen los estudios sobre productividad con IA en programación (METR y el informe DORA), por qué la sensación de ir más rápido engaña y un método simple de dos semanas para medir si la IA te ahorra tiempo de verdad en tus tareas."
+image: "/images/blog/medir-si-la-ia-ahorra-tiempo/medir-si-la-ia-ahorra-tiempo-1.webp"
+tag: "Inteligencia Artificial"
+---
+
+![](/images/blog/medir-si-la-ia-ahorra-tiempo/medir-si-la-ia-ahorra-tiempo-1.webp)
+
+Si usás IA para programar o para escribir, probablemente sientas que vas más rápido. Es lo que dice casi todo el mundo: según el informe DORA de Google de 2025, el 90% de quienes trabajan en tecnología ya usa IA y más del 80% cree que aumentó su productividad. Pero hay un estudio que puso esa sensación a prueba con un experimento controlado, y el resultado fue incómodo: los desarrolladores con IA tardaron más, aunque estaban convencidos de haber ido más rápido. Vale la pena entender por qué, y cómo medirlo en tu propio trabajo.
+
+## ¿La IA realmente aumenta la productividad?
+
+Depende de la tarea, de la persona y de cómo se mida. Los estudios con tareas acotadas muestran ganancias claras, pero un experimento de METR con desarrolladores experimentados trabajando en sus propios proyectos encontró que tardaban un 19% más con IA, mientras creían ir un 20% más rápido. El informe DORA 2025 encontró que la IA aumenta la cantidad de cambios que un equipo entrega, pero también la inestabilidad: más fallas y más retrabajo. La conclusión práctica es que la sensación no alcanza: hay que medir.
+
+## El experimento que desarmó la intuición
+
+A principios de 2025, [METR](https://metr.org/Early_2025_AI_Experienced_OS_Devs_Study-paper.pdf), una organización que investiga capacidades de la IA, hizo un experimento con 16 desarrolladores experimentados de proyectos open source, trabajando en repositorios que conocían muy bien. Tomaron 246 tareas reales (bugs, mejoras) y, al azar, en algunas se podía usar IA y en otras no.
+
+| | Resultado |
+|---|---|
+| Lo que esperaban antes de empezar | Ir un 24% más rápido con IA |
+| Lo que creían al terminar | Haber ido un 20% más rápido |
+| Lo que midió el estudio | Tardaron un 19% **más** con IA |
+
+La brecha entre lo que sentían y lo que pasó es el dato más importante. Escribir código con IA se siente más liviano: hay menos esfuerzo de tipeo y de recordar sintaxis. Pero ese esfuerzo se reemplaza por otro que no se percibe igual: escribir el pedido, esperar, leer lo que devolvió, detectar lo que está mal y corregirlo.
+
+Hay que leerlo con matices. Fueron pocos desarrolladores, muy expertos, en proyectos grandes que conocían de memoria: justo el escenario donde la IA aporta menos. Y los modelos mejoraron desde entonces. En febrero de 2026 METR publicó una actualización con más de 50 desarrolladores y más de 800 tareas: esta vez no pudo confirmar ni una desaceleración ni una aceleración clara, y los propios investigadores estiman que hoy la IA probablemente sí acelera más que a principios de 2025 ([Ingenire](https://ingenire.com/blog/metr-2026-developer-productivity-study)). Un detalle revelador de ese segundo estudio: entre el 30% y el 50% de los participantes dijo que evitaba anotar algunas tareas porque no quería hacerlas sin IA.
+
+## Más rápido no es lo mismo que mejor
+
+El [informe DORA 2025](https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report), que encuesta a miles de profesionales cada año, agrega otra capa. Encontró que más adopción de IA se asocia con **más entregas** y mejor rendimiento del producto, pero también con **más inestabilidad**: más cambios que fallan en producción y más retrabajo. Su explicación es que la IA funciona como un amplificador: en equipos con buenos tests automatizados, control de versiones ordenado y revisiones rápidas, el volumen extra se absorbe; en equipos sin esas bases, más código es más problemas.
+
+Es la misma idea que repasamos en [la nota sobre programar con IA sin perder el criterio](/blog/ia-para-programar): la velocidad para generar código no sirve de mucho si después hay que pasar el doble de tiempo revisándolo o arreglándolo.
+
+## Dónde suele ahorrar tiempo y dónde suele costarlo
+
+| Suele ahorrar tiempo | Suele costar tiempo |
+|---|---|
+| Código repetitivo (formularios, tipos, tests básicos, configuraciones) | Cambios en código grande y con mucho contexto que la IA no ve |
+| Tecnologías o lenguajes que no conocés bien | Tareas que ya sabés hacer de memoria |
+| Primeros borradores de documentación o de mails | Bugs sutiles, donde la IA propone arreglos plausibles pero equivocados |
+| Explicar código ajeno o un mensaje de error | Ir y venir con el prompt cuando la primera respuesta no sirve |
+| Scripts descartables y prototipos | Revisar código generado que "parece" estar bien |
+
+## Cómo medirlo vos en dos semanas
+
+No hace falta un experimento científico. Hace falta registrar, aunque sea de forma simple, lo que hoy solo estás intuyendo.
+
+1. **Elegí tareas comparables.** Tus tareas típicas de la semana: tickets chicos, mails largos, informes, tests. Anotá una estimación antes de empezar cada una.
+2. **Alterná con y sin IA.** No hace falta que sea al azar perfecto: alterná por día o por tarea, buscando que haya de los dos tipos.
+3. **Medí el tiempo total, no solo el de escritura.** Desde que arrancás la tarea hasta que está terminada de verdad: revisada, probada y aprobada. Un temporizador o un registro en una planilla alcanza.
+4. **Anotá el retrabajo.** ¿Volvió de la revisión con cambios? ¿Apareció un bug después? Eso también es tiempo de la tarea.
+5. **Al final, compará por tipo de tarea.** Lo más probable es que no salga un "sí" o un "no" general, sino un mapa: en estas tareas me ahorra, en estas me cuesta.
+
+Con ese mapa, la decisión es mucho más fácil: usás IA donde rinde, y en lo demás la dejás para consultas puntuales. Si lideras un equipo, la misma lógica vale a escala: mirar tiempo de ciclo, tasa de cambios fallidos y retrabajo, no la cantidad de líneas generadas ni la sensación del equipo.
+
+## En resumen
+
+La sensación de ir más rápido con IA es real, pero no es una medición: en el experimento de METR, desarrolladores expertos tardaron un 19% más con IA mientras creían haber ido un 20% más rápido, y el informe DORA encontró que más IA trae más entregas pero también más inestabilidad. Los modelos mejoraron desde entonces y en muchas tareas sí ahorran tiempo, pero no en todas. La forma de saberlo es medir tu propio trabajo durante dos semanas, con el tiempo total de cada tarea y el retrabajo incluidos, y quedarte con un mapa de dónde te conviene usarla.
+
+## Fuentes
+
+- **METR** — [Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity](https://metr.org/Early_2025_AI_Experienced_OS_Devs_Study-paper.pdf). El experimento controlado original.
+- **Ingenire** — [METR 2026: AI Made Developers 19% Slower. Is That Still True?](https://ingenire.com/blog/metr-2026-developer-productivity-study). Resumen de la actualización de febrero de 2026.
+- **Google Cloud** — [Announcing the 2025 DORA Report](https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report). Informe State of AI-assisted Software Development.
+- **DORA** — [Balancing AI tensions](https://dora.dev/insights/balancing-ai-tensions/). Análisis de la relación entre adopción de IA, velocidad y estabilidad.
+
+<ShareIcons />
