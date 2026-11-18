@@ -112,6 +112,23 @@ export function siteGraph() {
   };
 }
 
+/** FAQPage node for a page's @graph (no @context), tied to the page by @id. */
+export function faqNode(items: FaqItem[], pageUrl: string) {
+  return {
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    url: pageUrl,
+    inLanguage: "es-AR",
+    isPartOf: { "@id": schemaIds.website },
+    about: { "@id": pageUrl },
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+}
+
 export function faqPage(items: FaqItem[], pageUrl: string) {
   return {
     "@context": "https://schema.org",

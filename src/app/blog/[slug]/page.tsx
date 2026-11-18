@@ -9,6 +9,8 @@ import { tagPath } from "@/app/utils/tags";
 import { absoluteUrl, ogImageUrl } from "@/app/utils/url";
 import ScrollToHash from "@/components/ScrollToHash";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { Faq } from "@/components/Faq";
+import { faqNode } from "@/app/utils/structuredData";
 import { Metadata } from 'next';
 import { Meta, Schema } from "@/once-ui/modules";
 
@@ -72,6 +74,9 @@ export default async function Blog({
       src: person.avatar,
     })) || [];
 
+  const postUrl = `${baseURL}${blog.path}/${post.slug}`;
+  const faq = post.metadata.faq ?? [];
+
   return (
     <Row fillWidth>
       <Row maxWidth={12} hide="m"/>
@@ -94,8 +99,9 @@ export default async function Blog({
             breadcrumb={[
               { name: "Inicio", url: baseURL },
               { name: blog.label, url: `${baseURL}${blog.path}` },
-              { name: post.metadata.title, url: `${baseURL}${blog.path}/${post.slug}` },
+              { name: post.metadata.title, url: postUrl },
             ]}
+            graph={faq.length > 0 ? [faqNode(faq, postUrl)] : undefined}
           />
           <Button data-border="rounded" href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
             Posteos
@@ -115,6 +121,7 @@ export default async function Blog({
           <Column as="article" fillWidth>
             <CustomMDX source={post.content} />
           </Column>
+          {faq.length > 0 && <Faq id="preguntas-frecuentes" items={faq} />}
           <RelatedPosts post={post} />
           <ScrollToHash />
         </Column>

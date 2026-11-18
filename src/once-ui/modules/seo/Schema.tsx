@@ -35,6 +35,8 @@ export interface SchemaProps {
   breadcrumb?: BreadcrumbItem[];
   /** Extra properties merged into the main node (e.g. `about`, `mainEntity`) */
   extra?: Record<string, unknown>;
+  /** Extra nodes (e.g. FAQPage) emitted with the main node in a single @graph */
+  graph?: Record<string, unknown>[];
 }
 
 const schemaTypeMap = {
@@ -65,6 +67,7 @@ export function Schema({
   author,
   breadcrumb,
   extra,
+  graph,
 }: SchemaProps) {
   // joinUrl keeps absolute images as-is, so callers may pass either a path or a full URL
   const imageUrl = joinUrl(baseURL, image || ogImagePath(title));
@@ -127,6 +130,17 @@ export function Schema({
   }
 
   Object.assign(schema, extra);
+
+  if (graph && graph.length > 0) {
+    // Site-wide Person/WebSite live in the layout graph; these nodes only reference them by @id
+    const { "@context": context, ...mainNode } = schema;
+    return (
+      <JsonLd
+        id={`schema-${as}-${path}`}
+        data={{ "@context": context, "@graph": [mainNode, ...graph] }}
+      />
+    );
+  }
 
   return <JsonLd id={`schema-${as}-${path}`} data={schema} />;
 }

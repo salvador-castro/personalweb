@@ -26,6 +26,8 @@ type Metadata = {
   location?: string;
   service?: string;
   stack?: string[];
+  // Blog only: visible FAQ section + FAQPage structured data
+  faq?: { question: string; answer: string }[];
 };
 
 import { notFound } from 'next/navigation';
@@ -105,6 +107,9 @@ function readMDXFile(filePath: string) {
     location: data.location,
     service: data.service,
     stack: data.stack || [],
+    faq: Array.isArray(data.faq)
+      ? data.faq.filter((item: any) => item?.question && item?.answer)
+      : [],
   };
 
   return { metadata, content };
