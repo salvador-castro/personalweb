@@ -34,6 +34,14 @@ export interface ServicePage {
   cases: string[];
   faq: FaqItem[];
   whatsappMessage: string;
+  /** Optional extra content blocks rendered after "Qué incluye" */
+  sections?: ServiceSection[];
+}
+
+export interface ServiceSection {
+  title: string;
+  intro?: string;
+  items: { title: string; text: string }[];
 }
 
 const lowerFirst = (text: string) =>
@@ -68,7 +76,7 @@ export const servicePages: ServicePage[] = [
     name: "Páginas web",
     serviceType: "Diseño y desarrollo de páginas web",
     icon: "globe",
-    title: "Diseño de páginas web para PyMEs en Buenos Aires | Salvador Castro",
+    title: `Páginas web para PyMEs en Buenos Aires ${fromPrice(minPrice("paginas-web"))}`,
     description: `Landing pages ${fromPrice(minPrice("paginas-web"))} y páginas institucionales a medida: rápidas, adaptadas al celular y listas para Google. Para PyMEs de Argentina y Uruguay.`,
     headline: "Diseño de páginas web para PyMEs y profesionales",
     answer: `Diseño y desarrollo páginas web a medida para PyMEs, comercios y profesionales de Argentina y Uruguay: ${priceSentence("paginas-web")}. Cada sitio se adapta al celular, carga rápido, sale con SEO básico para aparecer en Google y tiene contacto directo por WhatsApp.`,
@@ -115,8 +123,7 @@ export const servicePages: ServicePage[] = [
     name: "Tiendas online",
     serviceType: "Desarrollo de tiendas online (e-commerce)",
     icon: "grid",
-    title:
-      "Tienda online para tu negocio: precios y desarrollo | Salvador Castro",
+    title: `Tienda online para PyMEs: desarrollo ${fromPrice(minPrice("tiendas-online"))}`,
     description: `Tiendas online a medida ${fromPrice(minPrice("tiendas-online"))}: catálogo, carrito, Mercado Pago y panel para gestionar productos y pedidos. PyMEs de Argentina y Uruguay.`,
     headline: "Tiendas online para negocios que quieren vender todos los días",
     answer: `Desarrollo tiendas online a medida ${fromPrice(minPrice("tiendas-online"))} para negocios de Argentina y Uruguay: catálogo de productos, carrito, pagos con Mercado Pago y un panel de administración para cargar productos, seguir pedidos y gestionar clientes sin depender de nadie.`,
@@ -162,7 +169,7 @@ export const servicePages: ServicePage[] = [
     name: "Sistemas de turnos",
     serviceType: "Desarrollo de sistemas de turnos y reservas online",
     icon: "calendar",
-    title: "Sistema de turnos online a medida | Salvador Castro",
+    title: `Sistema de turnos online a medida ${fromPrice(minPrice("sistemas-de-turnos"))}`,
     description: `Sistemas de turnos online ${fromPrice(minPrice("sistemas-de-turnos"))} para consultorios, barberías y profesionales: reservas 24/7, recordatorios por WhatsApp y panel de gestión.`,
     headline:
       "Sistema de turnos online para consultorios, salones y profesionales",
@@ -209,7 +216,7 @@ export const servicePages: ServicePage[] = [
     name: "Sistemas a medida",
     serviceType: "Desarrollo de software y sistemas web a medida",
     icon: "document",
-    title: "Sistemas de gestión a medida para PyMEs | Salvador Castro",
+    title: "Sistema de gestión a medida para PyMEs en Buenos Aires",
     description: `Sistemas de gestión a medida ${fromPrice(minPrice("sistemas-a-medida"))}: gestión interna, paneles de administración, SaaS y automatizaciones para PyMEs de Argentina y Uruguay.`,
     headline: "Sistemas a medida y de gestión para PyMEs",
     answer: `Desarrollo sistemas web a medida ${fromPrice(minPrice("sistemas-a-medida"))} para PyMEs de Argentina y Uruguay que necesitan ordenar su operación: sistemas de gestión interna, paneles de administración, productos SaaS y automatizaciones que reemplazan planillas y tareas manuales.`,
@@ -229,7 +236,58 @@ export const servicePages: ServicePage[] = [
     ],
     timeline:
       "Depende del alcance. Se trabaja por etapas: una primera versión usable suele estar en 4 a 8 semanas y después se suman mejoras.",
-    cases: ["Turnos-Clapton", "LaVacaRoja", "WhatsAppGroup"],
+    cases: ["Turnos-Clapton", "Sistema-Turnos-SFI", "LaVacaRoja", "MoraMachado", "WhatsAppGroup"],
+    sections: [
+      {
+        title: "Qué tipo de sistemas desarrollo",
+        intro:
+          "Cada sistema se diseña alrededor del proceso real del negocio. Estos son los más habituales, todos con casos en producción:",
+        items: [
+          {
+            title: "Gestión interna y comisiones",
+            text: "Turnos Clapton: panel con roles para administración, recepción y barberos, comisiones calculadas solas, estadísticas e historial de clientes.",
+          },
+          {
+            title: "Agenda y notificaciones automáticas",
+            text: "Salud Femenina Integral: reservas, control de accesos por rol y recordatorios automáticos por WhatsApp y email con tareas programadas.",
+          },
+          {
+            title: "Pedidos, stock y clientes",
+            text: "La Vaca Roja: panel de administración para productos, precios, pedidos y usuarios, conectado a la tienda online y a Mercado Pago.",
+          },
+          {
+            title: "Contenido autoadministrable",
+            text: "Mora Machado Construcciones: panel propio para cargar obras, fotos y videos sin tocar código, con servidor propio y backups diarios.",
+          },
+          {
+            title: "Automatizaciones",
+            text: "Bots y tareas programadas que reemplazan trabajo manual repetitivo, como la creación masiva de grupos de WhatsApp a partir de una planilla.",
+          },
+        ],
+      },
+      {
+        title: "Cómo se presupuesta un sistema a medida",
+        intro: `Para que el precio sea previsible, el proyecto se divide en etapas cortas. La primera etapa ${fromPrice(minPrice("sistemas-a-medida"))} ya entrega una versión usable.`,
+        items: [
+          {
+            title: "1. Relevamiento sin cargo",
+            text: "Una charla para entender cómo trabajás hoy: qué planillas usás, quién hace cada tarea y dónde se pierde tiempo.",
+          },
+          {
+            title: "2. Propuesta por escrito",
+            text: "Alcance, plazos y precio cerrados de la primera etapa, con las mejoras posibles para después ya identificadas.",
+          },
+          {
+            title: "3. Primera versión en 4 a 8 semanas",
+            text: "Con lo esencial funcionando y avances que podés probar cada semana. Se carga tu información real y se capacita a tu equipo.",
+          },
+          {
+            title: "4. Mejoras por etapas",
+            text: "Una vez en uso, se suman integraciones, reportes o automatizaciones según lo que el negocio realmente necesite.",
+          },
+        ],
+      },
+    ],
     faq: [
       priceFaq(
         "¿Cuánto cuesta un sistema a medida?",
@@ -240,6 +298,21 @@ export const servicePages: ServicePage[] = [
         question: "¿Qué es un sistema a medida y cuándo conviene?",
         answer:
           "Es un software web hecho para el proceso de tu negocio, en lugar de adaptar el negocio a una herramienta genérica. Conviene cuando las planillas o los sistemas enlatados ya no alcanzan, o cuando pagás varias herramientas que no se integran entre sí.",
+      },
+      {
+        question: "¿Un sistema a medida o uno enlatado?",
+        answer:
+          "Un sistema enlatado conviene si tu proceso es estándar y la herramienta lo cubre completo. Uno a medida conviene cuando terminás adaptando el negocio a la herramienta, pagás varias suscripciones que no se hablan entre sí o seguís resolviendo todo en Excel por fuera del sistema.",
+      },
+      {
+        question: "¿Cuánto tarda en estar listo un sistema de gestión?",
+        answer:
+          "Una primera versión usable suele estar en 4 a 8 semanas. Después se suman mejoras por etapas, así empezás a usarlo rápido y no pagás por funciones que todavía no sabés si vas a necesitar.",
+      },
+      {
+        question: "¿Trabajás con PyMEs fuera de Buenos Aires?",
+        answer:
+          "Sí. Estoy en la Ciudad de Buenos Aires, pero trabajo de forma remota con PyMEs de todo el país y de Uruguay: por ejemplo, Turnos Clapton es para una barbería de Villa María, Córdoba.",
       },
       {
         question: "¿Se puede integrar facturación electrónica en el sistema?",

@@ -5,7 +5,7 @@ import { AvatarGroup, Button, Card, Column, Flex, Heading, Row, SmartImage, Smar
 import { baseURL } from "@/app/resources";
 import { absoluteUrl, ogImageUrl } from "@/app/utils/url";
 import { sobremi, person, trabajos, servicios } from "@/app/resources/content";
-import { getServicePage, servicePath } from "@/app/resources/services";
+import { getServicePage, servicePages, servicePath } from "@/app/resources/services";
 import { formatPrice, minPrice } from "@/app/resources/pricing";
 import { schemaIds } from "@/app/utils/structuredData";
 import { formatDate } from "@/app/utils/formatDate";
@@ -64,6 +64,11 @@ export default async function Project({
 
   const { client, industry, location, stack = [], link } = post.metadata;
   const servicePage = post.metadata.service ? getServicePage(post.metadata.service) : undefined;
+  // The main service plus every other service page that lists this project as a case
+  const relatedServices = [
+    ...(servicePage ? [servicePage] : []),
+    ...servicePages.filter((page) => page !== servicePage && page.cases.includes(post.slug)),
+  ];
   const isRepository = Boolean(link?.includes("github.com"));
   const sheet = [
     client && { label: "Cliente", value: client },
@@ -108,7 +113,7 @@ export default async function Project({
         <Text variant="body-default-l" onBackground="neutral-weak">
           {post.metadata.summary}
         </Text>
-        {(sheet.length > 0 || servicePage || stack.length > 0 || link) && (
+        {(sheet.length > 0 || relatedServices.length > 0 || stack.length > 0 || link) && (
           <Card direction="column" padding="20" gap="12" radius="l" fillWidth>
             {sheet.map((row) => (
               <Row key={row.label} gap="12">
@@ -118,14 +123,18 @@ export default async function Project({
                 <Text variant="body-default-s">{row.value}</Text>
               </Row>
             ))}
-            {servicePage && (
+            {relatedServices.length > 0 && (
               <Row gap="12">
                 <Text variant="label-default-s" onBackground="neutral-weak" style={{ minWidth: "6rem" }}>
-                  Servicio
+                  {relatedServices.length > 1 ? "Servicios" : "Servicio"}
                 </Text>
-                <SmartLink href={servicePath(servicePage.slug)}>
-                  <Text variant="body-default-s">{servicePage.name}</Text>
-                </SmartLink>
+                <Row gap="12" wrap>
+                  {relatedServices.map((related) => (
+                    <SmartLink key={related.slug} href={servicePath(related.slug)}>
+                      <Text variant="body-default-s">{related.name}</Text>
+                    </SmartLink>
+                  ))}
+                </Row>
               </Row>
             )}
             {stack.length > 0 && (

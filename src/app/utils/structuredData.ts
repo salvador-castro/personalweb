@@ -42,7 +42,13 @@ export function priceOffer(item: (typeof pricing.items)[number], serviceUrl: str
       priceCurrency: pricing.currency,
       validFrom: pricing.updatedAt,
     },
-    itemOffered: { "@type": "Service", name: item.label, provider: { "@id": schemaIds.business } },
+    itemOffered: {
+      "@type": "Service",
+      name: item.label,
+      url: serviceUrl,
+      areaServed,
+      provider: { "@id": schemaIds.business },
+    },
   };
 }
 

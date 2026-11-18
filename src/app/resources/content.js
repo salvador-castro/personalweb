@@ -72,11 +72,11 @@ const social = [
 const home = {
   path: '/',
   label: 'Home',
-  title: `Desarrollador web freelance en Buenos Aires | ${person.name}`,
+  title: `Desarrollador web freelance Buenos Aires | ${person.name}`,
   description: `Páginas web, tiendas online y sistemas a medida para PyMEs de Argentina y Uruguay. Desarrollo freelance desde Buenos Aires, landing pages ${fromPrice(
     minPrice()
   )}.`,
-  headline: <>Webs y sistemas a medida que hacen crecer tu negocio</>,
+  headline: <>Desarrollador web freelance en Buenos Aires para PyMEs</>,
   featured: {
     display: true,
     title: (
@@ -88,9 +88,9 @@ const home = {
   },
   subline: (
     <>
-      Diseño y desarrollo landing pages, sistemas de turnos y tiendas online
-      para PyMEs, comercios y profesionales que quieren vender y agendar más a
-      través de internet.
+      Diseño páginas web para PyMEs, tiendas online, sistemas de turnos online
+      y sistemas de gestión a medida para comercios y profesionales de Buenos
+      Aires y todo el país que quieren vender y agendar más por internet.
     </>
   )
 }

@@ -1,3 +1,4 @@
+import React from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import {
@@ -194,6 +195,34 @@ export default async function ServicioPage({ params }: { params: Promise<{ slug:
           </Column>
         </Column>
       </Grid>
+
+      {page.sections?.map((section) => (
+        <React.Fragment key={section.title}>
+          <Line />
+          <Column fillWidth gap="m">
+            <Heading as="h2" variant="display-strong-xs" wrap="balance">
+              {section.title}
+            </Heading>
+            {section.intro && (
+              <Text variant="body-default-l" onBackground="neutral-weak">
+                {section.intro}
+              </Text>
+            )}
+            <Grid fillWidth columns="2" mobileColumns="1" gap="24" paddingTop="8">
+              {section.items.map((item) => (
+                <Column key={item.title} gap="8">
+                  <Heading as="h3" variant="heading-strong-m">
+                    {item.title}
+                  </Heading>
+                  <Text variant="body-default-m" onBackground="neutral-weak">
+                    {item.text}
+                  </Text>
+                </Column>
+              ))}
+            </Grid>
+          </Column>
+        </React.Fragment>
+      ))}
 
       <Line />
 

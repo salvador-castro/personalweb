@@ -62,6 +62,8 @@ El propio equipo de PHP lo dice sin vueltas: "no hay mitigaciones completas, act
 6. **Si quedaste expuesto, revisá si ya entraron.** Huntress recomienda buscar procesos de `php-fpm`, `php-cgi`, `httpd` o `apache2` que lancen `sh`, `bash`, `curl`, `wget` o `powershell`, que es la huella típica de un webshell.
 7. **Si el servidor corre PHP 8.1 o anterior**, el plan no es esperar una versión oficial que no va a llegar: es migrar a una rama con soporte, o como mínimo aislarlo detrás de un WAF hasta hacerlo.
 
+Si tu sitio está hecho en PHP y nadie lo actualiza hace años, conviene revisarlo cuanto antes; si hace falta rehacerlo, así trabajo las [páginas web para PyMEs](/servicios/paginas-web), con mantenimiento después de la entrega.
+
 ## En resumen
 
 php2shell combina las tres cosas que convierten una vulnerabilidad en un problema serio: está en el núcleo de un lenguaje que corre en una parte enorme de la web, permite ejecutar código sin autenticación, y se filtró antes de que existiera el parche. Para quien administra sitios en PHP, la prioridad de esta semana no es otra que actualizar. Y para quien todavía tiene servidores con versiones sin soporte, es la confirmación más clara de que "si anda, no lo toques" deja de ser una estrategia el día en que aparece una falla que nadie va a parchear por vos.

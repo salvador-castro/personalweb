@@ -170,7 +170,7 @@ export default function Home() {
         <RevealFx translateY="4" fillWidth horizontal="start">
           <Row fillWidth vertical="center" horizontal="space-between">
             <Heading as="h2" variant="display-strong-xs" wrap="balance">
-              Servicios para tu negocio
+              Páginas web, tiendas online y sistemas para PyMEs
             </Heading>
             <SmartLink href={servicios.path} aria-label="Ver todos los servicios">
               <Text variant="label-default-s" onBackground="neutral-weak">
