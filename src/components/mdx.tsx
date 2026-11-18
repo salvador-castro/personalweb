@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm'
 import { getPublishedBlogSlugs, localImageExists } from '@/app/utils/utils'
 
 import {
+  Column,
   Heading,
   HeadingLink,
   SmartImage,
@@ -159,6 +160,30 @@ function createHeading (as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6') {
   return CustomHeading
 }
 
+// Highlighted answer box for the top of a post (prices, dates): plain server HTML, readable by crawlers
+function Callout ({ title, children }: { title?: string; children: ReactNode }) {
+  return (
+    <Column
+      as='aside'
+      fillWidth
+      gap='8'
+      padding='20'
+      radius='l'
+      marginTop='8'
+      marginBottom='16'
+      background='brand-alpha-weak'
+      border='brand-alpha-medium'
+    >
+      {title && (
+        <Text as='p' variant='heading-strong-m'>
+          {title}
+        </Text>
+      )}
+      <Column gap='4'>{children}</Column>
+    </Column>
+  )
+}
+
 function createParagraph ({ children }: TextProps) {
   return (
     <Text
@@ -228,6 +253,7 @@ const components = {
   CodeBlock,
   InlineCode,
   ShareIcons, // 👈 ahora sí, server-safe
+  Callout,
   Button: dynamic(() => import('@/once-ui/components').then(mod => mod.Button)),
   Card: dynamic(() => import('@/once-ui/components').then(mod => mod.Card)),
   Grid: dynamic(() => import('@/once-ui/components').then(mod => mod.Grid)),
