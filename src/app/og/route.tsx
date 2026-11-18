@@ -45,8 +45,14 @@ function loadAvatar (): Promise<string | null> {
   return avatarPromise
 }
 
+// Emoji and their modifiers: Inter has no glyphs for them and Satori would try to download them
+// at render time (a network call that can hang or fail), so they are removed before rendering
+const EMOJI = /[\p{Extended_Pictographic}\p{Regional_Indicator}\u{1F3FB}-\u{1F3FF}\u200D\uFE0E\uFE0F\u20E3]/gu
+const RENDER_TIMEOUT_MS = 8000
+
 function sanitizeTitle (raw: string | null): string {
   const title = (raw ?? '')
+    .replace(EMOJI, '')
     .replace(/[\u0000-\u001F\u007F-\u009F]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
@@ -154,7 +160,15 @@ async function render (title: string, avatar: string | null, fonts: Font[]) {
     height: HEIGHT,
     fonts
   })
-  return Buffer.from(await image.arrayBuffer())
+  let timer: ReturnType<typeof setTimeout> | undefined
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`render timed out after ${RENDER_TIMEOUT_MS}ms`)), RENDER_TIMEOUT_MS)
+  })
+  try {
+    return Buffer.from(await Promise.race([image.arrayBuffer(), timeout]))
+  } finally {
+    clearTimeout(timer)
+  }
 }
 
 function pngResponse (body: Buffer, cacheControl: string) {

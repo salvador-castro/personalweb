@@ -71,6 +71,8 @@ const social = [
 
 const home = {
   path: '/',
+  // Last content change of the home copy, used as the sitemap lastmod
+  updatedAt: '2026-11-18',
   label: 'Home',
   title: `Desarrollador web freelance Buenos Aires | ${person.name}`,
   description: `Páginas web, tiendas online y sistemas a medida para PyMEs de Argentina y Uruguay. Desarrollo freelance desde Buenos Aires, landing pages ${fromPrice(
@@ -84,7 +86,7 @@ const home = {
         Caso de éxito: <strong className='ml-4'>Clapton Barbershop</strong>
       </>
     ),
-    href: '/trabajos/ClaptonBarberia'
+    href: '/trabajos/clapton-barberia'
   },
   subline: (
     <>
@@ -462,7 +464,7 @@ const servicios = {
       ],
       caseStudy: {
         label: 'Ver caso: Clapton Barbershop',
-        href: '/trabajos/ClaptonBarberia'
+        href: '/trabajos/clapton-barberia'
       }
     },
     {
@@ -480,7 +482,7 @@ const servicios = {
       ],
       caseStudy: {
         label: 'Ver caso: Salud Femenina Integral',
-        href: '/trabajos/Sistema-Turnos-SFI'
+        href: '/trabajos/sistema-turnos-sfi'
       }
     },
     {
@@ -498,7 +500,7 @@ const servicios = {
       ],
       caseStudy: {
         label: 'Ver caso: La Vaca Roja',
-        href: '/trabajos/LaVacaRoja'
+        href: '/trabajos/la-vaca-roja'
       }
     },
     {
@@ -516,7 +518,7 @@ const servicios = {
       ],
       caseStudy: {
         label: 'Ver caso: Turnos Clapton',
-        href: '/trabajos/Turnos-Clapton'
+        href: '/trabajos/turnos-clapton'
       }
     },
     {

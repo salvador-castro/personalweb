@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
-import { getPosts } from "@/app/utils/utils";
+import { getPosts, postLastModified } from "@/app/utils/utils";
 import { AvatarGroup, Button, Card, Column, Flex, Heading, Row, SmartImage, SmartLink, Tag, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { absoluteUrl, ogImageUrl } from "@/app/utils/url";
@@ -40,9 +40,15 @@ export async function generateMetadata({
     title: post.metadata.title,
     description: post.metadata.summary,
     baseURL: baseURL,
-    image: post.metadata.image ? absoluteUrl(post.metadata.image) : ogImageUrl(post.metadata.title),
+    image: projectImageUrl(post.metadata),
     path: `${trabajos.path}/${post.slug}`,
   });
+}
+
+/** Cover screenshot of the project (same image for og:image and JSON-LD), or the generated OG image. */
+function projectImageUrl(metadata: { image?: string; images: string[]; title: string }) {
+  const cover = metadata.image || metadata.images[0];
+  return cover ? absoluteUrl(cover) : ogImageUrl(metadata.title);
 }
 
 export default async function Project({
@@ -85,8 +91,8 @@ export default async function Project({
         title={post.metadata.title}
         description={post.metadata.summary}
         datePublished={post.metadata.publishedAt}
-        dateModified={post.metadata.publishedAt}
-        image={post.metadata.images[0] ? absoluteUrl(post.metadata.images[0]) : ogImageUrl(post.metadata.title)}
+        dateModified={postLastModified(post)}
+        image={projectImageUrl(post.metadata)}
         author={{
           name: person.name,
           url: `${baseURL}${sobremi.path}`,

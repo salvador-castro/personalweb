@@ -1,8 +1,7 @@
 import { getBlogTags, getPosts, newestLastModified, postLastModified } from "@/app/utils/utils";
-import { baseURL, routes as routesConfig, sobremi } from "@/app/resources";
-import { getTotalPages, POSTS_PER_PAGE } from "@/components/blog/BlogPagination";
+import { baseURL, routes as routesConfig, sobremi, home } from "@/app/resources";
 import { MIN_POSTS_TO_INDEX_TAG, tagPath } from "@/app/utils/tags";
-import { servicePages, servicePath } from "@/app/resources/services";
+import { servicePages, servicePath, servicePagesUpdatedAt } from "@/app/resources/services";
 import { pricing } from "@/app/resources/pricing";
 
 export const dynamic = "force-static";
@@ -39,27 +38,30 @@ export default async function sitemap() {
 
   const trabajos = allProjects.map((post) => ({
     url: `${baseURL}/trabajos/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
+    lastModified: postLastModified(post),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
+  // Service pages change when prices or their copy change
+  const servicesLastModified = [pricing.updatedAt, servicePagesUpdatedAt].sort().at(-1);
+
   const servicios = routesConfig["/servicios"]
     ? servicePages.map((page) => ({
         url: `${baseURL}${servicePath(page.slug)}`,
-        lastModified: pricing.updatedAt,
+        lastModified: servicesLastModified,
         changeFrequency: "monthly" as const,
         priority: 0.9,
       }))
     : [];
 
   const newestPost = newestLastModified(allBlogPosts);
-  const newestProject = allProjects.map((post) => post.metadata.publishedAt).sort().at(-1);
+  const newestProject = newestLastModified(allProjects);
 
   const routeLastModified: Record<string, string | undefined> = {
     // The home lists services, the featured project and the latest posts
-    "/": [newestPost, newestProject, pricing.updatedAt].filter(Boolean).sort().at(-1),
-    "/servicios": pricing.updatedAt,
+    "/": [newestPost, newestProject, servicesLastModified, home.updatedAt].filter(Boolean).sort().at(-1),
+    "/servicios": servicesLastModified,
     "/sobre-mi": sobremi.updatedAt,
     "/trabajos": newestProject,
     "/blog": newestPost,
@@ -84,17 +86,7 @@ export default async function sitemap() {
       priority: 0.6,
     }));
 
-  // Same order as the blog listing: each page's lastmod is the newest post it shows
-  const blogPages = Array.from({ length: getTotalPages() - 1 }, (_, i) => {
-    const page = i + 2;
-    const start = (page - 1) * POSTS_PER_PAGE;
-    return {
-      url: `${baseURL}/blog/page/${page}`,
-      lastModified: newestLastModified(allBlogPosts.slice(start, start + POSTS_PER_PAGE)),
-      changeFrequency: "weekly" as const,
-      priority: 0.5,
-    };
-  });
-
-  return [...routes, ...servicios, ...blogs, ...blogPages, ...trabajos, ...tagPages];
+  // /blog/page/N stay indexable (each post is linked from them) but out of the sitemap:
+  // the posts themselves are listed above with their real lastmod
+  return [...routes, ...servicios, ...blogs, ...trabajos, ...tagPages];
 }

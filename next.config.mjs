@@ -52,6 +52,13 @@ const nextConfig = {
         source: '/(.*)',
         headers: securityHeaders,
       },
+      {
+        // HTML must be revalidated on every request: a shared cache (CDN, nginx proxy_cache) holding
+        // an old page would point to /_next/static files from a previous deploy that no longer exist.
+        // Hashed assets under /_next/static keep Next's own immutable, 1-year headers.
+        source: '/((?!_next/|og|images/|fonts/|favicon\\.ico).*)',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=0, s-maxage=0, must-revalidate' }],
+      },
     ]
   },
   images: {

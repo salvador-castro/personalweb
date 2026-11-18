@@ -96,7 +96,7 @@ export const servicePages: ServicePage[] = [
     ],
     timeline:
       "Una landing page suele estar lista en 1 a 2 semanas y una página institucional en 2 a 4 semanas, según cuánto contenido (textos, fotos) haya que preparar.",
-    cases: ["MoraMachado", "ClaptonBarberia", "DarioBlanco", "ArteUrbano", "BeOrange"],
+    cases: ["mora-machado", "clapton-barberia", "dario-blanco", "arte-urbano", "be-orange"],
     faq: [
       priceFaq(
         "¿Cuánto cuesta una página web para una PyME?",
@@ -143,7 +143,7 @@ export const servicePages: ServicePage[] = [
     ],
     timeline:
       "Una tienda online suele llevar de 4 a 6 semanas, según la cantidad de productos, los medios de pago y las integraciones que necesites.",
-    cases: ["LaVacaRoja"],
+    cases: ["la-vaca-roja"],
     faq: [
       priceFaq(
         "¿Cuánto cuesta una tienda online?",
@@ -190,7 +190,7 @@ export const servicePages: ServicePage[] = [
     ],
     timeline:
       "Un sistema de turnos suele llevar de 4 a 8 semanas, según la cantidad de sedes, profesionales y automatizaciones.",
-    cases: ["Sistema-Turnos-SFI", "Turnos-Clapton"],
+    cases: ["sistema-turnos-sfi", "turnos-clapton"],
     faq: [
       priceFaq(
         "¿Cuánto cuesta un sistema de turnos online?",
@@ -236,7 +236,7 @@ export const servicePages: ServicePage[] = [
     ],
     timeline:
       "Depende del alcance. Se trabaja por etapas: una primera versión usable suele estar en 4 a 8 semanas y después se suman mejoras.",
-    cases: ["Turnos-Clapton", "Sistema-Turnos-SFI", "LaVacaRoja", "MoraMachado", "WhatsAppGroup"],
+    cases: ["turnos-clapton", "sistema-turnos-sfi", "la-vaca-roja", "mora-machado", "whatsapp-group"],
     sections: [
       {
         title: "Qué tipo de sistemas desarrollo",
@@ -324,6 +324,9 @@ export const servicePages: ServicePage[] = [
       "Hola Salvador! Quiero consultar por un sistema a medida para mi negocio.",
   },
 ];
+
+/** Last change to the copy of the service pages (prices have their own date in ./pricing) */
+export const servicePagesUpdatedAt = "2026-11-18";
 
 export function getServicePage(slug: string): ServicePage | undefined {
   return servicePages.find((page) => page.slug === slug);
