@@ -1,0 +1,176 @@
+---
+title: "Un ciberataque infectó los sitios de CNN, Zoom, IKEA, HSBC y otras 174 organizaciones para robar cripto, tarjetas e infectar iPhones"
+publishedAt: "2026-11-17"
+summary: "El lunes 16 de noviembre, un atacante metió código malicioso en Optimizely, una herramienta que usan miles de empresas para probar cambios en sus sitios, y desde ahí llegó a las páginas de 178 organizaciones: CNN, BBC, Zoom, IKEA, HSBC, Salesforce, Equifax y muchas más. El código cambiaba direcciones de billeteras cripto, copiaba tarjetas y buscaba infectar iPhones desactualizados. Qué pasó, cómo funcionaba y qué conviene hacer."
+image: "/images/blog/ciberataque-optimizely-178-sitios-noviembre-2026/ciberataque-optimizely-178-sitios-noviembre-2026-1.webp"
+tag: "Ciberseguridad"
+---
+
+![](/images/blog/ciberataque-optimizely-178-sitios-noviembre-2026/ciberataque-optimizely-178-sitios-noviembre-2026-1.webp)
+
+Si el lunes 16 de noviembre entraste a la web de CNN, la BBC, Zoom, IKEA, HSBC o Starbucks Canadá, es posible que tu navegador haya ejecutado código puesto ahí por un atacante. No porque esas empresas hayan sido hackeadas directamente, sino porque todas usan la misma herramienta: **Optimizely**, una plataforma para hacer pruebas A/B y personalizar sitios web.
+
+Según el investigador **Scott Helme**, fundador de la empresa de seguridad **Report URI**, el atacante logró escribir código propio en los proyectos de Optimizely de **178 organizaciones** de todo el mundo. Ese código intentaba tres cosas: cambiar direcciones de billeteras de criptomonedas por las suyas, copiar los datos de tarjetas de crédito que la gente cargaba en los formularios y, en iPhones y iPads con versiones viejas de iOS, instalar un *exploit* para tomar control del dispositivo.
+
+Optimizely confirmó el incidente y dijo que ya corrigió la vulnerabilidad. Para la noche del lunes el código ya había sido removido de todos los sitios.
+
+> **Aclaración:** esta nota se basa en el [análisis técnico de Report URI](https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/), el [comunicado de Optimizely](https://status.optimizely.com/incidents/ftw0fh9wx43z), lo que las empresas le dijeron a Reuters y la cobertura de [Infobae](https://www.infobae.com/tecno/2026/11/17/un-ataque-infecto-a-178-sitios-para-robar-criptomonedas-y-atacar-iphones/), [La Nación](https://www.lanacion.com.ar/tecnologia/alerta-por-un-ciberataque-mundial-que-uso-los-sitios-de-la-bbc-cnn-zoom-e-ikea-para-distribuir-nid17112026/) y [Ámbito](https://www.ambito.com/tecnologia/ciberataque-masivo-178-empresas-fueron-victimas-un-intento-robo-datos-y-criptomonedas-n6346275). Que un sitio figure en la lista significa que **sirvió el código malicioso a sus visitantes**, no que la empresa haya sufrido una brecha en sus sistemas ni que sus clientes hayan sido robados. Como aclaró Helme, son "sitios potencialmente afectados, no 178 brechas corporativas confirmadas".
+
+## Qué es Optimizely y por qué esto es tan grave
+
+Optimizely es una herramienta que usan grandes empresas para probar variantes de su web: otro color de botón, otro título, otra oferta, y medir cuál funciona mejor. Para hacerlo, el sitio carga en cada página un pequeño archivo de JavaScript (un *snippet*) que se descarga desde los servidores de Optimizely.
+
+Ese snippet tiene un campo llamado **Project JavaScript**: código personalizado que cada cliente escribe en el panel de Optimizely y que se ejecuta en todas las páginas de su sitio. Ahí fue donde el atacante metió su código.
+
+El problema es que, para el navegador, ese archivo era completamente legítimo. Como resumió [Infobae](https://www.infobae.com/tecno/2026/11/17/un-ataque-infecto-a-178-sitios-para-robar-criptomonedas-y-atacar-iphones/), "como el script llegaba desde el servidor de Optimizely, los sitios lo trataban como confiable". Y Helme agregó: "El archivo se seguía sirviendo desde cdn.optimizely.com, con el certificado de Optimizely". El servidor de Optimizely "entregó exactamente lo que le dieron". No hubo que hackear a CNN ni a IKEA: alcanzó con modificar algo en un proveedor del que todos confiaban.
+
+Es lo que se conoce como un **ataque a la cadena de suministro**: en vez de atacar a cada víctima, se ataca a un proveedor compartido. Es el mismo patrón que vimos en 2024 con [Polyfill.io](https://report-uri.com/case-studies/polyfill-io), una librería que terminó sirviendo código malicioso a miles de sitios.
+
+## Qué pasó, hora por hora
+
+Los horarios están convertidos a hora argentina (UTC-3) a partir de la [cronología de Report URI](https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/), el [blog de Scott Helme](https://scotthelme.co.uk/reflecting-on-the-optimizely-incident-and-why-we-keep-failing/), el [status page de Optimizely](https://status.optimizely.com/incidents/ftw0fh9wx43z) y la reconstrucción que publicó [Infobae](https://www.infobae.com/tecno/2026/11/17/un-ataque-infecto-a-178-sitios-para-robar-criptomonedas-y-atacar-iphones/).
+
+| Hora (Argentina) | Qué pasó |
+|---|---|
+| Lunes 16, ~01:21 | Primera inyección detectada: el snippet de Optimizely de la **BBC** empieza a cargar código del atacante |
+| ~05:28 | Aparece el archivo `track.js`, el que cambia direcciones de billeteras cripto, en bbc.com |
+| ~08:20 | Se modifica el snippet de **Zoom** |
+| ~10:03 | El atacante mueve las primeras criptomonedas robadas a exchanges |
+| ~10:43 | Suma al código un **robador de tarjetas** (*skimmer*) |
+| ~12:06 | El sistema de Report URI marca la primera actividad maliciosa en el sitio de uno de sus clientes |
+| ~14:13 a 14:57 | El atacante agrega un segundo servidor para atacar iPhones y empieza a inyectar el kit de *exploits* en cada visita desde iOS 18.6 o anterior |
+| ~16:24 | Report URI revisa 1.611 snippets de Optimizely y encuentra 186 infectados. Las billeteras del atacante ya recibieron unos **USD 7.040** |
+| ~17:40 a 18:10 | Empieza la limpieza masiva: Ledger, Smartsheet y la BBC, entre otros, quedan limpios |
+| ~18:52 | Queda un solo snippet infectado de 188 (TalkTalk) |
+| ~20:11 | Report URI confirma que **todos los archivos están limpios** |
+| ~22:02 | Optimizely publica el incidente en su status page |
+| Martes 17, ~01:11 a 02:39 | El atacante vacía sus billeteras de Litecoin, USDT y Bitcoin |
+| Martes 17, mañana | Report URI publica el análisis completo. Infobae (07:01), Los Andes (10:15), La Nación (10:52) y Ámbito (16:26) lo cubren en Argentina, y Reuters a nivel internacional |
+
+En total, el código estuvo activo **unas 19 horas**, y durante el día el atacante reescribió su programa **26 veces**.
+
+## Qué hacía el código
+
+Según el análisis de Report URI, el código malicioso hacía cuatro cosas:
+
+**1. Cambiaba direcciones de billeteras cripto.** Buscaba direcciones de Bitcoin, Ethereum, Solana, TRON, TON, Litecoin, Dogecoin y otras redes en el texto de la página, en formularios, en enlaces y hasta en el **portapapeles**, y las reemplazaba por las del atacante. Como resumió Helme: "Copiá una dirección de cualquier página afectada y puede que pegues la del atacante". Si mandabas cripto, el dinero iba a parar a él.
+
+**2. Robaba tarjetas de crédito.** Desde las 10:43 (hora argentina), el código vigilaba los formularios y copiaba número de tarjeta, vencimiento y código de seguridad. Un detalle importante: **no podía leer las tarjetas cargadas en ventanas de pago externas**, como las de Stripe o Adyen. Solo las que se escribían en campos propios del sitio.
+
+**3. Robaba cookies y capturas de pantalla.** Cuando encontraba una dirección cripto cerca de palabras como "billetera" o "pago", mandaba al atacante la URL, las cookies accesibles del navegador y una captura de la página.
+
+**4. Intentaba infectar iPhones y iPads.** En dispositivos Apple, el código detectaba la versión de iOS y cargaba en un marco invisible un kit de *exploits*, programas que aprovechan fallas del sistema para tomar control del dispositivo. Según detalló [La Nación](https://www.lanacion.com.ar/tecnologia/alerta-por-un-ciberataque-mundial-que-uso-los-sitios-de-la-bbc-cnn-zoom-e-ikea-para-distribuir-nid17112026/) en base a Report URI:
+
+- **iOS 13 a 17:** un kit llamado **Coruna**.
+- **iOS 18:** un kit llamado **DarkSword**.
+- **iOS 26:** un tercer kit que, según Report URI, por ahora "solo identifica el dispositivo".
+
+En los iPhone con iOS 18.6 o anterior, la página se recargaba sola cada 60 segundos para reintentar el ataque. Según los comentarios del propio kit, **iOS 18.7.3 o posterior e iOS 26.3 o posterior ya están protegidos**. Apple le dijo a Reuters que las vulnerabilidades que buscaba explotar el atacante "fueron corregidas el año pasado" y que los usuarios con el software actualizado estaban protegidos.
+
+¿Llegó a infectar algún iPhone? No hay evidencia de eso. Según el análisis de MATT Research que citó [Infobae](https://www.infobae.com/tecno/2026/11/17/un-ataque-infecto-a-178-sitios-para-robar-criptomonedas-y-atacar-iphones/), se comprobó que los kits se entregaron, "pero no una infección exitosa de un dispositivo real".
+
+## Qué sitios fueron afectados
+
+Report URI publicó la [lista completa](https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/): 188 snippets de 178 organizaciones, agrupadas por sector. Algunos de los nombres más conocidos:
+
+- **Bancos y finanzas (32):** HSBC (en Estados Unidos, México, Hong Kong, Singapur, Australia y otros países), Equifax, Paychex, ABN AMRO, TaxAct, Hang Seng.
+- **Tecnología (23):** Zoom, Salesforce, GitLab, Bitly, Tableau, Mixpanel, Typeform, Hootsuite, Smartsheet y la propia Optimizely.
+- **Retail y moda (20):** IKEA, ASOS, Mattel, American Eagle, Crocs India y Levi's en varios países de Asia y Oceanía.
+- **Medios (10):** CNN, BBC, Fox News, NPR, Fox Sports, BNN Bloomberg y Top Gear.
+- **Streaming y entretenimiento (12):** Peacock, Starz, NOW TV, SkyShowtime, Wizards of the Coast, SeaWorld.
+- **Aerolíneas y viajes (9):** Alaska Airlines, Hawaiian Airlines, Air France-KLM, Transavia.
+- **Telecomunicaciones (7):** Virgin Media, O2, Vodafone Australia, Mint Mobile, TalkTalk.
+- **Cripto y trading (6):** Ledger, IG, OANDA, interactive investor.
+- **Otros:** Starbucks Canadá, Heineken, PokerStars, Change.org, UNICEF USA, Invisalign, Takeda, Lucid Motors.
+
+Helme advirtió que "el número real probablemente sea mayor", porque solo pudo revisar los archivos que encontró a tiempo. Además, días antes hubo una ola anterior del mismo atacante a través de otras herramientas (Kissmetrics, StorifyMe y Minute Media) que no está incluida en las 178.
+
+## Cuánto robaron
+
+Según Report URI, que siguió las billeteras del atacante, llegaron unos **USD 7.040** en criptomonedas durante el lunes, la mayor parte en Bitcoin. Ojo con el matiz: es lo que *recibieron* las billeteras del atacante. Como aclaró [Ámbito](https://www.ambito.com/tecnologia/ciberataque-masivo-178-empresas-fueron-victimas-un-intento-robo-datos-y-criptomonedas-n6346275), los investigadores "todavía no pudieron establecer cuánto lograron robar los delincuentes". En una actualización del martes, el detalle por red daba un poco más: unos USD 5.500 en Bitcoin, USD 760 en Litecoin, USD 720 en USDT y TRX sobre TRON, y montos menores en Ethereum y BNB Chain.
+
+Lo que no se sabe es lo más preocupante. Como dijo Helme: "No tenemos forma de ver cuántas tarjetas fueron copiadas, cuántas cookies o capturas fueron robadas, ni cuántos dispositivos iOS fueron infectados". Reuters tampoco pudo determinar si el código funcionó en cada caso ni el alcance real de los daños.
+
+Un dato: el atacante no es nuevo. Según Report URI, una de sus billeteras de TRON se usa **al menos desde marzo de 2026**, y el mismo actor venía inyectando código en sitios turcos desde septiembre.
+
+## Qué dijo cada uno
+
+**Optimizely:** en su [status page](https://status.optimizely.com/incidents/ftw0fh9wx43z) dijo que identificó "un incidente de seguridad en el que un tercero no autorizado explotó una vulnerabilidad en Experimentation [su producto de pruebas] y la usó para agregar JavaScript malicioso a algunos proyectos de clientes". Agregó: "Corregimos la vulnerabilidad y eliminamos el código inyectado de los proyectos afectados. También tomamos medidas para proteger las cuentas de usuarios afectadas y sumamos protecciones adicionales para evitar que se entregue código no autorizado". No explicó cuál fue la vulnerabilidad.
+
+**Apple:** le dijo a [Reuters](https://www.bnnbloomberg.ca/markets/crypto/2026/11/17/popular-websites-compromised-in-bid-to-steal-crypto-target-iphone-users/) por mail que las vulnerabilidades que buscaba el atacante se corrigieron el año pasado y que quienes tienen el software al día estaban protegidos.
+
+**Zoom:** dijo estar al tanto del incidente, que **desactivó Optimizely en todos sus entornos de producción** como precaución y que, por ahora, no identificó impacto en datos de clientes (Reuters).
+
+**Salesforce:** dijo que investiga cambios no autorizados en scripts de Optimizely y que los desactivó como precaución (Reuters).
+
+**Equifax:** "No identificamos evidencia de ningún compromiso en nuestros sistemas" (Reuters). Según Infobae y Ámbito, además dejó de usar la plataforma.
+
+**HSBC:** dijo que los scripts no autorizados no estaban activos en sus sitios (Reuters). Según [Los Andes](https://www.losandes.com.ar/mundo/ciberataque-masivo-178-empresas-como-hsbc-zoom-ikea-y-salesforce-querian-desviar-cripto-y-atacar-los-iphones-n6014520), el código había sido identificado en páginas del banco en Estados Unidos, Hong Kong, México, Australia y Singapur.
+
+**IKEA:** dijo que está investigando el incidente y, según Infobae, que evalúa "el posible impacto en sus servicios y clientes".
+
+**CNN:** no respondió a la consulta de Reuters.
+
+## ¿Cómo entró el atacante?
+
+Todavía no se sabe con certeza. Optimizely habla de "una vulnerabilidad en Experimentation", pero no dio detalles. [Ámbito](https://www.ambito.com/tecnologia/ciberataque-masivo-178-empresas-fueron-victimas-un-intento-robo-datos-y-criptomonedas-n6346275) y [Los Andes](https://www.losandes.com.ar/mundo/ciberataque-masivo-178-empresas-como-hsbc-zoom-ikea-y-salesforce-querian-desviar-cripto-y-atacar-los-iphones-n6014520) publicaron que la falla estaba en el sistema de registro de usuarios de la plataforma, pero sin citar una fuente, y ni Optimizely ni Report URI lo confirmaron. Helme lo planteó así: "No sabemos cómo el atacante obtuvo acceso de escritura a tantos proyectos de clientes sin relación entre sí: un sistema de Optimizely comprometido, una credencial con acceso a varios clientes, o algo más. Eso le corresponde explicarlo a Optimizely".
+
+No es el primer problema de seguridad de la empresa este año: en febrero, Optimizely [confirmó un incidente](https://www.securityweek.com/ad-tech-company-optimizely-confirms-cyberattack/) en el que un atacante, mediante una llamada telefónica de *phishing* (*vishing*), accedió a datos de contacto de clientes. Por ahora no hay nada que vincule ambos casos.
+
+## Qué conviene hacer si visitaste alguno de estos sitios
+
+Para la gran mayoría, que solo leyó una noticia o entró a una página, el riesgo es bajo. En palabras de Helme: "Para la mayoría de las personas que simplemente leyeron una página, el riesgo es bajo". Igual, conviene revisar esto:
+
+1. **Actualizá el iPhone o iPad.** Andá a Configuración > General > Actualización de software. Tenés que estar en iOS 18.7.3 o posterior, o iOS 26.3 o posterior. Es la medida más importante y sirve también para cualquier otro ataque.
+2. **Si mandaste cripto el 16 de noviembre**, revisá que la dirección de destino sea la que querías. Si copiaste una dirección desde alguno de estos sitios, puede haber sido reemplazada.
+3. **Si pagaste con tarjeta en alguno de estos sitios ese día**, revisá el resumen y avisale al banco ante cualquier movimiento que no reconozcas. Si te quedás más tranquilo, pedí que te la den de baja y te manden una nueva.
+4. **Desconfiá de mails o mensajes** que usen este ataque para pedirte datos o "verificar tu cuenta". Es un clásico después de cada incidente conocido.
+5. **Como regla general**, cuando copies una dirección cripto, compará los primeros y los últimos caracteres después de pegarla. Es la defensa más simple contra este tipo de ataque.
+
+## Qué deberían hacer las empresas
+
+Report URI dejó también recomendaciones para los sitios que usan Optimizely:
+
+- Revisar el **Project JavaScript** de cada proyecto y el código personalizado de cada experimento, buscando el dominio `1688360.cc`, llamadas a `atob(` o cualquier script que no hayan escrito.
+- Revisar quién tiene acceso de escritura a la cuenta (usuarios, tokens de API, integraciones) y rotar credenciales.
+- Tratar como expuestas las tarjetas cargadas el 16 de noviembre en formularios propios y las sesiones guardadas en cookies accesibles desde JavaScript.
+- Implementar una **Content Security Policy (CSP)**, una configuración que le dice al navegador desde qué dominios puede cargar y enviar datos. Según Report URI, de 256 servidores de los sitios afectados, solo **24** bloquearon el código malicioso gracias a una CSP bien configurada, y 68 directamente no tenían ninguna.
+
+## Por qué importa
+
+Este ataque muestra algo incómodo: la web de una empresa grande no es solo el código que escribe ella. Es también el de decenas de proveedores (analítica, publicidad, chat, pruebas A/B) que se cargan en cada página con los mismos permisos. Si uno de ellos falla, el atacante llega a millones de personas con el logo de CNN o de HSBC como fachada.
+
+Después de [la caída de Outlook](/blog/caida-microsoft-outlook-noviembre-2026) y [la de los bancos de Estados Unidos](/blog/caida-bancos-eeuu-noviembre-2026), esta vez no fue una falla interna sino un ataque. Pero la lección se parece: cuando muchos dependen de un mismo sistema, un solo problema se multiplica.
+
+## En resumen
+
+- El lunes 16 de noviembre, un atacante metió código malicioso en Optimizely, una herramienta de pruebas web, y desde ahí llegó a los sitios de 178 organizaciones, entre ellas CNN, BBC, Zoom, IKEA, HSBC, Salesforce y Equifax.
+- El código cambiaba direcciones de billeteras cripto por las del atacante, copiaba datos de tarjetas cargadas en formularios propios de los sitios, robaba cookies y capturas, y buscaba infectar iPhones y iPads con versiones viejas de iOS.
+- Estuvo activo unas 19 horas. Para la noche del lunes todos los archivos estaban limpios. Las billeteras del atacante recibieron unos USD 7.000 en cripto; no se sabe cuántas tarjetas o dispositivos comprometió.
+- Optimizely confirmó que se explotó una vulnerabilidad en su producto y dijo que ya la corrigió, pero no explicó cuál fue. Apple dijo que los iPhone actualizados estaban protegidos.
+- Si visitaste alguno de estos sitios: actualizá tu iPhone, revisá tus transferencias cripto y tus resúmenes de tarjeta, y desconfiá de mensajes que usen el ataque como excusa.
+
+## Fuentes
+
+**Oficiales:**
+
+- [Report URI: World's largest brands infected with malware via Optimizely](https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/)
+- [Scott Helme: Reflecting on the Optimizely incident and why we keep failing](https://scotthelme.co.uk/reflecting-on-the-optimizely-incident-and-why-we-keep-failing/)
+- [Optimizely Status: comunicado sobre el incidente de seguridad](https://status.optimizely.com/incidents/ftw0fh9wx43z)
+
+**Medios argentinos:**
+
+- [Infobae: Un ciberataque alcanzó a 178 sitios de todo el mundo, incluidos BBC, CNN, Zoom e IKEA, para robar criptomonedas e infectar iPhones](https://www.infobae.com/tecno/2026/11/17/un-ataque-infecto-a-178-sitios-para-robar-criptomonedas-y-atacar-iphones/)
+- [La Nación: Alerta por un ciberataque mundial que usó los sitios de la BBC, CNN, Zoom e Ikea para robar datos bancarios](https://www.lanacion.com.ar/tecnologia/alerta-por-un-ciberataque-mundial-que-uso-los-sitios-de-la-bbc-cnn-zoom-e-ikea-para-distribuir-nid17112026/)
+- [Ámbito: Ciberataque masivo: 178 empresas fueron víctimas de un intento de robo de datos y criptomonedas](https://www.ambito.com/tecnologia/ciberataque-masivo-178-empresas-fueron-victimas-un-intento-robo-datos-y-criptomonedas-n6346275)
+- [Los Andes: Ciberataque masivo a 178 empresas como HSBC, Zoom, IKEA y Salesforce: querían desviar cripto y atacar a los iPhones](https://www.losandes.com.ar/mundo/ciberataque-masivo-178-empresas-como-hsbc-zoom-ikea-y-salesforce-querian-desviar-cripto-y-atacar-los-iphones-n6014520)
+
+**Medios internacionales:**
+
+- [Reuters (vía BNN Bloomberg): Popular websites compromised in bid to steal crypto, target iPhone users](https://www.bnnbloomberg.ca/markets/crypto/2026/11/17/popular-websites-compromised-in-bid-to-steal-crypto-target-iphone-users/)
+- [9to5Mac: Major websites compromised to steal crypto from iPhone users](https://9to5mac.com/2026/11/17/major-websites-compromised-to-steal-crypto-from-iphone-users/)
+- [Newsweek: Cyber attack hits 178 major websites: full list of organizations](https://www.newsweek.com/cyber-attack-websites-affected-12725863)
+- [Entrepreneur: 'Malicious' cyberattack on 178 major websites tried to steal credit cards and crypto](https://entrepreneur.com/business-news/malicious-cyberattack-on-178-major-websites-tried-to-steal-credit-cards-and-crypto-heres-what-you-should-do-immediately)
+- [Daily Caller: Hackers rigged 178 popular websites into booby traps for your iPhone, cards, crypto](https://dailycaller.com/2026/11/17/hackers-optimizely-web-data-cnn-zoom-paychex-ikea-change/)
+- [Anadolu Agency: Cyberattack hits 178 major global brands, exposing visitors to data theft](https://aa.com.tr/en/world/cyberattack-hits-178-major-global-brands-exposing-visitors-to-data-theft/4127456)
+- [SecurityWeek: Ad tech company Optimizely confirms cyberattack (febrero 2026)](https://www.securityweek.com/ad-tech-company-optimizely-confirms-cyberattack/)
