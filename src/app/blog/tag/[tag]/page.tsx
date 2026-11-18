@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { getBlogTags } from "@/app/utils/utils";
 import { MIN_POSTS_TO_INDEX_TAG, tagPath } from "@/app/utils/tags";
-import { Column, Grid, Heading, Tag } from "@/once-ui/components";
+import { Column, Grid, Heading, Tag, Text } from "@/once-ui/components";
+import { tagContent } from "@/app/resources/tags";
 import { baseURL } from "@/app/resources";
 import { blog, person } from "@/app/resources/content";
 import { Meta, Schema } from "@/once-ui/modules";
@@ -27,10 +28,12 @@ export async function generateMetadata({
   const tag = findTag(slug);
   if (!tag) notFound();
 
+  const content = tagContent[tag.slug];
+
   return {
     ...Meta.generate({
-      title: `${tag.name} – ${blog.title}`,
-      description: `Posts sobre ${tag.name} en el blog de ${person.name}.`,
+      title: content?.title ?? `${tag.name} – ${blog.title}`,
+      description: content?.description ?? `Posts sobre ${tag.name} en el blog de ${person.name}.`,
       baseURL: baseURL,
       path: tagPath(tag.name),
     }),
@@ -51,14 +54,15 @@ export default async function TagPage({
   if (!tag) notFound();
 
   const path = tagPath(tag.name);
+  const content = tagContent[tag.slug];
 
   return (
     <Column maxWidth="s">
       <Schema
         as="blog"
         baseURL={baseURL}
-        title={`${tag.name} – ${blog.title}`}
-        description={`Posts sobre ${tag.name} en el blog de ${person.name}.`}
+        title={content?.title ?? `${tag.name} – ${blog.title}`}
+        description={content?.description ?? `Posts sobre ${tag.name} en el blog de ${person.name}.`}
         path={path}
         author={{
           name: person.name,
@@ -72,11 +76,20 @@ export default async function TagPage({
         ]}
       />
       <Heading marginBottom="xs" variant="display-strong-m">
-        {blog.title}
+        {tag.name}
       </Heading>
-      <Heading as="p" marginBottom="l" variant="body-default-l">
-        Posts etiquetados con <Tag label={tag.name} variant="brand" />
+      <Heading as="p" marginBottom="m" variant="body-default-l">
+        Posts etiquetados con <Tag label={tag.name} variant="brand" /> en {blog.title}
       </Heading>
+      {content && (
+        <Column gap="12" marginBottom="l">
+          {content.intro.map((paragraph) => (
+            <Text key={paragraph} as="p" variant="body-default-m" onBackground="neutral-weak">
+              {paragraph}
+            </Text>
+          ))}
+        </Column>
+      )}
       <Grid columns="1" fillWidth marginBottom="40" gap="12">
         {tag.posts.map((post) => (
           <Post key={post.slug} post={{ ...post, content: "" }} thumbnail direction="column" />

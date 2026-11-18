@@ -9,10 +9,12 @@ interface PostProps {
     thumbnail: boolean;
     direction?: "row" | "column";
     headingAs?: "h2" | "h3";
+    /** Only the first card above the fold should load eagerly */
+    priority?: boolean;
 }
 
 // The post link stretches over the whole card; the tag link is a sibling on top of it (no nested <a>)
-export default function Post({ post, thumbnail, direction, headingAs = "h2" }: PostProps) {
+export default function Post({ post, thumbnail, direction, headingAs = "h2", priority = false }: PostProps) {
     return (
         <Flex
             position="relative"
@@ -24,7 +26,7 @@ export default function Post({ post, thumbnail, direction, headingAs = "h2" }: P
             fillWidth>
             {post.metadata.image && thumbnail && (
                 <SmartImage
-                    priority
+                    priority={priority}
                     className={styles.image}
                     sizes="(max-width: 768px) 100vw, 640px"
                     border="neutral-alpha-weak"
@@ -33,7 +35,7 @@ export default function Post({ post, thumbnail, direction, headingAs = "h2" }: P
                     src={post.metadata.image}
                     // The generated OG fallback (/og?title=...) is already an optimized PNG
                     unoptimized={post.metadata.image.startsWith('/og')}
-                    alt={'Thumbnail of ' + post.metadata.title}
+                    alt={`Portada de la nota: ${post.metadata.title}`}
                     aspectRatio="16 / 9"
                 />
             )}

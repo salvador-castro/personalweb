@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
-import { getPosts, postLastModified } from "@/app/utils/utils";
+import { getPosts, metaTitle, postLastModified, schemaHeadline } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Heading, HeadingNav, Icon, Row, Tag, Text } from "@/once-ui/components";
 import { sobremi, blog, person, baseURL } from "@/app/resources";
 import { formatDate } from "@/app/utils/formatDate";
@@ -38,7 +38,7 @@ export async function generateMetadata({
   if (!post) notFound();
 
   return Meta.generate({
-    title: post.metadata.title,
+    title: metaTitle(post.metadata),
     description: post.metadata.summary,
     baseURL: baseURL,
     image: postImageUrl(post.metadata),
@@ -86,7 +86,7 @@ export default async function Blog({
             as="blogPosting"
             baseURL={baseURL}
             path={`${blog.path}/${post.slug}`}
-            title={post.metadata.title}
+            title={schemaHeadline(post.metadata)}
             description={post.metadata.summary}
             datePublished={post.metadata.publishedAt}
             dateModified={postLastModified(post)}
@@ -119,7 +119,7 @@ export default async function Blog({
             )}
           </Row>
           <Column as="article" fillWidth>
-            <CustomMDX source={post.content} />
+            <CustomMDX source={post.content} imageAlt={post.metadata.title} />
           </Column>
           {faq.length > 0 && <Faq id="preguntas-frecuentes" items={faq} />}
           <RelatedPosts post={post} />

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
-import { getPosts, postLastModified } from "@/app/utils/utils";
+import { getPosts, metaTitle, postLastModified, schemaHeadline } from "@/app/utils/utils";
 import { AvatarGroup, Button, Card, Column, Flex, Heading, Row, SmartImage, SmartLink, Tag, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { absoluteUrl, ogImageUrl } from "@/app/utils/url";
@@ -37,7 +37,7 @@ export async function generateMetadata({
   if (!post) notFound();
 
   return Meta.generate({
-    title: post.metadata.title,
+    title: metaTitle(post.metadata),
     description: post.metadata.summary,
     baseURL: baseURL,
     image: projectImageUrl(post.metadata),
@@ -88,7 +88,7 @@ export default async function Project({
         as="creativeWork"
         baseURL={baseURL}
         path={`${trabajos.path}/${post.slug}`}
-        title={post.metadata.title}
+        title={schemaHeadline(post.metadata)}
         description={post.metadata.summary}
         datePublished={post.metadata.publishedAt}
         dateModified={postLastModified(post)}
@@ -186,7 +186,7 @@ export default async function Project({
             {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
           </Text>
         </Flex>
-        <CustomMDX source={post.content} />
+        <CustomMDX source={post.content} imageAlt={post.metadata.title} prioritizeFirstImage={false} />
         {servicePage && (
           <Card direction="column" padding="24" gap="12" radius="l" marginTop="40" background="brand-alpha-weak">
             <Heading as="h2" variant="heading-strong-l" wrap="balance">

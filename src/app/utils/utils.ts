@@ -11,6 +11,8 @@ type Team = {
 
 type Metadata = {
   title: string;
+  // Shorter <title>/og:title (<= 60 chars) when the H1 is longer
+  seoTitle?: string;
   publishedAt: string;
   // Set only when the content itself changes (not for title/summary tweaks)
   updatedAt?: string;
@@ -94,6 +96,7 @@ function readMDXFile(filePath: string) {
 
   const metadata: Metadata = {
     title,
+    seoTitle: data.seoTitle || undefined,
     publishedAt: data.publishedAt,
     updatedAt: data.updatedAt,
     summary: data.summary || "",
@@ -169,12 +172,22 @@ export function getBlogTags(): { name: string; slug: string; posts: BlogPost[] }
   return [...tags.values()];
 }
 
+/** Title for <title>, og:title and twitter:title: seoTitle when set, otherwise the H1 title. */
+export function metaTitle(metadata: { title: string; seoTitle?: string }): string {
+  return metadata.seoTitle || metadata.title;
+}
+
+/** Google truncates Article headlines over 110 characters: use the short title for those. */
+export function schemaHeadline(metadata: { title: string; seoTitle?: string }): string {
+  return metadata.title.length > 110 && metadata.seoTitle ? metadata.seoTitle : metadata.title;
+}
+
 /** Last real content change of a post: updatedAt if set, otherwise publishedAt. */
-export function postLastModified(post: BlogPost): string {
+export function postLastModified(post: Pick<BlogPost, "metadata">): string {
   return post.metadata.updatedAt || post.metadata.publishedAt;
 }
 
 /** Most recent postLastModified among the given posts. */
-export function newestLastModified(posts: BlogPost[]): string | undefined {
+export function newestLastModified(posts: Pick<BlogPost, "metadata">[]): string | undefined {
   return posts.map(postLastModified).sort().at(-1);
 }

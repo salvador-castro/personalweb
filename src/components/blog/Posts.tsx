@@ -34,9 +34,10 @@ export function Posts({
                 <Grid
                     columns={columns} mobileColumns="1"
                     fillWidth marginBottom="40" gap="12">
-                    {displayedBlogs.map((post) => (
+                    {displayedBlogs.map((post, index) => (
                         <Post
                             key={post.slug}
+                            priority={index === 0}
                             // Post is a client component and doesn't render the body: skip it in the RSC payload
                             post={{ ...post, content: '' }}
                             thumbnail={thumbnail}

@@ -270,9 +270,30 @@ const components = {
 
 type CustomMDXProps = MDXRemoteProps & {
   components?: typeof components
+  /** Fallback alt for body images without a descriptive one (usually the post title) */
+  imageAlt?: string
+  /** The first body image is the page hero: load it eagerly. False when the page has its own hero */
+  prioritizeFirstImage?: boolean
 }
 
-export function CustomMDX (props: CustomMDXProps) {
+// "![](...)" or "![imagen](...)" say nothing to screen readers or image search
+const GENERIC_ALT = /^\s*(imagen|image|img|foto|captura)?\s*\d*\s*$/i
+
+export function CustomMDX ({ imageAlt, prioritizeFirstImage = true, ...props }: CustomMDXProps) {
+  // Body images render in document order on the server: the first one is the hero (LCP), loaded
+  // eagerly with priority; the rest stay lazy (next/image default)
+  let imageIndex = 0
+  const img = ({ alt, ...imageProps }: SmartImageProps & { src: string }) => {
+    const index = imageIndex++
+    const descriptiveAlt =
+      alt && !GENERIC_ALT.test(alt)
+        ? alt
+        : imageAlt
+          ? index === 0 ? imageAlt : `${imageAlt} (imagen ${index + 1})`
+          : alt
+    return createImage({ ...imageProps, alt: descriptiveAlt, priority: prioritizeFirstImage && index === 0 })
+  }
+
   return (
     <MDXRemote
       {...props}
@@ -281,7 +302,7 @@ export function CustomMDX (props: CustomMDXProps) {
           remarkPlugins: [remarkGfm],
         },
       }}
-      components={{ ...components, ...(props.components || {}) }}
+      components={{ ...components, ...(props.components || {}), img: img as any }}
     />
   )
 }

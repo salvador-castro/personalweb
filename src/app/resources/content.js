@@ -419,14 +419,14 @@ const blog = {
   path: '/blog',
   label: 'Blog',
   title: `Noticias y Tendencias Tech`,
-  metaTitle: `Blog de tecnología: noticias y guías prácticas | ${person.name}`,
+  metaTitle: `Blog de tecnología: noticias y guías prácticas 2026`,
   description: `Actualidad tecnológica con novedades, lanzamientos, tendencias y herramientas verificadas para mantenerse al día en el mundo digital.`
 }
 
 const trabajos = {
   path: '/trabajos',
   label: 'Trabajos',
-  title: `Casos de éxito: páginas web y sistemas para PyMEs | ${person.name}`,
+  title: `Casos de éxito: páginas web y sistemas para PyMEs`,
   headline: 'Casos de éxito',
   description: `Proyectos reales: webs para barberías y salones, tienda online para una carnicería, sistemas de turnos y sitios de eventos en Argentina y Uruguay.`
 }
@@ -434,7 +434,7 @@ const trabajos = {
 const servicios = {
   path: '/servicios',
   label: 'Servicios',
-  title: `Servicios y precios de desarrollo web para PyMEs | ${person.name}`,
+  title: `Desarrollo web para PyMEs: servicios y precios 2026`,
   description: `Landing pages, páginas institucionales, tiendas online, sistemas de turnos y sistemas a medida para PyMEs de Argentina y Uruguay, ${fromPrice(
     minPrice()
   )}.`,

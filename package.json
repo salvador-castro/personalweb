@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "seo:audit": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "classnames": "^2.5.1",
