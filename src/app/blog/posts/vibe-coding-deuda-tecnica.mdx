@@ -1,0 +1,66 @@
+---
+title: "Vibe coding: cuándo programar 'a ojo' con IA está bien y cuándo te deja una bomba de deuda técnica"
+publishedAt: "2026-11-24"
+summary: "Qué es el vibe coding, qué dicen los estudios de Veracode y GitClear sobre la seguridad y la calidad del código generado por IA, en qué proyectos tiene sentido y una checklist mínima antes de mandar a producción código que no escribiste vos."
+image: "/images/blog/vibe-coding-deuda-tecnica/vibe-coding-deuda-tecnica-1.webp"
+tag: "Inteligencia Artificial"
+---
+
+![](/images/blog/vibe-coding-deuda-tecnica/vibe-coding-deuda-tecnica-1.webp)
+
+En febrero de 2025, Andrej Karpathy, cofundador de OpenAI y exdirector de IA de Tesla, describió en un posteo una forma de programar en la que "te entregás a las vibras" y "te olvidás de que el código existe": le pedís cosas a la IA, aceptás todo lo que propone sin leer los cambios y, si algo falla, le pegás el error para que lo arregle. Lo llamó **vibe coding**, y lo presentó como algo divertido para proyectos de fin de semana. Un año y medio después, el término se usa para todo, desde prototipos hasta productos que manejan datos de clientes. Y ahí empieza el problema.
+
+## ¿Qué es el vibe coding?
+
+Vibe coding es programar describiéndole a una IA lo que querés en lenguaje natural y aceptando el código que genera sin revisarlo en detalle, guiándote por si "funciona" en lugar de por si está bien hecho. Es muy útil para prototipos, herramientas personales y para aprender, porque permite construir algo funcional en minutos. Es riesgoso en software que va a producción, maneja datos o lo van a mantener otras personas: los estudios muestran que una parte importante del código generado tiene fallas de seguridad y que la IA tiende a duplicar código en lugar de reutilizarlo.
+
+## Lo que dicen los datos
+
+**Seguridad.** En su informe de 2025 sobre seguridad del código generado por IA, Veracode probó más de 100 modelos en 80 tareas de programación en Java, Python, C# y JavaScript: el 45% de las muestras no pasó las pruebas de seguridad basadas en el OWASP Top 10, con Java como el peor caso. Según un análisis de la [Cloud Security Alliance](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-codegen-vulnerability-debt-20260406-csa/), esa tasa no mejoró de forma significativa en las pruebas repetidas hasta principios de 2026, y las fallas más comunes y críticas son errores de autorización en APIs y lógica de negocio rota: justo lo que no se ve cuando probás "si anda".
+
+**Mantenibilidad.** [GitClear](https://www.gitclear.com/ai_assistant_code_quality_2025_research) analizó 211 millones de líneas de código modificadas entre 2020 y 2024. Encontró que la proporción de código "movido" (un indicador de refactorización) cayó de alrededor de un 25% a menos del 10%, mientras el código copiado y pegado subió, y 2024 fue el primer año en que lo copiado superó a lo refactorizado. En su [informe de 2026](https://www.gitclear.com/the_ai_code_quality_maintainability_gap), las llamadas a funciones entre archivos (un indicador de reutilización) bajaron un 35% desde 2023. La explicación que proponen es simple: aceptar un bloque nuevo es un tab; buscar y reutilizar una función que ya existe requiere contexto que la IA muchas veces no tiene.
+
+Hay matices: GitClear vende herramientas de medición, y sus datos muestran tendencias, no prueban que cada línea duplicada la haya escrito una IA. Pero el patrón coincide con lo que muestra [el informe DORA sobre más velocidad y más inestabilidad](/blog/medir-si-la-ia-ahorra-tiempo).
+
+## Cuándo está bien y cuándo no
+
+| Vibe coding está bien para... | Vibe coding es riesgoso para... |
+|---|---|
+| Prototipos para validar una idea | Software en producción con usuarios reales |
+| Scripts personales y automatizaciones descartables | Cualquier cosa que maneje datos personales, pagos o autenticación |
+| Aprender una tecnología nueva viendo ejemplos | Código que otras personas van a mantener |
+| Demos internas y pruebas de concepto | APIs expuestas a internet |
+| Herramientas que solo usás vos, en tu máquina | Proyectos de clientes, donde la responsabilidad es tuya |
+
+La línea no la marca la herramienta, sino las consecuencias: si el código falla o lo atacan, ¿a quién afecta? Si la respuesta es "a nadie más que a mí", adelante. Si es "a usuarios, a un cliente o a mi equipo", el código necesita la misma revisión que cualquier otro, sin importar quién lo escribió.
+
+## El problema de fondo: código que nadie entiende
+
+La deuda técnica clásica es código que alguien escribió apurado y que entiende, aunque sepa que está mal. La deuda del vibe coding es distinta: es código que **nadie** entendió nunca. Cuando aparece un bug a las 3 de la mañana o hay que agregar una funcionalidad seis meses después, no hay a quién preguntarle por qué está hecho así. Y pedirle a la IA que lo arregle sin entenderlo suele sumar más capas encima.
+
+Para quienes están empezando hay un riesgo extra: si la IA escribe todo, se saltean justo la parte que forma criterio. En [la nota sobre programar con IA sin perder el criterio propio](/blog/ia-para-programar) hay más sobre ese equilibrio, y en las [entrevistas técnicas](/blog/primera-entrevista-tecnica) se nota enseguida quién entiende su código y quién no.
+
+## Checklist mínima antes de mandar a producción código generado
+
+1. **¿Lo leíste entero y podrías explicarlo?** Si no podés explicar una parte, no está lista.
+2. **Autorización:** ¿cada endpoint verifica que el usuario tenga permiso sobre **ese** recurso, no solo que esté logueado?
+3. **Entradas:** ¿se validan los datos que vienen del usuario? ¿Las consultas a la base usan parámetros y no concatenación de strings?
+4. **Secretos:** ¿hay claves, tokens o contraseñas escritas en el código? Las IA a veces los ponen "de ejemplo".
+5. **Dependencias:** ¿los paquetes que agregó existen, son los oficiales y están mantenidos? Las IA pueden inventar nombres de paquetes, y hay atacantes que registran esos nombres inventados.
+6. **Duplicación:** ¿ya existía una función que hacía esto en el proyecto?
+7. **Tests:** ¿hay al menos un test de los casos importantes, incluido un caso de error?
+8. **Revisión humana:** ¿lo revisó alguien más? Un pull request revisado sigue siendo la mejor herramienta de calidad que existe.
+
+## En resumen
+
+El vibe coding, programar aceptando lo que genera la IA sin revisarlo, es una herramienta excelente para prototipos, scripts personales y aprender, pero no para software en producción. Según Veracode, el 45% del código generado no pasa pruebas básicas de seguridad, y GitClear muestra más código duplicado y menos reutilización desde que se masificaron los asistentes. La regla práctica: cuanto más graves las consecuencias de una falla, más tenés que entender lo que estás publicando. La IA puede escribir el código; la responsabilidad sigue siendo tuya.
+
+## Fuentes
+
+- **Cloud Security Alliance** — [Vibe Coding Security Debt: AI-Generated Vulnerabilities at Scale](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-codegen-vulnerability-debt-20260406-csa/). Resumen de los resultados de Veracode y otros estudios.
+- **GitClear** — [AI Copilot Code Quality: 2025 Data Suggests 4x Growth in Code Clones](https://www.gitclear.com/ai_assistant_code_quality_2025_research).
+- **GitClear** — [The Maintainability Gap: 2026 AI Code Quality Research](https://www.gitclear.com/the_ai_code_quality_maintainability_gap).
+- **arXiv** — [Vibe Coding in Practice: Flow, Technical Debt, and Guidelines for Sustainable Use](https://arxiv.org/pdf/2512.11922).
+- **LeadDev** — [How AI generated code compounds technical debt](https://leaddev.com/technical-direction/how-ai-generated-code-accelerates-technical-debt).
+
+<ShareIcons />
