@@ -1,0 +1,81 @@
+---
+title: "Cambiar la contraseña cada 90 días te hace menos seguro: qué recomienda hoy el NIST"
+seoTitle: "Cambiar la contraseña cada 90 días: por qué ya no sirve"
+publishedAt: "2026-11-25"
+summary: "El NIST dejó de recomendar el cambio periódico de contraseñas y los símbolos obligatorios. Qué dice la norma, por qué fallaban y qué hacer en su lugar."
+image: "/images/blog/cambiar-contrasena-cada-90-dias/cambiar-contrasena-cada-90-dias-1.webp"
+tag: "Ciberseguridad"
+faq:
+  - question: "¿Hay que cambiar la contraseña cada 90 días?"
+    answer: "No. La guía SP 800-63B-4 del NIST, publicada en agosto de 2025, prohíbe exigir cambios periódicos. La contraseña se cambia solo cuando hay indicios de que fue comprometida, por ejemplo si aparece en una filtración."
+  - question: "¿Una contraseña segura necesita mayúsculas, números y símbolos?"
+    answer: "No necesariamente. El NIST pide no imponer reglas de composición y priorizar el largo: al menos 15 caracteres si la contraseña es el único factor. Una frase larga y única es más segura que una palabra corta con símbolos."
+  - question: "¿Qué es lo más importante para proteger una contraseña?"
+    answer: "Que sea única para cada servicio, larga, guardada en un gestor de contraseñas y acompañada por doble factor de autenticación o, mejor aún, reemplazada por una passkey cuando el sitio lo permita."
+---
+
+![](/images/blog/cambiar-contrasena-cada-90-dias/cambiar-contrasena-cada-90-dias-1.webp)
+
+Si trabajaste en una empresa, seguro te pasó: cada tres meses aparece el cartel de "tu contraseña expiró" y terminás pasando de `Invierno2026!` a `Primavera2026!`. Durante años eso se vendió como buena práctica de seguridad. Hoy la principal referencia técnica del mundo en la materia, el **NIST** de Estados Unidos, dice lo contrario: obligar a cambiar contraseñas periódicamente está prohibido en su guía, igual que exigir símbolos y mayúsculas.
+
+## ¿Hay que cambiar la contraseña cada 90 días?
+
+No. La guía de identidad digital del NIST (SP 800-63B-4, versión final de agosto de 2025) establece que los sistemas **no deben** exigir cambios periódicos de contraseña y que el cambio solo debe forzarse cuando hay evidencia de que fue comprometida. Tampoco deben imponer reglas de composición como "una mayúscula, un número y un símbolo". Lo que sí piden es largo, contraseñas que no figuren en listas de filtradas y compatibilidad con gestores de contraseñas.
+
+## Qué dice exactamente la norma
+
+La [SP 800-63B-4](https://pages.nist.gov/800-63-4/sp800-63b.html) usa un lenguaje de requisitos ("SHALL", "SHALL NOT") pensado para organismos del gobierno de Estados Unidos, pero se volvió el estándar de facto para bancos, empresas y desarrolladores en todo el mundo. Los puntos centrales sobre contraseñas:
+
+| Regla vieja | Lo que dice el NIST ahora |
+|---|---|
+| Cambiar la contraseña cada 30, 60 o 90 días | **Prohibido** exigir cambios periódicos. Solo se fuerza el cambio si hay indicios de compromiso. |
+| Obligar a usar mayúsculas, números y símbolos | **Prohibido** imponer reglas de composición. |
+| Mínimo de 8 caracteres | Mínimo de **15** si la contraseña es el único factor; 8 si se usa junto con otro factor. Se recomienda aceptar hasta al menos 64. |
+| Preguntas de seguridad ("¿nombre de tu primera mascota?") | **No deben usarse** al crear o recuperar contraseñas. |
+| Bloquear el pegado de contraseñas | Se debe **permitir** el uso de gestores de contraseñas y el autocompletado. |
+| Sin control sobre contraseñas débiles | Se deben comparar contra listas de contraseñas comunes, esperables o filtradas, y rechazarlas. |
+
+No es una idea nueva: Microsoft ya había [sacado la expiración periódica de sus recomendaciones de seguridad para Windows en 2019](https://learn.microsoft.com/en-us/archive/blogs/secguide/security-baseline-final-for-windows-10-v1903-and-windows-server-v1903), con un argumento directo: si una contraseña no fue robada, no hace falta cambiarla; y si fue robada, esperar hasta 90 días para cambiarla no protege a nadie.
+
+## Por qué el cambio periódico empeora las cosas
+
+El problema es humano, no técnico. Cuando a alguien lo obligan a inventar una contraseña nueva cada pocos meses, no crea una contraseña nueva: modifica la anterior de forma predecible. Suma un número, cambia la estación, agrega un signo de exclamación al final.
+
+Un estudio de la Universidad de Carolina del Norte ([Zhang, Monrose y Reiter, 2010](https://doi.org/10.1145/1866307.1866328)) analizó más de 7.700 cuentas con contraseñas que expiraban periódicamente. Conociendo una contraseña vieja, los investigadores pudieron deducir la nueva en el 41% de las cuentas, y en el 17% lo lograron en menos de cinco intentos. Es decir: para un atacante que ya tiene una contraseña filtrada, la rotación casi no suma dificultad.
+
+Las reglas de composición tienen el mismo efecto. "Al menos un símbolo y una mayúscula" termina casi siempre en una mayúscula al principio y un `!` o un `1` al final, exactamente lo primero que prueban las herramientas de ataque. Y la fricción tiene otro costo: más contraseñas anotadas en post-its, repetidas entre servicios y más llamados a soporte para resetearlas.
+
+## Qué hacer en su lugar
+
+Para cuidar tus propias cuentas:
+
+1. **Una contraseña distinta para cada servicio.** Es la regla más importante. La mayoría de los robos de cuentas vienen de contraseñas reutilizadas que se filtraron en otro sitio.
+2. **Largo antes que complejidad.** Una frase de cuatro o cinco palabras al azar (`mate-tranvía-lluvia-cuaderno`) es más fácil de recordar y más difícil de adivinar que `P@ssw0rd!`.
+3. **Usá un gestor de contraseñas.** Genera y recuerda claves únicas por vos. Si usás Android o Chrome, ya tenés uno: en [esta guía del gestor de contraseñas de Google](/blog/gestor-contrasenias-google) está el paso a paso.
+4. **Activá el doble factor.** Una contraseña robada sola no alcanza si hay un segundo paso. En [la nota sobre doble factor de autenticación](/blog/doble-factor-autenticacion) explico cuál conviene usar.
+5. **Cambiá la contraseña cuando haya motivo:** si el servicio avisa de una filtración, si tu gestor la marca como comprometida o si la usaste en un dispositivo que no es tuyo.
+6. **Pasate a passkeys donde puedas.** Eliminan la contraseña del medio y resisten el phishing. Más detalles en [por qué las passkeys van a reemplazar tu contraseña](/blog/passkeys-reemplazo-contrasena).
+
+<Callout title="Si administrás sistemas o programás un login">
+
+- Sacá la expiración periódica y las reglas de composición.
+- Exigí un mínimo de 15 caracteres si la contraseña es el único factor, y aceptá al menos 64.
+- Compará cada contraseña nueva contra listas de contraseñas filtradas (por ejemplo, con la API de Have I Been Pwned, que permite consultar sin enviar la contraseña completa).
+- No bloquees el pegado: romper los gestores de contraseñas empuja a usar claves más cortas.
+- Eliminá las preguntas de seguridad y ofrecé doble factor o passkeys.
+- Ojo con las normas internas o de auditoría que todavía exigen rotación: conviene revisarlas citando la SP 800-63B-4 antes de cambiar la configuración.
+
+</Callout>
+
+## En resumen
+
+Cambiar la contraseña cada 90 días y obligar a usar símbolos fueron reglas bien intencionadas que, en la práctica, generaron contraseñas más predecibles. Desde 2025, la guía SP 800-63B-4 del NIST prohíbe ambas cosas y pone el foco en otro lado: contraseñas largas y únicas, control contra listas de filtradas, gestores de contraseñas y doble factor. La contraseña se cambia cuando hay un motivo, no cuando lo marca el calendario.
+
+## Fuentes
+
+- **NIST** — [SP 800-63B-4: Digital Identity Guidelines, Authentication and Authenticator Management](https://pages.nist.gov/800-63-4/sp800-63b.html). Versión final, agosto de 2025.
+- **Microsoft** — [Security baseline (FINAL) for Windows 10 v1903 and Windows Server v1903](https://learn.microsoft.com/en-us/archive/blogs/secguide/security-baseline-final-for-windows-10-v1903-and-windows-server-v1903). Explica por qué se quitó la expiración de contraseñas.
+- **Zhang, Monrose y Reiter (UNC, 2010)** — [The Security of Modern Password Expiration: An Algorithmic Framework and Empirical Analysis](https://doi.org/10.1145/1866307.1866328).
+- **Have I Been Pwned** — [Pwned Passwords](https://haveibeenpwned.com/Passwords).
+
+<ShareIcons />
